@@ -171,23 +171,23 @@ class _P1WIDGETFIELDState extends State<P1WIDGETFIELD> {
               ),
             ),
           ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              height: widget.height ?? 35,
-              decoration: BoxDecoration(
-                color: widget.CB07 ?? Colors.white,
-                border: Border.all(color: Colors.black),
-                borderRadius: const BorderRadius.all(Radius.circular(0)),
-              ),
-              child: Center(
-                child: Text(widget.B07 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
-              ),
-            ),
-          ),
+          // Expanded(
+          //   flex: 2,
+          //   child: Container(
+          //     height: widget.height ?? 35,
+          //     decoration: BoxDecoration(
+          //       color: widget.CB07 ?? Colors.white,
+          //       border: Border.all(color: Colors.black),
+          //       borderRadius: const BorderRadius.all(Radius.circular(0)),
+          //     ),
+          //     child: Center(
+          //       child: Text(widget.B07 ?? '',
+          //           style: TxtStyle(
+          //               color: widget.FCB ?? Colors.black,
+          //               fontSize: widget.forntsize ?? 14)),
+          //     ),
+          //   ),
+          // ),
           Expanded(
             flex: 2,
             child: Container(

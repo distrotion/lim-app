@@ -28,7 +28,7 @@ void onLoadingType01(BuildContext contextin, void newValue, void newValue2) {
     },
   );
 
-  Timer(Duration(seconds: 1), () {
+  Timer(Duration(milliseconds: 2500), () {
     BlocProvider.of<BlocPageRebuild>(contextin).rebuildPage();
     Navigator.pop(contextin);
     newValue2;
@@ -86,8 +86,8 @@ void onLoadingFAKE(BuildContext contextin) {
     },
   );
 
-  Timer(Duration(seconds: 2), () {
-    BlocProvider.of<BlocPageRebuild>(contextin).rebuildPage();
+  Timer(Duration(seconds: 1), () {
+    // BlocProvider.of<BlocPageRebuild>(contextin).rebuildPage();
     Navigator.pop(contextin);
   });
 }

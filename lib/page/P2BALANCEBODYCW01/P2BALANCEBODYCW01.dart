@@ -54,7 +54,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                       children: [
                         Row(
                           children: [
-                            Text("REQ NO : ${P2BALANCEBODY01CWVAR.REQNO}"),
+                            Text("REQ NO : ${P2BALANCEBODY01CWVAR.ReqNo}"),
                           ],
                         ),
                         Row(

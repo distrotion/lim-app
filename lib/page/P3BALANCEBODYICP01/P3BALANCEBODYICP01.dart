@@ -1,23 +1,56 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
+import '../../bloc/BlocEvent/03-01-P3BALANCEBODYICP01.dart';
+import '../../bloc/BlocEvent/03-02-P3BALANCEBODYICP01GETSET.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../widget/common/ComInputText.dart';
+import '../../widget/common/Loading.dart';
 import '../page1.dart';
 import 'P3BALANCEBODY01ICPVAR.dart';
 
 class P03BALANCEBODYICP01 extends StatefulWidget {
-  const P03BALANCEBODYICP01({super.key});
-
+  P03BALANCEBODYICP01({
+    super.key,
+    this.value,
+    this.SET,
+    this.status,
+  });
+  String? value;
+  P3BALANCEBODYICP01GETSETCLASS? SET;
+  String? status;
   @override
   State<P03BALANCEBODYICP01> createState() => _P03BALANCEBODYICP01State();
 }
 
 class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<Getbalancevalue_Bloc>().add(Getbalancevalue_Get());
+    context
+        .read<P3BALANCEBODYICP01GETSET_Bloc>()
+        .add(P3BALANCEBODYICP01GETSET_GET());
+  }
+
+  @override
   Widget build(BuildContext context) {
+    P3BALANCEBODY01ICPVAR.value = widget.value ?? '';
+    P3BALANCEBODYICP01GETSETCLASS dataset =
+        widget.SET ?? P3BALANCEBODYICP01GETSETCLASS();
+
+    P3BALANCEBODY01ICPVAR.ReqNo = dataset.ReqNo;
+    P3BALANCEBODY01ICPVAR.InstrumentName = dataset.InstrumentName;
+    P3BALANCEBODY01ICPVAR.CustFull = dataset.CustShort;
+
+    P3BALANCEBODY01ICPVAR.W11 = dataset.W11;
+    P3BALANCEBODY01ICPVAR.Result = P3BALANCEBODY01ICPVAR.W11;
+
     return SizedBox(
       width: 800,
       child: Row(
@@ -54,17 +87,19 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                       children: [
                         Row(
                           children: [
-                            Text("REQ NO : ${P3BALANCEBODY01ICPVAR.REQNO}"),
+                            Text("REQ NO : ${P3BALANCEBODY01ICPVAR.ReqNo}"),
                           ],
                         ),
                         Row(
                           children: [
-                            Text("B01 : ${P3BALANCEBODY01ICPVAR.TYPE}"),
+                            Text(
+                                "TYPE : ${P3BALANCEBODY01ICPVAR.InstrumentName}"),
                           ],
                         ),
                         Row(
                           children: [
-                            Text("B02 : ${"B02"}"),
+                            Text(
+                                "CustFull : ${P3BALANCEBODY01ICPVAR.CustFull}"),
                           ],
                         ),
                       ],
@@ -91,11 +126,14 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                             // color: Colors.black,
                             border: Border.all(color: Colors.blue, width: 2),
                           ),
-                          child: Center(child: Text("2.5678")),
+                          child:
+                              Center(child: Text(P3BALANCEBODY01ICPVAR.value)),
                         ),
                         InkWell(
                           onTap: () {
-                            //
+                            context
+                                .read<Getbalancevalue_Bloc>()
+                                .add(Getbalancevalue_Get());
                           },
                           child: Container(
                             height: 40,
@@ -110,6 +148,20 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                         InkWell(
                           onTap: () {
                             //
+                            context
+                                .read<P3BALANCEBODYICP01_Bloc>()
+                                .add(P3BALANCEBODYICP01_SETDATA());
+                            context
+                                .read<Getbalancevalue_Bloc>()
+                                .add(Getbalancevalue_Get());
+                            onLoadingFAKE(context);
+                            Future.delayed(const Duration(milliseconds: 2000),
+                                () {
+                              context
+                                  .read<P3BALANCEBODYICP01GETSET_Bloc>()
+                                  .add(P3BALANCEBODYICP01GETSET_GET());
+                              setState(() {});
+                            });
                           },
                           child: Container(
                             height: 40,
@@ -163,7 +215,22 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                               height: 5,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                context
+                                    .read<P3BALANCEBODYICP01_Bloc>()
+                                    .add(P3BALANCEBODYICP01_CLEARW11());
+                                context
+                                    .read<Getbalancevalue_Bloc>()
+                                    .add(Getbalancevalue_Get());
+                                onLoadingFAKE(context);
+                                Future.delayed(
+                                    const Duration(milliseconds: 2000), () {
+                                  context
+                                      .read<P3BALANCEBODYICP01GETSET_Bloc>()
+                                      .add(P3BALANCEBODYICP01GETSET_GET());
+                                  setState(() {});
+                                });
+                              },
                               child: Container(
                                 height: 40,
                                 width: 95,
@@ -171,7 +238,7 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                                     ? Colors.orange
                                     : Colors.grey.shade400,
                                 child: const Center(
-                                  child: Text("BACK N1"),
+                                  child: Text("CLEAR N1"),
                                 ),
                               ),
                             ),
@@ -298,13 +365,23 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                     height: 5,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+//
+                      Dio().post(
+                        'http://172.23.10.40:2600/balance01CLEARREGISTER',
+                        data: {},
+                      ).then((value) {
+                        CuPage = Page1();
+                        MainBodyContext.read<ChangePage_Bloc>()
+                            .add(ChangePage_nodrower());
+                      });
+                    },
                     child: Container(
                       height: 62,
-                      color: Colors.green,
+                      color: Colors.orange,
                       child: const Center(
                         child: Text(
-                          "SEND DATA TO SAR",
+                          "TEMP SAVE",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -317,10 +394,10 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                     onTap: () {},
                     child: Container(
                       height: 62,
-                      color: Colors.orange,
+                      color: Colors.green,
                       child: const Center(
                         child: Text(
-                          "CLEAR",
+                          "SEND DATA TO SAR",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -340,7 +417,7 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                       color: Colors.black,
                       child: const Center(
                         child: Text(
-                          "CLEAR PAGE",
+                          "BACK PAGE",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

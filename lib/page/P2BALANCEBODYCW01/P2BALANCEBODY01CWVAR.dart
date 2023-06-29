@@ -1,6 +1,6 @@
 class P2BALANCEBODY01CWVAR {
   static bool iscontrol = true;
-  static String REQNO = '';
+  static String ReqNo = '';
   static String TYPE = '';
 
   static String W11 = '';
