@@ -17,4 +17,4 @@ class logindata {
   static String userPASS = '';
 }
 
-String serverG = 'http://localhost:15150/';
+String serverG = 'http://localhost:15152/';

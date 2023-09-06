@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
+import '../../page/P3BALANCEBODYICP01/P3BALANCEBODYICP01.dart';
+import '../../widget/common/Loading.dart';
 
 //-------------------------------------------------
 
@@ -33,8 +36,10 @@ class P3BALANCEBODYICP01GETSET_Bloc extends Bloc<P3BALANCEBODYICP01GETSET_Event,
       Emitter<P3BALANCEBODYICP01GETSETCLASS> emit) async {
     P3BALANCEBODYICP01GETSETCLASS output = P3BALANCEBODYICP01GETSETCLASS();
 
+    FreeLoading(P03BALANCEBODYICP01context);
+
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01GETREGISTERSET',
+      'http://172.23.10.40:2600/balance01GETREGISTERSET_S',
       data: {},
     );
 
@@ -57,8 +62,15 @@ class P3BALANCEBODYICP01GETSET_Bloc extends Bloc<P3BALANCEBODYICP01GETSET_Event,
               ? databuff[0]['data']['W11'].toString()
               : '';
         }
+        if (databuff[0]['data_adj'] != null) {
+          output.W11_adj = databuff[0]['data_adj']['W11'] != null
+              ? databuff[0]['data_adj']['W11'].toString()
+              : '';
+        }
       }
     }
+
+    Navigator.pop(P03BALANCEBODYICP01context);
     emit(output);
   }
 
@@ -85,10 +97,12 @@ class P3BALANCEBODYICP01GETSETCLASS {
     this.InstrumentName = '',
     this.CustShort = '',
     this.W11 = '',
+    this.W11_adj = '',
   });
   String ReqNo;
   String InstrumentName;
   String CustShort;
 
   String W11;
+  String W11_adj;
 }

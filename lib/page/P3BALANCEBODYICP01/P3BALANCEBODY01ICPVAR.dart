@@ -4,6 +4,7 @@ class P3BALANCEBODY01ICPVAR {
   // static String TYPE = '';
 
   static String W11 = '';
+  static String W11_adj = '';
   //
 
   static String Result = '';

@@ -2,84 +2,83 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
-import '../../page/P3BALANCEBODYICP01/P3BALANCEBODY01ICPVAR.dart';
 
 //-------------------------------------------------
 
-abstract class P3BALANCEBODYICP01_Event {}
+abstract class P2BALANCEBODYCW01_Event {}
 
-class P3BALANCEBODYICP01_GET extends P3BALANCEBODYICP01_Event {}
+class P2BALANCEBODYCW01_GET extends P2BALANCEBODYCW01_Event {}
 
-class P3BALANCEBODYICP01_SETDATA extends P3BALANCEBODYICP01_Event {}
+class P2BALANCEBODYCW01_SETDATA extends P2BALANCEBODYCW01_Event {}
 
-class P3BALANCEBODYICP01_CLEARW11 extends P3BALANCEBODYICP01_Event {}
+class P2BALANCEBODYCW01_CLEARW11 extends P2BALANCEBODYCW01_Event {}
 
-class P3BALANCEBODYICP01_CLEARW11_ADJ extends P3BALANCEBODYICP01_Event {}
+// class P2BALANCEBODYCW01_CLEARW11_ADJ extends P2BALANCEBODYCW01_Event {}
 
-class flush extends P3BALANCEBODYICP01_Event {}
+class flush extends P2BALANCEBODYCW01_Event {}
 
-class P3BALANCEBODYICP01_Bloc extends Bloc<P3BALANCEBODYICP01_Event, String> {
-  P3BALANCEBODYICP01_Bloc() : super('') {
-    on<P3BALANCEBODYICP01_GET>((event, emit) {
-      return _P3BALANCEBODYICP01_GET('', emit);
+class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
+  P2BALANCEBODYCW01_Bloc() : super('') {
+    on<P2BALANCEBODYCW01_GET>((event, emit) {
+      return _P2BALANCEBODYCW01_GET('', emit);
     });
-    on<P3BALANCEBODYICP01_SETDATA>((event, emit) {
-      return _P3BALANCEBODYICP01_SETDATA('', emit);
-    });
-
-    on<P3BALANCEBODYICP01_CLEARW11>((event, emit) {
-      return _P3BALANCEBODYICP01_CLEARW11('', emit);
+    on<P2BALANCEBODYCW01_SETDATA>((event, emit) {
+      return _P2BALANCEBODYCW01_SETDATA('', emit);
     });
 
-    on<P3BALANCEBODYICP01_CLEARW11_ADJ>((event, emit) {
-      return _P3BALANCEBODYICP01_CLEARW11_ADJ('', emit);
+    on<P2BALANCEBODYCW01_CLEARW11>((event, emit) {
+      return _P2BALANCEBODYCW01_CLEARW11('', emit);
     });
+
+    // on<P2BALANCEBODYCW01_CLEARW11_ADJ>((event, emit) {
+    //   return _P2BALANCEBODYCW01_CLEARW11_ADJ('', emit);
+    // });
 
     on<flush>((event, emit) {
       return _flush('', emit);
     });
   }
-  Future<void> _P3BALANCEBODYICP01_GET(
+  Future<void> _P2BALANCEBODYCW01_GET(
       String toAdd, Emitter<String> emit) async {
     String output = '';
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP01_SETDATA(
+  Future<void> _P2BALANCEBODYCW01_SETDATA(
       String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01UPDATEDATA',
+      'http://172.23.10.40:2600/balance01UPDATEDATA_C',
       data: {},
     );
 
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP01_CLEARW11(
+  Future<void> _P2BALANCEBODYCW01_CLEARW11(
       String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01CLEARDATA',
+      'http://172.23.10.40:2600/balance01CLEARDATA_C',
       data: {},
     );
 
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP01_CLEARW11_ADJ(
-      String toAdd, Emitter<String> emit) async {
-    String output = '';
+  // Future<void> _P2BALANCEBODYCW01_CLEARW11_ADJ(
+  //     String toAdd, Emitter<String> emit) async {
+  //   String output = '';
 
-    final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01CLEARDATA_ADJ',
-      data: {},
-    );
+  //   final response = await Dio().post(
+  //     'http://172.23.10.40:2600/balance01CLEARDATA_ADJ',
+  //     data: {},
+  //   );
 
-    emit(output);
-  }
+  //   emit(output);
+  // }
 
   Future<void> _flush(String toAdd, Emitter<String> emit) async {
     String output = '';

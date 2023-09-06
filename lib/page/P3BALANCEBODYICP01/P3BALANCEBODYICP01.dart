@@ -13,6 +13,8 @@ import '../../widget/common/Loading.dart';
 import '../page1.dart';
 import 'P3BALANCEBODY01ICPVAR.dart';
 
+late BuildContext P03BALANCEBODYICP01context;
+
 class P03BALANCEBODYICP01 extends StatefulWidget {
   P03BALANCEBODYICP01({
     super.key,
@@ -40,6 +42,7 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
 
   @override
   Widget build(BuildContext context) {
+    P03BALANCEBODYICP01context = context;
     P3BALANCEBODY01ICPVAR.value = widget.value ?? '';
     P3BALANCEBODYICP01GETSETCLASS dataset =
         widget.SET ?? P3BALANCEBODYICP01GETSETCLASS();
@@ -49,6 +52,7 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
     P3BALANCEBODY01ICPVAR.CustFull = dataset.CustShort;
 
     P3BALANCEBODY01ICPVAR.W11 = dataset.W11;
+    P3BALANCEBODY01ICPVAR.W11_adj = dataset.W11_adj;
     P3BALANCEBODY01ICPVAR.Result = P3BALANCEBODY01ICPVAR.W11;
 
     return SizedBox(
@@ -197,7 +201,7 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                                     ? Colors.green
                                     : Colors.grey.shade400,
                                 child: const Center(
-                                  child: Text("N1"),
+                                  child: Text("N1 R1"),
                                 ),
                               ),
                             ),
@@ -238,7 +242,76 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                                     ? Colors.orange
                                     : Colors.grey.shade400,
                                 child: const Center(
-                                  child: Text("CLEAR N1"),
+                                  child: Text("CLEAR N1 R1"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                height: 40,
+                                width: 95,
+                                color: P3BALANCEBODY01ICPVAR.SEND == ''
+                                    ? Colors.green
+                                    : Colors.grey.shade400,
+                                child: const Center(
+                                  child: Text("N1 R2"),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 40,
+                              width: 95,
+                              color: Colors.blue,
+                              child: Center(
+                                  child: Text(P3BALANCEBODY01ICPVAR.W11_adj)),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                context
+                                    .read<P3BALANCEBODYICP01_Bloc>()
+                                    .add(P3BALANCEBODYICP01_CLEARW11_ADJ());
+                                context
+                                    .read<Getbalancevalue_Bloc>()
+                                    .add(Getbalancevalue_Get());
+                                onLoadingFAKE(context);
+                                Future.delayed(
+                                    const Duration(milliseconds: 2000), () {
+                                  context
+                                      .read<P3BALANCEBODYICP01GETSET_Bloc>()
+                                      .add(P3BALANCEBODYICP01GETSET_GET());
+                                  setState(() {});
+                                });
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 95,
+                                color: P3BALANCEBODY01ICPVAR.SEND == ''
+                                    ? Colors.orange
+                                    : Colors.grey.shade400,
+                                child: const Center(
+                                  child: Text("CLEAR N1R2"),
                                 ),
                               ),
                             ),

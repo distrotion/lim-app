@@ -102,11 +102,12 @@ class _P1BALANCEREQ01TABLEState extends State<P1BALANCEREQ01TABLE> {
               height: 20,
               forntsize: 10,
               B01: 'REQ NO.', //f1
-              B02: 'TYPE', //f19
-              B03: 'Customer NAME', //f17
-              B04: 'Sampling Name', //f16
-              B05: 'Sampling date', //f9
-              B06: 'Remark', //f30
+              B02: 'Customer NAME', //f19
+              B03: 'Sampling date', //f9
+              B04: 'TYPE', //f17
+              B05: 'Item Name', //f16
+
+              B06: 'Sampling code', //f30
               B07: 'B05', //--
               B08: 'ACTION',
               CB01: Colors.black54,
@@ -173,10 +174,10 @@ class tabledetailsearch extends StatelessWidget {
       tableout.add(P1WIDGETFIELD(
         height: 45,
         B01: _data_exp[i].f01,
-        B02: _data_exp[i].f02,
-        B03: _data_exp[i].f03,
-        B04: _data_exp[i].f04,
-        B05: _data_exp[i].f05,
+        B02: _data_exp[i].f03,
+        B03: _data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""),
+        B04: _data_exp[i].f02,
+        B05: _data_exp[i].f04,
         B06: _data_exp[i].f06,
         B07: '',
         B08: '',
@@ -215,40 +216,112 @@ class tabledetailsearch extends StatelessWidget {
           //   CuPage = Page3();
           //   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
           // }
-          final response = Dio().post(
-            'http://172.23.10.40:2600/balance01GETREGISTER',
-            data: {},
-          ).then((value) {
-            if (value.statusCode == 200) {
-              var databuff = value.data;
-              // print('>>>>${databuff['REQNO']}');
-              if (databuff['REQNO'] != null) {
-                if (databuff['REQNO'].toString() == '') {
-                  final response = Dio().post(
-                    'http://172.23.10.40:2600/balance01SETREGISTER',
-                    data: {
-                      "REQNO": PO,
-                    },
-                  ).then((value) {
-                    if (value.statusCode == 200) {
-                      var databuff = value.data;
 
-                      if (databuff['msg'].toString() == 'ok') {
-                        GENREQSG(context, _data_exp[i]);
-                      } else {
-                        // WORNINGpop(context, ["test2", "test2"], 100, 200);
+          if (CP == "ICP") {
+            final response = Dio().post(
+              'http://172.23.10.40:2600/balance01GETREGISTER',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuff = value.data;
+                // print('>>>>${databuff['REQNO']}');
+                if (databuff['REQNO'] != null) {
+                  if (databuff['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      'http://172.23.10.40:2600/balance01SETREGISTER',
+                      data: {
+                        "REQNO": PO,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuff = value.data;
+
+                        if (databuff['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page3(),
+                              '02SARBALANCE01SINGLESHOT/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
                       }
-                    }
-                  });
-                } else {
-                  // WORNINGpop(context, ["test", "test"], 100, 200);
-                  CuPage = Page3();
-                  MainBodyContext.read<ChangePage_Bloc>()
-                      .add(ChangePage_nodrower());
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
                 }
               }
-            }
-          });
+            });
+            // } else if (CP == "Cwt") {
+          } else if (CP == "Sludge") {
+            final response = Dio().post(
+              'http://172.23.10.40:2600/balance01GETREGISTER',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuff = value.data;
+                // print('>>>>${databuff['REQNO']}');
+                if (databuff['REQNO'] != null) {
+                  if (databuff['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      'http://172.23.10.40:2600/balance01SETREGISTER',
+                      data: {
+                        "REQNO": PO,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuff = value.data;
+
+                        if (databuff['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page2(),
+                              '03SARBALANCE01TWOSHOTS/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page2();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+          } else {
+            WORNINGpop(
+              context,
+              [
+                "NO",
+                "USE",
+              ],
+              100,
+              100,
+            );
+          }
         },
       ));
     }
@@ -275,10 +348,11 @@ class tabledetailinside extends StatelessWidget {
   }
 }
 
-GENREQSG(BuildContext contextin, dataset datainput) async {
+GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
+    String where) async {
   //
   Dio().post(
-    '${serverG}02SARBALANCE01SINGLESHOT/GENREQ',
+    '${serverG}${where}',
     data: {
       "ReqNo": datainput.f01,
       "InstrumentName": datainput.f02,
@@ -342,7 +416,7 @@ GENREQSG(BuildContext contextin, dataset datainput) async {
       "UserSend": datainput.f69,
     },
   ).then((value) {
-    CuPage = Page3();
+    CuPage = widpage;
     MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
   });
 }
