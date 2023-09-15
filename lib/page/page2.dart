@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/BlocEvent/01-Getbalancevalue.dart';
 import '../bloc/BlocEvent/02-01-P2BALANCEBODYICP01.dart';
 import '../bloc/BlocEvent/02-02-P2BALANCEBODYICP01GETSET.dart';
+import '../bloc/BlocEvent/02-03-P2BALANCEBODYICP01getgraph.dart';
+import '../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../model/model.dart';
 import 'P2BALANCEBODYCW01/P2BALANCEBODYCW01.dart';
 
@@ -73,9 +75,39 @@ class Page2BlocTableBodySETGETSET extends StatelessWidget {
         child: BlocBuilder<P2BALANCEBODYCW01GETSET_Bloc,
             P2BALANCEBODYCW01GETSETCLASS>(
           builder: (context, SET) {
+            return Page2BlocTableBodygetgraph(
+              value: value,
+              SET: SET,
+            );
+          },
+        ));
+  }
+}
+
+//P2BALANCEBODYICP01getgraph_Bloc
+
+class Page2BlocTableBodygetgraph extends StatelessWidget {
+  Page2BlocTableBodygetgraph({
+    Key? key,
+    this.value,
+    this.status,
+    this.SET,
+  }) : super(key: key);
+  String? value;
+  String? status;
+  P2BALANCEBODYCW01GETSETCLASS? SET;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (_) => P2BALANCEBODYICP01getgraph_Bloc(),
+        child: BlocBuilder<P2BALANCEBODYICP01getgraph_Bloc,
+            List<HistoryChartModel>>(
+          builder: (context, historyChartDatain) {
             return Page2Body(
               value: value,
               SET: SET,
+              historyChartDatain: historyChartDatain,
             );
           },
         ));
@@ -88,10 +120,12 @@ class Page2Body extends StatelessWidget {
     this.value,
     this.SET,
     this.status,
+    this.historyChartDatain,
   }) : super(key: key);
   String? value;
   String? status;
   P2BALANCEBODYCW01GETSETCLASS? SET;
+  List<HistoryChartModel>? historyChartDatain;
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +134,7 @@ class Page2Body extends StatelessWidget {
         value: value,
         SET: SET,
         status: status,
+        historyChartDatain: historyChartDatain,
       ),
     );
   }

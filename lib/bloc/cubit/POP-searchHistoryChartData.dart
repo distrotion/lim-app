@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/global.dart';
+
 class searchHistoryChartData_Cubit extends Cubit<List<HistoryChartModel>> {
   /// {@macro brightness_cubit}
   searchHistoryChartData_Cubit() : super([]);
@@ -18,7 +20,7 @@ class searchHistoryChartData_Cubit extends Cubit<List<HistoryChartModel>> {
       'section': section,
     };
     final response = await http.post(
-        Uri.parse("http://172.23.10.51:1885/Widget_SearcHistoryChartData2"),
+        Uri.parse("${serverSARMAIN}/Widget_SearcHistoryChartData2"),
         body: qParams);
     if (response.statusCode == 200) {
       //print("respone");

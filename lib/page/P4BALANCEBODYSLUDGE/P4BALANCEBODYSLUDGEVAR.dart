@@ -1,4 +1,4 @@
-class P2BALANCEBODY01CWVAR {
+class P4BALANCEBODYSLUDGEVAR {
   static bool iscontrol = true;
   static String ReqNo = '';
   static String TYPE = '';

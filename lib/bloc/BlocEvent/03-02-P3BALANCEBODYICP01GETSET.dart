@@ -39,7 +39,7 @@ class P3BALANCEBODYICP01GETSET_Bloc extends Bloc<P3BALANCEBODYICP01GETSET_Event,
     FreeLoading(P03BALANCEBODYICP01context);
 
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01GETREGISTERSET_S',
+      '${serverN}/balance01GETREGISTERSET_S',
       data: {},
     );
 

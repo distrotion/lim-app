@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/global.dart';
+
 //-------------------------------------------------
 
 abstract class Getbalancevalue_Event {}
@@ -21,7 +23,7 @@ class Getbalancevalue_Bloc extends Bloc<Getbalancevalue_Event, String> {
   Future<void> _Getbalancevalue_Get(String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01getvalue',
+      '${serverN}/balance01getvalue',
       data: {},
     );
 

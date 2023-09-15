@@ -36,7 +36,7 @@ class P2BALANCEBODYCW01GETSET_Bloc
     FreeLoading(P02BALANCEBODYCW01context);
 
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01GETREGISTERSET_C',
+      '${serverN}/balance01GETREGISTERSET_C',
       data: {},
     );
 
@@ -54,6 +54,17 @@ class P2BALANCEBODYCW01GETSET_Bloc
         output.CustShort = databuff[0]['CustShort'] != null
             ? databuff[0]['CustShort'].toString()
             : '';
+        output.UID =
+            databuff[0]['UID'] != null ? databuff[0]['UID'].toString() : '';
+
+        output.ItemName = databuff[0]['ItemName'] != null
+            ? databuff[0]['ItemName'].toString()
+            : '';
+        output.NOitem = databuff[0]['NOitem'] != null
+            ? databuff[0]['NOitem'].toString()
+            : '';
+        //ItemName
+
         if (databuff[0]['data'] != null) {
           output.W11 = databuff[0]['data']['W11'] != null
               ? databuff[0]['data']['W11'].toString()
@@ -106,6 +117,9 @@ class P2BALANCEBODYCW01GETSETCLASS {
     this.W12 = '',
     this.W13 = '',
     this.W14 = '',
+    this.UID = '',
+    this.ItemName = '',
+    this.NOitem = '',
   });
   String ReqNo;
   String InstrumentName;
@@ -115,4 +129,8 @@ class P2BALANCEBODYCW01GETSETCLASS {
   String W12;
   String W13;
   String W14;
+  String UID;
+  String ItemName;
+
+  String NOitem;
 }

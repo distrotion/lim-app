@@ -8,6 +8,7 @@ import '../../page/page2.dart';
 import '../../page/page3.dart';
 import '../../page/page4.dart';
 import '../../page/page5.dart';
+import '../../page/page99.dart';
 import 'sub_widget.dart';
 
 late BuildContext MenuContext;
@@ -75,20 +76,25 @@ class Data_Menu_mainmenu extends StatelessWidget {
                   ),
                 ))),
         menu_normal(
-          name: "BALANCE CHM-01",
-          page: Page1(),
+          name: "SELECT INS",
+          page: Page99(),
           Lv: 1,
         ),
-        menu_normal(
-          name: "BALANCE ST-02",
-          page: Page1(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "BALANCE 620-03",
-          page: Page1(),
-          Lv: 1,
-        ),
+        // menu_normal(
+        //   name: "BALANCE CHM-01",
+        //   page: Page1(),
+        //   Lv: 1,
+        // ),
+        // menu_normal(
+        //   name: "BALANCE ST-02",
+        //   page: Page1(),
+        //   Lv: 1,
+        // ),
+        // menu_normal(
+        //   name: "BALANCE 620-03",
+        //   page: Page1(),
+        //   Lv: 1,
+        // ),
         // menu_normal(
         //   name: "Page4",
         //   page: Page4(),

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/global.dart';
+
 //-------------------------------------------------
 
 abstract class P1BALANCEREQ01GETSTR_Event {}
@@ -28,7 +30,7 @@ class P1BALANCEREQ01GETSTR_Bloc
       String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01GETREGISTER',
+      '${serverN}/balance01GETREGISTER',
       data: {},
     );
 
@@ -45,7 +47,7 @@ class P1BALANCEREQ01GETSTR_Bloc
       String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01CLEARREGISTER',
+      '${serverN}/balance01CLEARREGISTER',
       data: {},
     );
 

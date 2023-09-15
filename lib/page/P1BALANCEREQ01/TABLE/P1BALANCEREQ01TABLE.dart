@@ -15,6 +15,7 @@ import '../../../widget/common/popup.dart';
 
 import '../../page2.dart';
 import '../../page3.dart';
+import '../../page4.dart';
 import '../P1BALANCEREQ01VAR.dart';
 import 'P1BALANCEREQ01TABLEFIELD.dart';
 
@@ -147,7 +148,8 @@ class tabledetailsearchlist extends StatelessWidget {
       if (_data[i].f01.contains(P1BALANCEREQ01VAR.SEARCH) ||
               _data[i].f02.contains(P1BALANCEREQ01VAR.SEARCH) ||
               _data[i].f03.contains(P1BALANCEREQ01VAR.SEARCH) ||
-              _data[i].f04.contains(P1BALANCEREQ01VAR.SEARCH)
+              _data[i].f04.contains(P1BALANCEREQ01VAR.SEARCH) ||
+              _data[i].f05.contains(P1BALANCEREQ01VAR.SEARCH)
           // _data[i].f05.contains(P1BALANCEREQ01VAR.SEARCH)
           ) {
         _data_exp.add(_data[i]);
@@ -184,7 +186,7 @@ class tabledetailsearch extends StatelessWidget {
         B09: '',
         B10: '',
         B11: _data_exp[i].f02,
-        B12: _data_exp[i].f03,
+        B12: _data_exp[i].f70,
         CB01: _data_exp[i].f36 == 'finish-no'
             ? Colors.red
             : _data_exp[i].f36 == 'finish'
@@ -217,9 +219,9 @@ class tabledetailsearch extends StatelessWidget {
           //   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
           // }
 
-          if (CP == "ICP") {
+          if (CP == "Sludge") {
             final response = Dio().post(
-              'http://172.23.10.40:2600/balance01GETREGISTER',
+              '${serverN}/balance01GETREGISTER',
               data: {},
             ).then((value) {
               if (value.statusCode == 200) {
@@ -228,17 +230,18 @@ class tabledetailsearch extends StatelessWidget {
                 if (databuff['REQNO'] != null) {
                   if (databuff['REQNO'].toString() == '') {
                     final response = Dio().post(
-                      'http://172.23.10.40:2600/balance01SETREGISTER',
+                      '${serverN}/balance01SETREGISTER',
                       data: {
                         "REQNO": PO,
+                        "UID": FG,
                       },
                     ).then((value) {
                       if (value.statusCode == 200) {
                         var databuff = value.data;
 
                         if (databuff['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page3(),
-                              '02SARBALANCE01SINGLESHOT/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page4(),
+                              '04SARBALANCE01SLUDGE/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -264,9 +267,9 @@ class tabledetailsearch extends StatelessWidget {
               }
             });
             // } else if (CP == "Cwt") {
-          } else if (CP == "Sludge") {
+          } else if (CP != "COATING WEIGHT") {
             final response = Dio().post(
-              'http://172.23.10.40:2600/balance01GETREGISTER',
+              '${serverN}/balance01GETREGISTER',
               data: {},
             ).then((value) {
               if (value.statusCode == 200) {
@@ -275,9 +278,10 @@ class tabledetailsearch extends StatelessWidget {
                 if (databuff['REQNO'] != null) {
                   if (databuff['REQNO'].toString() == '') {
                     final response = Dio().post(
-                      'http://172.23.10.40:2600/balance01SETREGISTER',
+                      '${serverN}/balance01SETREGISTER',
                       data: {
                         "REQNO": PO,
+                        "UID": FG,
                       },
                     ).then((value) {
                       if (value.statusCode == 200) {
@@ -285,7 +289,7 @@ class tabledetailsearch extends StatelessWidget {
 
                         if (databuff['msg'].toString() == 'ok') {
                           GENREQSG(context, _data_exp[i], Page2(),
-                              '03SARBALANCE01TWOSHOTS/GENREQ');
+                              '03SARBALANCE01CWT/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -414,6 +418,7 @@ GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
       "UserReject": datainput.f67,
       "UserRequestRecheck": datainput.f68,
       "UserSend": datainput.f69,
+      "UID": datainput.f70,
     },
   ).then((value) {
     CuPage = widpage;
@@ -422,7 +427,6 @@ GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
 }
 
 void CHECKROOM(BuildContext contextin, dataset datainput) async {}
-
 
 // List<Widget> tableout = [
 //       P1WIDGETFIELD(

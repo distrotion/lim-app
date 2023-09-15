@@ -32,11 +32,12 @@ class P1BALANCEREQ01GET_Bloc
   Future<void> _GETDATALISTFROMSAR(
       List<dataset> toAdd, Emitter<List<dataset>> emit) async {
     final response = await Dio().post(
-      'http://172.23.10.51:5000/requestbalance',
+      '${serverSARS}/requestbalance',
       data: {
-        "name": "Khota",
+        // "name": "Khota",
         // "name": "Wannipha",
         // "name": "sangtong",
+        "name": USERDATA.NAME,
       },
     );
 
@@ -244,6 +245,8 @@ class P1BALANCEREQ01GET_Bloc
               f69: databuff[i]['UserSend'] != null
                   ? databuff[i]['UserSend'].toString()
                   : '',
+              f70:
+                  databuff[i]['ID'] != null ? databuff[i]['ID'].toString() : '',
             ),
           );
         }
@@ -252,7 +255,9 @@ class P1BALANCEREQ01GET_Bloc
 
     print(output.length);
 
-    emit(output);
+    List<dataset> outset = output..sort((a, b) => a.f01.compareTo(b.f01));
+
+    emit(outset);
   }
 
   Future<void> _GENNEWREQNO(
@@ -263,6 +268,7 @@ class P1BALANCEREQ01GET_Bloc
         "ReqNo": P1BALANCEREQ01VAR.ReqNo,
         "InstrumentName": P1BALANCEREQ01VAR.InstrumentName,
         //-------------------
+
         "Branch": P1BALANCEREQ01VAR.Branch,
         "Code": P1BALANCEREQ01VAR.Code,
         "ControlRange": P1BALANCEREQ01VAR.ControlRange,
@@ -321,6 +327,7 @@ class P1BALANCEREQ01GET_Bloc
         "UserRequestRecheck": P1BALANCEREQ01VAR.UserRequestRecheck,
         "UserSend": P1BALANCEREQ01VAR.UserSend,
         "Operator": USERDATA.NAME,
+        "UID": P1BALANCEREQ01VAR.UID,
       },
     );
 

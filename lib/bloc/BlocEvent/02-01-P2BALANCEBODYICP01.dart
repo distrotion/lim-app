@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
+import '../../page/P2BALANCEBODYCW01/P2BALANCEBODY01CWVAR.dart';
 
 //-------------------------------------------------
 
@@ -12,6 +13,10 @@ class P2BALANCEBODYCW01_GET extends P2BALANCEBODYCW01_Event {}
 class P2BALANCEBODYCW01_SETDATA extends P2BALANCEBODYCW01_Event {}
 
 class P2BALANCEBODYCW01_CLEARW11 extends P2BALANCEBODYCW01_Event {}
+
+class P2BALANCEBODYCW01_CAL extends P2BALANCEBODYCW01_Event {}
+
+class P2BALANCEBODYCW01_SEND_TO_SAR extends P2BALANCEBODYCW01_Event {}
 
 // class P2BALANCEBODYCW01_CLEARW11_ADJ extends P2BALANCEBODYCW01_Event {}
 
@@ -30,6 +35,15 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
       return _P2BALANCEBODYCW01_CLEARW11('', emit);
     });
 
+    on<P2BALANCEBODYCW01_CAL>((event, emit) {
+      return _P2BALANCEBODYCW01_CAL('', emit);
+    });
+    on<P2BALANCEBODYCW01_SEND_TO_SAR>((event, emit) {
+      return _P2BALANCEBODYCW01_SEND_TO_SAR('', emit);
+    });
+
+//_P2BALANCEBODYCW01_SEND_TO_SAR
+//_P2BALANCEBODYCW01_CAL
     // on<P2BALANCEBODYCW01_CLEARW11_ADJ>((event, emit) {
     //   return _P2BALANCEBODYCW01_CLEARW11_ADJ('', emit);
     // });
@@ -49,7 +63,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01UPDATEDATA_C',
+      '${serverN}/balance01UPDATEDATA_C',
       data: {},
     );
 
@@ -61,8 +75,39 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      'http://172.23.10.40:2600/balance01CLEARDATA_C',
+      '${serverN}/balance01CLEARDATA_C',
       data: {},
+    );
+
+    emit(output);
+  }
+
+  Future<void> _P2BALANCEBODYCW01_CAL(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    print("------------>");
+    final response = await Dio().post(
+      '${serverN}/balance01ARER',
+      data: {
+        "AREA": P2BALANCEBODY01CWVAR.area,
+        "NOitem": P2BALANCEBODY01CWVAR.NOitem,
+      },
+    );
+
+    emit(output);
+  }
+
+  Future<void> _P2BALANCEBODYCW01_SEND_TO_SAR(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    print("------------>");
+    final response = await Dio().post(
+      '${serverN}/balance01SENDTOSAR',
+      data: {
+        "AREA": P2BALANCEBODY01CWVAR.area,
+        "USER": USERDATA.NAME,
+        "NOitem": P2BALANCEBODY01CWVAR.NOitem,
+      },
     );
 
     emit(output);
@@ -73,7 +118,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
   //   String output = '';
 
   //   final response = await Dio().post(
-  //     'http://172.23.10.40:2600/balance01CLEARDATA_ADJ',
+  //     '${serverN}/balance01CLEARDATA_ADJ',
   //     data: {},
   //   );
 

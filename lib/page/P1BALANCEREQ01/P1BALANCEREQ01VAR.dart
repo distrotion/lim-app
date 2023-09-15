@@ -93,4 +93,5 @@ class P1BALANCEREQ01VAR {
   static String UserReject = '';
   static String UserRequestRecheck = '';
   static String UserSend = '';
+  static String UID = '';
 }

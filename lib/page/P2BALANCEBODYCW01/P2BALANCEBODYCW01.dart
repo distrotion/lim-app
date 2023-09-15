@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
 import '../../bloc/BlocEvent/02-01-P2BALANCEBODYICP01.dart';
 import '../../bloc/BlocEvent/02-02-P2BALANCEBODYICP01GETSET.dart';
+import '../../bloc/BlocEvent/02-03-P2BALANCEBODYICP01getgraph.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
@@ -13,6 +14,7 @@ import '../../mainBody.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
+import '../../widget/common/popup.dart';
 import '../page1.dart';
 import 'P2BALANCEBODY01CWVAR.dart';
 
@@ -46,11 +48,13 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
         .add(P2BALANCEBODYCW01GETSET_GET());
     P2BALANCEBODY01CWVAR.area = '';
     P2BALANCEBODY01CWVAR.Result = '';
+    P2BALANCEBODY01CWVAR.mem = 'GO';
   }
 
   @override
   Widget build(BuildContext context) {
     P02BALANCEBODYCW01context = context;
+
     P2BALANCEBODY01CWVAR.value = widget.value ?? '';
     P2BALANCEBODYCW01GETSETCLASS dataset =
         widget.SET ?? P2BALANCEBODYCW01GETSETCLASS();
@@ -58,6 +62,12 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
     P2BALANCEBODY01CWVAR.ReqNo = dataset.ReqNo;
     P2BALANCEBODY01CWVAR.InstrumentName = dataset.InstrumentName;
     P2BALANCEBODY01CWVAR.CustFull = dataset.CustShort;
+    P2BALANCEBODY01CWVAR.UID = dataset.UID;
+    P2BALANCEBODY01CWVAR.ItemName = dataset.ItemName;
+    if (P2BALANCEBODY01CWVAR.NOitem == '') {
+      P2BALANCEBODY01CWVAR.iscontrol = true;
+      P2BALANCEBODY01CWVAR.NOitem = dataset.NOitem;
+    }
 
     P2BALANCEBODY01CWVAR.W11 = dataset.W11;
     P2BALANCEBODY01CWVAR.W12 = dataset.W12;
@@ -66,8 +76,19 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
 
     // P2BALANCEBODY01CWVAR.Result = P2BALANCEBODY01CWVAR.W11;
 
-    List<HistoryChartModel> historyChartData =
-        widget.historyChartDatain ?? [HistoryChartModel()];
+    List<HistoryChartModel> _historyChartData = widget.historyChartDatain ?? [];
+
+    if (P2BALANCEBODY01CWVAR.mem == 'GO' &&
+        P2BALANCEBODY01CWVAR.UID != '' &&
+        P2BALANCEBODY01CWVAR.InstrumentName != '') {
+      context
+          .read<P2BALANCEBODYICP01getgraph_Bloc>()
+          .add(P2BALANCEBODYICP01getgraph_get());
+      P2BALANCEBODY01CWVAR.mem = '';
+      print("+++++++++++++++++++");
+    }
+
+    print(_historyChartData);
     return SizedBox(
       width: 800,
       child: Row(
@@ -82,13 +103,35 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                   const SizedBox(
                     height: 15,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 60,
                     width: 300,
                     child: Center(
-                      child: Text(
-                        "BALANCE CW 01 (TTC HES)",
-                        style: TextStyle(fontSize: 28),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: InkWell(
+                              onTap: () {
+                                CuPage = Page1();
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .add(ChangePage_nodrower());
+                              },
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                weight: 100,
+                                size: 40,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 4,
+                            child: Text(
+                              "BALANCE CW 01 (TTC HES)",
+                              style: TextStyle(fontSize: 28),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -198,6 +241,75 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                   const SizedBox(
                     height: 15,
                   ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                height: 40,
+                                width: 95,
+                                color: P2BALANCEBODY01CWVAR.SEND == ''
+                                    ? Colors.brown
+                                    : Colors.grey.shade400,
+                                child: const Center(
+                                  child: Text("NO"),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 40,
+                              width: 200,
+                              // color: Colors.blue,
+                              child: Container(
+                                height: 62,
+                                // color: Colors.blue.shade300,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ComInputText(
+                                      isNumberOnly: true,
+                                      isEnabled:
+                                          P2BALANCEBODY01CWVAR.Result == '',
+                                      width: 150,
+                                      height: 40,
+                                      isContr: P2BALANCEBODY01CWVAR.iscontrol,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          P2BALANCEBODY01CWVAR.iscontrol =
+                                              input;
+                                        });
+                                      },
+                                      sValue: P2BALANCEBODY01CWVAR.NOitem,
+                                      returnfunc: (String s) {
+                                        P2BALANCEBODY01CWVAR.NOitem = s;
+                                      },
+                                    ),
+                                    Text("")
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+
                   Row(
                     children: [
                       SizedBox(
@@ -323,6 +435,74 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                   ),
                   Row(
                     children: [
+                      SizedBox(
+                        width: 300,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                height: 40,
+                                width: 95,
+                                color: P2BALANCEBODY01CWVAR.SEND == ''
+                                    ? Colors.green
+                                    : Colors.grey.shade400,
+                                child: const Center(
+                                  child: Text("AREA"),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 40,
+                              width: 200,
+                              // color: Colors.blue,
+                              child: Container(
+                                height: 62,
+                                // color: Colors.blue.shade300,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ComInputText(
+                                      isNumberOnly: true,
+                                      isEnabled:
+                                          P2BALANCEBODY01CWVAR.Result == '',
+                                      width: 150,
+                                      height: 40,
+                                      isContr: P2BALANCEBODY01CWVAR.iscontrol,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          P2BALANCEBODY01CWVAR.iscontrol =
+                                              input;
+                                        });
+                                      },
+                                      sValue: P2BALANCEBODY01CWVAR.area,
+                                      returnfunc: (String s) {
+                                        P2BALANCEBODY01CWVAR.area = s;
+                                      },
+                                    ),
+                                    Text("cm2")
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
                       Expanded(
                         flex: 2,
                         child: Column(
@@ -389,38 +569,38 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                   const SizedBox(
                     height: 5,
                   ),
-                  InkWell(
-                    onTap: () {
-                      // print(ConverstStr(P2BALANCEBODY01CWVAR.area));
-                      if (P2BALANCEBODY01CWVAR.Result == '') {
-                        setState(() {
-                          P2BALANCEBODY01CWVAR.Result = ((double.parse(
-                                          ConverstStr(
-                                              P2BALANCEBODY01CWVAR.W11)) -
-                                      double.parse(ConverstStr(
-                                          P2BALANCEBODY01CWVAR.W12))) /
-                                  double.parse(
-                                      ConverstStr(P2BALANCEBODY01CWVAR.area)) *
-                                  10000)
-                              .toStringAsFixed(2);
-                        });
-                      } else {
-                        setState(() {
-                          P2BALANCEBODY01CWVAR.Result = '';
-                        });
-                      }
-                    },
-                    child: Container(
-                      height: 40,
-                      color: Colors.orange,
-                      child: Center(
-                        child: Text(
-                          P2BALANCEBODY01CWVAR.Result == '' ? "CAL" : "RE CAL",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     // print(ConverstStr(P2BALANCEBODY01CWVAR.area));
+                  //     if (P2BALANCEBODY01CWVAR.Result == '') {
+                  //       setState(() {
+                  //         P2BALANCEBODY01CWVAR.Result = ((double.parse(
+                  //                         ConverstStr(
+                  //                             P2BALANCEBODY01CWVAR.W11)) -
+                  //                     double.parse(ConverstStr(
+                  //                         P2BALANCEBODY01CWVAR.W12))) /
+                  //                 double.parse(
+                  //                     ConverstStr(P2BALANCEBODY01CWVAR.area)) *
+                  //                 10000)
+                  //             .toStringAsFixed(2);
+                  //       });
+                  //     } else {
+                  //       setState(() {
+                  //         P2BALANCEBODY01CWVAR.Result = '';
+                  //       });
+                  //     }
+                  //   },
+                  //   child: Container(
+                  //     height: 40,
+                  //     color: Colors.orange,
+                  //     child: Center(
+                  //       child: Text(
+                  //         P2BALANCEBODY01CWVAR.Result == '' ? "CAL" : "RE CAL",
+                  //         style: TextStyle(color: Colors.white),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 5,
                   ),
@@ -428,40 +608,79 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Container(
-                          height: 62,
-                          color: Colors.blue.shade300,
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 5,
+                        // child: Container(
+                        //   height: 62,
+                        //   color: Colors.blue.shade300,
+                        //   child: Column(
+                        //     children: [
+                        //       const SizedBox(
+                        //         height: 5,
+                        //       ),
+                        //       const Center(child: Text('AREA')),
+                        //       Row(
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceAround,
+                        //         children: [
+                        //           ComInputText(
+                        //             isNumberOnly: true,
+                        //             isEnabled:
+                        //                 P2BALANCEBODY01CWVAR.Result == '',
+                        //             width: 100,
+                        //             height: 40,
+                        //             isContr: P2BALANCEBODY01CWVAR.iscontrol,
+                        //             fnContr: (input) {
+                        //               setState(() {
+                        //                 P2BALANCEBODY01CWVAR.iscontrol = input;
+                        //               });
+                        //             },
+                        //             sValue: P2BALANCEBODY01CWVAR.area,
+                        //             returnfunc: (String s) {
+                        //               P2BALANCEBODY01CWVAR.area = s;
+                        //             },
+                        //           ),
+                        //           Text("cm2")
+                        //         ],
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        child: InkWell(
+                          onTap: () {
+                            // print(ConverstStr(P2BALANCEBODY01CWVAR.area));
+                            if (P2BALANCEBODY01CWVAR.Result == '') {
+                              setState(() {
+                                P2BALANCEBODY01CWVAR.Result = ((double.parse(
+                                                ConverstStr(
+                                                    P2BALANCEBODY01CWVAR.W11)) -
+                                            double.parse(ConverstStr(
+                                                P2BALANCEBODY01CWVAR.W12))) /
+                                        double.parse(ConverstStr(
+                                            P2BALANCEBODY01CWVAR.area)) *
+                                        10000)
+                                    .toStringAsFixed(2);
+                              });
+                              context
+                                  .read<P2BALANCEBODYCW01_Bloc>()
+                                  .add(P2BALANCEBODYCW01_CAL());
+                            } else {
+                              setState(() {
+                                P2BALANCEBODY01CWVAR.Result = '';
+                              });
+                            }
+                          },
+                          child: Container(
+                            height: 62,
+                            color: P2BALANCEBODY01CWVAR.Result == ''
+                                ? Colors.orange
+                                : Colors.deepOrange,
+                            child: Center(
+                              child: Text(
+                                P2BALANCEBODY01CWVAR.Result == ''
+                                    ? "CAL"
+                                    : "RE CAL",
+                                style: TextStyle(color: Colors.white),
                               ),
-                              const Center(child: Text('AREA')),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  ComInputText(
-                                    isNumberOnly: true,
-                                    isEnabled:
-                                        P2BALANCEBODY01CWVAR.Result == '',
-                                    width: 100,
-                                    height: 40,
-                                    isContr: P2BALANCEBODY01CWVAR.iscontrol,
-                                    fnContr: (input) {
-                                      setState(() {
-                                        P2BALANCEBODY01CWVAR.iscontrol = input;
-                                      });
-                                    },
-                                    sValue: P2BALANCEBODY01CWVAR.area,
-                                    returnfunc: (String s) {
-                                      P2BALANCEBODY01CWVAR.area = s;
-                                    },
-                                  ),
-                                  Text("cm2")
-                                ],
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
@@ -489,7 +708,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                   InkWell(
                     onTap: () {
                       Dio().post(
-                        'http://172.23.10.40:2600/balance01CLEARREGISTER',
+                        '${serverN}/balance01CLEARREGISTER',
                         data: {},
                       ).then((value) {
                         CuPage = Page1();
@@ -512,7 +731,25 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                     height: 5,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      // if (P2BALANCEBODY01CWVAR.area != '' &&
+                      //     P2BALANCEBODY01CWVAR.W11 != '' &&
+                      //     P2BALANCEBODY01CWVAR.W12 != '') {
+                      context
+                          .read<P2BALANCEBODYCW01_Bloc>()
+                          .add(P2BALANCEBODYCW01_SEND_TO_SAR());
+                      // } else {
+                      //   WORNINGpop(
+                      //     context,
+                      //     [
+                      //       "DATA NOT COMPLETE",
+                      //       "PLEASE CHECK",
+                      //     ],
+                      //     100,
+                      //     100,
+                      //   );
+                      // }
+                    },
                     child: Container(
                       height: 62,
                       color: Colors.green,
@@ -608,7 +845,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                               textAlign: TextAlign.center,
                             ), */
                           Text(
-                            '${historyChartData[0].custFull}',
+                            '${_historyChartData.length > 0 ? _historyChartData[0].custFull : ''}',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -617,7 +854,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            'SAMPLE NAME : ${historyChartData[0].sampleName}',
+                            'SAMPLE NAME : ${_historyChartData.length > 0 ? _historyChartData[0].sampleName : ''}',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -635,7 +872,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            'POSITION : ${historyChartData[0].position}',
+                            'POSITION : ${_historyChartData.length > 0 ? _historyChartData[0].position : ''}',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -656,7 +893,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                ' MIN : ${historyChartData[0].stdMin}',
+                                ' MIN : ${_historyChartData.length > 0 ? _historyChartData[0].stdMin : ''}',
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -665,7 +902,7 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                ' MAX : ${historyChartData[0].stdMax}',
+                                ' MAX : ${_historyChartData.length > 0 ? _historyChartData[0].stdMax : ''}',
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -685,7 +922,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                               child: _LineChart(
                                 isShowingMainData:
                                     P2BALANCEBODY01CWVAR.isShowingMainData,
-                                historyChartData: historyChartData,
+                                historyChartData: _historyChartData,
+                                // historyChartData: [],
                               ),
                             ),
                           ),
@@ -745,6 +983,7 @@ class _LineChart extends StatelessWidget {
 
     return LineChart(
       chartData,
+      // LineChartData(),
       // swapAnimationDuration: const Duration(milliseconds: 250),
     );
   }
@@ -779,18 +1018,21 @@ class _LineChart extends StatelessWidget {
     }
     print(minResult);
     print(maxResult);
-    if (double.parse(ConverstStr(historyChartData[0].stdMin)) > 0 &&
-        double.parse(ConverstStr(historyChartData[0].stdMin)) < minResult) {
-      minY = (double.parse(ConverstStr(historyChartData[0].stdMin)) * 0.7);
-    } else {
-      minY = minResult * 0.7;
+    if (historyChartData.length > 0) {
+      if (double.parse(ConverstStr(historyChartData[0].stdMin)) > 0 &&
+          double.parse(ConverstStr(historyChartData[0].stdMin)) < minResult) {
+        minY = (double.parse(ConverstStr(historyChartData[0].stdMin)) * 0.7);
+      } else {
+        minY = minResult * 0.7;
+      }
+      if (double.parse(ConverstStr(historyChartData[0].stdMax)) > 0 &&
+          double.parse(ConverstStr(historyChartData[0].stdMax)) > maxResult) {
+        maxY = (double.parse(ConverstStr(historyChartData[0].stdMax)) * 1.3);
+      } else {
+        maxY = maxResult * 1.3;
+      }
     }
-    if (double.parse(ConverstStr(historyChartData[0].stdMax)) > 0 &&
-        double.parse(ConverstStr(historyChartData[0].stdMax)) > maxResult) {
-      maxY = (double.parse(ConverstStr(historyChartData[0].stdMax)) * 1.3);
-    } else {
-      maxY = maxResult * 1.3;
-    }
+
     /* print("Minx:$minX");
     print("Maxx:$maxX");
     print("Miny:$minY");
@@ -868,15 +1110,18 @@ class _LineChart extends StatelessWidget {
       ]; */
   List<LineChartBarData> lineBarsData1() {
     List<LineChartBarData> buff = [];
-    if (double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
-      buff.add(lineData);
+    if (historyChartData.length > 0) {
+      if (double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+        buff.add(lineData);
+      }
+      if (double.parse(ConverstStr(historyChartData[0].stdMin)) > 0) {
+        buff.add(lowwerLine);
+      }
+      if (double.parse(ConverstStr(historyChartData[0].stdMax)) > 0) {
+        buff.add(upperLine);
+      }
     }
-    if (double.parse(ConverstStr(historyChartData[0].stdMin)) > 0) {
-      buff.add(lowwerLine);
-    }
-    if (double.parse(ConverstStr(historyChartData[0].stdMax)) > 0) {
-      buff.add(upperLine);
-    }
+
     return buff;
   }
 

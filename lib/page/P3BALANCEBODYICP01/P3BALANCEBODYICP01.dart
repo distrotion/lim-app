@@ -439,9 +439,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                   ),
                   InkWell(
                     onTap: () {
-//
                       Dio().post(
-                        'http://172.23.10.40:2600/balance01CLEARREGISTER',
+                        '${serverN}/balance01CLEARREGISTER',
                         data: {},
                       ).then((value) {
                         CuPage = Page1();
