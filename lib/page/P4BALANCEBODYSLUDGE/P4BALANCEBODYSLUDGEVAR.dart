@@ -3,16 +3,21 @@ class P4BALANCEBODYSLUDGEVAR {
   static String ReqNo = '';
   static String TYPE = '';
 
-  static String W11 = '';
-  static String W12 = '';
-  static String W13 = '';
-  static String W14 = '';
-  static String area = '';
+  static String D01W11 = '';
+  static String D01W21 = '';
+  static String D02W11 = '';
+  static String D02W21 = '';
+  static String D01VOLUME = '';
+  static String D02VOLUME = '';
+  static String D01NOitem = '';
+  static String D02NOitem = '';
+  static String WX = '';
+  static String DX = '';
 
-  static String NOitem = '';
   //
 
-  static String Result = '';
+  static String Result01 = '';
+  static String Result02 = '';
 
   static String SPEChi = '';
   static String SPEClow = '';

@@ -6,8 +6,20 @@ import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../page1.dart';
 
-class P99SELECTINSMAIN extends StatelessWidget {
+class P99SELECTINSMAIN extends StatefulWidget {
   const P99SELECTINSMAIN({super.key});
+
+  @override
+  State<P99SELECTINSMAIN> createState() => _P99SELECTINSMAINState();
+}
+
+class _P99SELECTINSMAINState extends State<P99SELECTINSMAIN> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    USERDATA.INSMASTER = '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +28,12 @@ class P99SELECTINSMAIN extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              USERDATA.INSMASTER = 'BP12BALANCE01';
+              CuPage = Page1();
+              MainBodyContext.read<ChangePage_Bloc>()
+                  .add(ChangePage_nodrower());
+            },
             child: Row(
               children: [
                 Container(
@@ -48,7 +65,12 @@ class P99SELECTINSMAIN extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              USERDATA.INSMASTER = 'BP12BALANCE02';
+              CuPage = Page1();
+              MainBodyContext.read<ChangePage_Bloc>()
+                  .add(ChangePage_nodrower());
+            },
             child: Row(
               children: [
                 Container(
@@ -81,6 +103,7 @@ class P99SELECTINSMAIN extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: () {
+              USERDATA.INSMASTER = 'BP12BALANCE03';
               CuPage = Page1();
               MainBodyContext.read<ChangePage_Bloc>()
                   .add(ChangePage_nodrower());

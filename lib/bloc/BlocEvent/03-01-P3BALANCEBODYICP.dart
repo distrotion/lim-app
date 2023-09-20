@@ -2,167 +2,80 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
-import '../../page/P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEVAR.dart';
+import '../../page/P3BALANCEBODYICP/P3BALANCEBODYICPVAR.dart';
 
 //-------------------------------------------------
 
-abstract class P4BALANCEBODYSLUDGE_Event {}
+abstract class P3BALANCEBODYICP_Event {}
 
-class P4BALANCEBODYSLUDGE_GET extends P4BALANCEBODYSLUDGE_Event {}
+class P3BALANCEBODYICP_GET extends P3BALANCEBODYICP_Event {}
 
-class P4BALANCEBODYSLUDGE_SETDATA extends P4BALANCEBODYSLUDGE_Event {}
+class P3BALANCEBODYICP_SETDATA extends P3BALANCEBODYICP_Event {}
 
-class P4BALANCEBODYSLUDGE_CLEARW11 extends P4BALANCEBODYSLUDGE_Event {}
+class P3BALANCEBODYICP_CLEARW11 extends P3BALANCEBODYICP_Event {}
 
-class P4BALANCEBODYSLUDGE_CAL extends P4BALANCEBODYSLUDGE_Event {}
+class P3BALANCEBODYICP_CLEARW11_ADJ extends P3BALANCEBODYICP_Event {}
 
-class P4BALANCEBODYSLUDGE_SEND_TO_SAR extends P4BALANCEBODYSLUDGE_Event {}
+class flush extends P3BALANCEBODYICP_Event {}
 
-class P4BALANCEBODYSLUDGE_CLEARROOM extends P4BALANCEBODYSLUDGE_Event {}
-
-// class P4BALANCEBODYSLUDGE_CLEARW11_ADJ extends P4BALANCEBODYSLUDGE_Event {}
-
-class flush extends P4BALANCEBODYSLUDGE_Event {}
-
-class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
-  P4BALANCEBODYSLUDGE_Bloc() : super('') {
-    on<P4BALANCEBODYSLUDGE_GET>((event, emit) {
-      return _P4BALANCEBODYSLUDGE_GET('', emit);
+class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
+  P3BALANCEBODYICP_Bloc() : super('') {
+    on<P3BALANCEBODYICP_GET>((event, emit) {
+      return _P3BALANCEBODYICP_GET('', emit);
     });
-    on<P4BALANCEBODYSLUDGE_SETDATA>((event, emit) {
-      return _P4BALANCEBODYSLUDGE_SETDATA('', emit);
+    on<P3BALANCEBODYICP_SETDATA>((event, emit) {
+      return _P3BALANCEBODYICP_SETDATA('', emit);
     });
 
-    on<P4BALANCEBODYSLUDGE_CLEARW11>((event, emit) {
-      return _P4BALANCEBODYSLUDGE_CLEARW11('', emit);
+    on<P3BALANCEBODYICP_CLEARW11>((event, emit) {
+      return _P3BALANCEBODYICP_CLEARW11('', emit);
     });
 
-    on<P4BALANCEBODYSLUDGE_CAL>((event, emit) {
-      return _P4BALANCEBODYSLUDGE_CAL('', emit);
+    on<P3BALANCEBODYICP_CLEARW11_ADJ>((event, emit) {
+      return _P3BALANCEBODYICP_CLEARW11_ADJ('', emit);
     });
-    on<P4BALANCEBODYSLUDGE_SEND_TO_SAR>((event, emit) {
-      return _P4BALANCEBODYSLUDGE_SEND_TO_SAR('', emit);
-    });
-
-    on<P4BALANCEBODYSLUDGE_CLEARROOM>((event, emit) {
-      return _P4BALANCEBODYSLUDGE_CLEARROOM('', emit);
-    });
-
-//_P4BALANCEBODYSLUDGE_SEND_TO_SAR
-//_P4BALANCEBODYSLUDGE_CAL
-    // on<P4BALANCEBODYSLUDGE_CLEARW11_ADJ>((event, emit) {
-    //   return _P4BALANCEBODYSLUDGE_CLEARW11_ADJ('', emit);
-    // });
 
     on<flush>((event, emit) {
       return _flush('', emit);
     });
   }
-  Future<void> _P4BALANCEBODYSLUDGE_GET(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P3BALANCEBODYICP_GET(String toAdd, Emitter<String> emit) async {
     String output = '';
     emit(output);
   }
 
-  Future<void> _P4BALANCEBODYSLUDGE_SETDATA(
+  Future<void> _P3BALANCEBODYICP_SETDATA(
       String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
-      data: {
-        "IP": webHOOK,
-        "TYPE": "04SARBALANCESLUDGE",
-        "FUNCTION": "UPDATEDATAWEIGHT",
-        "WX": P4BALANCEBODYSLUDGEVAR.WX
-      },
-    );
-
-    emit(output);
-  }
-
-  Future<void> _P4BALANCEBODYSLUDGE_CLEARW11(
-      String toAdd, Emitter<String> emit) async {
-    String output = '';
-
-    final response = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
-      data: {
-        "IP": webHOOK,
-        "USER": USERDATA.NAME,
-        "TYPE": "04SARBALANCESLUDGE",
-        "FUNCTION": "DELETEDATAW11",
-        "DX": P4BALANCEBODYSLUDGEVAR.DX,
-      },
-    );
-
-    emit(output);
-  }
-
-  Future<void> _P4BALANCEBODYSLUDGE_CAL(
-      String toAdd, Emitter<String> emit) async {
-    String output = '';
-    print("------------>");
-    final response = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
-      data: {
-        "IP": webHOOK,
-        "USER": USERDATA.NAME,
-        "TYPE": "04SARBALANCESLUDGE",
-        "FUNCTION": "UPDATEDATAVOLUME",
-        "D01NOitem": P4BALANCEBODYSLUDGEVAR.D01NOitem,
-        "D02NOitem": P4BALANCEBODYSLUDGEVAR.D02NOitem,
-        "VOLUME01": P4BALANCEBODYSLUDGEVAR.D01VOLUME,
-        "VOLUME02": P4BALANCEBODYSLUDGEVAR.D02VOLUME,
-      },
-    );
-
-    emit(output);
-  }
-
-  Future<void> _P4BALANCEBODYSLUDGE_SEND_TO_SAR(
-      String toAdd, Emitter<String> emit) async {
-    String output = '';
-    print("------------>");
-    final response = await Dio().post(
-      '${serverN}/SENDTOSAR_${USERDATA.INSMASTER}',
-      data: {
-        "USER": USERDATA.NAME,
-        "D01NOitem": P4BALANCEBODYSLUDGEVAR.D01NOitem,
-        "D02NOitem": P4BALANCEBODYSLUDGEVAR.D02NOitem,
-        "VOLUME01": P4BALANCEBODYSLUDGEVAR.D01VOLUME,
-        "VOLUME02": P4BALANCEBODYSLUDGEVAR.D02VOLUME,
-      },
-    );
-
-    emit(output);
-  }
-
-  // Future<void> _P4BALANCEBODYSLUDGE_CLEARW11_ADJ(
-  //     String toAdd, Emitter<String> emit) async {
-  //   String output = '';
-
-  //   final response = await Dio().post(
-  //     '${serverN}/balance01CLEARDATA_ADJ',
-  //     data: {},
-  //   );
-
-  //   emit(output);
-  // }
-
-  Future<void> _P4BALANCEBODYSLUDGE_CLEARROOM(
-      String toAdd, Emitter<String> emit) async {
-    String output = '';
-    final response = await Dio().post(
-      '${serverN}/CLEARREGISTER_${USERDATA.INSMASTER}',
+      '${serverN}/balance01UPDATEDATA',
       data: {},
     );
 
-    if (response.statusCode == 200) {
-      var databuff = response.data;
+    emit(output);
+  }
 
-      output = "";
-    }
+  Future<void> _P3BALANCEBODYICP_CLEARW11(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+
+    final response = await Dio().post(
+      '${serverN}/balance01CLEARDATA',
+      data: {},
+    );
+
+    emit(output);
+  }
+
+  Future<void> _P3BALANCEBODYICP_CLEARW11_ADJ(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+
+    final response = await Dio().post(
+      '${serverN}/balance01CLEARDATA_ADJ',
+      data: {},
+    );
 
     emit(output);
   }

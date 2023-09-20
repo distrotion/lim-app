@@ -16,18 +16,21 @@ import '../../../widget/common/popup.dart';
 import '../../page2.dart';
 import '../../page3.dart';
 import '../../page4.dart';
-import '../P1BALANCEREQ01VAR.dart';
-import 'P1BALANCEREQ01TABLEFIELD.dart';
 
-class P1BALANCEREQ01TABLE extends StatefulWidget {
-  P1BALANCEREQ01TABLE({Key? key, this.sardata}) : super(key: key);
+import '../P1BALANCEREQVAR.dart';
+import 'P1BALANCEREQTABLEFIELD.dart';
+
+var datet = DateTime.now().millisecondsSinceEpoch;
+
+class P1BALANCEREQTABLE extends StatefulWidget {
+  P1BALANCEREQTABLE({Key? key, this.sardata}) : super(key: key);
   List<dataset>? sardata;
 
   @override
-  State<P1BALANCEREQ01TABLE> createState() => _P1BALANCEREQ01TABLEState();
+  State<P1BALANCEREQTABLE> createState() => _P1BALANCEREQTABLEState();
 }
 
-class _P1BALANCEREQ01TABLEState extends State<P1BALANCEREQ01TABLE> {
+class _P1BALANCEREQTABLEState extends State<P1BALANCEREQTABLE> {
   @override
   void initState() {
     super.initState();
@@ -47,14 +50,14 @@ class _P1BALANCEREQ01TABLEState extends State<P1BALANCEREQ01TABLE> {
                   isSideIcon: true,
                   height: 40,
                   width: 400,
-                  isContr: P1BALANCEREQ01VAR.iscontrol,
+                  isContr: P1BALANCEREQVAR.iscontrol,
                   fnContr: (input) {
-                    P1BALANCEREQ01VAR.iscontrol = input;
+                    P1BALANCEREQVAR.iscontrol = input;
                   },
-                  sValue: P1BALANCEREQ01VAR.SEARCH,
+                  sValue: P1BALANCEREQVAR.SEARCH,
                   returnfunc: (String s) {
                     setState(() {
-                      P1BALANCEREQ01VAR.SEARCH = s;
+                      P1BALANCEREQVAR.SEARCH = s;
                     });
                   },
                 ),
@@ -62,8 +65,8 @@ class _P1BALANCEREQ01TABLEState extends State<P1BALANCEREQ01TABLE> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      P1BALANCEREQ01VAR.iscontrol = true;
-                      P1BALANCEREQ01VAR.SEARCH = '';
+                      P1BALANCEREQVAR.iscontrol = true;
+                      P1BALANCEREQVAR.SEARCH = '';
                     });
                   },
                   child: Container(
@@ -104,12 +107,11 @@ class _P1BALANCEREQ01TABLEState extends State<P1BALANCEREQ01TABLE> {
               forntsize: 10,
               B01: 'REQ NO.', //f1
               B02: 'Customer NAME', //f19
-              B03: 'Sampling date', //f9
-              B04: 'TYPE', //f17
-              B05: 'Item Name', //f16
-
-              B06: 'Sampling code', //f30
-              B07: 'B05', //--
+              B03: 'Due date', //f9
+              B04: 'Sample Name', //f17
+              B05: 'TYPE', //f16
+              B06: 'Item Name', //f30
+              B07: 'NO', //--
               B08: 'ACTION',
               CB01: Colors.black54,
               CB02: Colors.black54,
@@ -145,12 +147,27 @@ class tabledetailsearchlist extends StatelessWidget {
     List<dataset> _data_exp = [];
 
     for (int i = 0; i < _data.length; i++) {
-      if (_data[i].f01.contains(P1BALANCEREQ01VAR.SEARCH) ||
-              _data[i].f02.contains(P1BALANCEREQ01VAR.SEARCH) ||
-              _data[i].f03.contains(P1BALANCEREQ01VAR.SEARCH) ||
-              _data[i].f04.contains(P1BALANCEREQ01VAR.SEARCH) ||
-              _data[i].f05.contains(P1BALANCEREQ01VAR.SEARCH)
-          // _data[i].f05.contains(P1BALANCEREQ01VAR.SEARCH)
+      if (_data[i]
+                  .f01
+                  .toUpperCase()
+                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+              _data[i]
+                  .f02
+                  .toUpperCase()
+                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+              _data[i]
+                  .f03
+                  .toUpperCase()
+                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+              _data[i]
+                  .f04
+                  .toUpperCase()
+                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+              _data[i]
+                  .f05
+                  .toUpperCase()
+                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase())
+          // _data[i].f05.contains(P1BALANCEREQVAR.SEARCH)
           ) {
         _data_exp.add(_data[i]);
       }
@@ -176,12 +193,17 @@ class tabledetailsearch extends StatelessWidget {
       tableout.add(P1WIDGETFIELD(
         height: 45,
         B01: _data_exp[i].f01,
+        B01L:
+            "(${monthreplce(_data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""))})",
         B02: _data_exp[i].f03,
-        B03: _data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""),
-        B04: _data_exp[i].f02,
-        B05: _data_exp[i].f04,
-        B06: _data_exp[i].f06,
-        B07: '',
+        B03: monthreplce(_data_exp[i]
+            .f17
+            .replaceAll("00:00:00", "")
+            .replaceAll("GMT", "")), //f17
+        B04: _data_exp[i].f41,
+        B05: _data_exp[i].f02,
+        B06: _data_exp[i].f04,
+        B07: _data_exp[i].f06,
         B08: '',
         B09: '',
         B10: '',
@@ -200,28 +222,10 @@ class tabledetailsearch extends StatelessWidget {
           print(CP);
           print(FG);
 
-          // if (CP == 'COATING WEIGHT') {
-          //   P2BALANCEBODY01CWVAR.ReqNo = PO;
-          //   P2BALANCEBODY01CWVAR.TYPE = CP;
-          //   CuPage = Page2();
-          //   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
-          // } else if (CP == 'ICP') {
-          //   P3BALANCEBODY01ICPVAR.ReqNo = PO;
-          //   P3BALANCEBODY01ICPVAR.TYPE = CP;
-          //   CuPage = Page3();
-          //   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
-          // } else {
-          //   //
-          //   // WORNINGpop(context, ["NO HAVE", "INSTRUMENT"], 100, 200);
-          //   P3BALANCEBODY01ICPVAR.ReqNo = PO;
-          //   P3BALANCEBODY01ICPVAR.TYPE = CP;
-          //   CuPage = Page3();
-          //   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
-          // }
-
           if (CP == "Sludge") {
+            // if (CP != "") {
             final response = Dio().post(
-              '${serverN}/balance01GETREGISTER',
+              '${serverN}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
             ).then((value) {
               if (value.statusCode == 200) {
@@ -230,7 +234,7 @@ class tabledetailsearch extends StatelessWidget {
                 if (databuff['REQNO'] != null) {
                   if (databuff['REQNO'].toString() == '') {
                     final response = Dio().post(
-                      '${serverN}/balance01SETREGISTER',
+                      '${serverN}/SETREGISTER_${USERDATA.INSMASTER}',
                       data: {
                         "REQNO": PO,
                         "UID": FG,
@@ -241,7 +245,7 @@ class tabledetailsearch extends StatelessWidget {
 
                         if (databuff['msg'].toString() == 'ok') {
                           GENREQSG(context, _data_exp[i], Page4(),
-                              '04SARBALANCE01SLUDGE/GENREQ');
+                              '04SARBALANCESLUDGE/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -267,54 +271,6 @@ class tabledetailsearch extends StatelessWidget {
               }
             });
             // } else if (CP == "Cwt") {
-          } else if (CP != "COATING WEIGHT") {
-            final response = Dio().post(
-              '${serverN}/balance01GETREGISTER',
-              data: {},
-            ).then((value) {
-              if (value.statusCode == 200) {
-                var databuff = value.data;
-                // print('>>>>${databuff['REQNO']}');
-                if (databuff['REQNO'] != null) {
-                  if (databuff['REQNO'].toString() == '') {
-                    final response = Dio().post(
-                      '${serverN}/balance01SETREGISTER',
-                      data: {
-                        "REQNO": PO,
-                        "UID": FG,
-                      },
-                    ).then((value) {
-                      if (value.statusCode == 200) {
-                        var databuff = value.data;
-
-                        if (databuff['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page2(),
-                              '03SARBALANCE01CWT/GENREQ');
-                        } else {
-                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
-                        }
-                      }
-                    });
-                  } else {
-                    // WORNINGpop(context, ["test", "test"], 100, 200);
-
-                    // CuPage = Page2();
-                    // MainBodyContext.read<ChangePage_Bloc>()
-                    //     .add(ChangePage_nodrower());
-
-                    WORNINGpop(
-                      context,
-                      [
-                        "BLOCK",
-                        "PLEASE CHECK",
-                      ],
-                      100,
-                      100,
-                    );
-                  }
-                }
-              }
-            });
           } else {
             WORNINGpop(
               context,
@@ -360,6 +316,10 @@ GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
     data: {
       "ReqNo": datainput.f01,
       "InstrumentName": datainput.f02,
+      "UID": datainput.f70,
+      "INSNO": USERDATA.INSMASTER,
+      "USERREGIS": USERDATA.ID,
+      "timestamp": datet,
       //-------------------
       "Branch": datainput.f11,
       "Code": datainput.f12,
@@ -418,7 +378,6 @@ GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
       "UserReject": datainput.f67,
       "UserRequestRecheck": datainput.f68,
       "UserSend": datainput.f69,
-      "UID": datainput.f70,
     },
   ).then((value) {
     CuPage = widpage;
@@ -432,15 +391,103 @@ void CHECKROOM(BuildContext contextin, dataset datainput) async {}
 //       P1WIDGETFIELD(
 //         isSELECTFUNC: true,
 //         SELECTFUNC: (input) {
-//           P1BALANCEREQ01VAR.INSCOUTTEST = 2;
+//           P1BALANCEREQVAR.INSCOUTTEST = 2;
 //           contextGB.read<BlocPageRebuild>().rebuildPage();
 //         },
 //       ),
 //       P1WIDGETFIELD(
 //         isSELECTFUNC: true,
 //         SELECTFUNC: (input) {
-//           P1BALANCEREQ01VAR.INSCOUTTEST = 3;
+//           P1BALANCEREQVAR.INSCOUTTEST = 3;
 //           contextGB.read<BlocPageRebuild>().rebuildPage();
 //         },
 //       ),
 //     ];
+
+// else if (CP != "COATING WEIGHT") {
+//   final response = Dio().post(
+//     '${serverN}/GETREGISTER_${USERDATA.INSMASTER}',
+//     data: {},
+//   ).then((value) {
+//     if (value.statusCode == 200) {
+//       var databuff = value.data;
+//       // print('>>>>${databuff['REQNO']}');
+//       if (databuff['REQNO'] != null) {
+//         if (databuff['REQNO'].toString() == '') {
+//           final response = Dio().post(
+//             '${serverN}/SETREGISTER_${USERDATA.INSMASTER}',
+//             data: {
+//               "REQNO": PO,
+//               "UID": FG,
+//             },
+//           ).then((value) {
+//             if (value.statusCode == 200) {
+//               var databuff = value.data;
+
+//               if (databuff['msg'].toString() == 'ok') {
+//                 GENREQSG(context, _data_exp[i], Page2(),
+//                     '03SARBALANCE01CWT/GENREQ');
+//               } else {
+//                 // WORNINGpop(context, ["test2", "test2"], 100, 200);
+//               }
+//             }
+//           });
+//         } else {
+//           // WORNINGpop(context, ["test", "test"], 100, 200);
+
+//           // CuPage = Page2();
+//           // MainBodyContext.read<ChangePage_Bloc>()
+//           //     .add(ChangePage_nodrower());
+
+//           WORNINGpop(
+//             context,
+//             [
+//               "BLOCK",
+//               "PLEASE CHECK",
+//             ],
+//             100,
+//             100,
+//           );
+//         }
+//       }
+//     }
+//   });
+// }
+
+// if (CP == 'COATING WEIGHT') {
+//   P2BALANCEBODY01CWVAR.ReqNo = PO;
+//   P2BALANCEBODY01CWVAR.TYPE = CP;
+//   CuPage = Page2();
+//   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+// } else if (CP == 'ICP') {
+//   P3BALANCEBODY01ICPVAR.ReqNo = PO;
+//   P3BALANCEBODY01ICPVAR.TYPE = CP;
+//   CuPage = Page3();
+//   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+// } else {
+//   //
+//   // WORNINGpop(context, ["NO HAVE", "INSTRUMENT"], 100, 200);
+//   P3BALANCEBODY01ICPVAR.ReqNo = PO;
+//   P3BALANCEBODY01ICPVAR.TYPE = CP;
+//   CuPage = Page3();
+//   MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+// }
+
+String monthreplce(String input) {
+  String output = '';
+  output = input
+      .replaceAll("Jan", "-01-")
+      .replaceAll("Feb", "-02-")
+      .replaceAll("Mar", "-03-")
+      .replaceAll("Apr", "-04-")
+      .replaceAll("May", "-05-")
+      .replaceAll("Jun", "-06-")
+      .replaceAll("Jul", "-07-")
+      .replaceAll("Aug", "-08-")
+      .replaceAll("Sep", "-09-")
+      .replaceAll("Oct", "-10-")
+      .replaceAll("Nov", "-11-")
+      .replaceAll("Dec", "-12-")
+      .replaceAll(" ", "");
+  return output;
+}

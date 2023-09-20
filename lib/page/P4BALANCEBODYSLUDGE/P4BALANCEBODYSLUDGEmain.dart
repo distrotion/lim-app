@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
 
+import '../../bloc/BlocEvent/04-01-P4BALANCEBODYSLUDGE.dart';
 import '../../bloc/BlocEvent/04-02-P4BALANCEBODYSLUDGEGETSET.dart';
 import '../../bloc/BlocEvent/04-03-P4BALANCEBODYSLUDGEgetgraph.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
@@ -46,9 +47,11 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
     context
         .read<P4BALANCEBODYSLUDGEGETSET_Bloc>()
         .add(P4BALANCEBODYSLUDGEGETSET_GET());
-    P4BALANCEBODYSLUDGEVAR.area = '';
-    P4BALANCEBODYSLUDGEVAR.Result = '';
+    P4BALANCEBODYSLUDGEVAR.D01VOLUME = '';
+    P4BALANCEBODYSLUDGEVAR.Result01 = '';
+    P4BALANCEBODYSLUDGEVAR.Result02 = '';
     P4BALANCEBODYSLUDGEVAR.mem = 'GO';
+    P4BALANCEBODYSLUDGEVAR.WX = '';
   }
 
   @override
@@ -64,17 +67,34 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
     P4BALANCEBODYSLUDGEVAR.CustFull = dataset.CustShort;
     P4BALANCEBODYSLUDGEVAR.UID = dataset.UID;
     P4BALANCEBODYSLUDGEVAR.ItemName = dataset.ItemName;
-    if (P4BALANCEBODYSLUDGEVAR.NOitem == '') {
+
+    P4BALANCEBODYSLUDGEVAR.D01W11 = dataset.D01W11;
+    P4BALANCEBODYSLUDGEVAR.D01W21 = dataset.D01W21;
+
+    P4BALANCEBODYSLUDGEVAR.SamplingDate = _monthreplce(dataset.SamplingDate);
+    P4BALANCEBODYSLUDGEVAR.DueDate1 = _monthreplce(dataset.DueDate1);
+    P4BALANCEBODYSLUDGEVAR.SampleName = dataset.SampleName;
+
+    if (P4BALANCEBODYSLUDGEVAR.D01VOLUME == '') {
       P4BALANCEBODYSLUDGEVAR.iscontrol = true;
-      P4BALANCEBODYSLUDGEVAR.NOitem = dataset.NOitem;
+      P4BALANCEBODYSLUDGEVAR.D01VOLUME = dataset.D01VOLUME;
+    }
+    if (P4BALANCEBODYSLUDGEVAR.D01NOitem == '') {
+      P4BALANCEBODYSLUDGEVAR.iscontrol = true;
+      P4BALANCEBODYSLUDGEVAR.D01NOitem = dataset.D01NOitem;
+    }
+    P4BALANCEBODYSLUDGEVAR.D02W11 = dataset.D02W11;
+    P4BALANCEBODYSLUDGEVAR.D02W21 = dataset.D02W21;
+    if (P4BALANCEBODYSLUDGEVAR.D02VOLUME == '') {
+      P4BALANCEBODYSLUDGEVAR.iscontrol = true;
+      P4BALANCEBODYSLUDGEVAR.D02VOLUME = dataset.D02VOLUME;
+    }
+    if (P4BALANCEBODYSLUDGEVAR.D02NOitem == '') {
+      P4BALANCEBODYSLUDGEVAR.iscontrol = true;
+      P4BALANCEBODYSLUDGEVAR.D02NOitem = dataset.D02NOitem;
     }
 
-    // P4BALANCEBODYSLUDGEVAR.W11 = dataset.W11;
-    // P4BALANCEBODYSLUDGEVAR.W12 = dataset.W12;
-    // P4BALANCEBODYSLUDGEVAR.W13 = dataset.W13;
-    // P4BALANCEBODYSLUDGEVAR.W14 = dataset.W14;
-
-    P4BALANCEBODYSLUDGEVAR.Result = P4BALANCEBODYSLUDGEVAR.W11;
+    // P4BALANCEBODYSLUDGEVAR.Result = P4BALANCEBODYSLUDGEVAR.W11;
 
     List<HistoryChartModel> _historyChartData = widget.historyChartDatain ?? [];
     // List<HistoryChartModel> _historyChartData = [];
@@ -105,35 +125,41 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     const SizedBox(
                       height: 15,
                     ),
-                    SizedBox(
-                      height: 60,
-                      width: 300,
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: InkWell(
-                                onTap: () {
-                                  CuPage = Page1();
-                                  MainBodyContext.read<ChangePage_Bloc>()
-                                      .add(ChangePage_nodrower());
-                                },
-                                child: const Icon(
-                                  Icons.arrow_back_ios,
-                                  weight: 100,
-                                  size: 40,
+                    InkWell(
+                      onTap: () {
+                        context
+                            .read<P4BALANCEBODYSLUDGE_Bloc>()
+                            .add(P4BALANCEBODYSLUDGE_CLEARROOM());
+                        CuPage = Page1();
+                        MainBodyContext.read<ChangePage_Bloc>()
+                            .add(ChangePage_nodrower());
+                      },
+                      child: SizedBox(
+                        height: 60,
+                        width: 300,
+                        child: Center(
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 20),
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    weight: 100,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const Expanded(
-                              flex: 4,
-                              child: Text(
-                                "BALANCE CW 01 (TTC HES)",
-                                style: TextStyle(fontSize: 28),
+                              Expanded(
+                                flex: 8,
+                                child: Text(
+                                  "${USERDATA.INSMASTER}",
+                                  style: TextStyle(fontSize: 28),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -145,25 +171,67 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                       color: Colors.red,
                     ),
                     SizedBox(
-                      child: Column(
+                      width: 500,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Row(
-                            children: [
-                              Text("REQ NO : ${P4BALANCEBODYSLUDGEVAR.ReqNo}"),
-                            ],
+                          SizedBox(
+                            width: 240,
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "REQ NO : ${P4BALANCEBODYSLUDGEVAR.ReqNo}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "TYPE : ${P4BALANCEBODYSLUDGEVAR.InstrumentName}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "CustFull : ${P4BALANCEBODYSLUDGEVAR.CustFull}"),
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                  "TYPE : ${P4BALANCEBODYSLUDGEVAR.InstrumentName}"),
-                            ],
+
+                          SizedBox(
+                            width: 240,
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "SAMPLING date : ${P4BALANCEBODYSLUDGEVAR.SamplingDate}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "Due date : ${P4BALANCEBODYSLUDGEVAR.DueDate1}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "Sampling Name : ${P4BALANCEBODYSLUDGEVAR.SampleName}"),
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                  "CustFull : ${P4BALANCEBODYSLUDGEVAR.CustFull}"),
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //         "CustFull : ${P4BALANCEBODYSLUDGEVAR.CustFull}"),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -212,19 +280,24 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                             onTap: () {
                               //
                               // context
-                              //     .read<P2BALANCEBODYCW01_Bloc>()
-                              //     .add(P2BALANCEBODYCW01_SETDATA());
-                              // context
-                              //     .read<Getbalancevalue_Bloc>()
-                              //     .add(Getbalancevalue_Get());
-                              // onLoadingFAKE(context);
-                              // Future.delayed(const Duration(milliseconds: 2000),
-                              //     () {
-                              //   context
-                              //       .read<P2BALANCEBODYCW01GETSET_Bloc>()
-                              //       .add(P2BALANCEBODYCW01GETSET_GET());
-                              //   setState(() {});
-                              // });
+                              //     .read<P4BALANCEBODYSLUDGE_Bloc>()
+                              //     .add(P4BALANCEBODYSLUDGE_SETDATA());
+                              context
+                                  .read<Getbalancevalue_Bloc>()
+                                  .add(Getbalancevalue_Get());
+                              context
+                                  .read<P4BALANCEBODYSLUDGE_Bloc>()
+                                  .add(P4BALANCEBODYSLUDGE_SETDATA());
+                              onLoadingFAKE(context);
+                              Future.delayed(const Duration(milliseconds: 2000),
+                                  () {
+                                context
+                                    .read<P4BALANCEBODYSLUDGEGETSET_Bloc>()
+                                    .add(P4BALANCEBODYSLUDGEGETSET_GET());
+                                setState(() {
+                                  P4BALANCEBODYSLUDGEVAR.WX = '';
+                                });
+                              });
                             },
                             child: Container(
                               height: 40,
@@ -288,7 +361,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                 isNumberOnly: true,
                                                 isEnabled:
                                                     P4BALANCEBODYSLUDGEVAR
-                                                            .Result ==
+                                                            .Result01 ==
                                                         '',
                                                 width: 100,
                                                 height: 40,
@@ -301,10 +374,10 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                   });
                                                 },
                                                 sValue: P4BALANCEBODYSLUDGEVAR
-                                                    .NOitem,
+                                                    .D01NOitem,
                                                 returnfunc: (String s) {
                                                   P4BALANCEBODYSLUDGEVAR
-                                                      .NOitem = s;
+                                                      .D01NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -332,14 +405,26 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            P4BALANCEBODYSLUDGEVAR.WX =
+                                                'D01W11';
+                                          });
+
+                                          context
+                                              .read<Getbalancevalue_Bloc>()
+                                              .add(Getbalancevalue_Get());
+                                        },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color:
-                                              P4BALANCEBODYSLUDGEVAR.SEND == ''
+                                          color: P4BALANCEBODYSLUDGEVAR.WX ==
+                                                  'D01W11'
+                                              ? Colors.yellowAccent
+                                              : (P4BALANCEBODYSLUDGEVAR.SEND ==
+                                                      ''
                                                   ? Colors.green
-                                                  : Colors.grey.shade400,
+                                                  : Colors.grey.shade400),
                                           child: const Center(
                                             child: Text("W1 (g)"),
                                           ),
@@ -354,13 +439,38 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         color: Colors.blue,
                                         child: Center(
                                             child: Text(
-                                                P4BALANCEBODYSLUDGEVAR.W11)),
+                                                P4BALANCEBODYSLUDGEVAR.D01W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          P4BALANCEBODYSLUDGEVAR.DX = 'D01W11';
+                                          onLoadingFAKE(context);
+                                          context
+                                              .read<P4BALANCEBODYSLUDGE_Bloc>()
+                                              .add(
+                                                  P4BALANCEBODYSLUDGE_CLEARW11());
+                                          Future.delayed(
+                                              const Duration(
+                                                  milliseconds: 2000), () {
+                                            context
+                                                .read<
+                                                    P4BALANCEBODYSLUDGEGETSET_Bloc>()
+                                                .add(
+                                                    P4BALANCEBODYSLUDGEGETSET_GET());
+
+                                            setState(() {
+                                              setState(() {
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result01 = '';
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result02 = '';
+                                              });
+                                            });
+                                          });
+                                        },
                                         child: Container(
                                           height: 40,
                                           width: 60,
@@ -369,7 +479,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                   ? Colors.orange
                                                   : Colors.grey.shade400,
                                           child: const Center(
-                                            child: Text(""),
+                                            child: Text("CLEAR"),
                                           ),
                                         ),
                                       ),
@@ -390,14 +500,25 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            P4BALANCEBODYSLUDGEVAR.WX =
+                                                'D01W21';
+                                          });
+                                          context
+                                              .read<Getbalancevalue_Bloc>()
+                                              .add(Getbalancevalue_Get());
+                                        },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color:
-                                              P4BALANCEBODYSLUDGEVAR.SEND == ''
+                                          color: P4BALANCEBODYSLUDGEVAR.WX ==
+                                                  'D01W21'
+                                              ? Colors.yellowAccent
+                                              : (P4BALANCEBODYSLUDGEVAR.SEND ==
+                                                      ''
                                                   ? Colors.green
-                                                  : Colors.grey.shade400,
+                                                  : Colors.grey.shade400),
                                           child: const Center(
                                             child: Text("W2 (g)"),
                                           ),
@@ -412,7 +533,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         color: Colors.blue,
                                         child: Center(
                                             child: Text(
-                                                P4BALANCEBODYSLUDGEVAR.W12)),
+                                                P4BALANCEBODYSLUDGEVAR.D01W21)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -420,23 +541,36 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                       InkWell(
                                         onTap: () {
                                           // context
-                                          //     .read<P2BALANCEBODYCW01_Bloc>()
+                                          //     .read<P4BALANCEBODYSLUDGE_Bloc>()
                                           //     .add(
-                                          //         P2BALANCEBODYCW01_CLEARW11());
+                                          //         P4BALANCEBODYSLUDGE_Bloc_CLEARW11());
                                           // context
                                           //     .read<Getbalancevalue_Bloc>()
                                           //     .add(Getbalancevalue_Get());
-                                          // onLoadingFAKE(context);
-                                          // Future.delayed(
-                                          //     const Duration(
-                                          //         milliseconds: 2000), () {
-                                          //   context
-                                          //       .read<
-                                          //           P2BALANCEBODYCW01GETSET_Bloc>()
-                                          //       .add(
-                                          //           P2BALANCEBODYCW01GETSET_GET());
-                                          //   setState(() {});
-                                          // });
+                                          P4BALANCEBODYSLUDGEVAR.DX = 'D01W21';
+                                          context
+                                              .read<P4BALANCEBODYSLUDGE_Bloc>()
+                                              .add(
+                                                  P4BALANCEBODYSLUDGE_CLEARW11());
+                                          onLoadingFAKE(context);
+                                          Future.delayed(
+                                              const Duration(
+                                                  milliseconds: 2000), () {
+                                            context
+                                                .read<
+                                                    P4BALANCEBODYSLUDGEGETSET_Bloc>()
+                                                .add(
+                                                    P4BALANCEBODYSLUDGEGETSET_GET());
+
+                                            setState(() {
+                                              setState(() {
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result01 = '';
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result02 = '';
+                                              });
+                                            });
+                                          });
                                         },
                                         child: Container(
                                           height: 40,
@@ -475,7 +609,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                   ? Colors.green
                                                   : Colors.grey.shade400,
                                           child: const Center(
-                                            child: Text("VOLUME"),
+                                            child: Text("Vol-1."),
                                           ),
                                         ),
                                       ),
@@ -497,7 +631,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                 isNumberOnly: true,
                                                 isEnabled:
                                                     P4BALANCEBODYSLUDGEVAR
-                                                            .Result ==
+                                                            .Result01 ==
                                                         '',
                                                 width: 100,
                                                 height: 40,
@@ -509,14 +643,14 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                         .iscontrol = input;
                                                   });
                                                 },
-                                                sValue:
-                                                    P4BALANCEBODYSLUDGEVAR.area,
+                                                sValue: P4BALANCEBODYSLUDGEVAR
+                                                    .D01VOLUME,
                                                 returnfunc: (String s) {
-                                                  P4BALANCEBODYSLUDGEVAR.area =
-                                                      s;
+                                                  P4BALANCEBODYSLUDGEVAR
+                                                      .D01VOLUME = s;
                                                 },
                                               ),
-                                              Text("cm2")
+                                              Text("mL")
                                             ],
                                           ),
                                         ),
@@ -576,7 +710,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                 isNumberOnly: true,
                                                 isEnabled:
                                                     P4BALANCEBODYSLUDGEVAR
-                                                            .Result ==
+                                                            .Result02 ==
                                                         '',
                                                 width: 100,
                                                 height: 40,
@@ -589,10 +723,10 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                   });
                                                 },
                                                 sValue: P4BALANCEBODYSLUDGEVAR
-                                                    .NOitem,
+                                                    .D02NOitem,
                                                 returnfunc: (String s) {
                                                   P4BALANCEBODYSLUDGEVAR
-                                                      .NOitem = s;
+                                                      .D02NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -620,14 +754,26 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            P4BALANCEBODYSLUDGEVAR.WX =
+                                                'D02W11';
+                                          });
+
+                                          context
+                                              .read<Getbalancevalue_Bloc>()
+                                              .add(Getbalancevalue_Get());
+                                        },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color:
-                                              P4BALANCEBODYSLUDGEVAR.SEND == ''
+                                          color: P4BALANCEBODYSLUDGEVAR.WX ==
+                                                  'D02W11'
+                                              ? Colors.yellowAccent
+                                              : (P4BALANCEBODYSLUDGEVAR.SEND ==
+                                                      ''
                                                   ? Colors.green
-                                                  : Colors.grey.shade400,
+                                                  : Colors.grey.shade400),
                                           child: const Center(
                                             child: Text("W1 (g)"),
                                           ),
@@ -642,13 +788,37 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         color: Colors.blue,
                                         child: Center(
                                             child: Text(
-                                                P4BALANCEBODYSLUDGEVAR.W11)),
+                                                P4BALANCEBODYSLUDGEVAR.D02W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          P4BALANCEBODYSLUDGEVAR.DX = 'D02W11';
+                                          onLoadingFAKE(context);
+                                          context
+                                              .read<P4BALANCEBODYSLUDGE_Bloc>()
+                                              .add(
+                                                  P4BALANCEBODYSLUDGE_CLEARW11());
+                                          Future.delayed(
+                                              const Duration(
+                                                  milliseconds: 2000), () {
+                                            context
+                                                .read<
+                                                    P4BALANCEBODYSLUDGEGETSET_Bloc>()
+                                                .add(
+                                                    P4BALANCEBODYSLUDGEGETSET_GET());
+                                            setState(() {
+                                              setState(() {
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result01 = '';
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result02 = '';
+                                              });
+                                            });
+                                          });
+                                        },
                                         child: Container(
                                           height: 40,
                                           width: 60,
@@ -657,7 +827,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                   ? Colors.orange
                                                   : Colors.grey.shade400,
                                           child: const Center(
-                                            child: Text(""),
+                                            child: Text("CLEAR"),
                                           ),
                                         ),
                                       ),
@@ -678,14 +848,25 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            P4BALANCEBODYSLUDGEVAR.WX =
+                                                'D02W21';
+                                          });
+                                          context
+                                              .read<Getbalancevalue_Bloc>()
+                                              .add(Getbalancevalue_Get());
+                                        },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color:
-                                              P4BALANCEBODYSLUDGEVAR.SEND == ''
+                                          color: P4BALANCEBODYSLUDGEVAR.WX ==
+                                                  'D02W21'
+                                              ? Colors.yellowAccent
+                                              : (P4BALANCEBODYSLUDGEVAR.SEND ==
+                                                      ''
                                                   ? Colors.green
-                                                  : Colors.grey.shade400,
+                                                  : Colors.grey.shade400),
                                           child: const Center(
                                             child: Text("W2 (g)"),
                                           ),
@@ -700,31 +881,36 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                         color: Colors.blue,
                                         child: Center(
                                             child: Text(
-                                                P4BALANCEBODYSLUDGEVAR.W12)),
+                                                P4BALANCEBODYSLUDGEVAR.D02W21)),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          // context
-                                          //     .read<P2BALANCEBODYCW01_Bloc>()
-                                          //     .add(
-                                          //         P2BALANCEBODYCW01_CLEARW11());
-                                          // context
-                                          //     .read<Getbalancevalue_Bloc>()
-                                          //     .add(Getbalancevalue_Get());
-                                          // onLoadingFAKE(context);
-                                          // Future.delayed(
-                                          //     const Duration(
-                                          //         milliseconds: 2000), () {
-                                          //   context
-                                          //       .read<
-                                          //           P2BALANCEBODYCW01GETSET_Bloc>()
-                                          //       .add(
-                                          //           P2BALANCEBODYCW01GETSET_GET());
-                                          //   setState(() {});
-                                          // });
+                                          P4BALANCEBODYSLUDGEVAR.DX = 'D02W21';
+                                          context
+                                              .read<P4BALANCEBODYSLUDGE_Bloc>()
+                                              .add(
+                                                  P4BALANCEBODYSLUDGE_CLEARW11());
+                                          onLoadingFAKE(context);
+                                          Future.delayed(
+                                              const Duration(
+                                                  milliseconds: 2000), () {
+                                            context
+                                                .read<
+                                                    P4BALANCEBODYSLUDGEGETSET_Bloc>()
+                                                .add(
+                                                    P4BALANCEBODYSLUDGEGETSET_GET());
+                                            setState(() {
+                                              setState(() {
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result01 = '';
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .Result02 = '';
+                                              });
+                                            });
+                                          });
                                         },
                                         child: Container(
                                           height: 40,
@@ -763,7 +949,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                   ? Colors.green
                                                   : Colors.grey.shade400,
                                           child: const Center(
-                                            child: Text("VOLUME"),
+                                            child: Text("Vol-2."),
                                           ),
                                         ),
                                       ),
@@ -785,7 +971,7 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                 isNumberOnly: true,
                                                 isEnabled:
                                                     P4BALANCEBODYSLUDGEVAR
-                                                            .Result ==
+                                                            .Result02 ==
                                                         '',
                                                 width: 100,
                                                 height: 40,
@@ -797,14 +983,14 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                         .iscontrol = input;
                                                   });
                                                 },
-                                                sValue:
-                                                    P4BALANCEBODYSLUDGEVAR.area,
+                                                sValue: P4BALANCEBODYSLUDGEVAR
+                                                    .D02VOLUME,
                                                 returnfunc: (String s) {
-                                                  P4BALANCEBODYSLUDGEVAR.area =
-                                                      s;
+                                                  P4BALANCEBODYSLUDGEVAR
+                                                      .D02VOLUME = s;
                                                 },
                                               ),
-                                              Text("cm2")
+                                              Text("mL")
                                             ],
                                           ),
                                         ),
@@ -973,37 +1159,65 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                           // ),
                           child: InkWell(
                             onTap: () {
-                              // print(ConverstStr(P4BALANCEBODYSLUDGEVAR.area));
-                              // if (P4BALANCEBODYSLUDGEVAR.Result == '') {
-                              //   setState(() {
-                              //     P4BALANCEBODYSLUDGEVAR
-                              //         .Result = ((double.parse(ConverstStr(
-                              //                     P4BALANCEBODYSLUDGEVAR.W11)) -
-                              //                 double.parse(ConverstStr(
-                              //                     P4BALANCEBODYSLUDGEVAR
-                              //                         .W12))) /
-                              //             double.parse(ConverstStr(
-                              //                 P4BALANCEBODYSLUDGEVAR.area)) *
-                              //             10000)
-                              //         .toStringAsFixed(2);
-                              //   });
-                              //   context
-                              //       .read<P2BALANCEBODYCW01_Bloc>()
-                              //       .add(P2BALANCEBODYCW01_CAL());
-                              // } else {
-                              //   setState(() {
-                              //     P4BALANCEBODYSLUDGEVAR.Result = '';
-                              //   });
-                              // }
+                              print(ConverstStr(
+                                  P4BALANCEBODYSLUDGEVAR.D01VOLUME));
+                              print(ConverstStr(
+                                  P4BALANCEBODYSLUDGEVAR.D02VOLUME));
+                              context
+                                  .read<P4BALANCEBODYSLUDGE_Bloc>()
+                                  .add(P4BALANCEBODYSLUDGE_CAL());
+                              if (P4BALANCEBODYSLUDGEVAR.Result01 == '') {
+                                setState(() {
+                                  if (P4BALANCEBODYSLUDGEVAR.D01W11 != '' &&
+                                      P4BALANCEBODYSLUDGEVAR.D01W21 != '' &&
+                                      P4BALANCEBODYSLUDGEVAR.D01VOLUME != '') {
+                                    P4BALANCEBODYSLUDGEVAR.Result01 =
+                                        ((double.parse(ConverstStr(
+                                                        P4BALANCEBODYSLUDGEVAR
+                                                            .D01W21)) -
+                                                    double.parse(ConverstStr(
+                                                        P4BALANCEBODYSLUDGEVAR
+                                                            .D01W11))) /
+                                                double.parse(ConverstStr(
+                                                    P4BALANCEBODYSLUDGEVAR
+                                                        .D01VOLUME)) *
+                                                1000000)
+                                            .toStringAsFixed(2);
+                                  }
+                                  if (P4BALANCEBODYSLUDGEVAR.D02W11 != '' &&
+                                      P4BALANCEBODYSLUDGEVAR.D02W21 != '' &&
+                                      P4BALANCEBODYSLUDGEVAR.D02VOLUME != '') {
+                                    P4BALANCEBODYSLUDGEVAR.Result02 =
+                                        ((double.parse(ConverstStr(
+                                                        P4BALANCEBODYSLUDGEVAR
+                                                            .D02W21)) -
+                                                    double.parse(ConverstStr(
+                                                        P4BALANCEBODYSLUDGEVAR
+                                                            .D02W11))) /
+                                                double.parse(ConverstStr(
+                                                    P4BALANCEBODYSLUDGEVAR
+                                                        .D02VOLUME)) *
+                                                1000000)
+                                            .toStringAsFixed(2);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P4BALANCEBODYSLUDGEVAR.Result01 = '';
+                                  P4BALANCEBODYSLUDGEVAR.Result02 = '';
+                                });
+                              }
                             },
                             child: Container(
                               height: 62,
-                              color: P4BALANCEBODYSLUDGEVAR.Result == ''
+                              color: P4BALANCEBODYSLUDGEVAR.Result01 == '' ||
+                                      P4BALANCEBODYSLUDGEVAR.Result02 == ''
                                   ? Colors.orange
                                   : Colors.deepOrange,
                               child: Center(
                                 child: Text(
-                                  P4BALANCEBODYSLUDGEVAR.Result == ''
+                                  P4BALANCEBODYSLUDGEVAR.Result01 == '' ||
+                                          P4BALANCEBODYSLUDGEVAR.Result02 == ''
                                       ? "CAL"
                                       : "RE CAL",
                                   style: TextStyle(color: Colors.white),
@@ -1022,9 +1236,16 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                const Center(child: Text('RESULT')),
                                 Center(
-                                    child: Text(P4BALANCEBODYSLUDGEVAR.Result)),
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text(
+                                      'RESULT01 ${P4BALANCEBODYSLUDGEVAR.Result01}'),
+                                )),
+                                Center(
+                                    child: Text(
+                                        'RESULT02 ${P4BALANCEBODYSLUDGEVAR.Result02}')),
                               ],
                             ),
                           ),
@@ -1036,14 +1257,9 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     ),
                     InkWell(
                       onTap: () {
-                        Dio().post(
-                          '${serverN}/balance01CLEARREGISTER',
-                          data: {},
-                        ).then((value) {
-                          CuPage = Page1();
-                          MainBodyContext.read<ChangePage_Bloc>()
-                              .add(ChangePage_nodrower());
-                        });
+                        CuPage = Page1();
+                        MainBodyContext.read<ChangePage_Bloc>()
+                            .add(ChangePage_nodrower());
                       },
                       child: Container(
                         height: 62,
@@ -1061,12 +1277,14 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     ),
                     InkWell(
                       onTap: () {
+                        if (P4BALANCEBODYSLUDGEVAR.Result01 == '' ||
+                            P4BALANCEBODYSLUDGEVAR.Result02 == '') {}
                         // if (P4BALANCEBODYSLUDGEVAR.area != '' &&
                         //     P4BALANCEBODYSLUDGEVAR.W11 != '' &&
                         //     P4BALANCEBODYSLUDGEVAR.W12 != '') {
                         // context
-                        //     .read<P2BALANCEBODYCW01_Bloc>()
-                        //     .add(P2BALANCEBODYCW01_SEND_TO_SAR());
+                        //     .read<P4BALANCEBODYSLUDGE_Bloc>()
+                        //     .add(P4BALANCEBODYSLUDGE_Bloc_SEND_TO_SAR());
                         // } else {
                         //   WORNINGpop(
                         //     context,
@@ -1095,6 +1313,9 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     ),
                     InkWell(
                       onTap: () {
+                        context
+                            .read<P4BALANCEBODYSLUDGE_Bloc>()
+                            .add(P4BALANCEBODYSLUDGE_CLEARROOM());
                         CuPage = Page1();
                         MainBodyContext.read<ChangePage_Bloc>()
                             .add(ChangePage_nodrower());
@@ -1656,4 +1877,26 @@ class _LineChart extends StatelessWidget {
           }
         }())),
       );
+}
+
+String _monthreplce(String input) {
+  String output = '';
+  output = input
+      .replaceAll("Jan", "-01-")
+      .replaceAll("Feb", "-02-")
+      .replaceAll("Mar", "-03-")
+      .replaceAll("Apr", "-04-")
+      .replaceAll("May", "-05-")
+      .replaceAll("Jun", "-06-")
+      .replaceAll("Jul", "-07-")
+      .replaceAll("Aug", "-08-")
+      .replaceAll("Sep", "-09-")
+      .replaceAll("Oct", "-10-")
+      .replaceAll("Nov", "-11-")
+      .replaceAll("Dec", "-12-")
+      .replaceAll(" ", "")
+      .replaceAll("00:00:00", "")
+      .replaceAll("GMT", "");
+
+  return output;
 }

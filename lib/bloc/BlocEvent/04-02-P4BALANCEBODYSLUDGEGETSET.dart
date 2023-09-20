@@ -40,7 +40,7 @@ class P4BALANCEBODYSLUDGEGETSET_Bloc extends Bloc<
     FreeLoading(P4BALANCEBODYSLUDGEcontext);
 
     final response = await Dio().post(
-      '${serverN}/balance01GETREGISTERSET_STD',
+      '${serverN}/GETREGISTERSET_${USERDATA.INSMASTER}',
       data: {
         "collection": "BALANCEdataSLUDGE",
       },
@@ -48,7 +48,7 @@ class P4BALANCEBODYSLUDGEGETSET_Bloc extends Bloc<
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      // print(databuff);
+      print(databuff);
       if (databuff.length > 0) {
         output.ReqNo =
             databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
@@ -66,31 +66,57 @@ class P4BALANCEBODYSLUDGEGETSET_Bloc extends Bloc<
         output.ItemName = databuff[0]['ItemName'] != null
             ? databuff[0]['ItemName'].toString()
             : '';
-        output.NOitem = databuff[0]['NOitem'] != null
-            ? databuff[0]['NOitem'].toString()
-            : '';
-        //ItemName
 
-        // if (databuff[0]['data'] != null) {
-        //   output.W11 = databuff[0]['data']['W11'] != null
-        //       ? databuff[0]['data']['W11'].toString()
-        //       : '';
-        // }
-        // if (databuff[0]['data'] != null) {
-        //   output.W12 = databuff[0]['data']['W12'] != null
-        //       ? databuff[0]['data']['W12'].toString()
-        //       : '';
-        // }
-        // if (databuff[0]['data'] != null) {
-        //   output.W13 = databuff[0]['data']['W13'] != null
-        //       ? databuff[0]['data']['W13'].toString()
-        //       : '';
-        // }
-        // if (databuff[0]['data'] != null) {
-        //   output.W14 = databuff[0]['data']['W14'] != null
-        //       ? databuff[0]['data']['W14'].toString()
-        //       : '';
-        // }
+        if (databuff[0]['data01'] != null) {
+          output.D01W11 = databuff[0]['data01']['W11'] != null
+              ? databuff[0]['data01']['W11'].toString()
+              : '';
+        }
+        if (databuff[0]['data01'] != null) {
+          output.D01W21 = databuff[0]['data01']['W21'] != null
+              ? databuff[0]['data01']['W21'].toString()
+              : '';
+        }
+        if (databuff[0]['data01_volum'] != null) {
+          output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
+              ? databuff[0]['data01_volum']['volum'].toString()
+              : '';
+        }
+        output.D01NOitem = databuff[0]['D01NOitem'] != null
+            ? databuff[0]['D01NOitem'].toString()
+            : '';
+
+        if (databuff[0]['data02'] != null) {
+          output.D02W11 = databuff[0]['data02']['W11'] != null
+              ? databuff[0]['data02']['W11'].toString()
+              : '';
+        }
+        if (databuff[0]['data02'] != null) {
+          output.D02W21 = databuff[0]['data02']['W21'] != null
+              ? databuff[0]['data02']['W21'].toString()
+              : '';
+        }
+        if (databuff[0]['data02_volum'] != null) {
+          output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
+              ? databuff[0]['data02_volum']['volum'].toString()
+              : '';
+        }
+
+        output.D02NOitem = databuff[0]['D02NOitem'] != null
+            ? databuff[0]['D02NOitem'].toString()
+            : '';
+
+        output.SamplingDate = databuff[0]['SamplingDate'] != null
+            ? databuff[0]['SamplingDate'].toString()
+            : '';
+
+        output.DueDate1 = databuff[0]['DueDate1'] != null
+            ? databuff[0]['DueDate1'].toString()
+            : '';
+
+        output.SampleName = databuff[0]['SampleName'] != null
+            ? databuff[0]['SampleName'].toString()
+            : '';
       }
     }
 
@@ -120,33 +146,43 @@ class P4BALANCEBODYSLUDGEGETSETCLASS {
     this.ReqNo = '',
     this.InstrumentName = '',
     this.CustShort = '',
-    this.W1_11 = '',
-    this.W1_21 = '',
-    this.W1_VOLUME = '',
-    this.W1_ANS = '',
-    this.W2_11 = '',
-    this.W2_21 = '',
-    this.W2_VOLUME = '',
-    this.W2_ANS = '',
+    //
+    this.D01W11 = '',
+    this.D01W21 = '',
+    this.D01VOLUME = '',
+    this.D01ANS = '',
+    this.D01NOitem = '',
+    this.D02W11 = '',
+    this.D02W21 = '',
+    this.D02VOLUME = '',
+    this.D02ANS = '',
+    this.D02NOitem = '',
+    //
     this.UID = '',
     this.ItemName = '',
-    this.NOitem = '',
+    this.SamplingDate = '',
+    this.DueDate1 = '',
+    this.SampleName = '',
   });
   String ReqNo;
   String InstrumentName;
   String CustShort;
 
-  String W1_11;
-  String W1_21;
-  String W1_VOLUME;
-  String W1_ANS;
-  String W2_11;
-  String W2_21;
-  String W2_VOLUME;
-  String W2_ANS;
+  String D01W11;
+  String D01W21;
+  String D01VOLUME;
+  String D01ANS;
+  String D01NOitem;
+  String D02W11;
+  String D02W21;
+  String D02VOLUME;
+  String D02ANS;
+  String D02NOitem;
 
   String UID;
   String ItemName;
 
-  String NOitem;
+  String SamplingDate;
+  String DueDate1;
+  String SampleName;
 }

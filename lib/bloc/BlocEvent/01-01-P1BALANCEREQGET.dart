@@ -3,22 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
 import '../../model/model.dart';
-import '../../page/P1BALANCEREQ01/P1BALANCEREQ01VAR.dart';
+import '../../page/P1BALANCEREQ/P1BALANCEREQVAR.dart';
 
 //-------------------------------------------------
 
-abstract class P1BALANCEREQ01GET_Event {}
+abstract class P1BALANCEREQGET_Event {}
 
-class GETDATALISTFROMSAR extends P1BALANCEREQ01GET_Event {}
+class GETDATALISTFROMSAR extends P1BALANCEREQGET_Event {}
 
-class GENNEWREQNO extends P1BALANCEREQ01GET_Event {}
+class GENNEWREQNO extends P1BALANCEREQGET_Event {}
 //_GENNEWREQNO
 
-class flush extends P1BALANCEREQ01GET_Event {}
+class flush extends P1BALANCEREQGET_Event {}
 
-class P1BALANCEREQ01GET_Bloc
-    extends Bloc<P1BALANCEREQ01GET_Event, List<dataset>> {
-  P1BALANCEREQ01GET_Bloc() : super([]) {
+class P1BALANCEREQGET_Bloc extends Bloc<P1BALANCEREQGET_Event, List<dataset>> {
+  P1BALANCEREQGET_Bloc() : super([]) {
     on<GETDATALISTFROMSAR>((event, emit) {
       return _GETDATALISTFROMSAR([], emit);
     });
@@ -265,69 +264,69 @@ class P1BALANCEREQ01GET_Bloc
     final response = await Dio().post(
       '${serverG}02SARBALANCE01SINGLESHOT/GENREQ',
       data: {
-        "ReqNo": P1BALANCEREQ01VAR.ReqNo,
-        "InstrumentName": P1BALANCEREQ01VAR.InstrumentName,
+        "ReqNo": P1BALANCEREQVAR.ReqNo,
+        "InstrumentName": P1BALANCEREQVAR.InstrumentName,
         //-------------------
 
-        "Branch": P1BALANCEREQ01VAR.Branch,
-        "Code": P1BALANCEREQ01VAR.Code,
-        "ControlRange": P1BALANCEREQ01VAR.ControlRange,
-        "CustFull": P1BALANCEREQ01VAR.CustFull,
-        "CustId": P1BALANCEREQ01VAR.CustId,
-        "CustShort": P1BALANCEREQ01VAR.CustShort,
-        "DueDate1": P1BALANCEREQ01VAR.DueDate1,
-        "Incharge": P1BALANCEREQ01VAR.Incharge,
-        "ItemName": P1BALANCEREQ01VAR.ItemName,
-        "ItemNo": P1BALANCEREQ01VAR.ItemNo,
-        "ItemReportName": P1BALANCEREQ01VAR.ItemReportName,
-        "ItemStatus": P1BALANCEREQ01VAR.ItemStatus,
-        "JobType": P1BALANCEREQ01VAR.JobType,
-        "ListDate": P1BALANCEREQ01VAR.ListDate,
-        "Mag": P1BALANCEREQ01VAR.Mag,
-        "Position": P1BALANCEREQ01VAR.Position,
-        "ProcessReportName": P1BALANCEREQ01VAR.ProcessReportName,
-        "ReceiveDate": P1BALANCEREQ01VAR.ReceiveDate,
-        "RemarkNo": P1BALANCEREQ01VAR.RemarkNo,
-        "RemarkSend": P1BALANCEREQ01VAR.RemarkSend,
-        "ReportOrder": P1BALANCEREQ01VAR.ReportOrder,
-        "ReqDate": P1BALANCEREQ01VAR.ReqDate,
-        "ReqUser": P1BALANCEREQ01VAR.ReqUser,
-        "RequestRound": P1BALANCEREQ01VAR.RequestRound,
-        "RequestSection": P1BALANCEREQ01VAR.RequestSection,
-        "RequestStatus": P1BALANCEREQ01VAR.RequestStatus,
-        "SampleCode": P1BALANCEREQ01VAR.SampleCode,
-        "SampleGroup": P1BALANCEREQ01VAR.SampleGroup,
-        "SampleName": P1BALANCEREQ01VAR.SampleName,
-        "SampleNo": P1BALANCEREQ01VAR.SampleNo,
-        "SampleRemark": P1BALANCEREQ01VAR.SampleRemark,
-        "SampleStatus": P1BALANCEREQ01VAR.SampleStatus,
-        "SampleTank": P1BALANCEREQ01VAR.SampleTank,
-        "SampleType": P1BALANCEREQ01VAR.SampleType,
-        "SamplingDate": P1BALANCEREQ01VAR.SamplingDate,
-        "SendDate": P1BALANCEREQ01VAR.SendDate,
-        "Std1": P1BALANCEREQ01VAR.Std1,
-        "Std2": P1BALANCEREQ01VAR.Std2,
-        "Std3": P1BALANCEREQ01VAR.Std3,
-        "Std4": P1BALANCEREQ01VAR.Std4,
-        "Std5": P1BALANCEREQ01VAR.Std5,
-        "Std6": P1BALANCEREQ01VAR.Std6,
-        "Std7": P1BALANCEREQ01VAR.Std7,
-        "Std8": P1BALANCEREQ01VAR.Std8,
-        "Std9": P1BALANCEREQ01VAR.Std9,
-        "StdFactor": P1BALANCEREQ01VAR.StdFactor,
-        "StdMax": P1BALANCEREQ01VAR.StdMax,
-        "StdMaxL": P1BALANCEREQ01VAR.StdMaxL,
-        "StdMin": P1BALANCEREQ01VAR.StdMin,
-        "StdMinL": P1BALANCEREQ01VAR.StdMinL,
-        "StdSymbol": P1BALANCEREQ01VAR.StdSymbol,
-        "Temp": P1BALANCEREQ01VAR.Temp,
-        "UserListAnalysis": P1BALANCEREQ01VAR.UserListAnalysis,
-        "UserReceive": P1BALANCEREQ01VAR.UserReceive,
-        "UserReject": P1BALANCEREQ01VAR.UserReject,
-        "UserRequestRecheck": P1BALANCEREQ01VAR.UserRequestRecheck,
-        "UserSend": P1BALANCEREQ01VAR.UserSend,
+        "Branch": P1BALANCEREQVAR.Branch,
+        "Code": P1BALANCEREQVAR.Code,
+        "ControlRange": P1BALANCEREQVAR.ControlRange,
+        "CustFull": P1BALANCEREQVAR.CustFull,
+        "CustId": P1BALANCEREQVAR.CustId,
+        "CustShort": P1BALANCEREQVAR.CustShort,
+        "DueDate1": P1BALANCEREQVAR.DueDate1,
+        "Incharge": P1BALANCEREQVAR.Incharge,
+        "ItemName": P1BALANCEREQVAR.ItemName,
+        "ItemNo": P1BALANCEREQVAR.ItemNo,
+        "ItemReportName": P1BALANCEREQVAR.ItemReportName,
+        "ItemStatus": P1BALANCEREQVAR.ItemStatus,
+        "JobType": P1BALANCEREQVAR.JobType,
+        "ListDate": P1BALANCEREQVAR.ListDate,
+        "Mag": P1BALANCEREQVAR.Mag,
+        "Position": P1BALANCEREQVAR.Position,
+        "ProcessReportName": P1BALANCEREQVAR.ProcessReportName,
+        "ReceiveDate": P1BALANCEREQVAR.ReceiveDate,
+        "RemarkNo": P1BALANCEREQVAR.RemarkNo,
+        "RemarkSend": P1BALANCEREQVAR.RemarkSend,
+        "ReportOrder": P1BALANCEREQVAR.ReportOrder,
+        "ReqDate": P1BALANCEREQVAR.ReqDate,
+        "ReqUser": P1BALANCEREQVAR.ReqUser,
+        "RequestRound": P1BALANCEREQVAR.RequestRound,
+        "RequestSection": P1BALANCEREQVAR.RequestSection,
+        "RequestStatus": P1BALANCEREQVAR.RequestStatus,
+        "SampleCode": P1BALANCEREQVAR.SampleCode,
+        "SampleGroup": P1BALANCEREQVAR.SampleGroup,
+        "SampleName": P1BALANCEREQVAR.SampleName,
+        "SampleNo": P1BALANCEREQVAR.SampleNo,
+        "SampleRemark": P1BALANCEREQVAR.SampleRemark,
+        "SampleStatus": P1BALANCEREQVAR.SampleStatus,
+        "SampleTank": P1BALANCEREQVAR.SampleTank,
+        "SampleType": P1BALANCEREQVAR.SampleType,
+        "SamplingDate": P1BALANCEREQVAR.SamplingDate,
+        "SendDate": P1BALANCEREQVAR.SendDate,
+        "Std1": P1BALANCEREQVAR.Std1,
+        "Std2": P1BALANCEREQVAR.Std2,
+        "Std3": P1BALANCEREQVAR.Std3,
+        "Std4": P1BALANCEREQVAR.Std4,
+        "Std5": P1BALANCEREQVAR.Std5,
+        "Std6": P1BALANCEREQVAR.Std6,
+        "Std7": P1BALANCEREQVAR.Std7,
+        "Std8": P1BALANCEREQVAR.Std8,
+        "Std9": P1BALANCEREQVAR.Std9,
+        "StdFactor": P1BALANCEREQVAR.StdFactor,
+        "StdMax": P1BALANCEREQVAR.StdMax,
+        "StdMaxL": P1BALANCEREQVAR.StdMaxL,
+        "StdMin": P1BALANCEREQVAR.StdMin,
+        "StdMinL": P1BALANCEREQVAR.StdMinL,
+        "StdSymbol": P1BALANCEREQVAR.StdSymbol,
+        "Temp": P1BALANCEREQVAR.Temp,
+        "UserListAnalysis": P1BALANCEREQVAR.UserListAnalysis,
+        "UserReceive": P1BALANCEREQVAR.UserReceive,
+        "UserReject": P1BALANCEREQVAR.UserReject,
+        "UserRequestRecheck": P1BALANCEREQVAR.UserRequestRecheck,
+        "UserSend": P1BALANCEREQVAR.UserSend,
         "Operator": USERDATA.NAME,
-        "UID": P1BALANCEREQ01VAR.UID,
+        "UID": P1BALANCEREQVAR.UID,
       },
     );
 

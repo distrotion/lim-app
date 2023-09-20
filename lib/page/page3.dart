@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/BlocEvent/01-Getbalancevalue.dart';
 
-import '../bloc/BlocEvent/03-01-P3BALANCEBODYICP01.dart';
-import '../bloc/BlocEvent/03-02-P3BALANCEBODYICP01GETSET.dart';
-import 'P3BALANCEBODYICP01/P3BALANCEBODYICP01.dart';
+import '../bloc/BlocEvent/03-01-P3BALANCEBODYICP.dart';
+import '../bloc/BlocEvent/03-02-P3BALANCEBODYICPGETSET.dart';
+import 'P3BALANCEBODYICP/P3BALANCEBODYICP.dart';
 
 class Page3 extends StatelessWidget {
   const Page3({Key? key}) : super(key: key);
@@ -45,8 +45,8 @@ class Page3BlocTableBodySET extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P3BALANCEBODYICP01_Bloc(),
-        child: BlocBuilder<P3BALANCEBODYICP01_Bloc, String>(
+        create: (_) => P3BALANCEBODYICP_Bloc(),
+        child: BlocBuilder<P3BALANCEBODYICP_Bloc, String>(
           builder: (context, status) {
             return Page3BlocTableBodySETGETSET(
               value: value,
@@ -69,9 +69,9 @@ class Page3BlocTableBodySETGETSET extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P3BALANCEBODYICP01GETSET_Bloc(),
-        child: BlocBuilder<P3BALANCEBODYICP01GETSET_Bloc,
-            P3BALANCEBODYICP01GETSETCLASS>(
+        create: (_) => P3BALANCEBODYICPGETSET_Bloc(),
+        child: BlocBuilder<P3BALANCEBODYICPGETSET_Bloc,
+            P3BALANCEBODYICPGETSETCLASS>(
           builder: (context, SET) {
             return Page3Body(
               value: value,
@@ -91,11 +91,11 @@ class Page3Body extends StatelessWidget {
   }) : super(key: key);
   String? value;
   String? status;
-  P3BALANCEBODYICP01GETSETCLASS? SET;
+  P3BALANCEBODYICPGETSETCLASS? SET;
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: P03BALANCEBODYICP01(
+      child: P03BALANCEBODYICP(
         value: value,
         SET: SET,
         status: status,

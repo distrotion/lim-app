@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lim_app/page/page99.dart';
 
+import '../data/global.dart';
 import 'TEST.dart';
 import 'page1.dart';
 import 'page2.dart';
@@ -13,7 +14,7 @@ class Page0 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Page99();
+    return Page0Body();
   }
 }
 
@@ -22,14 +23,13 @@ class Page0Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      // child: Container(
-      //     height: 100,
-      //     width: 200,
-      //     color: Colors.orange,
-      //     child: const Center(
-      //         child: Text("initial Page \nor do something wrong"))),
-      child: FILEpicfunction(),
-    );
+    if (USERDATA.INSMASTER == '') {
+      return Page99();
+    } else {
+      return Page99();
+    }
   }
 }
+
+
+// USERDATA.INSMASTER = '';

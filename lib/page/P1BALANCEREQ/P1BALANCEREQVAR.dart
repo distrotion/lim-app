@@ -1,4 +1,4 @@
-class P1BALANCEREQ01VAR {
+class P1BALANCEREQVAR {
   static bool iscontrol = false;
   static int INSCOUTTEST = 0;
   static String SEARCH = '';

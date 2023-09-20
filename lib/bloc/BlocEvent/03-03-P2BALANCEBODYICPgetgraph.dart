@@ -3,29 +3,28 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
-import '../../page/P2BALANCEBODYCW01/P2BALANCEBODY01CWVAR.dart';
+import '../../page/P2BALANCEBODYCW/P2BALANCEBODYCWVAR.dart';
 import '../cubit/POP-searchHistoryChartData.dart';
 
 //-------------------------------------------------
 
-abstract class P2BALANCEBODYICP01getgraph_Event {}
+abstract class P2BALANCEBODYICPgetgraph_Event {}
 
-class P2BALANCEBODYICP01getgraph_get extends P2BALANCEBODYICP01getgraph_Event {}
+class P2BALANCEBODYICPgetgraph_get extends P2BALANCEBODYICPgetgraph_Event {}
 
-class P2BALANCEBODYICP01getgraph_flush
-    extends P2BALANCEBODYICP01getgraph_Event {}
+class P2BALANCEBODYICPgetgraph_flush extends P2BALANCEBODYICPgetgraph_Event {}
 
-class P2BALANCEBODYICP01getgraph_Bloc
-    extends Bloc<P2BALANCEBODYICP01getgraph_Event, List<HistoryChartModel>> {
-  P2BALANCEBODYICP01getgraph_Bloc() : super([]) {
-    on<P2BALANCEBODYICP01getgraph_get>((event, emit) {
-      return _P2BALANCEBODYICP01getgraph_get([], emit);
+class P2BALANCEBODYICPgetgraph_Bloc
+    extends Bloc<P2BALANCEBODYICPgetgraph_Event, List<HistoryChartModel>> {
+  P2BALANCEBODYICPgetgraph_Bloc() : super([]) {
+    on<P2BALANCEBODYICPgetgraph_get>((event, emit) {
+      return _P2BALANCEBODYICPgetgraph_get([], emit);
     });
-    on<P2BALANCEBODYICP01getgraph_flush>((event, emit) {
-      return _P2BALANCEBODYICP01getgraph_flush([], emit);
+    on<P2BALANCEBODYICPgetgraph_flush>((event, emit) {
+      return _P2BALANCEBODYICPgetgraph_flush([], emit);
     });
   }
-  Future<void> _P2BALANCEBODYICP01getgraph_get(List<HistoryChartModel> toAdd,
+  Future<void> _P2BALANCEBODYICPgetgraph_get(List<HistoryChartModel> toAdd,
       Emitter<List<HistoryChartModel>> emit) async {
     List<HistoryChartModel> output = [];
     print("----------------------------");
@@ -85,7 +84,7 @@ class P2BALANCEBODYICP01getgraph_Bloc
     emit(output.reversed.toList());
   }
 
-  Future<void> _P2BALANCEBODYICP01getgraph_flush(List<HistoryChartModel> toAdd,
+  Future<void> _P2BALANCEBODYICPgetgraph_flush(List<HistoryChartModel> toAdd,
       Emitter<List<HistoryChartModel>> emit) async {
     List<HistoryChartModel> output = [];
     emit(output);

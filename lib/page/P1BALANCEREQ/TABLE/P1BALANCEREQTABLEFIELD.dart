@@ -9,6 +9,7 @@ class P1WIDGETFIELD extends StatefulWidget {
     this.SELECTFUNC,
     this.isSELECTFUNC,
     this.B01,
+    this.B01L,
     this.B02,
     this.B03,
     this.B04,
@@ -36,6 +37,7 @@ class P1WIDGETFIELD extends StatefulWidget {
   bool? isSELECTFUNC;
   double? forntsize;
   String? B01;
+  String? B01L;
   String? B02;
   String? B03;
   String? B04;
@@ -79,10 +81,21 @@ class _P1WIDGETFIELDState extends State<P1WIDGETFIELD> {
                 borderRadius: const BorderRadius.all(Radius.circular(0)),
               ),
               child: Center(
-                child: Text(widget.B01 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(widget.B01 ?? '',
+                        style: TxtStyle(
+                            color: widget.FCB ?? Colors.black,
+                            fontSize: widget.forntsize ?? 14)),
+                    if (widget.B01L != null && widget.B01L != '') ...[
+                      Text(widget.B01L ?? '',
+                          style: TxtStyle(
+                              color: widget.FCB ?? Colors.black,
+                              fontSize: widget.forntsize ?? 14)),
+                    ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -165,6 +178,24 @@ class _P1WIDGETFIELDState extends State<P1WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B06 ?? '',
+                    style: TxtStyle(
+                        color: widget.FCB ?? Colors.black,
+                        fontSize: widget.forntsize ?? 14)),
+              ),
+            ),
+          ),
+
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: widget.height ?? 35,
+              decoration: BoxDecoration(
+                color: widget.CB07 ?? Colors.white,
+                border: Border.all(color: Colors.black),
+                borderRadius: const BorderRadius.all(Radius.circular(0)),
+              ),
+              child: Center(
+                child: Text(widget.B07 ?? '',
                     style: TxtStyle(
                         color: widget.FCB ?? Colors.black,
                         fontSize: widget.forntsize ?? 14)),

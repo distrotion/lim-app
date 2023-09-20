@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/BlocEvent/01-01-P1BALANCEREQ01GET.dart';
-import '../bloc/BlocEvent/01-02-P1BALANCEREQ01GETSTR.dart';
+import '../bloc/BlocEvent/01-01-P1BALANCEREQGET.dart';
+import '../bloc/BlocEvent/01-02-P1BALANCEREQGETSTR.dart';
 import '../model/model.dart';
-import 'P1BALANCEREQ01/P1BALANCEREQ01MAIN.dart';
+import 'P1BALANCEREQ/P1BALANCEREQMAIN.dart';
 
 //---------------------------------------------------------
 
@@ -25,8 +25,8 @@ class Page1BlocTableBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P1BALANCEREQ01GET_Bloc(),
-        child: BlocBuilder<P1BALANCEREQ01GET_Bloc, List<dataset>>(
+        create: (_) => P1BALANCEREQGET_Bloc(),
+        child: BlocBuilder<P1BALANCEREQGET_Bloc, List<dataset>>(
           builder: (context, data) {
             return Page1BlocTableBodySTR(
               data: data,
@@ -46,8 +46,8 @@ class Page1BlocTableBodySTR extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P1BALANCEREQ01GETSTR_Bloc(),
-        child: BlocBuilder<P1BALANCEREQ01GETSTR_Bloc, String>(
+        create: (_) => P1BALANCEREQGETSTR_Bloc(),
+        child: BlocBuilder<P1BALANCEREQGETSTR_Bloc, String>(
           builder: (context, str) {
             return Page1Body(
               data: data,
@@ -69,7 +69,7 @@ class Page1Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: P1BALANCEREQ01MAIN(
+      child: P1BALANCEREQMAIN(
         data: data,
         str: str,
       ),

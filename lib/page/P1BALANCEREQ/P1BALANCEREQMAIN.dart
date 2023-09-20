@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/BlocEvent/01-01-P1BALANCEREQ01GET.dart';
-import '../../bloc/BlocEvent/01-02-P1BALANCEREQ01GETSTR.dart';
+import '../../bloc/BlocEvent/01-01-P1BALANCEREQGET.dart';
+import '../../bloc/BlocEvent/01-02-P1BALANCEREQGETSTR.dart';
 import '../../data/dummydata.dart';
+import '../../data/global.dart';
 import '../../model/model.dart';
-import 'TABLE/P1BALANCEREQ01TABLE.dart';
+import 'TABLE/P1BALANCEREQTABLE.dart';
 
-class P1BALANCEREQ01MAIN extends StatefulWidget {
-  P1BALANCEREQ01MAIN({
+class P1BALANCEREQMAIN extends StatefulWidget {
+  P1BALANCEREQMAIN({
     super.key,
     this.data,
     this.str,
@@ -17,16 +18,16 @@ class P1BALANCEREQ01MAIN extends StatefulWidget {
   String? str;
 
   @override
-  State<P1BALANCEREQ01MAIN> createState() => _P1BALANCEREQ01MAINState();
+  State<P1BALANCEREQMAIN> createState() => _P1BALANCEREQMAINState();
 }
 
-class _P1BALANCEREQ01MAINState extends State<P1BALANCEREQ01MAIN> {
+class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<P1BALANCEREQ01GET_Bloc>().add(GETDATALISTFROMSAR());
-    context.read<P1BALANCEREQ01GETSTR_Bloc>().add(P1BALANCEREQ01GETSTR_ROOM());
+    context.read<P1BALANCEREQGET_Bloc>().add(GETDATALISTFROMSAR());
+    context.read<P1BALANCEREQGETSTR_Bloc>().add(P1BALANCEREQGETSTR_ROOM());
   }
 
   @override
@@ -34,7 +35,7 @@ class _P1BALANCEREQ01MAINState extends State<P1BALANCEREQ01MAIN> {
     String reqnoonroom = widget.str ?? '';
     String reqnoonroomR = '';
 
-    if (reqnoonroom != '') {
+    if (reqnoonroom != '' && reqnoonroom != ' ') {
       reqnoonroomR = 'Using by ${reqnoonroom}';
     } else {
       reqnoonroomR = 'Ready to use';
@@ -65,10 +66,10 @@ class _P1BALANCEREQ01MAINState extends State<P1BALANCEREQ01MAIN> {
                     width: 800,
                     child: Row(
                       children: [
-                        const Expanded(
+                        Expanded(
                           flex: 2,
                           child: Text(
-                            "BALANCE-01 (CHM-01)",
+                            "${USERDATA.INSMASTER}",
                             style: TextStyle(fontSize: 28),
                           ),
                         ),
@@ -91,8 +92,8 @@ class _P1BALANCEREQ01MAINState extends State<P1BALANCEREQ01MAIN> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<P1BALANCEREQ01GETSTR_Bloc>()
-                                          .add(P1BALANCEREQ01GETSTR_ROOM());
+                                          .read<P1BALANCEREQGETSTR_Bloc>()
+                                          .add(P1BALANCEREQGETSTR_ROOM());
                                     },
                                     child: Container(
                                       height: 20,
@@ -112,12 +113,11 @@ class _P1BALANCEREQ01MAINState extends State<P1BALANCEREQ01MAIN> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<P1BALANCEREQ01GETSTR_Bloc>()
-                                          .add(
-                                              P1BALANCEREQ01GETSTR_CLEARROOM());
+                                          .read<P1BALANCEREQGETSTR_Bloc>()
+                                          .add(P1BALANCEREQGETSTR_CLEARROOM());
                                       context
-                                          .read<P1BALANCEREQ01GETSTR_Bloc>()
-                                          .add(P1BALANCEREQ01GETSTR_ROOM());
+                                          .read<P1BALANCEREQGETSTR_Bloc>()
+                                          .add(P1BALANCEREQGETSTR_ROOM());
                                     },
                                     child: Container(
                                       height: 20,
@@ -155,7 +155,7 @@ class _P1BALANCEREQ01MAINState extends State<P1BALANCEREQ01MAIN> {
                   border: Border.all(color: Colors.black),
                   borderRadius: const BorderRadius.all(Radius.circular(0)),
                 ),
-                child: P1BALANCEREQ01TABLE(sardata: widget.data),
+                child: P1BALANCEREQTABLE(sardata: widget.data),
               ),
             ),
           )

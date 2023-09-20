@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
-import '../../bloc/BlocEvent/02-01-P2BALANCEBODYICP01.dart';
-import '../../bloc/BlocEvent/02-02-P2BALANCEBODYICP01GETSET.dart';
-import '../../bloc/BlocEvent/02-03-P2BALANCEBODYICP01getgraph.dart';
+import '../../bloc/BlocEvent/02-01-P2BALANCEBODYCW.dart';
+import '../../bloc/BlocEvent/02-02-P2BALANCEBODYCWGETSET.dart';
+import '../../bloc/BlocEvent/02-03-P2BALANCEBODYCWgetgraph.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
@@ -16,12 +16,12 @@ import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 import '../../widget/common/popup.dart';
 import '../page1.dart';
-import 'P2BALANCEBODY01CWVAR.dart';
+import 'P2BALANCEBODYCWVAR.dart';
 
-late BuildContext P02BALANCEBODYCW01context;
+late BuildContext P02BALANCEBODYCWcontext;
 
-class P02BALANCEBODYCW01 extends StatefulWidget {
-  P02BALANCEBODYCW01({
+class P02BALANCEBODYCW extends StatefulWidget {
+  P02BALANCEBODYCW({
     super.key,
     this.value,
     this.SET,
@@ -29,23 +29,21 @@ class P02BALANCEBODYCW01 extends StatefulWidget {
     this.historyChartDatain,
   });
   String? value;
-  P2BALANCEBODYCW01GETSETCLASS? SET;
+  P2BALANCEBODYCWGETSETCLASS? SET;
   String? status;
   List<HistoryChartModel>? historyChartDatain;
 
   @override
-  State<P02BALANCEBODYCW01> createState() => _P02BALANCEBODYCW01State();
+  State<P02BALANCEBODYCW> createState() => _P02BALANCEBODYCWState();
 }
 
-class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
+class _P02BALANCEBODYCWState extends State<P02BALANCEBODYCW> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     context.read<Getbalancevalue_Bloc>().add(Getbalancevalue_Get());
-    context
-        .read<P2BALANCEBODYCW01GETSET_Bloc>()
-        .add(P2BALANCEBODYCW01GETSET_GET());
+    context.read<P2BALANCEBODYCWGETSET_Bloc>().add(P2BALANCEBODYCWGETSET_GET());
     P2BALANCEBODY01CWVAR.area = '';
     P2BALANCEBODY01CWVAR.Result = '';
     P2BALANCEBODY01CWVAR.mem = 'GO';
@@ -53,11 +51,11 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
 
   @override
   Widget build(BuildContext context) {
-    P02BALANCEBODYCW01context = context;
+    P02BALANCEBODYCWcontext = context;
 
     P2BALANCEBODY01CWVAR.value = widget.value ?? '';
-    P2BALANCEBODYCW01GETSETCLASS dataset =
-        widget.SET ?? P2BALANCEBODYCW01GETSETCLASS();
+    P2BALANCEBODYCWGETSETCLASS dataset =
+        widget.SET ?? P2BALANCEBODYCWGETSETCLASS();
 
     P2BALANCEBODY01CWVAR.ReqNo = dataset.ReqNo;
     P2BALANCEBODY01CWVAR.InstrumentName = dataset.InstrumentName;
@@ -82,8 +80,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
         P2BALANCEBODY01CWVAR.UID != '' &&
         P2BALANCEBODY01CWVAR.InstrumentName != '') {
       context
-          .read<P2BALANCEBODYICP01getgraph_Bloc>()
-          .add(P2BALANCEBODYICP01getgraph_get());
+          .read<P2BALANCEBODYCWgetgraph_Bloc>()
+          .add(P2BALANCEBODYCWgetgraph_get());
       P2BALANCEBODY01CWVAR.mem = '';
       print("+++++++++++++++++++");
     }
@@ -209,8 +207,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                           onTap: () {
                             //
                             context
-                                .read<P2BALANCEBODYCW01_Bloc>()
-                                .add(P2BALANCEBODYCW01_SETDATA());
+                                .read<P2BALANCEBODYCW_Bloc>()
+                                .add(P2BALANCEBODYCW_SETDATA());
                             context
                                 .read<Getbalancevalue_Bloc>()
                                 .add(Getbalancevalue_Get());
@@ -218,8 +216,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                             Future.delayed(const Duration(milliseconds: 2000),
                                 () {
                               context
-                                  .read<P2BALANCEBODYCW01GETSET_Bloc>()
-                                  .add(P2BALANCEBODYCW01GETSET_GET());
+                                  .read<P2BALANCEBODYCWGETSET_Bloc>()
+                                  .add(P2BALANCEBODYCWGETSET_GET());
                               setState(() {});
                             });
                           },
@@ -400,8 +398,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                             InkWell(
                               onTap: () {
                                 context
-                                    .read<P2BALANCEBODYCW01_Bloc>()
-                                    .add(P2BALANCEBODYCW01_CLEARW11());
+                                    .read<P2BALANCEBODYCW_Bloc>()
+                                    .add(P2BALANCEBODYCW_CLEARW11());
                                 context
                                     .read<Getbalancevalue_Bloc>()
                                     .add(Getbalancevalue_Get());
@@ -409,8 +407,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                                 Future.delayed(
                                     const Duration(milliseconds: 2000), () {
                                   context
-                                      .read<P2BALANCEBODYCW01GETSET_Bloc>()
-                                      .add(P2BALANCEBODYCW01GETSET_GET());
+                                      .read<P2BALANCEBODYCWGETSET_Bloc>()
+                                      .add(P2BALANCEBODYCWGETSET_GET());
                                   setState(() {});
                                 });
                               },
@@ -660,8 +658,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                                     .toStringAsFixed(2);
                               });
                               context
-                                  .read<P2BALANCEBODYCW01_Bloc>()
-                                  .add(P2BALANCEBODYCW01_CAL());
+                                  .read<P2BALANCEBODYCW_Bloc>()
+                                  .add(P2BALANCEBODYCW_CAL());
                             } else {
                               setState(() {
                                 P2BALANCEBODY01CWVAR.Result = '';
@@ -736,8 +734,8 @@ class _P02BALANCEBODYCW01State extends State<P02BALANCEBODYCW01> {
                       //     P2BALANCEBODY01CWVAR.W11 != '' &&
                       //     P2BALANCEBODY01CWVAR.W12 != '') {
                       context
-                          .read<P2BALANCEBODYCW01_Bloc>()
-                          .add(P2BALANCEBODYCW01_SEND_TO_SAR());
+                          .read<P2BALANCEBODYCW_Bloc>()
+                          .add(P2BALANCEBODYCW_SEND_TO_SAR());
                       // } else {
                       //   WORNINGpop(
                       //     context,

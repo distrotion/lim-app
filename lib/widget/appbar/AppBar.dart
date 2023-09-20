@@ -37,7 +37,8 @@ class _App_BarState extends State<App_Bar> {
           //Text(MediaQuery.of(context).size.width.toString()),
           //Text("  |  <--->  |  " + current_page.toString()),
           Spacer(),
-          Text("${USERDATA.ID}(${USERDATA.NAME})"),
+          Text(
+              "${USERDATA.INSMASTER != '' ? "USE: " : ""}${USERDATA.INSMASTER} ${USERDATA.INSMASTER != '' ? "|" : ""} ${USERDATA.ID}(${USERDATA.NAME})  Branch: ${USERDATA.Branch} "),
           Pack_topright_bar(),
         ],
       ),

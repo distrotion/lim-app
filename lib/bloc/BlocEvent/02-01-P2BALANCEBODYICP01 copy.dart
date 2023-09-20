@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
-import '../../page/P2BALANCEBODYCW01/P2BALANCEBODY01CWVAR.dart';
+import '../../page/P2BALANCEBODYCW/P2BALANCEBODYCWVAR.dart';
 
 //-------------------------------------------------
 
@@ -63,7 +63,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01UPDATEDATA_C',
+      'http://172.23.10.40:2600/balance01UPDATEDATA_C',
       data: {},
     );
 
@@ -75,7 +75,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01CLEARDATA_C',
+      'http://172.23.10.40:2600/balance01CLEARDATA_C',
       data: {},
     );
 
@@ -87,7 +87,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
     String output = '';
     print("------------>");
     final response = await Dio().post(
-      '${serverN}/balance01ARER',
+      'http://172.23.10.40:2600/balance01ARER',
       data: {
         "AREA": P2BALANCEBODY01CWVAR.area,
         "NOitem": P2BALANCEBODY01CWVAR.NOitem,
@@ -102,7 +102,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
     String output = '';
     print("------------>");
     final response = await Dio().post(
-      '${serverN}/balance01SENDTOSAR',
+      'http://172.23.10.40:2600/balance01SENDTOSAR',
       data: {
         "AREA": P2BALANCEBODY01CWVAR.area,
         "USER": USERDATA.NAME,
@@ -118,7 +118,7 @@ class P2BALANCEBODYCW01_Bloc extends Bloc<P2BALANCEBODYCW01_Event, String> {
   //   String output = '';
 
   //   final response = await Dio().post(
-  //     '${serverN}/balance01CLEARDATA_ADJ',
+  //     'http://172.23.10.40:2600/balance01CLEARDATA_ADJ',
   //     data: {},
   //   );
 

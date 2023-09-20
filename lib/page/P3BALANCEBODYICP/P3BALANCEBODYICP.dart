@@ -3,49 +3,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
-import '../../bloc/BlocEvent/03-01-P3BALANCEBODYICP01.dart';
-import '../../bloc/BlocEvent/03-02-P3BALANCEBODYICP01GETSET.dart';
+import '../../bloc/BlocEvent/03-01-P3BALANCEBODYICP.dart';
+import '../../bloc/BlocEvent/03-02-P3BALANCEBODYICPGETSET.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../page1.dart';
-import 'P3BALANCEBODY01ICPVAR.dart';
+import 'P3BALANCEBODYICPVAR.dart';
 
-late BuildContext P03BALANCEBODYICP01context;
+late BuildContext P03BALANCEBODYICPcontext;
 
-class P03BALANCEBODYICP01 extends StatefulWidget {
-  P03BALANCEBODYICP01({
+class P03BALANCEBODYICP extends StatefulWidget {
+  P03BALANCEBODYICP({
     super.key,
     this.value,
     this.SET,
     this.status,
   });
   String? value;
-  P3BALANCEBODYICP01GETSETCLASS? SET;
+  P3BALANCEBODYICPGETSETCLASS? SET;
   String? status;
   @override
-  State<P03BALANCEBODYICP01> createState() => _P03BALANCEBODYICP01State();
+  State<P03BALANCEBODYICP> createState() => _P03BALANCEBODYICPState();
 }
 
-class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
+class _P03BALANCEBODYICPState extends State<P03BALANCEBODYICP> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     context.read<Getbalancevalue_Bloc>().add(Getbalancevalue_Get());
     context
-        .read<P3BALANCEBODYICP01GETSET_Bloc>()
-        .add(P3BALANCEBODYICP01GETSET_GET());
+        .read<P3BALANCEBODYICPGETSET_Bloc>()
+        .add(P3BALANCEBODYICPGETSET_GET());
   }
 
   @override
   Widget build(BuildContext context) {
-    P03BALANCEBODYICP01context = context;
+    P03BALANCEBODYICPcontext = context;
     P3BALANCEBODY01ICPVAR.value = widget.value ?? '';
-    P3BALANCEBODYICP01GETSETCLASS dataset =
-        widget.SET ?? P3BALANCEBODYICP01GETSETCLASS();
+    P3BALANCEBODYICPGETSETCLASS dataset =
+        widget.SET ?? P3BALANCEBODYICPGETSETCLASS();
 
     P3BALANCEBODY01ICPVAR.ReqNo = dataset.ReqNo;
     P3BALANCEBODY01ICPVAR.InstrumentName = dataset.InstrumentName;
@@ -153,8 +153,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                           onTap: () {
                             //
                             context
-                                .read<P3BALANCEBODYICP01_Bloc>()
-                                .add(P3BALANCEBODYICP01_SETDATA());
+                                .read<P3BALANCEBODYICP_Bloc>()
+                                .add(P3BALANCEBODYICP_SETDATA());
                             context
                                 .read<Getbalancevalue_Bloc>()
                                 .add(Getbalancevalue_Get());
@@ -162,8 +162,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                             Future.delayed(const Duration(milliseconds: 2000),
                                 () {
                               context
-                                  .read<P3BALANCEBODYICP01GETSET_Bloc>()
-                                  .add(P3BALANCEBODYICP01GETSET_GET());
+                                  .read<P3BALANCEBODYICPGETSET_Bloc>()
+                                  .add(P3BALANCEBODYICPGETSET_GET());
                               setState(() {});
                             });
                           },
@@ -221,8 +221,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                             InkWell(
                               onTap: () {
                                 context
-                                    .read<P3BALANCEBODYICP01_Bloc>()
-                                    .add(P3BALANCEBODYICP01_CLEARW11());
+                                    .read<P3BALANCEBODYICP_Bloc>()
+                                    .add(P3BALANCEBODYICP_CLEARW11());
                                 context
                                     .read<Getbalancevalue_Bloc>()
                                     .add(Getbalancevalue_Get());
@@ -230,8 +230,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                                 Future.delayed(
                                     const Duration(milliseconds: 2000), () {
                                   context
-                                      .read<P3BALANCEBODYICP01GETSET_Bloc>()
-                                      .add(P3BALANCEBODYICP01GETSET_GET());
+                                      .read<P3BALANCEBODYICPGETSET_Bloc>()
+                                      .add(P3BALANCEBODYICPGETSET_GET());
                                   setState(() {});
                                 });
                               },
@@ -290,8 +290,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                             InkWell(
                               onTap: () {
                                 context
-                                    .read<P3BALANCEBODYICP01_Bloc>()
-                                    .add(P3BALANCEBODYICP01_CLEARW11_ADJ());
+                                    .read<P3BALANCEBODYICP_Bloc>()
+                                    .add(P3BALANCEBODYICP_CLEARW11_ADJ());
                                 context
                                     .read<Getbalancevalue_Bloc>()
                                     .add(Getbalancevalue_Get());
@@ -299,8 +299,8 @@ class _P03BALANCEBODYICP01State extends State<P03BALANCEBODYICP01> {
                                 Future.delayed(
                                     const Duration(milliseconds: 2000), () {
                                   context
-                                      .read<P3BALANCEBODYICP01GETSET_Bloc>()
-                                      .add(P3BALANCEBODYICP01GETSET_GET());
+                                      .read<P3BALANCEBODYICPGETSET_Bloc>()
+                                      .add(P3BALANCEBODYICPGETSET_GET());
                                   setState(() {});
                                 });
                               },
