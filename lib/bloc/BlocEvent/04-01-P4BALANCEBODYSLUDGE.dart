@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
 import '../../page/P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEVAR.dart';
+import '../../page/P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEmain.dart';
+import '../../widget/common/popup.dart';
+import '../cubit/NotificationEvent.dart';
 
 //-------------------------------------------------
 
@@ -15,6 +18,8 @@ class P4BALANCEBODYSLUDGE_SETDATA extends P4BALANCEBODYSLUDGE_Event {}
 class P4BALANCEBODYSLUDGE_CLEARW11 extends P4BALANCEBODYSLUDGE_Event {}
 
 class P4BALANCEBODYSLUDGE_CAL extends P4BALANCEBODYSLUDGE_Event {}
+
+class P4BALANCEBODYSLUDGE_TEMP_SAVE extends P4BALANCEBODYSLUDGE_Event {}
 
 class P4BALANCEBODYSLUDGE_SEND_TO_SAR extends P4BALANCEBODYSLUDGE_Event {}
 
@@ -40,6 +45,11 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
     on<P4BALANCEBODYSLUDGE_CAL>((event, emit) {
       return _P4BALANCEBODYSLUDGE_CAL('', emit);
     });
+
+    on<P4BALANCEBODYSLUDGE_TEMP_SAVE>((event, emit) {
+      return _P4BALANCEBODYSLUDGE_TEMP_SAVE('', emit);
+    });
+
     on<P4BALANCEBODYSLUDGE_SEND_TO_SAR>((event, emit) {
       return _P4BALANCEBODYSLUDGE_SEND_TO_SAR('', emit);
     });
@@ -103,7 +113,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
       String toAdd, Emitter<String> emit) async {
     String output = '';
     print("------------>");
-    final response = await Dio().post(
+    final responseR = await Dio().post(
       '${serverN}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
@@ -114,8 +124,68 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
         "D02NOitem": P4BALANCEBODYSLUDGEVAR.D02NOitem,
         "VOLUME01": P4BALANCEBODYSLUDGEVAR.D01VOLUME,
         "VOLUME02": P4BALANCEBODYSLUDGEVAR.D02VOLUME,
+        "Result01": P4BALANCEBODYSLUDGEVAR.Result01,
+        "Result02": P4BALANCEBODYSLUDGEVAR.Result02,
+        "D01W11_21": P4BALANCEBODYSLUDGEVAR.D01W11_21,
+        "D02W11_21": P4BALANCEBODYSLUDGEVAR.D02W11_21,
       },
     );
+
+    emit(output);
+  }
+
+  Future<void> _P4BALANCEBODYSLUDGE_TEMP_SAVE(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+
+    final responseR = await Dio().post(
+      '${serverN}/ACTION_${USERDATA.INSMASTER}',
+      data: {
+        "IP": webHOOK,
+        "USER": USERDATA.NAME,
+        "TYPE": "04SARBALANCESLUDGE",
+        "FUNCTION": "UPDATEDATAVOLUME",
+        "D01NOitem": P4BALANCEBODYSLUDGEVAR.D01NOitem,
+        "D02NOitem": P4BALANCEBODYSLUDGEVAR.D02NOitem,
+        "VOLUME01": P4BALANCEBODYSLUDGEVAR.D01VOLUME,
+        "VOLUME02": P4BALANCEBODYSLUDGEVAR.D02VOLUME,
+        "Result01": P4BALANCEBODYSLUDGEVAR.Result01,
+        "Result02": P4BALANCEBODYSLUDGEVAR.Result02,
+        "D01W11_21": P4BALANCEBODYSLUDGEVAR.D01W11_21,
+        "D02W11_21": P4BALANCEBODYSLUDGEVAR.D02W11_21,
+      },
+    ).then((value) async {
+      final response = await Dio().post(
+        '${serverN}/TEMPSAVETOSAR_SLUDGE',
+        data: {
+          "USER": USERDATA.NAME,
+          "Branch": USERDATA.Branch,
+          "REQNO": P4BALANCEBODYSLUDGEVAR.ReqNo,
+          "UID": P4BALANCEBODYSLUDGEVAR.UID,
+        },
+      );
+      if (response.statusCode == 200) {
+        WORNINGpop(
+          P4BALANCEBODYSLUDGEcontext,
+          [
+            "Temp Save",
+            "SUCCESS",
+          ],
+          100,
+          100,
+        );
+      } else {
+        WORNINGpop(
+          P4BALANCEBODYSLUDGEcontext,
+          [
+            "Temp Save",
+            "ERROR",
+          ],
+          100,
+          100,
+        );
+      }
+    });
 
     emit(output);
   }
@@ -123,15 +193,13 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
   Future<void> _P4BALANCEBODYSLUDGE_SEND_TO_SAR(
       String toAdd, Emitter<String> emit) async {
     String output = '';
-    print("------------>");
+
     final response = await Dio().post(
-      '${serverN}/SENDTOSAR_${USERDATA.INSMASTER}',
+      '${serverN}/SENDTOSAR_SLUDGE',
       data: {
         "USER": USERDATA.NAME,
-        "D01NOitem": P4BALANCEBODYSLUDGEVAR.D01NOitem,
-        "D02NOitem": P4BALANCEBODYSLUDGEVAR.D02NOitem,
-        "VOLUME01": P4BALANCEBODYSLUDGEVAR.D01VOLUME,
-        "VOLUME02": P4BALANCEBODYSLUDGEVAR.D02VOLUME,
+        "REQNO": P4BALANCEBODYSLUDGEVAR.ReqNo,
+        "UID": P4BALANCEBODYSLUDGEVAR.UID,
       },
     );
 

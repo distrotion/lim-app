@@ -1183,6 +1183,14 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                         .D01VOLUME)) *
                                                 1000000)
                                             .toStringAsFixed(2);
+
+                                    P4BALANCEBODYSLUDGEVAR
+                                        .D01W11_21 = (double.parse(ConverstStr(
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .D01W21)) -
+                                            double.parse(ConverstStr(
+                                                P4BALANCEBODYSLUDGEVAR.D01W11)))
+                                        .toStringAsFixed(4);
                                   }
                                   if (P4BALANCEBODYSLUDGEVAR.D02W11 != '' &&
                                       P4BALANCEBODYSLUDGEVAR.D02W21 != '' &&
@@ -1199,6 +1207,14 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                                                         .D02VOLUME)) *
                                                 1000000)
                                             .toStringAsFixed(2);
+
+                                    P4BALANCEBODYSLUDGEVAR
+                                        .D02W11_21 = (double.parse(ConverstStr(
+                                                P4BALANCEBODYSLUDGEVAR
+                                                    .D02W21)) -
+                                            double.parse(ConverstStr(
+                                                P4BALANCEBODYSLUDGEVAR.D02W11)))
+                                        .toStringAsFixed(4);
                                   }
                                 });
                               } else {
@@ -1257,9 +1273,15 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     ),
                     InkWell(
                       onTap: () {
-                        CuPage = Page1();
-                        MainBodyContext.read<ChangePage_Bloc>()
-                            .add(ChangePage_nodrower());
+                        // CuPage = Page1();
+                        // MainBodyContext.read<ChangePage_Bloc>()
+                        //     .add(ChangePage_nodrower());
+                        context
+                            .read<P4BALANCEBODYSLUDGE_Bloc>()
+                            .add(P4BALANCEBODYSLUDGE_CAL());
+                        context
+                            .read<P4BALANCEBODYSLUDGE_Bloc>()
+                            .add(P4BALANCEBODYSLUDGE_TEMP_SAVE());
                       },
                       child: Container(
                         height: 62,
@@ -1277,8 +1299,12 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     ),
                     InkWell(
                       onTap: () {
-                        if (P4BALANCEBODYSLUDGEVAR.Result01 == '' ||
-                            P4BALANCEBODYSLUDGEVAR.Result02 == '') {}
+                        // if (P4BALANCEBODYSLUDGEVAR.Result01 == '' ||
+                        //     P4BALANCEBODYSLUDGEVAR.Result02 == '') {
+                        //   context
+                        //       .read<P4BALANCEBODYSLUDGE_Bloc>()
+                        //       .add(P4BALANCEBODYSLUDGE_SEND_TO_SAR());
+                        // }
                         // if (P4BALANCEBODYSLUDGEVAR.area != '' &&
                         //     P4BALANCEBODYSLUDGEVAR.W11 != '' &&
                         //     P4BALANCEBODYSLUDGEVAR.W12 != '') {
@@ -1299,7 +1325,8 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                       },
                       child: Container(
                         height: 62,
-                        color: Colors.green,
+                        // color: Colors.green,
+                        color: Colors.grey,
                         child: const Center(
                           child: Text(
                             "SEND DATA TO SAR",
@@ -1313,12 +1340,12 @@ class _P4BALANCEBODYSLUDGEState extends State<P4BALANCEBODYSLUDGE> {
                     ),
                     InkWell(
                       onTap: () {
-                        context
-                            .read<P4BALANCEBODYSLUDGE_Bloc>()
-                            .add(P4BALANCEBODYSLUDGE_CLEARROOM());
-                        CuPage = Page1();
-                        MainBodyContext.read<ChangePage_Bloc>()
-                            .add(ChangePage_nodrower());
+                        // context
+                        //     .read<P4BALANCEBODYSLUDGE_Bloc>()
+                        //     .add(P4BALANCEBODYSLUDGE_CLEARROOM());
+                        // CuPage = Page1();
+                        // MainBodyContext.read<ChangePage_Bloc>()
+                        //     .add(ChangePage_nodrower());
                       },
                       child: Container(
                         height: 62,

@@ -5,8 +5,10 @@ class P4BALANCEBODYSLUDGEVAR {
 
   static String D01W11 = '';
   static String D01W21 = '';
+  static String D01W11_21 = '';
   static String D02W11 = '';
   static String D02W21 = '';
+  static String D02W11_21 = '';
   static String D01VOLUME = '';
   static String D02VOLUME = '';
   static String D01NOitem = '';
