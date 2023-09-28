@@ -147,7 +147,7 @@ class Icon_profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new InkWell(
-      onLongPress: () {
+      onTap: () {
         LoginContext.read<Login_Bloc>().add(Logout());
       },
       child: Container(

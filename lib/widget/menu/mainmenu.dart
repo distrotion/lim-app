@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/LoginEvent.dart';
+import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../page/page1.dart';
+import '../../page/page100.dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
 import '../../page/page4.dart';
@@ -75,11 +77,21 @@ class Data_Menu_mainmenu extends StatelessWidget {
                     ),
                   ),
                 ))),
-        menu_normal(
-          name: "SELECT INS",
-          page: Page99(),
-          Lv: 1,
-        ),
+
+        if (USERDATA.Branch == "BANGPOO") ...[
+          menu_normal(
+            name: "SELECT INS BP12",
+            page: Page99(),
+            Lv: 1,
+          ),
+        ] else ...[
+          menu_normal(
+            name: "SELECT INS HES",
+            page: Page100(),
+            Lv: 1,
+          ),
+        ],
+
         // menu_normal(
         //   name: "BALANCE CHM-01",
         //   page: Page1(),

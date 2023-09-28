@@ -4,6 +4,7 @@ import 'package:lim_app/page/page99.dart';
 import '../data/global.dart';
 import 'TEST.dart';
 import 'page1.dart';
+import 'page100.dart';
 import 'page2.dart';
 import 'page3.dart';
 
@@ -23,10 +24,10 @@ class Page0Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (USERDATA.INSMASTER == '') {
+    if (USERDATA.Branch == 'BANGPOO') {
       return Page99();
     } else {
-      return Page99();
+      return Page100();
     }
   }
 }

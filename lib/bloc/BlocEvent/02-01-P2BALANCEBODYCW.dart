@@ -62,7 +62,7 @@ class P2BALANCEBODYCW_Bloc extends Bloc<P2BALANCEBODYCW_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01UPDATEDATA_C_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/balance01UPDATEDATA_C_${USERDATA.INSMASTER}',
       data: {},
     );
 
@@ -74,7 +74,7 @@ class P2BALANCEBODYCW_Bloc extends Bloc<P2BALANCEBODYCW_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01CLEARDATA_C',
+      '${selectBLANCE(USERDATA.Branch)}/balance01CLEARDATA_C',
       data: {},
     );
 
@@ -85,7 +85,7 @@ class P2BALANCEBODYCW_Bloc extends Bloc<P2BALANCEBODYCW_Event, String> {
     String output = '';
     print("------------>");
     final response = await Dio().post(
-      '${serverN}/balance01ARER',
+      '${selectBLANCE(USERDATA.Branch)}/balance01ARER',
       data: {
         "AREA": P2BALANCEBODY01CWVAR.area,
         "NOitem": P2BALANCEBODY01CWVAR.NOitem,
@@ -100,7 +100,7 @@ class P2BALANCEBODYCW_Bloc extends Bloc<P2BALANCEBODYCW_Event, String> {
     String output = '';
     print("------------>");
     final response = await Dio().post(
-      '${serverN}/balance01SENDTOSAR',
+      '${selectBLANCE(USERDATA.Branch)}/balance01SENDTOSAR',
       data: {
         "AREA": P2BALANCEBODY01CWVAR.area,
         "USER": USERDATA.NAME,
@@ -116,7 +116,7 @@ class P2BALANCEBODYCW_Bloc extends Bloc<P2BALANCEBODYCW_Event, String> {
   //   String output = '';
 
   //   final response = await Dio().post(
-  //     '${serverN}/balance01CLEARDATA_ADJ',
+  //     '${selectBLANCE(USERDATA.Branch)}/balance01CLEARDATA_ADJ',
   //     data: {},
   //   );
 

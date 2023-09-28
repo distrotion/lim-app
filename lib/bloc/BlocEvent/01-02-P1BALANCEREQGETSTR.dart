@@ -29,7 +29,7 @@ class P1BALANCEREQGETSTR_Bloc extends Bloc<P1BALANCEREQGETSTR_Event, String> {
       String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      '${serverN}/GETREGISTER_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
       data: {},
     );
 
@@ -47,7 +47,7 @@ class P1BALANCEREQGETSTR_Bloc extends Bloc<P1BALANCEREQGETSTR_Event, String> {
       String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      '${serverN}/CLEARREGISTER_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/CLEARREGISTER_${USERDATA.INSMASTER}',
       data: {},
     );
 

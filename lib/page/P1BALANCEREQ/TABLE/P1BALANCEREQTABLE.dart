@@ -225,7 +225,7 @@ class tabledetailsearch extends StatelessWidget {
           if (CP == "Sludge") {
             // if (CP != "") {
             final response = Dio().post(
-              '${serverN}/GETREGISTER_${USERDATA.INSMASTER}',
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
             ).then((value) {
               if (value.statusCode == 200) {
@@ -234,7 +234,7 @@ class tabledetailsearch extends StatelessWidget {
                 if (databuff['REQNO'] != null) {
                   if (databuff['REQNO'].toString() == '') {
                     final response = Dio().post(
-                      '${serverN}/SETREGISTER_${USERDATA.INSMASTER}',
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
                       data: {
                         "REQNO": PO,
                         "UID": FG,

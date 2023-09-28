@@ -79,7 +79,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
         "TYPE": "04SARBALANCESLUDGE",
@@ -96,7 +96,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
@@ -114,7 +114,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
     String output = '';
     print("------------>");
     final responseR = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
@@ -139,7 +139,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
     String output = '';
 
     final responseR = await Dio().post(
-      '${serverN}/ACTION_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
@@ -156,7 +156,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
       },
     ).then((value) async {
       final response = await Dio().post(
-        '${serverN}/TEMPSAVETOSAR_SLUDGE',
+        '${selectBLANCE(USERDATA.Branch)}/TEMPSAVETOSAR_SLUDGE',
         data: {
           "USER": USERDATA.NAME,
           "Branch": USERDATA.Branch,
@@ -195,7 +195,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/SENDTOSAR_SLUDGE',
+      '${selectBLANCE(USERDATA.Branch)}/SENDTOSAR_SLUDGE',
       data: {
         "USER": USERDATA.NAME,
         "REQNO": P4BALANCEBODYSLUDGEVAR.ReqNo,
@@ -211,7 +211,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
   //   String output = '';
 
   //   final response = await Dio().post(
-  //     '${serverN}/balance01CLEARDATA_ADJ',
+  //     '${selectBLANCE(USERDATA.Branch)}/balance01CLEARDATA_ADJ',
   //     data: {},
   //   );
 
@@ -222,7 +222,7 @@ class P4BALANCEBODYSLUDGE_Bloc extends Bloc<P4BALANCEBODYSLUDGE_Event, String> {
       String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      '${serverN}/CLEARREGISTER_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/CLEARREGISTER_${USERDATA.INSMASTER}',
       data: {},
     );
 

@@ -440,7 +440,7 @@ class _P03BALANCEBODYICPState extends State<P03BALANCEBODYICP> {
                   InkWell(
                     onTap: () {
                       Dio().post(
-                        '${serverN}/balance01CLEARREGISTER',
+                        '${selectBLANCE(USERDATA.Branch)}/balance01CLEARREGISTER',
                         data: {},
                       ).then((value) {
                         CuPage = Page1();

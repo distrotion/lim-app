@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'P99SELECTINS/P99SELECTINSMAIN.dart';
+import 'P99SELECTINSBP12/P99SELECTINSBP12MAIN.dart';
 
 class Page99 extends StatelessWidget {
   const Page99({Key? key}) : super(key: key);
@@ -16,6 +16,6 @@ class Page99Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return P99SELECTINSMAIN();
+    return P99SELECTINSBP12MAIN();
   }
 }

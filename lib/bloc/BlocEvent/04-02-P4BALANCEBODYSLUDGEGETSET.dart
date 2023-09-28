@@ -40,7 +40,7 @@ class P4BALANCEBODYSLUDGEGETSET_Bloc extends Bloc<
     FreeLoading(P4BALANCEBODYSLUDGEcontext);
 
     final response = await Dio().post(
-      '${serverN}/GETREGISTERSET_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/GETREGISTERSET_${USERDATA.INSMASTER}',
       data: {
         "collection": "BALANCEdataSLUDGE",
       },

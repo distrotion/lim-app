@@ -36,7 +36,7 @@ class P2BALANCEBODYCWGETSET_Bloc
     FreeLoading(P02BALANCEBODYCWcontext);
 
     final response = await Dio().post(
-      '${serverN}/balance01GETREGISTERSET_C',
+      '${selectBLANCE(USERDATA.Branch)}/balance01GETREGISTERSET_C',
       data: {},
     );
 

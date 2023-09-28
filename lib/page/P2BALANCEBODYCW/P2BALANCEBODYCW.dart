@@ -706,7 +706,7 @@ class _P02BALANCEBODYCWState extends State<P02BALANCEBODYCW> {
                   InkWell(
                     onTap: () {
                       Dio().post(
-                        '${serverN}/balance01CLEARREGISTER',
+                        '${selectBLANCE(USERDATA.Branch)}/balance01CLEARREGISTER',
                         data: {},
                       ).then((value) {
                         CuPage = Page1();

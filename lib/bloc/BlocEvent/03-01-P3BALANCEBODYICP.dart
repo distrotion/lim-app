@@ -49,7 +49,7 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01UPDATEDATA',
+      '${selectBLANCE(USERDATA.Branch)}/balance01UPDATEDATA',
       data: {},
     );
 
@@ -61,7 +61,7 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01CLEARDATA',
+      '${selectBLANCE(USERDATA.Branch)}/balance01CLEARDATA',
       data: {},
     );
 
@@ -73,7 +73,7 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${serverN}/balance01CLEARDATA_ADJ',
+      '${selectBLANCE(USERDATA.Branch)}/balance01CLEARDATA_ADJ',
       data: {},
     );
 

@@ -6,14 +6,14 @@ import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../page1.dart';
 
-class P99SELECTINSMAIN extends StatefulWidget {
-  const P99SELECTINSMAIN({super.key});
+class P99SELECTINSBP12MAIN extends StatefulWidget {
+  const P99SELECTINSBP12MAIN({super.key});
 
   @override
-  State<P99SELECTINSMAIN> createState() => _P99SELECTINSMAINState();
+  State<P99SELECTINSBP12MAIN> createState() => _P99SELECTINSBP12MAINState();
 }
 
-class _P99SELECTINSMAINState extends State<P99SELECTINSMAIN> {
+class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
   @override
   void initState() {
     // TODO: implement initState
@@ -53,6 +53,7 @@ class _P99SELECTINSMAINState extends State<P99SELECTINSMAIN> {
                 Container(
                   height: 50,
                   width: 125,
+                  // color: Colors.blue,
                   color: Colors.red,
                   child: const Center(
                     child: Text("BA01"),
@@ -90,6 +91,7 @@ class _P99SELECTINSMAINState extends State<P99SELECTINSMAIN> {
                 Container(
                   height: 50,
                   width: 125,
+                  // color: Colors.blue,
                   color: Colors.red,
                   child: const Center(
                     child: Text("BA02"),

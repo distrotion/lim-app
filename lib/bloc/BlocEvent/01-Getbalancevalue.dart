@@ -23,7 +23,7 @@ class Getbalancevalue_Bloc extends Bloc<Getbalancevalue_Event, String> {
   Future<void> _Getbalancevalue_Get(String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
-      '${serverN}/getvalue_${USERDATA.INSMASTER}',
+      '${selectBLANCE(USERDATA.Branch)}/getvalue_${USERDATA.INSMASTER}',
       data: {},
     );
 
