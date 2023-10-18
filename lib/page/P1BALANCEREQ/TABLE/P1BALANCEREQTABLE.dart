@@ -222,7 +222,56 @@ class tabledetailsearch extends StatelessWidget {
           print(CP);
           print(FG);
 
-          if (CP == "Sludge") {
+          // if (CP == "Sludge") {
+          if (CP == "Cwt") {
+            final response = Dio().post(
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuff = value.data;
+                // print('>>>>${databuff['REQNO']}');
+                if (databuff['REQNO'] != null) {
+                  if (databuff['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
+                      data: {
+                        "REQNO": PO,
+                        "UID": FG,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuff = value.data;
+
+                        if (databuff['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page2(),
+                              '02SARBALANCECW/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+            // } else if (CP == "Cwt") {
+          } else if (CP == "Sludge") {
             // if (CP != "") {
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',

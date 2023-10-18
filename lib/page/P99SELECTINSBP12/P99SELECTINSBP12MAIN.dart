@@ -29,10 +29,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: () {
-              // USERDATA.INSMASTER = 'BP12BALANCE01';
-              // CuPage = Page1();
-              // MainBodyContext.read<ChangePage_Bloc>()
-              //     .add(ChangePage_nodrower());
+              USERDATA.INSMASTER = 'BP12BALANCE01';
+              CuPage = Page1();
+              MainBodyContext.read<ChangePage_Bloc>()
+                  .add(ChangePage_nodrower());
             },
             child: Row(
               children: [
@@ -53,8 +53,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 Container(
                   height: 50,
                   width: 125,
-                  // color: Colors.blue,
-                  color: Colors.red,
+                  color: Colors.blue,
+                  // color: Colors.red,
                   child: const Center(
                     child: Text("BA01"),
                   ),

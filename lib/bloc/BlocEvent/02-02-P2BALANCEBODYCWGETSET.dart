@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
+
 import '../../page/P2BALANCEBODYCW/P2BALANCEBODYCW.dart';
 import '../../widget/common/Loading.dart';
 
@@ -33,16 +34,18 @@ class P2BALANCEBODYCWGETSET_Bloc
       Emitter<P2BALANCEBODYCWGETSETCLASS> emit) async {
     P2BALANCEBODYCWGETSETCLASS output = P2BALANCEBODYCWGETSETCLASS();
 
-    FreeLoading(P02BALANCEBODYCWcontext);
+    FreeLoading(P2BALANCEBODYCWcontext);
 
     final response = await Dio().post(
-      '${selectBLANCE(USERDATA.Branch)}/balance01GETREGISTERSET_C',
-      data: {},
+      '${selectBLANCE(USERDATA.Branch)}/GETREGISTERSET_${USERDATA.INSMASTER}',
+      data: {
+        "collection": "BALANCEdataCoatingweight",
+      },
     );
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      // print(databuff);
+      print(databuff);
       if (databuff.length > 0) {
         output.ReqNo =
             databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
@@ -60,35 +63,61 @@ class P2BALANCEBODYCWGETSET_Bloc
         output.ItemName = databuff[0]['ItemName'] != null
             ? databuff[0]['ItemName'].toString()
             : '';
-        output.NOitem = databuff[0]['NOitem'] != null
-            ? databuff[0]['NOitem'].toString()
-            : '';
-        //ItemName
 
-        if (databuff[0]['data'] != null) {
-          output.W11 = databuff[0]['data']['W11'] != null
-              ? databuff[0]['data']['W11'].toString()
+        if (databuff[0]['data01'] != null) {
+          output.D01W11 = databuff[0]['data01']['W11'] != null
+              ? databuff[0]['data01']['W11'].toString()
               : '';
         }
-        if (databuff[0]['data'] != null) {
-          output.W12 = databuff[0]['data']['W12'] != null
-              ? databuff[0]['data']['W12'].toString()
+        if (databuff[0]['data01'] != null) {
+          output.D01W21 = databuff[0]['data01']['W21'] != null
+              ? databuff[0]['data01']['W21'].toString()
               : '';
         }
-        if (databuff[0]['data'] != null) {
-          output.W13 = databuff[0]['data']['W13'] != null
-              ? databuff[0]['data']['W13'].toString()
+        if (databuff[0]['data01_area'] != null) {
+          output.D01area = databuff[0]['data01_area']['area'] != null
+              ? databuff[0]['data01_area']['area'].toString()
               : '';
         }
-        if (databuff[0]['data'] != null) {
-          output.W14 = databuff[0]['data']['W14'] != null
-              ? databuff[0]['data']['W14'].toString()
-              : '';
-        }
+        output.D01NOitem = databuff[0]['D01NOitem'] != null
+            ? databuff[0]['D01NOitem'].toString()
+            : '';
+
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W11 = databuff[0]['data02']['W11'] != null
+        //       ? databuff[0]['data02']['W11'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W21 = databuff[0]['data02']['W21'] != null
+        //       ? databuff[0]['data02']['W21'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data02_area'] != null) {
+        //   output.D02area = databuff[0]['data02_area']['area'] != null
+        //       ? databuff[0]['data02_area']['area'].toString()
+        //       : '';
+        // }
+
+        // output.D02NOitem = databuff[0]['D02NOitem'] != null
+        //     ? databuff[0]['D02NOitem'].toString()
+        //     : '';
+
+        output.SamplingDate = databuff[0]['SamplingDate'] != null
+            ? databuff[0]['SamplingDate'].toString()
+            : '';
+
+        output.DueDate1 = databuff[0]['DueDate1'] != null
+            ? databuff[0]['DueDate1'].toString()
+            : '';
+
+        output.SampleName = databuff[0]['SampleName'] != null
+            ? databuff[0]['SampleName'].toString()
+            : '';
       }
     }
 
-    Navigator.pop(P02BALANCEBODYCWcontext);
+    Navigator.pop(P2BALANCEBODYCWcontext);
     emit(output);
   }
 
@@ -113,24 +142,43 @@ class P2BALANCEBODYCWGETSETCLASS {
     this.ReqNo = '',
     this.InstrumentName = '',
     this.CustShort = '',
-    this.W11 = '',
-    this.W12 = '',
-    this.W13 = '',
-    this.W14 = '',
+    //
+    this.D01W11 = '',
+    this.D01W21 = '',
+    this.D01area = '',
+    this.D01ANS = '',
+    this.D01NOitem = '',
+    // this.D02W11 = '',
+    // this.D02W21 = '',
+    // this.D02area = '',
+    // this.D02ANS = '',
+    // this.D02NOitem = '',
+    //
     this.UID = '',
     this.ItemName = '',
-    this.NOitem = '',
+    this.SamplingDate = '',
+    this.DueDate1 = '',
+    this.SampleName = '',
   });
   String ReqNo;
   String InstrumentName;
   String CustShort;
 
-  String W11;
-  String W12;
-  String W13;
-  String W14;
+  String D01W11;
+  String D01W21;
+  String D01area;
+  String D01ANS;
+  String D01NOitem;
+  // String D02W11;
+  // String D02W21;
+  // String D02area;
+  // String D02ANS;
+  // String D02NOitem;
+
   String UID;
   String ItemName;
 
-  String NOitem;
+  String SamplingDate;
+  String DueDate1;
+  String SampleName;
 }

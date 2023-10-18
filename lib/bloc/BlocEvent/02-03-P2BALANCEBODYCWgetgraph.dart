@@ -28,14 +28,14 @@ class P2BALANCEBODYCWgetgraph_Bloc
       Emitter<List<HistoryChartModel>> emit) async {
     List<HistoryChartModel> output = [];
     print("----------------------------");
-    print(P2BALANCEBODY01CWVAR.UID);
-    print(P2BALANCEBODY01CWVAR.ItemName);
+    print(P2BALANCEBODYCWVAR.UID);
+    print(P2BALANCEBODYCWVAR.ItemName);
     print("----------------------------");
     final response = await Dio().post(
       '${serverSARMAIN}/Widget_SearcHistoryChartData2',
       data: {
-        'itemID': P2BALANCEBODY01CWVAR.UID,
-        'itemName': P2BALANCEBODY01CWVAR.ItemName,
+        'itemID': P2BALANCEBODYCWVAR.UID,
+        'itemName': P2BALANCEBODYCWVAR.ItemName,
         'section': "TTC",
         // 'itemID': '967644',
         // 'itemName': 'Sludge',
@@ -43,7 +43,7 @@ class P2BALANCEBODYCWgetgraph_Bloc
       },
     );
 
-    //     P2BALANCEBODY01CWVAR.mem = '';
+    //     P2BALANCEBODYCWVAR.mem = '';
 
     // print(response);
 

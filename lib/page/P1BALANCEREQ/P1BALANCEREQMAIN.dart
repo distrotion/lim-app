@@ -6,6 +6,7 @@ import '../../bloc/BlocEvent/01-02-P1BALANCEREQGETSTR.dart';
 import '../../data/dummydata.dart';
 import '../../data/global.dart';
 import '../../model/model.dart';
+import '../P2BALANCEBODYCW/P2BALANCEBODYCWVAR.dart';
 import '../P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEVAR.dart';
 import 'TABLE/P1BALANCEREQTABLE.dart';
 
@@ -30,6 +31,7 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
     context.read<P1BALANCEREQGET_Bloc>().add(GETDATALISTFROMSAR());
     context.read<P1BALANCEREQGETSTR_Bloc>().add(P1BALANCEREQGETSTR_ROOM());
     reserall_P4BALANCEBODYSLUDGEVAR();
+    reserall_P2BALANCEBODYCWVAR();
   }
 
   @override

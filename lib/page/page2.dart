@@ -130,7 +130,7 @@ class Page2Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: P02BALANCEBODYCW(
+      child: P2BALANCEBODYCW(
         value: value,
         SET: SET,
         status: status,
