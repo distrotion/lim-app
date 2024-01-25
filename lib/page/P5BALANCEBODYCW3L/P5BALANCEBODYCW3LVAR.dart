@@ -1,4 +1,4 @@
-class P3BALANCEBODYICPVAR {
+class P5BALANCEBODYCW3LVAR {
   static bool iscontrol = true;
   static String ReqNo = '';
   static String TYPE = '';
@@ -6,20 +6,17 @@ class P3BALANCEBODYICPVAR {
   static String D01W11 = '';
   static String D01W21 = '';
   static String D01W11_21 = '';
-  static String D02W11 = '';
-  static String D02W21 = '';
-  static String D02W11_21 = '';
-  static String D01VOLUME = '';
-  static String D02VOLUME = '';
+
+  static String D01area = '';
+
   static String D01NOitem = '';
-  static String D02NOitem = '';
+
   static String WX = '';
   static String DX = '';
 
   //
 
   static String Result01 = '';
-  static String Result02 = '';
 
   static String SPEChi = '';
   static String SPEClow = '';
@@ -103,15 +100,10 @@ class P3BALANCEBODYICPVAR {
   static String mem = '-';
 }
 
-reserall_P3BALANCEBODYICPVAR() {
-  P3BALANCEBODYICPVAR.D01W11 = '';
-  P3BALANCEBODYICPVAR.D01W21 = '';
-  P3BALANCEBODYICPVAR.D01W11_21 = '';
-  P3BALANCEBODYICPVAR.D02W11 = '';
-  P3BALANCEBODYICPVAR.D02W21 = '';
-  P3BALANCEBODYICPVAR.D02W11_21 = '';
-  P3BALANCEBODYICPVAR.D01VOLUME = '';
-  P3BALANCEBODYICPVAR.D02VOLUME = '';
-  P3BALANCEBODYICPVAR.D01NOitem = '';
-  P3BALANCEBODYICPVAR.D02NOitem = '';
+reserall_P5BALANCEBODYCW3LVAR() {
+  P5BALANCEBODYCW3LVAR.D01W11 = '';
+  P5BALANCEBODYCW3LVAR.D01W21 = '';
+  P5BALANCEBODYCW3LVAR.D01W11_21 = '';
+  P5BALANCEBODYCW3LVAR.D01area = '';
+  P5BALANCEBODYCW3LVAR.D01NOitem = '';
 }

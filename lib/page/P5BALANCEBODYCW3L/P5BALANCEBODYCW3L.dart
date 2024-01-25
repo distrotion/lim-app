@@ -3,11 +3,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
-
-import '../../bloc/BlocEvent/02-01-P2BALANCEBODYCW.dart';
-import '../../bloc/BlocEvent/02-02-P2BALANCEBODYCWGETSET.dart';
-import '../../bloc/BlocEvent/02-03-P2BALANCEBODYCWgetgraph.dart';
+import '../../bloc/BlocEvent/05-01-P5BALANCEBODYCW3L.dart';
+import '../../bloc/BlocEvent/05-02-P5BALANCEBODYCW3LGETSET.dart';
+import '../../bloc/BlocEvent/05-03-P2BALANCEBODYCW3Lgetgraph.dart';
+import '../../bloc/BlocEvent/12-GetPHvalue.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
@@ -15,14 +14,13 @@ import '../../mainBody.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
-
 import '../page1.dart';
-import 'P2BALANCEBODYCWVAR.dart';
+import 'P5BALANCEBODYCW3LVAR.dart';
 
-late BuildContext P2BALANCEBODYCWcontext;
+late BuildContext P5BALANCEBODYCW3Lcontext;
 
-class P2BALANCEBODYCW extends StatefulWidget {
-  P2BALANCEBODYCW({
+class P5BALANCEBODYCW3L extends StatefulWidget {
+  P5BALANCEBODYCW3L({
     super.key,
     this.value,
     this.SET,
@@ -30,69 +28,71 @@ class P2BALANCEBODYCW extends StatefulWidget {
     this.historyChartDatain,
   });
   String? value;
-  P2BALANCEBODYCWGETSETCLASS? SET;
+  P5BALANCEBODYCW3LGETSETCLASS? SET;
   String? status;
   List<HistoryChartModel>? historyChartDatain;
 
   @override
-  State<P2BALANCEBODYCW> createState() => _P2BALANCEBODYCWState();
+  State<P5BALANCEBODYCW3L> createState() => _P5BALANCEBODYCW3LState();
 }
 
-class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
+class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<Getbalancevalue_Bloc>().add(Getbalancevalue_Get());
-    context.read<P2BALANCEBODYCWGETSET_Bloc>().add(P2BALANCEBODYCWGETSET_GET());
-    P2BALANCEBODYCWVAR.D01area = '';
-    P2BALANCEBODYCWVAR.Result01 = '';
-    P2BALANCEBODYCWVAR.mem = 'GO';
-    P2BALANCEBODYCWVAR.WX = '';
+    context.read<GetPHvalue_Bloc>().add(GetPHvalue_Get());
+    context
+        .read<P5BALANCEBODYCW3LGETSET_Bloc>()
+        .add(P5BALANCEBODYCW3LGETSET_GET());
+    P5BALANCEBODYCW3LVAR.D01area = '';
+    P5BALANCEBODYCW3LVAR.Result01 = '';
+    P5BALANCEBODYCW3LVAR.mem = 'GO';
+    P5BALANCEBODYCW3LVAR.WX = '';
   }
 
   @override
   Widget build(BuildContext context) {
-    P2BALANCEBODYCWcontext = context;
+    P5BALANCEBODYCW3Lcontext = context;
 
-    P2BALANCEBODYCWVAR.value = widget.value ?? '';
-    P2BALANCEBODYCWGETSETCLASS dataset =
-        widget.SET ?? P2BALANCEBODYCWGETSETCLASS();
+    P5BALANCEBODYCW3LVAR.value = widget.value ?? '';
+    P5BALANCEBODYCW3LGETSETCLASS dataset =
+        widget.SET ?? P5BALANCEBODYCW3LGETSETCLASS();
 
-    P2BALANCEBODYCWVAR.ReqNo = dataset.ReqNo;
-    P2BALANCEBODYCWVAR.InstrumentName = dataset.InstrumentName;
-    P2BALANCEBODYCWVAR.CustFull = dataset.CustShort;
-    P2BALANCEBODYCWVAR.UID = dataset.UID;
-    P2BALANCEBODYCWVAR.ItemName = dataset.ItemName;
+    P5BALANCEBODYCW3LVAR.ReqNo = dataset.ReqNo;
+    P5BALANCEBODYCW3LVAR.InstrumentName = dataset.InstrumentName;
+    P5BALANCEBODYCW3LVAR.CustFull = dataset.CustShort;
+    P5BALANCEBODYCW3LVAR.UID = dataset.UID;
+    P5BALANCEBODYCW3LVAR.ItemName = dataset.ItemName;
 
-    P2BALANCEBODYCWVAR.D01W11 = dataset.D01W11;
-    P2BALANCEBODYCWVAR.D01W21 = dataset.D01W21;
+    P5BALANCEBODYCW3LVAR.D01W11 = dataset.D01W11;
+    P5BALANCEBODYCW3LVAR.D01W21 = dataset.D01W21;
 
-    P2BALANCEBODYCWVAR.SamplingDate = _monthreplce(dataset.SamplingDate);
-    P2BALANCEBODYCWVAR.DueDate1 = _monthreplce(dataset.DueDate1);
-    P2BALANCEBODYCWVAR.SampleName = dataset.SampleName;
+    P5BALANCEBODYCW3LVAR.SamplingDate = _monthreplce(dataset.SamplingDate);
+    P5BALANCEBODYCW3LVAR.DueDate1 = _monthreplce(dataset.DueDate1);
+    P5BALANCEBODYCW3LVAR.SampleName = dataset.SampleName;
 
-    if (P2BALANCEBODYCWVAR.D01area == '') {
-      P2BALANCEBODYCWVAR.iscontrol = true;
-      P2BALANCEBODYCWVAR.D01area = dataset.D01area;
+    if (P5BALANCEBODYCW3LVAR.D01area == '') {
+      P5BALANCEBODYCW3LVAR.iscontrol = true;
+      P5BALANCEBODYCW3LVAR.D01area = dataset.D01area;
     }
-    if (P2BALANCEBODYCWVAR.D01NOitem == '') {
-      P2BALANCEBODYCWVAR.iscontrol = true;
-      P2BALANCEBODYCWVAR.D01NOitem = dataset.D01NOitem;
+    if (P5BALANCEBODYCW3LVAR.D01NOitem == '') {
+      P5BALANCEBODYCW3LVAR.iscontrol = true;
+      P5BALANCEBODYCW3LVAR.D01NOitem = dataset.D01NOitem;
     }
 
-    // P2BALANCEBODYCWVAR.Result = P2BALANCEBODYCWVAR.W11;
+    // P5BALANCEBODYCW3LVAR.Result = P5BALANCEBODYCW3LVAR.W11;
 
     List<HistoryChartModel> _historyChartData = widget.historyChartDatain ?? [];
     // List<HistoryChartModel> _historyChartData = [];
 
-    if (P2BALANCEBODYCWVAR.mem == 'GO' &&
-        P2BALANCEBODYCWVAR.UID != '' &&
-        P2BALANCEBODYCWVAR.InstrumentName != '') {
+    if (P5BALANCEBODYCW3LVAR.mem == 'GO' &&
+        P5BALANCEBODYCW3LVAR.UID != '' &&
+        P5BALANCEBODYCW3LVAR.InstrumentName != '') {
       context
-          .read<P2BALANCEBODYCWgetgraph_Bloc>()
-          .add(P2BALANCEBODYCWgetgraph_get());
-      P2BALANCEBODYCWVAR.mem = '';
+          .read<P5BALANCEBODYCW3Lgetgraph_Bloc>()
+          .add(P5BALANCEBODYCW3Lgetgraph_get());
+      P5BALANCEBODYCW3LVAR.mem = '';
       print("+++++++++++++++++++");
     }
 
@@ -115,8 +115,8 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                     InkWell(
                       onTap: () {
                         context
-                            .read<P2BALANCEBODYCW_Bloc>()
-                            .add(P2BALANCEBODYCW_CLEARROOM());
+                            .read<P5BALANCEBODYCW3L_Bloc>()
+                            .add(P5BALANCEBODYCW3L_CLEARROOM());
                         CuPage = Page1();
                         MainBodyContext.read<ChangePage_Bloc>()
                             .add(ChangePage_nodrower());
@@ -170,17 +170,17 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "REQ NO : ${P2BALANCEBODYCWVAR.ReqNo}"),
+                                      "REQ NO : ${P5BALANCEBODYCW3LVAR.ReqNo}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "TYPE : ${P2BALANCEBODYCWVAR.InstrumentName}"),
+                                      "TYPE : ${P5BALANCEBODYCW3LVAR.InstrumentName}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "CustFull : ${P2BALANCEBODYCWVAR.CustFull}"),
+                                      "CustFull : ${P5BALANCEBODYCW3LVAR.CustFull}"),
                                 ),
                               ],
                             ),
@@ -193,17 +193,17 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "SAMPLING date : ${P2BALANCEBODYCWVAR.SamplingDate}"),
+                                      "SAMPLING date : ${P5BALANCEBODYCW3LVAR.SamplingDate}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Due date : ${P2BALANCEBODYCWVAR.DueDate1}"),
+                                      "Due date : ${P5BALANCEBODYCW3LVAR.DueDate1}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Sampling Name : ${P2BALANCEBODYCWVAR.SampleName}"),
+                                      "Sampling Name : ${P5BALANCEBODYCW3LVAR.SampleName}"),
                                 ),
                               ],
                             ),
@@ -216,7 +216,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                           // Row(
                           //   children: [
                           //     Text(
-                          //         "CustFull : ${P2BALANCEBODYCWVAR.CustFull}"),
+                          //         "CustFull : ${P5BALANCEBODYCW3LVAR.CustFull}"),
                           //   ],
                           // ),
                         ],
@@ -244,14 +244,14 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                               border: Border.all(color: Colors.blue, width: 2),
                             ),
                             child:
-                                Center(child: Text(P2BALANCEBODYCWVAR.value)),
+                                Center(child: Text(P5BALANCEBODYCW3LVAR.value)),
                           ),
                           InkWell(
                             onTap: () {
                               //
                               context
-                                  .read<Getbalancevalue_Bloc>()
-                                  .add(Getbalancevalue_Get());
+                                  .read<GetPHvalue_Bloc>()
+                                  .add(GetPHvalue_Get());
                             },
                             child: Container(
                               height: 40,
@@ -267,22 +267,22 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                             onTap: () {
                               //
                               // context
-                              //     .read<P2BALANCEBODYCW_Bloc>()
-                              //     .add(P2BALANCEBODYCW_SETDATA());
+                              //     .read<P5BALANCEBODYCW3L_Bloc>()
+                              //     .add(P5BALANCEBODYCW3L_SETDATA());
                               context
-                                  .read<Getbalancevalue_Bloc>()
-                                  .add(Getbalancevalue_Get());
+                                  .read<GetPHvalue_Bloc>()
+                                  .add(GetPHvalue_Get());
                               context
-                                  .read<P2BALANCEBODYCW_Bloc>()
-                                  .add(P2BALANCEBODYCW_SETDATA());
+                                  .read<P5BALANCEBODYCW3L_Bloc>()
+                                  .add(P5BALANCEBODYCW3L_SETDATA());
                               onLoadingFAKE(context);
                               Future.delayed(const Duration(milliseconds: 2000),
                                   () {
                                 context
-                                    .read<P2BALANCEBODYCWGETSET_Bloc>()
-                                    .add(P2BALANCEBODYCWGETSET_GET());
+                                    .read<P5BALANCEBODYCW3LGETSET_Bloc>()
+                                    .add(P5BALANCEBODYCW3LGETSET_GET());
                                 setState(() {
-                                  P2BALANCEBODYCWVAR.WX = '';
+                                  P5BALANCEBODYCW3LVAR.WX = '';
                                 });
                               });
                             },
@@ -321,7 +321,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P2BALANCEBODYCWVAR.SEND == ''
+                                          color: P5BALANCEBODYCW3LVAR.SEND == ''
                                               ? Colors.brown
                                               : Colors.grey.shade400,
                                           child: const Center(
@@ -345,24 +345,24 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P2BALANCEBODYCWVAR
+                                                isEnabled: P5BALANCEBODYCW3LVAR
                                                         .Result01 ==
                                                     '',
                                                 width: 100,
                                                 height: 40,
-                                                isContr: P2BALANCEBODYCWVAR
+                                                isContr: P5BALANCEBODYCW3LVAR
                                                     .iscontrol,
                                                 fnContr: (input) {
                                                   setState(() {
-                                                    P2BALANCEBODYCWVAR
+                                                    P5BALANCEBODYCW3LVAR
                                                         .iscontrol = input;
                                                   });
                                                 },
-                                                sValue: P2BALANCEBODYCWVAR
+                                                sValue: P5BALANCEBODYCW3LVAR
                                                     .D01NOitem,
                                                 returnfunc: (String s) {
-                                                  P2BALANCEBODYCWVAR.D01NOitem =
-                                                      s;
+                                                  P5BALANCEBODYCW3LVAR
+                                                      .D01NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -392,20 +392,20 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            P2BALANCEBODYCWVAR.WX = 'D01W11';
+                                            P5BALANCEBODYCW3LVAR.WX = 'D01W11';
                                           });
 
                                           context
-                                              .read<Getbalancevalue_Bloc>()
-                                              .add(Getbalancevalue_Get());
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P2BALANCEBODYCWVAR.WX ==
+                                          color: P5BALANCEBODYCW3LVAR.WX ==
                                                   'D01W11'
                                               ? Colors.yellowAccent
-                                              : (P2BALANCEBODYCWVAR.SEND == ''
+                                              : (P5BALANCEBODYCW3LVAR.SEND == ''
                                                   ? Colors.green
                                                   : Colors.grey.shade400),
                                           child: const Center(
@@ -422,30 +422,31 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                         color: Colors.blue,
                                         child: Center(
                                             child: Text(
-                                                P2BALANCEBODYCWVAR.D01W11)),
+                                                P5BALANCEBODYCW3LVAR.D01W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          P2BALANCEBODYCWVAR.DX = 'D01W11';
+                                          P5BALANCEBODYCW3LVAR.DX = 'D01W11';
                                           onLoadingFAKE(context);
                                           context
-                                              .read<P2BALANCEBODYCW_Bloc>()
-                                              .add(P2BALANCEBODYCW_CLEARW11());
+                                              .read<P5BALANCEBODYCW3L_Bloc>()
+                                              .add(
+                                                  P5BALANCEBODYCW3L_CLEARW11());
                                           Future.delayed(
                                               const Duration(
                                                   milliseconds: 2000), () {
                                             context
                                                 .read<
-                                                    P2BALANCEBODYCWGETSET_Bloc>()
+                                                    P5BALANCEBODYCW3LGETSET_Bloc>()
                                                 .add(
-                                                    P2BALANCEBODYCWGETSET_GET());
+                                                    P5BALANCEBODYCW3LGETSET_GET());
 
                                             setState(() {
                                               setState(() {
-                                                P2BALANCEBODYCWVAR.Result01 =
+                                                P5BALANCEBODYCW3LVAR.Result01 =
                                                     '';
                                               });
                                             });
@@ -454,7 +455,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                         child: Container(
                                           height: 40,
                                           width: 60,
-                                          color: P2BALANCEBODYCWVAR.SEND == ''
+                                          color: P5BALANCEBODYCW3LVAR.SEND == ''
                                               ? Colors.orange
                                               : Colors.grey.shade400,
                                           child: const Center(
@@ -481,19 +482,19 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            P2BALANCEBODYCWVAR.WX = 'D01W21';
+                                            P5BALANCEBODYCW3LVAR.WX = 'D01W21';
                                           });
                                           context
-                                              .read<Getbalancevalue_Bloc>()
-                                              .add(Getbalancevalue_Get());
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P2BALANCEBODYCWVAR.WX ==
+                                          color: P5BALANCEBODYCW3LVAR.WX ==
                                                   'D01W21'
                                               ? Colors.yellowAccent
-                                              : (P2BALANCEBODYCWVAR.SEND == ''
+                                              : (P5BALANCEBODYCW3LVAR.SEND == ''
                                                   ? Colors.green
                                                   : Colors.grey.shade400),
                                           child: const Center(
@@ -510,7 +511,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                         color: Colors.blue,
                                         child: Center(
                                             child: Text(
-                                                P2BALANCEBODYCWVAR.D01W21)),
+                                                P5BALANCEBODYCW3LVAR.D01W21)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -518,29 +519,30 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                       InkWell(
                                         onTap: () {
                                           // context
-                                          //     .read<P2BALANCEBODYCW_Bloc>()
+                                          //     .read<P5BALANCEBODYCW3L_Bloc>()
                                           //     .add(
-                                          //         P2BALANCEBODYCW_Bloc_CLEARW11());
+                                          //         P5BALANCEBODYCW3L_Bloc_CLEARW11());
                                           // context
-                                          //     .read<Getbalancevalue_Bloc>()
-                                          //     .add(Getbalancevalue_Get());
-                                          P2BALANCEBODYCWVAR.DX = 'D01W21';
+                                          //     .read<GetPHvalue_Bloc>()
+                                          //     .add(GetPHvalue_Get());
+                                          P5BALANCEBODYCW3LVAR.DX = 'D01W21';
                                           context
-                                              .read<P2BALANCEBODYCW_Bloc>()
-                                              .add(P2BALANCEBODYCW_CLEARW11());
+                                              .read<P5BALANCEBODYCW3L_Bloc>()
+                                              .add(
+                                                  P5BALANCEBODYCW3L_CLEARW11());
                                           onLoadingFAKE(context);
                                           Future.delayed(
                                               const Duration(
                                                   milliseconds: 2000), () {
                                             context
                                                 .read<
-                                                    P2BALANCEBODYCWGETSET_Bloc>()
+                                                    P5BALANCEBODYCW3LGETSET_Bloc>()
                                                 .add(
-                                                    P2BALANCEBODYCWGETSET_GET());
+                                                    P5BALANCEBODYCW3LGETSET_GET());
 
                                             setState(() {
                                               setState(() {
-                                                P2BALANCEBODYCWVAR.Result01 =
+                                                P5BALANCEBODYCW3LVAR.Result01 =
                                                     '';
                                               });
                                             });
@@ -549,7 +551,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                         child: Container(
                                           height: 40,
                                           width: 60,
-                                          color: P2BALANCEBODYCWVAR.SEND == ''
+                                          color: P5BALANCEBODYCW3LVAR.SEND == ''
                                               ? Colors.orange
                                               : Colors.grey.shade400,
                                           child: const Center(
@@ -577,7 +579,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P2BALANCEBODYCWVAR.SEND == ''
+                                          color: P5BALANCEBODYCW3LVAR.SEND == ''
                                               ? Colors.green
                                               : Colors.grey.shade400,
                                           child: const Center(
@@ -601,23 +603,23 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P2BALANCEBODYCWVAR
+                                                isEnabled: P5BALANCEBODYCW3LVAR
                                                         .Result01 ==
                                                     '',
                                                 width: 100,
                                                 height: 40,
-                                                isContr: P2BALANCEBODYCWVAR
+                                                isContr: P5BALANCEBODYCW3LVAR
                                                     .iscontrol,
                                                 fnContr: (input) {
                                                   setState(() {
-                                                    P2BALANCEBODYCWVAR
+                                                    P5BALANCEBODYCW3LVAR
                                                         .iscontrol = input;
                                                   });
                                                 },
-                                                sValue:
-                                                    P2BALANCEBODYCWVAR.D01area,
+                                                sValue: P5BALANCEBODYCW3LVAR
+                                                    .D01area,
                                                 returnfunc: (String s) {
-                                                  P2BALANCEBODYCWVAR.D01area =
+                                                  P5BALANCEBODYCW3LVAR.D01area =
                                                       s;
                                                 },
                                               ),
@@ -648,25 +650,25 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                           flex: 2,
                           child: Column(
                             children: [
-                              if (P2BALANCEBODYCWVAR.dip12 != '') ...[
+                              if (P5BALANCEBODYCW3LVAR.dip12 != '') ...[
                                 Container(
                                   height: 40,
                                   color: Colors.green,
                                   child: Center(
                                     child: Text(
-                                      "dip 1-2 : " + P2BALANCEBODYCWVAR.dip12,
+                                      "dip 1-2 : " + P5BALANCEBODYCW3LVAR.dip12,
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
                                 ),
                               ],
-                              if (P2BALANCEBODYCWVAR.dip13 != '') ...[
+                              if (P5BALANCEBODYCW3LVAR.dip13 != '') ...[
                                 Container(
                                   height: 40,
                                   color: Colors.green,
                                   child: Center(
                                     child: Text(
-                                      "dip 1-3 : " + P2BALANCEBODYCWVAR.dip13,
+                                      "dip 1-3 : " + P5BALANCEBODYCW3LVAR.dip13,
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -676,7 +678,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                   color: Colors.green,
                                   child: Center(
                                     child: Text(
-                                      "dip 2-3 : " + P2BALANCEBODYCWVAR.dip23,
+                                      "dip 2-3 : " + P5BALANCEBODYCW3LVAR.dip23,
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -690,9 +692,9 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                           child: InkWell(
                             onTap: () {},
                             child: Container(
-                              height: P2BALANCEBODYCWVAR.dip13 != ''
+                              height: P5BALANCEBODYCW3LVAR.dip13 != ''
                                   ? 120
-                                  : P2BALANCEBODYCWVAR.dip12 != ''
+                                  : P5BALANCEBODYCW3LVAR.dip12 != ''
                                       ? 40
                                       : 0,
                               color: Colors.amber,
@@ -712,22 +714,22 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                     ),
                     // InkWell(
                     //   onTap: () {
-                    //     // print(ConverstStr(P2BALANCEBODYCWVAR.area));
-                    //     if (P2BALANCEBODYCWVAR.Result == '') {
+                    //     // print(ConverstStr(P5BALANCEBODYCW3LVAR.area));
+                    //     if (P5BALANCEBODYCW3LVAR.Result == '') {
                     //       setState(() {
-                    //         P2BALANCEBODYCWVAR.Result = ((double.parse(
+                    //         P5BALANCEBODYCW3LVAR.Result = ((double.parse(
                     //                         ConverstStr(
-                    //                             P2BALANCEBODYCWVAR.W11)) -
+                    //                             P5BALANCEBODYCW3LVAR.W11)) -
                     //                     double.parse(ConverstStr(
-                    //                         P2BALANCEBODYCWVAR.W12))) /
+                    //                         P5BALANCEBODYCW3LVAR.W12))) /
                     //                 double.parse(
-                    //                     ConverstStr(P2BALANCEBODYCWVAR.area)) *
+                    //                     ConverstStr(P5BALANCEBODYCW3LVAR.area)) *
                     //                 10000)
                     //             .toStringAsFixed(2);
                     //       });
                     //     } else {
                     //       setState(() {
-                    //         P2BALANCEBODYCWVAR.Result = '';
+                    //         P5BALANCEBODYCW3LVAR.Result = '';
                     //       });
                     //     }
                     //   },
@@ -736,7 +738,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                     //     color: Colors.orange,
                     //     child: Center(
                     //       child: Text(
-                    //         P2BALANCEBODYCWVAR.Result == '' ? "CAL" : "RE CAL",
+                    //         P5BALANCEBODYCW3LVAR.Result == '' ? "CAL" : "RE CAL",
                     //         style: TextStyle(color: Colors.white),
                     //       ),
                     //     ),
@@ -765,18 +767,18 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                           //           ComInputText(
                           //             isNumberOnly: true,
                           //             isEnabled:
-                          //                 P2BALANCEBODYCWVAR.Result == '',
+                          //                 P5BALANCEBODYCW3LVAR.Result == '',
                           //             width: 100,
                           //             height: 40,
-                          //             isContr: P2BALANCEBODYCWVAR.iscontrol,
+                          //             isContr: P5BALANCEBODYCW3LVAR.iscontrol,
                           //             fnContr: (input) {
                           //               setState(() {
-                          //                 P2BALANCEBODYCWVAR.iscontrol = input;
+                          //                 P5BALANCEBODYCW3LVAR.iscontrol = input;
                           //               });
                           //             },
-                          //             sValue: P2BALANCEBODYCWVAR.area,
+                          //             sValue: P5BALANCEBODYCW3LVAR.area,
                           //             returnfunc: (String s) {
-                          //               P2BALANCEBODYCWVAR.area = s;
+                          //               P5BALANCEBODYCW3LVAR.area = s;
                           //             },
                           //           ),
                           //           Text("cm2")
@@ -787,50 +789,50 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                           // ),
                           child: InkWell(
                             onTap: () {
-                              print(ConverstStr(P2BALANCEBODYCWVAR.D01area));
+                              print(ConverstStr(P5BALANCEBODYCW3LVAR.D01area));
 
                               context
-                                  .read<P2BALANCEBODYCW_Bloc>()
-                                  .add(P2BALANCEBODYCW_CAL());
-                              if (P2BALANCEBODYCWVAR.Result01 == '') {
+                                  .read<P5BALANCEBODYCW3L_Bloc>()
+                                  .add(P5BALANCEBODYCW3L_CAL());
+                              if (P5BALANCEBODYCW3LVAR.Result01 == '') {
                                 setState(() {
-                                  if (P2BALANCEBODYCWVAR.D01W11 != '' &&
-                                      P2BALANCEBODYCWVAR.D01W21 != '' &&
-                                      P2BALANCEBODYCWVAR.D01area != '') {
-                                    P2BALANCEBODYCWVAR
+                                  if (P5BALANCEBODYCW3LVAR.D01W11 != '' &&
+                                      P5BALANCEBODYCW3LVAR.D01W21 != '' &&
+                                      P5BALANCEBODYCW3LVAR.D01area != '') {
+                                    P5BALANCEBODYCW3LVAR
                                         .Result01 = ((double.parse(ConverstStr(
-                                                    P2BALANCEBODYCWVAR
+                                                    P5BALANCEBODYCW3LVAR
                                                         .D01W11)) -
                                                 double.parse(ConverstStr(
-                                                    P2BALANCEBODYCWVAR
+                                                    P5BALANCEBODYCW3LVAR
                                                         .D01W21))) /
                                             double.parse(ConverstStr(
-                                                P2BALANCEBODYCWVAR.D01area)) *
+                                                P5BALANCEBODYCW3LVAR.D01area)) *
                                             10000)
                                         .toStringAsFixed(2);
 
-                                    P2BALANCEBODYCWVAR
+                                    P5BALANCEBODYCW3LVAR
                                         .D01W11_21 = (double.parse(ConverstStr(
-                                                P2BALANCEBODYCWVAR.D01W11)) -
+                                                P5BALANCEBODYCW3LVAR.D01W11)) -
                                             double.parse(ConverstStr(
-                                                P2BALANCEBODYCWVAR.D01W21)))
+                                                P5BALANCEBODYCW3LVAR.D01W21)))
                                         .toStringAsFixed(4);
                                   }
                                 });
                               } else {
                                 setState(() {
-                                  P2BALANCEBODYCWVAR.Result01 = '';
+                                  P5BALANCEBODYCW3LVAR.Result01 = '';
                                 });
                               }
                             },
                             child: Container(
                               height: 62,
-                              color: P2BALANCEBODYCWVAR.Result01 == ''
+                              color: P5BALANCEBODYCW3LVAR.Result01 == ''
                                   ? Colors.orange
                                   : Colors.deepOrange,
                               child: Center(
                                 child: Text(
-                                  P2BALANCEBODYCWVAR.Result01 == ''
+                                  P5BALANCEBODYCW3LVAR.Result01 == ''
                                       ? "CAL"
                                       : "RE CAL",
                                   style: TextStyle(color: Colors.white),
@@ -854,7 +856,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                   padding:
                                       const EdgeInsets.only(bottom: 5, top: 5),
                                   child: Text(
-                                      'RESULT01 ${P2BALANCEBODYCWVAR.Result01}'),
+                                      'RESULT01 ${P5BALANCEBODYCW3LVAR.Result01}'),
                                 )),
                               ],
                             ),
@@ -871,11 +873,11 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                         // MainBodyContext.read<ChangePage_Bloc>()
                         //     .add(ChangePage_nodrower());
                         context
-                            .read<P2BALANCEBODYCW_Bloc>()
-                            .add(P2BALANCEBODYCW_CAL());
+                            .read<P5BALANCEBODYCW3L_Bloc>()
+                            .add(P5BALANCEBODYCW3L_CAL());
                         context
-                            .read<P2BALANCEBODYCW_Bloc>()
-                            .add(P2BALANCEBODYCW_TEMP_SAVE());
+                            .read<P5BALANCEBODYCW3L_Bloc>()
+                            .add(P5BALANCEBODYCW3L_TEMP_SAVE());
                       },
                       child: Container(
                         height: 62,
@@ -893,18 +895,18 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                     ),
                     InkWell(
                       onTap: () {
-                        // if (P2BALANCEBODYCWVAR.Result01 == '' ||
-                        //     P2BALANCEBODYCWVAR.Result02 == '') {
+                        // if (P5BALANCEBODYCW3LVAR.Result01 == '' ||
+                        //     P5BALANCEBODYCW3LVAR.Result02 == '') {
                         //   context
-                        //       .read<P2BALANCEBODYCW_Bloc>()
-                        //       .add(P2BALANCEBODYCW_SEND_TO_SAR());
+                        //       .read<P5BALANCEBODYCW3L_Bloc>()
+                        //       .add(P5BALANCEBODYCW3L_SEND_TO_SAR());
                         // }
-                        // if (P2BALANCEBODYCWVAR.area != '' &&
-                        //     P2BALANCEBODYCWVAR.W11 != '' &&
-                        //     P2BALANCEBODYCWVAR.W12 != '') {
+                        // if (P5BALANCEBODYCW3LVAR.area != '' &&
+                        //     P5BALANCEBODYCW3LVAR.W11 != '' &&
+                        //     P5BALANCEBODYCW3LVAR.W12 != '') {
                         // context
-                        //     .read<P2BALANCEBODYCW_Bloc>()
-                        //     .add(P2BALANCEBODYCW_Bloc_SEND_TO_SAR());
+                        //     .read<P5BALANCEBODYCW3L_Bloc>()
+                        //     .add(P5BALANCEBODYCW3L_Bloc_SEND_TO_SAR());
                         // } else {
                         //   WORNINGpop(
                         //     context,
@@ -935,8 +937,8 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                     InkWell(
                       onTap: () {
                         // context
-                        //     .read<P2BALANCEBODYCW_Bloc>()
-                        //     .add(P2BALANCEBODYCW_CLEARROOM());
+                        //     .read<P5BALANCEBODYCW3L_Bloc>()
+                        //     .add(P5BALANCEBODYCW3L_CLEARROOM());
                         // CuPage = Page1();
                         // MainBodyContext.read<ChangePage_Bloc>()
                         //     .add(ChangePage_nodrower());
@@ -1034,7 +1036,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              'ITEM : ${P2BALANCEBODYCWVAR.itemName}',
+                              'ITEM : ${P5BALANCEBODYCW3LVAR.itemName}',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -1092,7 +1094,7 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                                     right: 30.0, left: 6.0),
                                 child: _LineChart(
                                   isShowingMainData:
-                                      P2BALANCEBODYCWVAR.isShowingMainData,
+                                      P5BALANCEBODYCW3LVAR.isShowingMainData,
                                   historyChartData: _historyChartData,
                                   // historyChartData: [],
                                 ),
@@ -1107,14 +1109,14 @@ class _P2BALANCEBODYCWState extends State<P2BALANCEBODYCW> {
                           icon: Icon(
                             Icons.refresh,
                             color: Colors.white.withOpacity(
-                                P2BALANCEBODYCWVAR.isShowingMainData
+                                P5BALANCEBODYCW3LVAR.isShowingMainData
                                     ? 1.0
                                     : 0.5),
                           ),
                           onPressed: () {
                             setState(() {
-                              P2BALANCEBODYCWVAR.isShowingMainData =
-                                  !P2BALANCEBODYCWVAR.isShowingMainData;
+                              P5BALANCEBODYCW3LVAR.isShowingMainData =
+                                  !P5BALANCEBODYCW3LVAR.isShowingMainData;
                             });
                           },
                         )

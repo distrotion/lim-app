@@ -5,6 +5,7 @@ import '../data/global.dart';
 import 'TEST.dart';
 import 'page1.dart';
 import 'page100.dart';
+import 'page12.dart';
 import 'page2.dart';
 import 'page3.dart';
 
@@ -16,6 +17,8 @@ class Page0 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Page0Body();
+
+    // return Page12();
   }
 }
 
@@ -26,6 +29,7 @@ class Page0Body extends StatelessWidget {
   Widget build(BuildContext context) {
     if (USERDATA.Branch == 'BANGPOO') {
       return Page99();
+      // return Page3();
     } else {
       return Page100();
     }

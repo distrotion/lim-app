@@ -1,39 +1,41 @@
-class P3BALANCEBODYICPVAR {
-  static bool iscontrol = true;
-  static String ReqNo = '';
-  static String TYPE = '';
+class P21FFREQVAR {
+  static bool iscontrol = false;
+  static int INSCOUTTEST = 0;
+  static String SEARCH = '';
+  static String POACTIVE = '';
+  static String CPACTIVE = '';
+  static String SECLECTins = '';
+  static int INSint = 0;
+  static List<int> INSnotREADY = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ];
 
-  static String D01W11 = '';
-  static String D01W21 = '';
-  static String D01W11_21 = '';
-  static String D02W11 = '';
-  static String D02W21 = '';
-  static String D02W11_21 = '';
-  static String D01VOLUME = '';
-  static String D02VOLUME = '';
-  static String D01NOitem = '';
-  static String D02NOitem = '';
-  static String WX = '';
-  static String DX = '';
-
-  //
-
-  static String Result01 = '';
-  static String Result02 = '';
-
-  static String SPEChi = '';
-  static String SPEClow = '';
-
-  static String SEND = '';
-
-  static String dip12 = '';
-  static String dip13 = '';
-  static String dip23 = '';
   //------------
 
+  static String ReqNo = '';
   static String InstrumentName = '';
   //-------------------
-
   static String Branch = '';
   static String Code = '';
   static String ControlRange = '';
@@ -91,27 +93,5 @@ class P3BALANCEBODYICPVAR {
   static String UserReject = '';
   static String UserRequestRecheck = '';
   static String UserSend = '';
-
   static String UID = '';
-
-  static String value = '';
-
-  static bool isShowingMainData = true;
-
-  static String itemName = '';
-
-  static String mem = '-';
-}
-
-reserall_P3BALANCEBODYICPVAR() {
-  P3BALANCEBODYICPVAR.D01W11 = '';
-  P3BALANCEBODYICPVAR.D01W21 = '';
-  P3BALANCEBODYICPVAR.D01W11_21 = '';
-  P3BALANCEBODYICPVAR.D02W11 = '';
-  P3BALANCEBODYICPVAR.D02W21 = '';
-  P3BALANCEBODYICPVAR.D02W11_21 = '';
-  P3BALANCEBODYICPVAR.D01VOLUME = '';
-  P3BALANCEBODYICPVAR.D02VOLUME = '';
-  P3BALANCEBODYICPVAR.D01NOitem = '';
-  P3BALANCEBODYICPVAR.D02NOitem = '';
 }

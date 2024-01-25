@@ -4,42 +4,42 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
 
-import '../../page/P3BALANCEBODYICP/P3BALANCEBODYICP.dart';
+import '../../page/P12PHBODYSTD/P12PHBODYSTD.dart';
 import '../../widget/common/Loading.dart';
 
 //-------------------------------------------------
 
-abstract class P3BALANCEBODYICPGETSET_Event {}
+abstract class P12PHBODYSTDGETSET_Event {}
 
-class P3BALANCEBODYICPGETSET_GET extends P3BALANCEBODYICPGETSET_Event {}
+class P12PHBODYSTDGETSET_GET extends P12PHBODYSTDGETSET_Event {}
 
-class P3BALANCEBODYICPGETSET_SET extends P3BALANCEBODYICPGETSET_Event {}
+class P12PHBODYSTDGETSET_SET extends P12PHBODYSTDGETSET_Event {}
 
-class flush extends P3BALANCEBODYICPGETSET_Event {}
+class flush extends P12PHBODYSTDGETSET_Event {}
 
-class P3BALANCEBODYICPGETSET_Bloc
-    extends Bloc<P3BALANCEBODYICPGETSET_Event, P3BALANCEBODYICPGETSETCLASS> {
-  P3BALANCEBODYICPGETSET_Bloc() : super(P3BALANCEBODYICPGETSETCLASS()) {
-    on<P3BALANCEBODYICPGETSET_GET>((event, emit) {
-      return _P3BALANCEBODYICPGETSET_GET(P3BALANCEBODYICPGETSETCLASS(), emit);
+class P12PHBODYSTDGETSET_Bloc
+    extends Bloc<P12PHBODYSTDGETSET_Event, P12PHBODYSTDGETSETCLASS> {
+  P12PHBODYSTDGETSET_Bloc() : super(P12PHBODYSTDGETSETCLASS()) {
+    on<P12PHBODYSTDGETSET_GET>((event, emit) {
+      return _P12PHBODYSTDGETSET_GET(P12PHBODYSTDGETSETCLASS(), emit);
     });
-    on<P3BALANCEBODYICPGETSET_SET>((event, emit) {
-      return _P3BALANCEBODYICPGETSET_SET(P3BALANCEBODYICPGETSETCLASS(), emit);
+    on<P12PHBODYSTDGETSET_SET>((event, emit) {
+      return _P12PHBODYSTDGETSET_SET(P12PHBODYSTDGETSETCLASS(), emit);
     });
     on<flush>((event, emit) {
-      return _flush(P3BALANCEBODYICPGETSETCLASS(), emit);
+      return _flush(P12PHBODYSTDGETSETCLASS(), emit);
     });
   }
-  Future<void> _P3BALANCEBODYICPGETSET_GET(P3BALANCEBODYICPGETSETCLASS toAdd,
-      Emitter<P3BALANCEBODYICPGETSETCLASS> emit) async {
-    P3BALANCEBODYICPGETSETCLASS output = P3BALANCEBODYICPGETSETCLASS();
+  Future<void> _P12PHBODYSTDGETSET_GET(P12PHBODYSTDGETSETCLASS toAdd,
+      Emitter<P12PHBODYSTDGETSETCLASS> emit) async {
+    P12PHBODYSTDGETSETCLASS output = P12PHBODYSTDGETSETCLASS();
 
-    FreeLoading(P3BALANCEBODYICPcontext);
+    FreeLoading(P12PHBODYSTDcontext);
 
     final response = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/GETREGISTERSET_${USERDATA.INSMASTER}',
       data: {
-        "collection": "BALANCEdataICP",
+        "collection": "PHdataSTD",
       },
     );
 
@@ -117,28 +117,28 @@ class P3BALANCEBODYICPGETSET_Bloc
       }
     }
 
-    Navigator.pop(P3BALANCEBODYICPcontext);
+    Navigator.pop(P12PHBODYSTDcontext);
     emit(output);
   }
 
 //34
 //19
-  Future<void> _P3BALANCEBODYICPGETSET_SET(P3BALANCEBODYICPGETSETCLASS toAdd,
-      Emitter<P3BALANCEBODYICPGETSETCLASS> emit) async {
-    P3BALANCEBODYICPGETSETCLASS output = P3BALANCEBODYICPGETSETCLASS();
+  Future<void> _P12PHBODYSTDGETSET_SET(P12PHBODYSTDGETSETCLASS toAdd,
+      Emitter<P12PHBODYSTDGETSETCLASS> emit) async {
+    P12PHBODYSTDGETSETCLASS output = P12PHBODYSTDGETSETCLASS();
 
     emit(output);
   }
 
-  Future<void> _flush(P3BALANCEBODYICPGETSETCLASS toAdd,
-      Emitter<P3BALANCEBODYICPGETSETCLASS> emit) async {
-    P3BALANCEBODYICPGETSETCLASS output = P3BALANCEBODYICPGETSETCLASS();
+  Future<void> _flush(P12PHBODYSTDGETSETCLASS toAdd,
+      Emitter<P12PHBODYSTDGETSETCLASS> emit) async {
+    P12PHBODYSTDGETSETCLASS output = P12PHBODYSTDGETSETCLASS();
     emit(output);
   }
 }
 
-class P3BALANCEBODYICPGETSETCLASS {
-  P3BALANCEBODYICPGETSETCLASS({
+class P12PHBODYSTDGETSETCLASS {
+  P12PHBODYSTDGETSETCLASS({
     this.ReqNo = '',
     this.InstrumentName = '',
     this.CustShort = '',

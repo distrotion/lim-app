@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/BlocEvent/01-Getbalancevalue.dart';
-
-import '../bloc/BlocEvent/03-01-P3BALANCEBODYICP.dart';
-import '../bloc/BlocEvent/03-02-P3BALANCEBODYICPGETSET.dart';
 import '../bloc/BlocEvent/03-03-P2BALANCEBODYICPgetgraph.dart';
+import '../bloc/BlocEvent/12-01-P12PHBODYSTD.dart';
+import '../bloc/BlocEvent/12-02-P12PHBODYSTDGETSET.dart';
+import '../bloc/BlocEvent/12-03-P12PHBODYSTDgetgraph.dart';
+import '../bloc/BlocEvent/12-GetPHvalue.dart';
 import '../bloc/cubit/POP-searchHistoryChartData.dart';
-import 'P3BALANCEBODYICP/P3BALANCEBODYICP.dart';
+import 'P12PHBODYSTD/P12PHBODYSTD.dart';
 
-class Page3 extends StatelessWidget {
-  const Page3({Key? key}) : super(key: key);
+class Page12 extends StatelessWidget {
+  const Page12({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Page3BlocTableBody();
+    return Page12BlocTableBody();
   }
 }
 
-class Page3BlocTableBody extends StatelessWidget {
-  const Page3BlocTableBody({
+class Page12BlocTableBody extends StatelessWidget {
+  const Page12BlocTableBody({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => Getbalancevalue_Bloc(),
-        child: BlocBuilder<Getbalancevalue_Bloc, String>(
+        create: (_) => GetPHvalue_Bloc(),
+        child: BlocBuilder<GetPHvalue_Bloc, PHDATAclass>(
           builder: (context, value) {
-            return Page3BlocTableBodySET(
+            return Page12BlocTableBodySET(
               value: value,
             );
           },
@@ -37,20 +37,20 @@ class Page3BlocTableBody extends StatelessWidget {
   }
 }
 
-class Page3BlocTableBodySET extends StatelessWidget {
-  Page3BlocTableBodySET({
+class Page12BlocTableBodySET extends StatelessWidget {
+  Page12BlocTableBodySET({
     Key? key,
     this.value,
   }) : super(key: key);
-  String? value;
+  PHDATAclass? value;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P3BALANCEBODYICP_Bloc(),
-        child: BlocBuilder<P3BALANCEBODYICP_Bloc, String>(
+        create: (_) => P12PHBODYSTD_Bloc(),
+        child: BlocBuilder<P12PHBODYSTD_Bloc, String>(
           builder: (context, status) {
-            return Page3BlocTableBodySETGETSET(
+            return Page12BlocTableBodySETGETSET(
               value: value,
               status: status,
             );
@@ -59,23 +59,22 @@ class Page3BlocTableBodySET extends StatelessWidget {
   }
 }
 
-class Page3BlocTableBodySETGETSET extends StatelessWidget {
-  Page3BlocTableBodySETGETSET({
+class Page12BlocTableBodySETGETSET extends StatelessWidget {
+  Page12BlocTableBodySETGETSET({
     Key? key,
     this.value,
     this.status,
   }) : super(key: key);
-  String? value;
+  PHDATAclass? value;
   String? status;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P3BALANCEBODYICPGETSET_Bloc(),
-        child: BlocBuilder<P3BALANCEBODYICPGETSET_Bloc,
-            P3BALANCEBODYICPGETSETCLASS>(
+        create: (_) => P12PHBODYSTDGETSET_Bloc(),
+        child: BlocBuilder<P12PHBODYSTDGETSET_Bloc, P12PHBODYSTDGETSETCLASS>(
           builder: (context, SET) {
-            return Page4BlocTableBodygetgraph(
+            return Page12BlocTableBodygetgraph(
               value: value,
               SET: SET,
               status: status,
@@ -85,25 +84,24 @@ class Page3BlocTableBodySETGETSET extends StatelessWidget {
   }
 }
 
-class Page4BlocTableBodygetgraph extends StatelessWidget {
-  Page4BlocTableBodygetgraph({
+class Page12BlocTableBodygetgraph extends StatelessWidget {
+  Page12BlocTableBodygetgraph({
     Key? key,
     this.value,
     this.status,
     this.SET,
   }) : super(key: key);
-  String? value;
+  PHDATAclass? value;
   String? status;
-  P3BALANCEBODYICPGETSETCLASS? SET;
+  P12PHBODYSTDGETSETCLASS? SET;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P3BALANCEBODYICPgetgraph_Bloc(),
-        child:
-            BlocBuilder<P3BALANCEBODYICPgetgraph_Bloc, List<HistoryChartModel>>(
+        create: (_) => P12PHBODYSTDgetgraph_Bloc(),
+        child: BlocBuilder<P12PHBODYSTDgetgraph_Bloc, List<HistoryChartModel>>(
           builder: (context, historyChartDatain) {
-            return Page3Body(
+            return Page12Body(
               value: value,
               SET: SET,
               historyChartDatain: historyChartDatain,
@@ -113,22 +111,22 @@ class Page4BlocTableBodygetgraph extends StatelessWidget {
   }
 }
 
-class Page3Body extends StatelessWidget {
-  Page3Body({
+class Page12Body extends StatelessWidget {
+  Page12Body({
     Key? key,
     this.value,
     this.SET,
     this.status,
     this.historyChartDatain,
   }) : super(key: key);
-  String? value;
+  PHDATAclass? value;
   String? status;
-  P3BALANCEBODYICPGETSETCLASS? SET;
+  P12PHBODYSTDGETSETCLASS? SET;
   List<HistoryChartModel>? historyChartDatain;
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: P3BALANCEBODYICP(
+      child: P12PHBODYSTD(
         value: value,
         SET: SET,
         status: status,

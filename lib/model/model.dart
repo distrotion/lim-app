@@ -28,7 +28,7 @@ class dataset {
     this.f03 = '',
     this.f04 = '',
     this.f05 = '',
-    this.f06 = '',
+    this.f06 = 0,
     this.f07 = '',
     this.f08 = '',
     this.f09 = '',
@@ -170,7 +170,7 @@ class dataset {
   String f03;
   String f04;
   String f05;
-  String f06;
+  int f06;
   String f07;
   String f08;
   String f09;

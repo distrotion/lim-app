@@ -2,79 +2,78 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
-import '../../page/P3BALANCEBODYICP/P3BALANCEBODYICP.dart';
-import '../../page/P3BALANCEBODYICP/P3BALANCEBODYICPVAR.dart';
+import '../../page/P12PHBODYSTD/P12PHBODYSTD.dart';
+import '../../page/P12PHBODYSTD/P12PHBODYSTDVAR.dart';
 import '../../widget/common/popup.dart';
 import '../cubit/NotificationEvent.dart';
 
 //-------------------------------------------------
 
-abstract class P3BALANCEBODYICP_Event {}
+abstract class P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_GET extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_GET extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_SETDATA extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_SETDATA extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_CLEARW11 extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_CLEARW11 extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_CAL extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_CAL extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_TEMP_SAVE extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_TEMP_SAVE extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_SEND_TO_SAR extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_SEND_TO_SAR extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_CLEARROOM extends P3BALANCEBODYICP_Event {}
+class P12PHBODYSTD_CLEARROOM extends P12PHBODYSTD_Event {}
 
-// class P3BALANCEBODYICP_CLEARW11_ADJ extends P3BALANCEBODYICP_Event {}
+// class P12PHBODYSTD_CLEARW11_ADJ extends P12PHBODYSTD_Event {}
 
-class flush extends P3BALANCEBODYICP_Event {}
+class flush extends P12PHBODYSTD_Event {}
 
-class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
-  P3BALANCEBODYICP_Bloc() : super('') {
-    on<P3BALANCEBODYICP_GET>((event, emit) {
-      return _P3BALANCEBODYICP_GET('', emit);
+class P12PHBODYSTD_Bloc extends Bloc<P12PHBODYSTD_Event, String> {
+  P12PHBODYSTD_Bloc() : super('') {
+    on<P12PHBODYSTD_GET>((event, emit) {
+      return _P12PHBODYSTD_GET('', emit);
     });
-    on<P3BALANCEBODYICP_SETDATA>((event, emit) {
-      return _P3BALANCEBODYICP_SETDATA('', emit);
-    });
-
-    on<P3BALANCEBODYICP_CLEARW11>((event, emit) {
-      return _P3BALANCEBODYICP_CLEARW11('', emit);
+    on<P12PHBODYSTD_SETDATA>((event, emit) {
+      return _P12PHBODYSTD_SETDATA('', emit);
     });
 
-    on<P3BALANCEBODYICP_CAL>((event, emit) {
-      return _P3BALANCEBODYICP_CAL('', emit);
+    on<P12PHBODYSTD_CLEARW11>((event, emit) {
+      return _P12PHBODYSTD_CLEARW11('', emit);
     });
 
-    on<P3BALANCEBODYICP_TEMP_SAVE>((event, emit) {
-      return _P3BALANCEBODYICP_TEMP_SAVE('', emit);
+    on<P12PHBODYSTD_CAL>((event, emit) {
+      return _P12PHBODYSTD_CAL('', emit);
     });
 
-    on<P3BALANCEBODYICP_SEND_TO_SAR>((event, emit) {
-      return _P3BALANCEBODYICP_SEND_TO_SAR('', emit);
+    on<P12PHBODYSTD_TEMP_SAVE>((event, emit) {
+      return _P12PHBODYSTD_TEMP_SAVE('', emit);
     });
 
-    on<P3BALANCEBODYICP_CLEARROOM>((event, emit) {
-      return _P3BALANCEBODYICP_CLEARROOM('', emit);
+    on<P12PHBODYSTD_SEND_TO_SAR>((event, emit) {
+      return _P12PHBODYSTD_SEND_TO_SAR('', emit);
     });
 
-//_P3BALANCEBODYICP_SEND_TO_SAR
-//_P3BALANCEBODYICP_CAL
-    // on<P3BALANCEBODYICP_CLEARW11_ADJ>((event, emit) {
-    //   return _P3BALANCEBODYICP_CLEARW11_ADJ('', emit);
+    on<P12PHBODYSTD_CLEARROOM>((event, emit) {
+      return _P12PHBODYSTD_CLEARROOM('', emit);
+    });
+
+//_P12PHBODYSTD_SEND_TO_SAR
+//_P12PHBODYSTD_CAL
+    // on<P12PHBODYSTD_CLEARW11_ADJ>((event, emit) {
+    //   return _P12PHBODYSTD_CLEARW11_ADJ('', emit);
     // });
 
     on<flush>((event, emit) {
       return _flush('', emit);
     });
   }
-  Future<void> _P3BALANCEBODYICP_GET(String toAdd, Emitter<String> emit) async {
+  Future<void> _P12PHBODYSTD_GET(String toAdd, Emitter<String> emit) async {
     String output = '';
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP_SETDATA(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P12PHBODYSTD_SETDATA(String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
@@ -83,14 +82,14 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
         "IP": webHOOK,
         "TYPE": "04SARBALANCEICP",
         "FUNCTION": "UPDATEDATAWEIGHT",
-        "WX": P3BALANCEBODYICPVAR.WX
+        "WX": P12PHBODYSTDVAR.WX
       },
     );
 
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP_CLEARW11(
+  Future<void> _P12PHBODYSTD_CLEARW11(
       String toAdd, Emitter<String> emit) async {
     String output = '';
 
@@ -101,14 +100,14 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
         "USER": USERDATA.NAME,
         "TYPE": "04SARBALANCEICP",
         "FUNCTION": "DELETEDATAW11",
-        "DX": P3BALANCEBODYICPVAR.DX,
+        "DX": P12PHBODYSTDVAR.DX,
       },
     );
 
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP_CAL(String toAdd, Emitter<String> emit) async {
+  Future<void> _P12PHBODYSTD_CAL(String toAdd, Emitter<String> emit) async {
     String output = '';
     print("------------>");
     final responseR = await Dio().post(
@@ -118,21 +117,21 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
         "USER": USERDATA.NAME,
         "TYPE": "04SARBALANCEICP",
         "FUNCTION": "UPDATEDATAVOLUME",
-        "D01NOitem": P3BALANCEBODYICPVAR.D01NOitem,
-        "D02NOitem": P3BALANCEBODYICPVAR.D02NOitem,
-        "VOLUME01": P3BALANCEBODYICPVAR.D01VOLUME,
-        "VOLUME02": P3BALANCEBODYICPVAR.D02VOLUME,
-        "Result01": P3BALANCEBODYICPVAR.Result01,
-        "Result02": P3BALANCEBODYICPVAR.Result02,
-        "D01W11_21": P3BALANCEBODYICPVAR.D01W11_21,
-        "D02W11_21": P3BALANCEBODYICPVAR.D02W11_21,
+        "D01NOitem": P12PHBODYSTDVAR.D01NOitem,
+        "D02NOitem": P12PHBODYSTDVAR.D02NOitem,
+        "VOLUME01": P12PHBODYSTDVAR.D01VOLUME,
+        "VOLUME02": P12PHBODYSTDVAR.D02VOLUME,
+        "Result01": P12PHBODYSTDVAR.Result01,
+        "Result02": P12PHBODYSTDVAR.Result02,
+        "D01W11_21": P12PHBODYSTDVAR.D01W11_21,
+        "D02W11_21": P12PHBODYSTDVAR.D02W11_21,
       },
     );
 
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP_TEMP_SAVE(
+  Future<void> _P12PHBODYSTD_TEMP_SAVE(
       String toAdd, Emitter<String> emit) async {
     String output = '';
 
@@ -143,14 +142,14 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
         "USER": USERDATA.NAME,
         "TYPE": "04SARBALANCEICP",
         "FUNCTION": "UPDATEDATAVOLUME",
-        "D01NOitem": P3BALANCEBODYICPVAR.D01NOitem,
-        "D02NOitem": P3BALANCEBODYICPVAR.D02NOitem,
-        "VOLUME01": P3BALANCEBODYICPVAR.D01VOLUME,
-        "VOLUME02": P3BALANCEBODYICPVAR.D02VOLUME,
-        "Result01": P3BALANCEBODYICPVAR.Result01,
-        "Result02": P3BALANCEBODYICPVAR.Result02,
-        "D01W11_21": P3BALANCEBODYICPVAR.D01W11_21,
-        "D02W11_21": P3BALANCEBODYICPVAR.D02W11_21,
+        "D01NOitem": P12PHBODYSTDVAR.D01NOitem,
+        "D02NOitem": P12PHBODYSTDVAR.D02NOitem,
+        "VOLUME01": P12PHBODYSTDVAR.D01VOLUME,
+        "VOLUME02": P12PHBODYSTDVAR.D02VOLUME,
+        "Result01": P12PHBODYSTDVAR.Result01,
+        "Result02": P12PHBODYSTDVAR.Result02,
+        "D01W11_21": P12PHBODYSTDVAR.D01W11_21,
+        "D02W11_21": P12PHBODYSTDVAR.D02W11_21,
       },
     ).then((value) async {
       final response = await Dio().post(
@@ -158,13 +157,13 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
         data: {
           "USER": USERDATA.NAME,
           "Branch": USERDATA.Branch,
-          "REQNO": P3BALANCEBODYICPVAR.ReqNo,
-          "UID": P3BALANCEBODYICPVAR.UID,
+          "REQNO": P12PHBODYSTDVAR.ReqNo,
+          "UID": P12PHBODYSTDVAR.UID,
         },
       );
       if (response.statusCode == 200) {
         WORNINGpop(
-          P3BALANCEBODYICPcontext,
+          P12PHBODYSTDcontext,
           [
             "Temp Save",
             "SUCCESS",
@@ -174,7 +173,7 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
         );
       } else {
         WORNINGpop(
-          P3BALANCEBODYICPcontext,
+          P12PHBODYSTDcontext,
           [
             "Temp Save",
             "ERROR",
@@ -188,7 +187,7 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
     emit(output);
   }
 
-  Future<void> _P3BALANCEBODYICP_SEND_TO_SAR(
+  Future<void> _P12PHBODYSTD_SEND_TO_SAR(
       String toAdd, Emitter<String> emit) async {
     String output = '';
 
@@ -196,15 +195,15 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
       '${selectBLANCE(USERDATA.Branch)}/SENDTOSAR_ICP',
       data: {
         "USER": USERDATA.NAME,
-        "REQNO": P3BALANCEBODYICPVAR.ReqNo,
-        "UID": P3BALANCEBODYICPVAR.UID,
+        "REQNO": P12PHBODYSTDVAR.ReqNo,
+        "UID": P12PHBODYSTDVAR.UID,
       },
     );
 
     emit(output);
   }
 
-  // Future<void> _P3BALANCEBODYICP_CLEARW11_ADJ(
+  // Future<void> _P12PHBODYSTD_CLEARW11_ADJ(
   //     String toAdd, Emitter<String> emit) async {
   //   String output = '';
 
@@ -216,7 +215,7 @@ class P3BALANCEBODYICP_Bloc extends Bloc<P3BALANCEBODYICP_Event, String> {
   //   emit(output);
   // }
 
-  Future<void> _P3BALANCEBODYICP_CLEARROOM(
+  Future<void> _P12PHBODYSTD_CLEARROOM(
       String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(

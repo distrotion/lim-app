@@ -13,24 +13,25 @@ import '../../../widget/common/ComInputText.dart';
 import '../../../widget/common/Loading.dart';
 import '../../../widget/common/popup.dart';
 
+import '../../page12.dart';
 import '../../page2.dart';
 import '../../page3.dart';
 import '../../page4.dart';
 
-import '../P1BALANCEREQVAR.dart';
-import 'P1BALANCEREQTABLEFIELD.dart';
+import '../P11PHREQVAR.dart';
+import 'P11PHREQTABLEFIELD.dart';
 
 var datet = DateTime.now().millisecondsSinceEpoch;
 
-class P1BALANCEREQTABLE extends StatefulWidget {
-  P1BALANCEREQTABLE({Key? key, this.sardata}) : super(key: key);
+class P11PHREQTABLE extends StatefulWidget {
+  P11PHREQTABLE({Key? key, this.sardata}) : super(key: key);
   List<dataset>? sardata;
 
   @override
-  State<P1BALANCEREQTABLE> createState() => _P1BALANCEREQTABLEState();
+  State<P11PHREQTABLE> createState() => _P11PHREQTABLEState();
 }
 
-class _P1BALANCEREQTABLEState extends State<P1BALANCEREQTABLE> {
+class _P11PHREQTABLEState extends State<P11PHREQTABLE> {
   @override
   void initState() {
     super.initState();
@@ -50,14 +51,14 @@ class _P1BALANCEREQTABLEState extends State<P1BALANCEREQTABLE> {
                   isSideIcon: true,
                   height: 40,
                   width: 400,
-                  isContr: P1BALANCEREQVAR.iscontrol,
+                  isContr: P11PHREQVAR.iscontrol,
                   fnContr: (input) {
-                    P1BALANCEREQVAR.iscontrol = input;
+                    P11PHREQVAR.iscontrol = input;
                   },
-                  sValue: P1BALANCEREQVAR.SEARCH,
+                  sValue: P11PHREQVAR.SEARCH,
                   returnfunc: (String s) {
                     setState(() {
-                      P1BALANCEREQVAR.SEARCH = s;
+                      P11PHREQVAR.SEARCH = s;
                     });
                   },
                 ),
@@ -65,8 +66,8 @@ class _P1BALANCEREQTABLEState extends State<P1BALANCEREQTABLE> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      P1BALANCEREQVAR.iscontrol = true;
-                      P1BALANCEREQVAR.SEARCH = '';
+                      P11PHREQVAR.iscontrol = true;
+                      P11PHREQVAR.SEARCH = '';
                     });
                   },
                   child: Container(
@@ -102,7 +103,7 @@ class _P1BALANCEREQTABLEState extends State<P1BALANCEREQTABLE> {
           ),
           Expanded(
             flex: 4,
-            child: P1WIDGETFIELD(
+            child: P11WIDGETFIELD(
               height: 20,
               forntsize: 10,
               B01: 'REQ NO.', //f1
@@ -150,24 +151,24 @@ class tabledetailsearchlist extends StatelessWidget {
       if (_data[i]
                   .f01
                   .toUpperCase()
-                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+                  .contains(P11PHREQVAR.SEARCH.toUpperCase()) ||
               _data[i]
                   .f02
                   .toUpperCase()
-                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+                  .contains(P11PHREQVAR.SEARCH.toUpperCase()) ||
               _data[i]
                   .f03
                   .toUpperCase()
-                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+                  .contains(P11PHREQVAR.SEARCH.toUpperCase()) ||
               _data[i]
                   .f04
                   .toUpperCase()
-                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase()) ||
+                  .contains(P11PHREQVAR.SEARCH.toUpperCase()) ||
               _data[i]
                   .f05
                   .toUpperCase()
-                  .contains(P1BALANCEREQVAR.SEARCH.toUpperCase())
-          // _data[i].f05.contains(P1BALANCEREQVAR.SEARCH)
+                  .contains(P11PHREQVAR.SEARCH.toUpperCase())
+          // _data[i].f05.contains(P11PHREQVAR.SEARCH)
           ) {
         _data_exp.add(_data[i]);
       }
@@ -190,7 +191,7 @@ class tabledetailsearch extends StatelessWidget {
     List<dataset> _data_exp = sapdata ?? [];
     List<Widget> tableout = [];
     for (int i = 0; i < _data_exp.length; i++) {
-      tableout.add(P1WIDGETFIELD(
+      tableout.add(P11WIDGETFIELD(
         height: 45,
         B01: _data_exp[i].f01,
         B01L:
@@ -223,7 +224,7 @@ class tabledetailsearch extends StatelessWidget {
           print(FG);
 
           // if (CP == "Sludge") {
-          if (CP == "Cwt") {
+          if (CP == "pH") {
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -244,106 +245,8 @@ class tabledetailsearch extends StatelessWidget {
                         var databuff = value.data;
 
                         if (databuff['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page2(),
-                              '02SARBALANCECW/GENREQ');
-                        } else {
-                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
-                        }
-                      }
-                    });
-                  } else {
-                    // WORNINGpop(context, ["test", "test"], 100, 200);
-
-                    // CuPage = Page3();
-                    // MainBodyContext.read<ChangePage_Bloc>()
-                    //     .add(ChangePage_nodrower());
-                    WORNINGpop(
-                      context,
-                      [
-                        "BLOCK",
-                        "PLEASE CHECK",
-                      ],
-                      100,
-                      100,
-                    );
-                  }
-                }
-              }
-            });
-            // } else if (CP == "Cwt") {
-          } else if (CP == "Sludge") {
-            // if (CP != "") {
-            final response = Dio().post(
-              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
-              data: {},
-            ).then((value) {
-              if (value.statusCode == 200) {
-                var databuff = value.data;
-                // print('>>>>${databuff['REQNO']}');
-                if (databuff['REQNO'] != null) {
-                  if (databuff['REQNO'].toString() == '') {
-                    final response = Dio().post(
-                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
-                      data: {
-                        "REQNO": PO,
-                        "UID": FG,
-                      },
-                    ).then((value) {
-                      if (value.statusCode == 200) {
-                        var databuff = value.data;
-
-                        if (databuff['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page4(),
-                              '04SARBALANCESLUDGE/GENREQ');
-                        } else {
-                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
-                        }
-                      }
-                    });
-                  } else {
-                    // WORNINGpop(context, ["test", "test"], 100, 200);
-
-                    // CuPage = Page3();
-                    // MainBodyContext.read<ChangePage_Bloc>()
-                    //     .add(ChangePage_nodrower());
-                    WORNINGpop(
-                      context,
-                      [
-                        "BLOCK",
-                        "PLEASE CHECK",
-                      ],
-                      100,
-                      100,
-                    );
-                  }
-                }
-              }
-            });
-            // } else if (CP == "Cwt") {
-          } else if (CP == "ICP") {
-            // if (CP != "") {
-            final response = Dio().post(
-              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
-              data: {},
-            ).then((value) {
-              if (value.statusCode == 200) {
-                var databuff = value.data;
-                // print('>>>>${databuff['REQNO']}');
-                if (databuff['REQNO'] != null) {
-                  if (databuff['REQNO'].toString() == '') {
-                    final response = Dio().post(
-                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
-                      data: {
-                        "REQNO": PO,
-                        "UID": FG,
-                      },
-                    ).then((value) {
-                      if (value.statusCode == 200) {
-                        var databuff = value.data;
-
-                        if (databuff['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page3(),
-                              '04SARBALANCEICP/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page12(),
+                              '04SARPHSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -489,14 +392,14 @@ void CHECKROOM(BuildContext contextin, dataset datainput) async {}
 //       P1WIDGETFIELD(
 //         isSELECTFUNC: true,
 //         SELECTFUNC: (input) {
-//           P1BALANCEREQVAR.INSCOUTTEST = 2;
+//           P11PHREQVAR.INSCOUTTEST = 2;
 //           contextGB.read<BlocPageRebuild>().rebuildPage();
 //         },
 //       ),
 //       P1WIDGETFIELD(
 //         isSELECTFUNC: true,
 //         SELECTFUNC: (input) {
-//           P1BALANCEREQVAR.INSCOUTTEST = 3;
+//           P11PHREQVAR.INSCOUTTEST = 3;
 //           contextGB.read<BlocPageRebuild>().rebuildPage();
 //         },
 //       ),

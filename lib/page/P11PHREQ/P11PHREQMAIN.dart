@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/BlocEvent/01-01-P1BALANCEREQGET.dart';
-import '../../bloc/BlocEvent/01-02-P1BALANCEREQGETSTR.dart';
+import '../../bloc/BlocEvent/11-01-P11PHGETDATA.dart';
+import '../../bloc/BlocEvent/11-02-P11PHREQGETSTR.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../data/dummydata.dart';
 import '../../data/global.dart';
@@ -13,10 +13,10 @@ import '../P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEVAR.dart';
 import '../page1.dart';
 import '../page100.dart';
 import '../page99.dart';
-import 'TABLE/P1BALANCEREQTABLE.dart';
+import 'TABLE/P11PHREQTABLE.dart';
 
-class P1BALANCEREQMAIN extends StatefulWidget {
-  P1BALANCEREQMAIN({
+class P11PHREQMAIN extends StatefulWidget {
+  P11PHREQMAIN({
     super.key,
     this.data,
     this.str,
@@ -25,18 +25,18 @@ class P1BALANCEREQMAIN extends StatefulWidget {
   String? str;
 
   @override
-  State<P1BALANCEREQMAIN> createState() => _P1BALANCEREQMAINState();
+  State<P11PHREQMAIN> createState() => _P11PHREQMAINState();
 }
 
-class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
+class _P11PHREQMAINState extends State<P11PHREQMAIN> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<P1BALANCEREQGET_Bloc>().add(GETDATALISTFROMSAR());
-    context.read<P1BALANCEREQGETSTR_Bloc>().add(P1BALANCEREQGETSTR_ROOM());
-    reserall_P4BALANCEBODYSLUDGEVAR();
-    reserall_P2BALANCEBODYCWVAR();
+    context.read<P11PHREQGET_Bloc>().add(GETDATALISTFROMSAR());
+    context.read<P11PHREQGETSTR_Bloc>().add(P11PHREQGETSTR_ROOM());
+    // reserall_P4BALANCEBODYSLUDGEVAR();
+    // reserall_P2BALANCEBODYCWVAR();
   }
 
   @override
@@ -147,8 +147,8 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<P1BALANCEREQGETSTR_Bloc>()
-                                          .add(P1BALANCEREQGETSTR_ROOM());
+                                          .read<P11PHREQGETSTR_Bloc>()
+                                          .add(P11PHREQGETSTR_ROOM());
                                     },
                                     child: Container(
                                       height: 20,
@@ -168,11 +168,11 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<P1BALANCEREQGETSTR_Bloc>()
-                                          .add(P1BALANCEREQGETSTR_CLEARROOM());
+                                          .read<P11PHREQGETSTR_Bloc>()
+                                          .add(P11PHREQGETSTR_CLEARROOM());
                                       context
-                                          .read<P1BALANCEREQGETSTR_Bloc>()
-                                          .add(P1BALANCEREQGETSTR_ROOM());
+                                          .read<P11PHREQGETSTR_Bloc>()
+                                          .add(P11PHREQGETSTR_ROOM());
                                     },
                                     child: Container(
                                       height: 20,
@@ -210,7 +210,7 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
                   border: Border.all(color: Colors.black),
                   borderRadius: const BorderRadius.all(Radius.circular(0)),
                 ),
-                child: P1BALANCEREQTABLE(sardata: widget.data),
+                child: P11PHREQTABLE(sardata: widget.data),
               ),
             ),
           )

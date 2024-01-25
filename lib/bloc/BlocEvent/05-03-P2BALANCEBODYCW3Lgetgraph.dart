@@ -3,47 +3,47 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
-import '../../page/P3BALANCEBODYICP/P3BALANCEBODYICPVAR.dart';
+import '../../page/P5BALANCEBODYCW3L/P5BALANCEBODYCW3LVAR.dart';
 import '../cubit/POP-searchHistoryChartData.dart';
 
 //-------------------------------------------------
 
-abstract class P3BALANCEBODYICPgetgraph_Event {}
+abstract class P5BALANCEBODYCW3Lgetgraph_Event {}
 
-class P3BALANCEBODYICPgetgraph_get extends P3BALANCEBODYICPgetgraph_Event {}
+class P5BALANCEBODYCW3Lgetgraph_get extends P5BALANCEBODYCW3Lgetgraph_Event {}
 
-class P3BALANCEBODYICPgetgraph_flush extends P3BALANCEBODYICPgetgraph_Event {}
+class P5BALANCEBODYCW3Lgetgraph_flush extends P5BALANCEBODYCW3Lgetgraph_Event {}
 
-class P3BALANCEBODYICPgetgraph_Bloc
-    extends Bloc<P3BALANCEBODYICPgetgraph_Event, List<HistoryChartModel>> {
-  P3BALANCEBODYICPgetgraph_Bloc() : super([]) {
-    on<P3BALANCEBODYICPgetgraph_get>((event, emit) {
-      return _P3BALANCEBODYICPgetgraph_get([], emit);
+class P5BALANCEBODYCW3Lgetgraph_Bloc
+    extends Bloc<P5BALANCEBODYCW3Lgetgraph_Event, List<HistoryChartModel>> {
+  P5BALANCEBODYCW3Lgetgraph_Bloc() : super([]) {
+    on<P5BALANCEBODYCW3Lgetgraph_get>((event, emit) {
+      return _P5BALANCEBODYCW3Lgetgraph_get([], emit);
     });
-    on<P3BALANCEBODYICPgetgraph_flush>((event, emit) {
-      return _P3BALANCEBODYICPgetgraph_flush([], emit);
+    on<P5BALANCEBODYCW3Lgetgraph_flush>((event, emit) {
+      return _P5BALANCEBODYCW3Lgetgraph_flush([], emit);
     });
   }
-  Future<void> _P3BALANCEBODYICPgetgraph_get(List<HistoryChartModel> toAdd,
+  Future<void> _P5BALANCEBODYCW3Lgetgraph_get(List<HistoryChartModel> toAdd,
       Emitter<List<HistoryChartModel>> emit) async {
     List<HistoryChartModel> output = [];
     print("----------------------------");
-    print(P3BALANCEBODYICPVAR.UID);
-    print(P3BALANCEBODYICPVAR.ItemName);
+    print(P5BALANCEBODYCW3LVAR.UID);
+    print(P5BALANCEBODYCW3LVAR.ItemName);
     print("----------------------------");
     final response = await Dio().post(
       '${serverSARMAIN}/Widget_SearcHistoryChartData2',
       data: {
-        'itemID': P3BALANCEBODYICPVAR.UID,
-        'itemName': P3BALANCEBODYICPVAR.ItemName,
+        'itemID': P5BALANCEBODYCW3LVAR.UID,
+        'itemName': P5BALANCEBODYCW3LVAR.ItemName,
         'section': "TTC",
         // 'itemID': '967644',
-        // 'itemName': 'ICP',
+        // 'itemName': 'Sludge',
         // 'section': "TTC",
       },
     );
 
-    //     P3BALANCEBODYICPVAR.mem = '';
+    //     P5BALANCEBODYCW3LVAR.mem = '';
 
     // print(response);
 
@@ -84,7 +84,7 @@ class P3BALANCEBODYICPgetgraph_Bloc
     emit(output.reversed.toList());
   }
 
-  Future<void> _P3BALANCEBODYICPgetgraph_flush(List<HistoryChartModel> toAdd,
+  Future<void> _P5BALANCEBODYCW3Lgetgraph_flush(List<HistoryChartModel> toAdd,
       Emitter<List<HistoryChartModel>> emit) async {
     List<HistoryChartModel> output = [];
     emit(output);
