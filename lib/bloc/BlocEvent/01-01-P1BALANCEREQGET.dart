@@ -34,8 +34,10 @@ class P1BALANCEREQGET_Bloc extends Bloc<P1BALANCEREQGET_Event, List<dataset>> {
   Future<void> _GETDATALISTFROMSAR(
       List<dataset> toAdd, Emitter<List<dataset>> emit) async {
     final response = await Dio().post(
-      '${serverSARS}/requestbalance',
-      // '${serverG}GETLIST/request_NV_ALL',
+      // '${serverSARS}/requestbalance',
+      '${serverG}GETLIST/request_BALANCE_ALL',
+//'${serverG}GETLIST/requestbalance',
+      //requestbalance
       // '${serverLOCAL}GETLIST/request_NV_ALL',
       data: {
         // "name": "Khota",

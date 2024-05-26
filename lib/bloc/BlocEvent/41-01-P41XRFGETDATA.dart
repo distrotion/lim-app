@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
 import '../../model/model.dart';
 
-import '../../page/P41XRFREQ copy/P41XRFREQVAR.dart';
+import '../../page/P41XRFREQ/P41XRFREQVAR.dart';
 import '../../widget/common/Safty.dart';
 
 //-------------------------------------------------
