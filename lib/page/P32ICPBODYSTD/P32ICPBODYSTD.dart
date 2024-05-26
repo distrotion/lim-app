@@ -49,8 +49,8 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
 
     P32ICPBODYSTDVAR.value01 = '';
     P32ICPBODYSTDVAR.value02 = '';
-    // context.read<P32ICPBODYSTDGETSET_Bloc>().add(P32ICPBODYSTDGETSET_GET());
-    // context.read<GetICPvalue_Bloc>().add(GetICPvalue_Get());
+    context.read<P32ICPBODYSTDGETSET_Bloc>().add(P32ICPBODYSTDGETSET_GET());
+    context.read<GetICPvalue_Bloc>().add(GetICPvalue_Get());
 
     P32ICPBODYSTDVAR.D01VOLUME = '';
     P32ICPBODYSTDVAR.Result01 = '';

@@ -49,8 +49,8 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
 
     P33TOCBODYSTDVAR.value01 = '';
     P33TOCBODYSTDVAR.value02 = '';
-    // context.read<P33TOCBODYSTDGETSET_Bloc>().add(P33TOCBODYSTDGETSET_GET());
-    // context.read<GetTOCvalue_Bloc>().add(GetTOCvalue_Get());
+    context.read<P33TOCBODYSTDGETSET_Bloc>().add(P33TOCBODYSTDGETSET_GET());
+    context.read<GetTOCvalue_Bloc>().add(GetTOCvalue_Get());
 
     P33TOCBODYSTDVAR.D01VOLUME = '';
     P33TOCBODYSTDVAR.Result01 = '';

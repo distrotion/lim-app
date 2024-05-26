@@ -8,6 +8,7 @@ import '../page1.dart';
 import '../page11.dart';
 import '../page21.dart';
 import '../page31.dart';
+import '../page41.dart';
 
 class P99SELECTINSBP12MAIN extends StatefulWidget {
   const P99SELECTINSBP12MAIN({super.key});
@@ -194,10 +195,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  // USERDATA.INSMASTER = 'BP12FF01';
-                  // CuPage = Page21();
-                  // MainBodyContext.read<ChangePage_Bloc>()
-                  //     .add(ChangePage_nodrower());
+                  USERDATA.INSMASTER = 'BP12XRF01';
+                  CuPage = Page41();
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -237,10 +238,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  // USERDATA.INSMASTER = 'BP12PH01';
-                  // CuPage = Page11();
-                  // MainBodyContext.read<ChangePage_Bloc>()
-                  //     .add(ChangePage_nodrower());
+                  USERDATA.INSMASTER = 'BP12TOC01';
+                  CuPage = Page31();
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -276,10 +277,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  // USERDATA.INSMASTER = 'BP12ICP01';
-                  // CuPage = Page31();
-                  // MainBodyContext.read<ChangePage_Bloc>()
-                  //     .add(ChangePage_nodrower());
+                  USERDATA.INSMASTER = 'BP12ICP01';
+                  CuPage = Page31();
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [

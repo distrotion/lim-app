@@ -20,6 +20,7 @@ import '../../widget/common/Safty.dart';
 import '../page1.dart';
 import '../page11.dart';
 import '../Page31.dart';
+import '../page41.dart';
 import 'P42XRFBODYSTDVAR.dart';
 
 late BuildContext P42XRFBODYSTDcontext;
@@ -49,8 +50,8 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
 
     P42XRFBODYSTDVAR.value01 = '';
     P42XRFBODYSTDVAR.value02 = '';
-    // context.read<P42XRFBODYSTDGETSET_Bloc>().add(P42XRFBODYSTDGETSET_GET());
-    // context.read<GetXRFvalue_Bloc>().add(GetXRFvalue_Get());
+    context.read<P42XRFBODYSTDGETSET_Bloc>().add(P42XRFBODYSTDGETSET_GET());
+    context.read<GetXRFvalue_Bloc>().add(GetXRFvalue_Get());
 
     P42XRFBODYSTDVAR.D01VOLUME = '';
     P42XRFBODYSTDVAR.Result01 = '';
@@ -137,7 +138,7 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                         context
                             .read<P42XRFBODYSTD_Bloc>()
                             .add(P42XRFBODYSTD_CLEARROOM());
-                        CuPage = Page31();
+                        CuPage = Page41();
                         MainBodyContext.read<ChangePage_Bloc>()
                             .add(ChangePage_nodrower());
                       },

@@ -82,7 +82,7 @@ class P42XRFBODYSTD_Bloc extends Bloc<P42XRFBODYSTD_Event, String> {
       '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
-        "TYPE": "36SARXRFSTD",
+        "TYPE": "40SARXRFSTD",
         "FUNCTION": "UPDATEDATAPPM",
         "WX": "ALL"
       },
@@ -100,7 +100,7 @@ class P42XRFBODYSTD_Bloc extends Bloc<P42XRFBODYSTD_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "36SARXRFSTD",
+        "TYPE": "40SARXRFSTD",
         "FUNCTION": "DELETEDATAW11",
         "DX": P42XRFBODYSTDVAR.DX,
       },
@@ -117,7 +117,7 @@ class P42XRFBODYSTD_Bloc extends Bloc<P42XRFBODYSTD_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "36SARXRFSTD",
+        "TYPE": "40SARXRFSTD",
         "FUNCTION": "UPDATEDATAVOLUME",
         "D01NOitem": P42XRFBODYSTDVAR.D01NOitem,
         "D02NOitem": P42XRFBODYSTDVAR.D02NOitem,
@@ -142,7 +142,7 @@ class P42XRFBODYSTD_Bloc extends Bloc<P42XRFBODYSTD_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "36SARXRFSTD",
+        "TYPE": "40SARXRFSTD",
         "FUNCTION": "UPDATEDATAVOLUME",
         "D01NOitem": P42XRFBODYSTDVAR.D01NOitem,
         "D02NOitem": P42XRFBODYSTDVAR.D02NOitem,

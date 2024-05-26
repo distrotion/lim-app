@@ -19,6 +19,8 @@ import '../../page4.dart';
 
 import '../../page5.dart';
 import '../../page6.dart';
+import '../../page7.dart';
+import '../../page8.dart';
 import '../P1BALANCEREQVAR.dart';
 import 'P1BALANCEREQTABLEFIELD.dart';
 
@@ -444,6 +446,104 @@ class tabledetailsearch extends StatelessWidget {
                         if (databuff['msg'].toString() == 'ok') {
                           GENREQSG(context, _data_exp[i], Page6(),
                               '06SARBALANCENVC/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+            // } else if (CP == "Cwt") {
+          } else if (CP == "Acid Number(Nox Rust)") {
+            // if (CP != "") {
+            final response = Dio().post(
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuff = value.data;
+                // print('>>>>${databuff['REQNO']}');
+                if (databuff['REQNO'] != null) {
+                  if (databuff['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
+                      data: {
+                        "REQNO": PO,
+                        "UID": FG,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuff = value.data;
+
+                        if (databuff['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page7(),
+                              '07SARBALANCEACID/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+            // } else if (CP == "Cwt") {
+          } else if (CP == "SSM") {
+            // if (CP != "") {
+            final response = Dio().post(
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuff = value.data;
+                // print('>>>>${databuff['REQNO']}');
+                if (databuff['REQNO'] != null) {
+                  if (databuff['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
+                      data: {
+                        "REQNO": PO,
+                        "UID": FG,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuff = value.data;
+
+                        if (databuff['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page8(),
+                              '08SARBALANCEASSM/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }

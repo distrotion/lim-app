@@ -31,8 +31,16 @@ class P31ICPREQGET_Bloc extends Bloc<P31ICPREQGET_Event, List<dataset>> {
   }
   Future<void> _GETDATALISTFROMSAR(
       List<dataset> toAdd, Emitter<List<dataset>> emit) async {
+    String service = 'request_ICP_USER';
+    // String service = 'request_ICP_ALL';
+    if (USERDATA.INSMASTER == "BP12TOC01") {
+      service = 'request_TOC_ALL';
+    } else {}
+
     final response = await Dio().post(
-      '${serverG}GETLIST/request_ICP_ALL',
+      // '${serverG}GETLIST/request_ICP_ALL',
+      '${serverG}GETLIST/${service}',
+      //request_ICP_USER
       data: {
         // "name": "Khota",
         // "name": "Wannipha",

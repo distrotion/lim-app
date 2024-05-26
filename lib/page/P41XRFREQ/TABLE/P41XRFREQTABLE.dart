@@ -19,6 +19,7 @@ import '../../Page32.dart';
 import '../../page3.dart';
 import '../../page4.dart';
 
+import '../../page42.dart';
 import '../P41XRFREQVAR.dart';
 import 'P41XRFREQTABLEFIELD.dart';
 
@@ -247,8 +248,8 @@ class tabledetailsearch extends StatelessWidget {
                         var databuXRF = value.data;
 
                         if (databuXRF['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page32(),
-                              '36SARXRFSTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page42(),
+                              '40SARXRFSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }

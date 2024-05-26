@@ -10,6 +10,7 @@ import 'page2.dart';
 import 'page3.dart';
 import 'page32.dart';
 import 'page5.dart';
+import 'page7.dart';
 
 bool isChecked = false;
 
@@ -20,7 +21,7 @@ class Page0 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Page0Body();
 
-    // return Page32();
+    // return Page7();
   }
 }
 

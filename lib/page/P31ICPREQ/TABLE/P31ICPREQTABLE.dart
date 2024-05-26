@@ -17,6 +17,7 @@ import '../../page12.dart';
 import '../../page2.dart';
 import '../../Page32.dart';
 import '../../page3.dart';
+import '../../page33.dart';
 import '../../page4.dart';
 
 import '../P31ICPREQVAR.dart';
@@ -249,6 +250,55 @@ class tabledetailsearch extends StatelessWidget {
                         if (databuICP['msg'].toString() == 'ok') {
                           GENREQSG(context, _data_exp[i], Page32(),
                               '36SARICPSTD/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+            // } else if (CP == "Cwt") {
+          }
+          if (CP == "TOC") {
+            final response = Dio().post(
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuICP = value.data;
+                // print('>>>>${databuICP['REQNO']}');
+                if (databuICP['REQNO'] != null) {
+                  if (databuICP['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
+                      data: {
+                        "REQNO": PO,
+                        "UID": FG,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuICP = value.data;
+
+                        if (databuICP['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page33(),
+                              '37SARTOCSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
