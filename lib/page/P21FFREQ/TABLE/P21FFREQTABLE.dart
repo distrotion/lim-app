@@ -111,8 +111,8 @@ class _P21FFREQTABLEState extends State<P21FFREQTABLE> {
               B02: 'Customer NAME', //f19
               B03: 'Due date', //f9
               B04: 'Sample Name', //f17
-              B05: 'Temp (C)', //f16
-              B06: 'Item Name', //f30
+              B05: 'Item Name', //f30
+              B06: 'Temp (C)', //f16
               B07: 'NO', //--
               B08: 'ACTION',
               CB01: Colors.black54,
@@ -203,8 +203,9 @@ class tabledetailsearch extends StatelessWidget {
             .replaceAll("00:00:00", "")
             .replaceAll("GMT", "")), //f17
         B04: _data_exp[i].f41,
-        B05: _data_exp[i].f64,
-        B06: _data_exp[i].f04,
+        B05: _data_exp[i].f04,
+        B06: _data_exp[i].f64,
+
         B07: (_data_exp[i].f06).toString(),
         B08: '',
         B09: '',

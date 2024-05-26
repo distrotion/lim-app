@@ -1,42 +1,41 @@
-class P5BALANCEBODYCW3LVAR {
-  static bool iscontrol = true;
-  static String ReqNo = '';
-  static String TYPE = '';
+class P31ICPREQVAR {
+  static bool iscontrol = false;
+  static int INSCOUTTEST = 0;
+  static String SEARCH = '';
+  static String POACTIVE = '';
+  static String CPACTIVE = '';
+  static String SECLECTins = '';
+  static int INSint = 0;
+  static List<int> INSnotREADY = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ];
 
-  static String D01W11 = '';
-  static String D01W21 = '';
-  static String D01W31 = '';
-  static String D01W41 = '';
-  static String D01W11_21 = '';
-  static String D01W21_31 = '';
-  static String D01W31_41 = '';
-
-  static String D01area = '';
-
-  static String D01NOitem = '';
-
-  static String WX = '';
-  static String DX = '';
-
-  //
-
-  static String Result01 = '';
-  static String Result02 = '';
-  static String Result03 = '';
-
-  static String SPEChi = '';
-  static String SPEClow = '';
-
-  static String SEND = '';
-
-  static String dip12 = '';
-  static String dip13 = '';
-  static String dip23 = '';
   //------------
 
+  static String ReqNo = '';
   static String InstrumentName = '';
   //-------------------
-
   static String Branch = '';
   static String Code = '';
   static String ControlRange = '';
@@ -94,22 +93,5 @@ class P5BALANCEBODYCW3LVAR {
   static String UserReject = '';
   static String UserRequestRecheck = '';
   static String UserSend = '';
-
   static String UID = '';
-
-  static String value = '';
-
-  static bool isShowingMainData = true;
-
-  static String itemName = '';
-
-  static String mem = '-';
-}
-
-reserall_P5BALANCEBODYCW3LVAR() {
-  P5BALANCEBODYCW3LVAR.D01W11 = '';
-  P5BALANCEBODYCW3LVAR.D01W21 = '';
-  P5BALANCEBODYCW3LVAR.D01W11_21 = '';
-  P5BALANCEBODYCW3LVAR.D01area = '';
-  P5BALANCEBODYCW3LVAR.D01NOitem = '';
 }

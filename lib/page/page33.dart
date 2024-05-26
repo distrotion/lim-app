@@ -1,36 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/BlocEvent/01-Getbalancevalue.dart';
-
-import '../bloc/BlocEvent/06-01-P2BALANCEBODYNVC.dart';
-import '../bloc/BlocEvent/06-02-P2BALANCEBODYNVCGETSET.dart';
-import '../bloc/BlocEvent/06-03-P2BALANCEBODYNVCgetgraph.dart';
+import '../bloc/BlocEvent/33-01-P32TOCBODYSTD.dart';
+import '../bloc/BlocEvent/33-02-P32TOCBODYSTDGETSET.dart';
+import '../bloc/BlocEvent/33-03-P32TOCBODYSTDgetgraph.dart';
+import '../bloc/BlocEvent/33-GetTOCvalue.dart';
 import '../bloc/cubit/POP-searchHistoryChartData.dart';
-import '../model/model.dart';
-import 'P6BALANCEBODYNVC/P6BALANCEBODYNVC.dart';
+import 'P33TOCBODYSTD/P32TOCBODYSTD.dart';
 
-class Page6 extends StatelessWidget {
-  const Page6({Key? key}) : super(key: key);
+class Page33 extends StatelessWidget {
+  const Page33({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Page6BlocTableBody();
+    return Page33BlocTableBody();
   }
 }
 
-class Page6BlocTableBody extends StatelessWidget {
-  const Page6BlocTableBody({
+class Page33BlocTableBody extends StatelessWidget {
+  const Page33BlocTableBody({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => Getbalancevalue_Bloc(),
-        child: BlocBuilder<Getbalancevalue_Bloc, String>(
+        create: (_) => GetTOCvalue_Bloc(),
+        child: BlocBuilder<GetTOCvalue_Bloc, TOCDATAclass>(
           builder: (context, value) {
-            return Page6BlocTableBodySET(
+            return Page33BlocTableBodySET(
               value: value,
             );
           },
@@ -38,20 +36,20 @@ class Page6BlocTableBody extends StatelessWidget {
   }
 }
 
-class Page6BlocTableBodySET extends StatelessWidget {
-  Page6BlocTableBodySET({
+class Page33BlocTableBodySET extends StatelessWidget {
+  Page33BlocTableBodySET({
     Key? key,
     this.value,
   }) : super(key: key);
-  String? value;
+  TOCDATAclass? value;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P6BALANCEBODYNVC_Bloc(),
-        child: BlocBuilder<P6BALANCEBODYNVC_Bloc, String>(
+        create: (_) => P33TOCBODYSTD_Bloc(),
+        child: BlocBuilder<P33TOCBODYSTD_Bloc, String>(
           builder: (context, status) {
-            return Page6BlocTableBodySETGETSET(
+            return Page33BlocTableBodySETGETSET(
               value: value,
               status: status,
             );
@@ -60,52 +58,49 @@ class Page6BlocTableBodySET extends StatelessWidget {
   }
 }
 
-class Page6BlocTableBodySETGETSET extends StatelessWidget {
-  Page6BlocTableBodySETGETSET({
+class Page33BlocTableBodySETGETSET extends StatelessWidget {
+  Page33BlocTableBodySETGETSET({
     Key? key,
     this.value,
     this.status,
   }) : super(key: key);
-  String? value;
+  TOCDATAclass? value;
   String? status;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P6BALANCEBODYNVCGETSET_Bloc(),
-        child: BlocBuilder<P6BALANCEBODYNVCGETSET_Bloc,
-            P6BALANCEBODYNVCGETSETCLASS>(
+        create: (_) => P33TOCBODYSTDGETSET_Bloc(),
+        child: BlocBuilder<P33TOCBODYSTDGETSET_Bloc, P33TOCBODYSTDGETSETCLASS>(
           builder: (context, SET) {
-            return Page6BlocTableBodygetgraph(
+            return Page33BlocTableBodygetgraph(
               value: value,
               SET: SET,
+              status: status,
             );
           },
         ));
   }
 }
 
-//P6BALANCEBODYNVC01getgraph_Bloc
-
-class Page6BlocTableBodygetgraph extends StatelessWidget {
-  Page6BlocTableBodygetgraph({
+class Page33BlocTableBodygetgraph extends StatelessWidget {
+  Page33BlocTableBodygetgraph({
     Key? key,
     this.value,
     this.status,
     this.SET,
   }) : super(key: key);
-  String? value;
+  TOCDATAclass? value;
   String? status;
-  P6BALANCEBODYNVCGETSETCLASS? SET;
+  P33TOCBODYSTDGETSETCLASS? SET;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P6BALANCEBODYNVCgetgraph_Bloc(),
-        child:
-            BlocBuilder<P6BALANCEBODYNVCgetgraph_Bloc, List<HistoryChartModel>>(
+        create: (_) => P33TOCBODYSTDgetgraph_Bloc(),
+        child: BlocBuilder<P33TOCBODYSTDgetgraph_Bloc, List<HistoryChartModel>>(
           builder: (context, historyChartDatain) {
-            return Page6Body(
+            return Page33Body(
               value: value,
               SET: SET,
               historyChartDatain: historyChartDatain,
@@ -115,23 +110,22 @@ class Page6BlocTableBodygetgraph extends StatelessWidget {
   }
 }
 
-class Page6Body extends StatelessWidget {
-  Page6Body({
+class Page33Body extends StatelessWidget {
+  Page33Body({
     Key? key,
     this.value,
     this.SET,
     this.status,
     this.historyChartDatain,
   }) : super(key: key);
-  String? value;
+  TOCDATAclass? value;
   String? status;
-  P6BALANCEBODYNVCGETSETCLASS? SET;
+  P33TOCBODYSTDGETSETCLASS? SET;
   List<HistoryChartModel>? historyChartDatain;
-
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: P6BALANCEBODYNVC(
+      child: P33TOCBODYSTD(
         value: value,
         SET: SET,
         status: status,

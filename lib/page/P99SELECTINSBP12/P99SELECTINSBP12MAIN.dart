@@ -7,6 +7,7 @@ import '../../mainBody.dart';
 import '../page1.dart';
 import '../page11.dart';
 import '../page21.dart';
+import '../page31.dart';
 
 class P99SELECTINSBP12MAIN extends StatefulWidget {
   const P99SELECTINSBP12MAIN({super.key});
@@ -71,10 +72,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  // USERDATA.INSMASTER = 'BP12BALANCE02';
-                  // CuPage = Page1();
-                  // MainBodyContext.read<ChangePage_Bloc>()
-                  //     .add(ChangePage_nodrower());
+                  USERDATA.INSMASTER = 'BP12BALANCE02';
+                  CuPage = Page1();
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -146,45 +147,6 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
         ),
         Column(
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: InkWell(
-            //     onTap: () {
-            //       USERDATA.INSMASTER = 'BP12PH01';
-            //       CuPage = Page11();
-            //       MainBodyContext.read<ChangePage_Bloc>()
-            //           .add(ChangePage_nodrower());
-            //     },
-            //     child: Row(
-            //       children: [
-            //         Container(
-            //           height: 78,
-            //           width: 128.0,
-            //           decoration: const BoxDecoration(
-            //             // color: Colors.white,
-            //             color: Colors.red,
-            //             // image: DecorationImage(
-            //             //   image: AssetImage("assets/images/BP12BA01.jpg"),
-            //             //   fit: BoxFit.fitHeight,
-            //             // ),
-            //           ),
-            //         ),
-            //         SizedBox(
-            //           width: 15,
-            //         ),
-            //         Container(
-            //           height: 50,
-            //           width: 125,
-            //           color: Colors.blue,
-            //           // color: Colors.red,
-            //           child: const Center(
-            //             child: Text("PH Meter(01)"),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
@@ -224,45 +186,131 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: InkWell(
-            //     onTap: () {
-            //       USERDATA.INSMASTER = 'BP12CL01';
-            //       CuPage = Page21();
-            //       MainBodyContext.read<ChangePage_Bloc>()
-            //           .add(ChangePage_nodrower());
-            //     },
-            //     child: Row(
-            //       children: [
-            //         Container(
-            //           height: 78,
-            //           width: 128.0,
-            //           decoration: const BoxDecoration(
-            //             // color: Colors.white,
-            //             color: Colors.red,
-            //             // image: DecorationImage(
-            //             //   image: AssetImage("assets/images/BP12BA01.jpg"),
-            //             //   fit: BoxFit.fitHeight,
-            //             // ),
-            //           ),
-            //         ),
-            //         SizedBox(
-            //           width: 15,
-            //         ),
-            //         Container(
-            //           height: 50,
-            //           width: 125,
-            //           color: Colors.blue,
-            //           // color: Colors.red,
-            //           child: const Center(
-            //             child: Text("Ion Meter(CL01)"),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+          ],
+        ),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  // USERDATA.INSMASTER = 'BP12FF01';
+                  // CuPage = Page21();
+                  // MainBodyContext.read<ChangePage_Bloc>()
+                  //     .add(ChangePage_nodrower());
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: 78,
+                      width: 128.0,
+                      decoration: const BoxDecoration(
+                        // color: Colors.white,
+                        // color: Colors.red,
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/XRF.png"),
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 125,
+                      color: Colors.blue,
+                      // color: Colors.red,
+                      child: const Center(
+                        child: Text("XRF Primus II"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  // USERDATA.INSMASTER = 'BP12PH01';
+                  // CuPage = Page11();
+                  // MainBodyContext.read<ChangePage_Bloc>()
+                  //     .add(ChangePage_nodrower());
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: 78,
+                      width: 128.0,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        // color: Colors.red,
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/TOC.png"),
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 125,
+                      color: Colors.blue,
+                      // color: Colors.red,
+                      child: const Center(
+                        child: Text("TOC"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  // USERDATA.INSMASTER = 'BP12ICP01';
+                  // CuPage = Page31();
+                  // MainBodyContext.read<ChangePage_Bloc>()
+                  //     .add(ChangePage_nodrower());
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: 78,
+                      width: 128.0,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        // color: Colors.red,
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/ICP.png"),
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 125,
+                      color: Colors.blue,
+                      // color: Colors.red,
+                      child: const Center(
+                        child: Text("ICP Perkin"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ],

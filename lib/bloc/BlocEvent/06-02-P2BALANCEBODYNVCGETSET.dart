@@ -4,42 +4,42 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
 
-import '../../page/P5BALANCEBODYCW3L/P5BALANCEBODYCW3L.dart';
+import '../../page/P6BALANCEBODYNVC/P6BALANCEBODYNVC.dart';
 import '../../widget/common/Loading.dart';
 
 //-------------------------------------------------
 
-abstract class P5BALANCEBODYCW3LGETSET_Event {}
+abstract class P6BALANCEBODYNVCGETSET_Event {}
 
-class P5BALANCEBODYCW3LGETSET_GET extends P5BALANCEBODYCW3LGETSET_Event {}
+class P6BALANCEBODYNVCGETSET_GET extends P6BALANCEBODYNVCGETSET_Event {}
 
-class P5BALANCEBODYCW3LGETSET_SET extends P5BALANCEBODYCW3LGETSET_Event {}
+class P6BALANCEBODYNVCGETSET_SET extends P6BALANCEBODYNVCGETSET_Event {}
 
-class flush extends P5BALANCEBODYCW3LGETSET_Event {}
+class flush extends P6BALANCEBODYNVCGETSET_Event {}
 
-class P5BALANCEBODYCW3LGETSET_Bloc
-    extends Bloc<P5BALANCEBODYCW3LGETSET_Event, P5BALANCEBODYCW3LGETSETCLASS> {
-  P5BALANCEBODYCW3LGETSET_Bloc() : super(P5BALANCEBODYCW3LGETSETCLASS()) {
-    on<P5BALANCEBODYCW3LGETSET_GET>((event, emit) {
-      return _P5BALANCEBODYCW3LGETSET_GET(P5BALANCEBODYCW3LGETSETCLASS(), emit);
+class P6BALANCEBODYNVCGETSET_Bloc
+    extends Bloc<P6BALANCEBODYNVCGETSET_Event, P6BALANCEBODYNVCGETSETCLASS> {
+  P6BALANCEBODYNVCGETSET_Bloc() : super(P6BALANCEBODYNVCGETSETCLASS()) {
+    on<P6BALANCEBODYNVCGETSET_GET>((event, emit) {
+      return _P6BALANCEBODYNVCGETSET_GET(P6BALANCEBODYNVCGETSETCLASS(), emit);
     });
-    on<P5BALANCEBODYCW3LGETSET_SET>((event, emit) {
-      return _P5BALANCEBODYCW3LGETSET_SET(P5BALANCEBODYCW3LGETSETCLASS(), emit);
+    on<P6BALANCEBODYNVCGETSET_SET>((event, emit) {
+      return _P6BALANCEBODYNVCGETSET_SET(P6BALANCEBODYNVCGETSETCLASS(), emit);
     });
     on<flush>((event, emit) {
-      return _flush(P5BALANCEBODYCW3LGETSETCLASS(), emit);
+      return _flush(P6BALANCEBODYNVCGETSETCLASS(), emit);
     });
   }
-  Future<void> _P5BALANCEBODYCW3LGETSET_GET(P5BALANCEBODYCW3LGETSETCLASS toAdd,
-      Emitter<P5BALANCEBODYCW3LGETSETCLASS> emit) async {
-    P5BALANCEBODYCW3LGETSETCLASS output = P5BALANCEBODYCW3LGETSETCLASS();
+  Future<void> _P6BALANCEBODYNVCGETSET_GET(P6BALANCEBODYNVCGETSETCLASS toAdd,
+      Emitter<P6BALANCEBODYNVCGETSETCLASS> emit) async {
+    P6BALANCEBODYNVCGETSETCLASS output = P6BALANCEBODYNVCGETSETCLASS();
 
-    FreeLoading(P5BALANCEBODYCW3Lcontext);
+    FreeLoading(P6BALANCEBODYNVCcontext);
 
     final response = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/GETREGISTERSET_${USERDATA.INSMASTER}',
       data: {
-        "collection": "BALANCEdataCoatingweight3L",
+        "collection": "BALANCEdataNVC",
       },
     );
 
@@ -79,18 +79,27 @@ class P5BALANCEBODYCW3LGETSET_Bloc
               ? databuff[0]['data01']['W31'].toString()
               : '';
         }
-        if (databuff[0]['data01'] != null) {
-          output.D01W41 = databuff[0]['data01']['W41'] != null
-              ? databuff[0]['data01']['W41'].toString()
+        if (databuff[0]['data02'] != null) {
+          output.D02W11 = databuff[0]['data02']['W11'] != null
+              ? databuff[0]['data02']['W11'].toString()
               : '';
         }
-        if (databuff[0]['data01_area'] != null) {
-          output.D01area = databuff[0]['data01_area']['area'] != null
-              ? databuff[0]['data01_area']['area'].toString()
+        if (databuff[0]['data02'] != null) {
+          output.D02W21 = databuff[0]['data02']['W21'] != null
+              ? databuff[0]['data02']['W21'].toString()
+              : '';
+        }
+        if (databuff[0]['data02'] != null) {
+          output.D02W31 = databuff[0]['data02']['W31'] != null
+              ? databuff[0]['data02']['W31'].toString()
               : '';
         }
         output.D01NOitem = databuff[0]['D01NOitem'] != null
             ? databuff[0]['D01NOitem'].toString()
+            : '';
+
+        output.D02NOitem = databuff[0]['D02NOitem'] != null
+            ? databuff[0]['D02NOitem'].toString()
             : '';
 
         // if (databuff[0]['data02'] != null) {
@@ -127,28 +136,28 @@ class P5BALANCEBODYCW3LGETSET_Bloc
       }
     }
 
-    Navigator.pop(P5BALANCEBODYCW3Lcontext);
+    Navigator.pop(P6BALANCEBODYNVCcontext);
     emit(output);
   }
 
 //34
 //19
-  Future<void> _P5BALANCEBODYCW3LGETSET_SET(P5BALANCEBODYCW3LGETSETCLASS toAdd,
-      Emitter<P5BALANCEBODYCW3LGETSETCLASS> emit) async {
-    P5BALANCEBODYCW3LGETSETCLASS output = P5BALANCEBODYCW3LGETSETCLASS();
+  Future<void> _P6BALANCEBODYNVCGETSET_SET(P6BALANCEBODYNVCGETSETCLASS toAdd,
+      Emitter<P6BALANCEBODYNVCGETSETCLASS> emit) async {
+    P6BALANCEBODYNVCGETSETCLASS output = P6BALANCEBODYNVCGETSETCLASS();
 
     emit(output);
   }
 
-  Future<void> _flush(P5BALANCEBODYCW3LGETSETCLASS toAdd,
-      Emitter<P5BALANCEBODYCW3LGETSETCLASS> emit) async {
-    P5BALANCEBODYCW3LGETSETCLASS output = P5BALANCEBODYCW3LGETSETCLASS();
+  Future<void> _flush(P6BALANCEBODYNVCGETSETCLASS toAdd,
+      Emitter<P6BALANCEBODYNVCGETSETCLASS> emit) async {
+    P6BALANCEBODYNVCGETSETCLASS output = P6BALANCEBODYNVCGETSETCLASS();
     emit(output);
   }
 }
 
-class P5BALANCEBODYCW3LGETSETCLASS {
-  P5BALANCEBODYCW3LGETSETCLASS({
+class P6BALANCEBODYNVCGETSETCLASS {
+  P6BALANCEBODYNVCGETSETCLASS({
     this.ReqNo = '',
     this.InstrumentName = '',
     this.CustShort = '',
@@ -156,10 +165,14 @@ class P5BALANCEBODYCW3LGETSETCLASS {
     this.D01W11 = '',
     this.D01W21 = '',
     this.D01W31 = '',
-    this.D01W41 = '',
+    this.D02W11 = '',
+    this.D02W21 = '',
+    this.D02W31 = '',
     this.D01area = '',
     this.D01ANS = '',
+    this.D02ANS = '',
     this.D01NOitem = '',
+    this.D02NOitem = '',
     // this.D02W11 = '',
     // this.D02W21 = '',
     // this.D02area = '',
@@ -179,10 +192,16 @@ class P5BALANCEBODYCW3LGETSETCLASS {
   String D01W11;
   String D01W21;
   String D01W31;
-  String D01W41;
+
+  String D02W11;
+  String D02W21;
+  String D02W31;
+
   String D01area;
   String D01ANS;
+  String D02ANS;
   String D01NOitem;
+  String D02NOitem;
   // String D02W11;
   // String D02W21;
   // String D02area;

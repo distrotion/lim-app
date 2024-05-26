@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/BlocEvent/01-01-P1BALANCEREQGET.dart';
-import '../../bloc/BlocEvent/01-02-P1BALANCEREQGETSTR.dart';
+import '../../bloc/BlocEvent/31-01-P31ICPGETDATA.dart';
+import '../../bloc/BlocEvent/31-02-P31ICPREQGETSTR.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../data/dummydata.dart';
 import '../../data/global.dart';
@@ -10,14 +10,13 @@ import '../../mainBody.dart';
 import '../../model/model.dart';
 import '../P2BALANCEBODYCW/P2BALANCEBODYCWVAR.dart';
 import '../P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEVAR.dart';
-import '../P5BALANCEBODYCW3L/P5BALANCEBODYCW3LVAR.dart';
 import '../page1.dart';
 import '../page100.dart';
 import '../page99.dart';
-import 'TABLE/P1BALANCEREQTABLE.dart';
+import 'TABLE/P31ICPREQTABLE.dart';
 
-class P1BALANCEREQMAIN extends StatefulWidget {
-  P1BALANCEREQMAIN({
+class P31ICPREQMAIN extends StatefulWidget {
+  P31ICPREQMAIN({
     super.key,
     this.data,
     this.str,
@@ -26,19 +25,18 @@ class P1BALANCEREQMAIN extends StatefulWidget {
   String? str;
 
   @override
-  State<P1BALANCEREQMAIN> createState() => _P1BALANCEREQMAINState();
+  State<P31ICPREQMAIN> createState() => _P31ICPREQMAINState();
 }
 
-class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
+class _P31ICPREQMAINState extends State<P31ICPREQMAIN> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<P1BALANCEREQGET_Bloc>().add(GETDATALISTFROMSAR());
-    context.read<P1BALANCEREQGETSTR_Bloc>().add(P1BALANCEREQGETSTR_ROOM());
-    reserall_P4BALANCEBODYSLUDGEVAR();
-    reserall_P2BALANCEBODYCWVAR();
-    reserall_P5BALANCEBODYCW3LVAR();
+    context.read<P31ICPREQGET_Bloc>().add(GETDATALISTFROMSAR());
+    context.read<P31ICPREQGETSTR_Bloc>().add(P31ICPREQGETSTR_ROOM());
+    // reserall_P4BALANCEBODYSLUDGEVAR();
+    // reserall_P2BALANCEBODYCWVAR();
   }
 
   @override
@@ -149,8 +147,8 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<P1BALANCEREQGETSTR_Bloc>()
-                                          .add(P1BALANCEREQGETSTR_ROOM());
+                                          .read<P31ICPREQGETSTR_Bloc>()
+                                          .add(P31ICPREQGETSTR_ROOM());
                                     },
                                     child: Container(
                                       height: 20,
@@ -170,11 +168,11 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<P1BALANCEREQGETSTR_Bloc>()
-                                          .add(P1BALANCEREQGETSTR_CLEARROOM());
+                                          .read<P31ICPREQGETSTR_Bloc>()
+                                          .add(P31ICPREQGETSTR_CLEARROOM());
                                       context
-                                          .read<P1BALANCEREQGETSTR_Bloc>()
-                                          .add(P1BALANCEREQGETSTR_ROOM());
+                                          .read<P31ICPREQGETSTR_Bloc>()
+                                          .add(P31ICPREQGETSTR_ROOM());
                                     },
                                     child: Container(
                                       height: 20,
@@ -212,7 +210,7 @@ class _P1BALANCEREQMAINState extends State<P1BALANCEREQMAIN> {
                   border: Border.all(color: Colors.black),
                   borderRadius: const BorderRadius.all(Radius.circular(0)),
                 ),
-                child: P1BALANCEREQTABLE(sardata: widget.data),
+                child: P31ICPREQTABLE(sardata: widget.data),
               ),
             ),
           )

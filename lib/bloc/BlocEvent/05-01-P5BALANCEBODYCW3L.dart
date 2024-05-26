@@ -83,7 +83,7 @@ class P5BALANCEBODYCW3L_Bloc extends Bloc<P5BALANCEBODYCW3L_Event, String> {
       '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
-        "TYPE": "02SARBALANCECW",
+        "TYPE": "05SARBALANCECW3L",
         "FUNCTION": "UPDATEDATAWEIGHT",
         "WX": P5BALANCEBODYCW3LVAR.WX
       },
@@ -101,7 +101,7 @@ class P5BALANCEBODYCW3L_Bloc extends Bloc<P5BALANCEBODYCW3L_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "02SARBALANCECW",
+        "TYPE": "05SARBALANCECW3L",
         "FUNCTION": "DELETEDATAW11",
         "DX": P5BALANCEBODYCW3LVAR.DX,
       },
@@ -113,18 +113,22 @@ class P5BALANCEBODYCW3L_Bloc extends Bloc<P5BALANCEBODYCW3L_Event, String> {
   Future<void> _P5BALANCEBODYCW3L_CAL(
       String toAdd, Emitter<String> emit) async {
     String output = '';
-    print("------------>");
+    print("------------>xxxxxx");
     final responseR = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "02SARBALANCECW",
+        "TYPE": "05SARBALANCECW3L",
         "FUNCTION": "UPDATEDATAAREA",
         "D01NOitem": P5BALANCEBODYCW3LVAR.D01NOitem,
         "areaE01": P5BALANCEBODYCW3LVAR.D01area,
         "Result01": P5BALANCEBODYCW3LVAR.Result01,
+        "Result02": P5BALANCEBODYCW3LVAR.Result02,
+        "Result03": P5BALANCEBODYCW3LVAR.Result03,
         "D01W11_21": P5BALANCEBODYCW3LVAR.D01W11_21,
+        "D01W21_31": P5BALANCEBODYCW3LVAR.D01W21_31,
+        "D01W31_41": P5BALANCEBODYCW3LVAR.D01W31_41,
       },
     );
 
@@ -140,21 +144,26 @@ class P5BALANCEBODYCW3L_Bloc extends Bloc<P5BALANCEBODYCW3L_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "02SARBALANCECW",
+        "TYPE": "05SARBALANCECW3L",
         "FUNCTION": "UPDATEDATAAREA",
         "D01NOitem": P5BALANCEBODYCW3LVAR.D01NOitem,
         "areaE01": P5BALANCEBODYCW3LVAR.D01area,
         "Result01": P5BALANCEBODYCW3LVAR.Result01,
+        "Result02": P5BALANCEBODYCW3LVAR.Result02,
+        "Result03": P5BALANCEBODYCW3LVAR.Result03,
         "D01W11_21": P5BALANCEBODYCW3LVAR.D01W11_21,
+        "D01W21_31": P5BALANCEBODYCW3LVAR.D01W21_31,
+        "D01W31_41": P5BALANCEBODYCW3LVAR.D01W31_41,
       },
     ).then((value) async {
       final response = await Dio().post(
-        '${selectBLANCE(USERDATA.Branch)}/TEMPSAVETOSAR_CW',
+        '${selectBLANCE(USERDATA.Branch)}/TEMPSAVETOSAR_CW3L',
         data: {
           "USER": USERDATA.NAME,
           "Branch": USERDATA.Branch,
           "REQNO": P5BALANCEBODYCW3LVAR.ReqNo,
           "UID": P5BALANCEBODYCW3LVAR.UID,
+          "D01NOitem": P5BALANCEBODYCW3LVAR.D01NOitem,
         },
       );
       if (response.statusCode == 200) {

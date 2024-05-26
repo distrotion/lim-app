@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/BlocEvent/01-Getbalancevalue.dart';
 import '../../bloc/BlocEvent/05-01-P5BALANCEBODYCW3L.dart';
 import '../../bloc/BlocEvent/05-02-P5BALANCEBODYCW3LGETSET.dart';
 import '../../bloc/BlocEvent/05-03-P2BALANCEBODYCW3Lgetgraph.dart';
@@ -14,6 +15,7 @@ import '../../mainBody.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
+import '../../widget/common/popup.dart';
 import '../page1.dart';
 import 'P5BALANCEBODYCW3LVAR.dart';
 
@@ -41,7 +43,7 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<GetPHvalue_Bloc>().add(GetPHvalue_Get());
+    context.read<Getbalancevalue_Bloc>().add(Getbalancevalue_Get());
     context
         .read<P5BALANCEBODYCW3LGETSET_Bloc>()
         .add(P5BALANCEBODYCW3LGETSET_GET());
@@ -67,6 +69,8 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
 
     P5BALANCEBODYCW3LVAR.D01W11 = dataset.D01W11;
     P5BALANCEBODYCW3LVAR.D01W21 = dataset.D01W21;
+    P5BALANCEBODYCW3LVAR.D01W31 = dataset.D01W31;
+    P5BALANCEBODYCW3LVAR.D01W41 = dataset.D01W41;
 
     P5BALANCEBODYCW3LVAR.SamplingDate = _monthreplce(dataset.SamplingDate);
     P5BALANCEBODYCW3LVAR.DueDate1 = _monthreplce(dataset.DueDate1);
@@ -93,10 +97,10 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
           .read<P5BALANCEBODYCW3Lgetgraph_Bloc>()
           .add(P5BALANCEBODYCW3Lgetgraph_get());
       P5BALANCEBODYCW3LVAR.mem = '';
-      print("+++++++++++++++++++");
+      // print("+++++++++++++++++++");
     }
 
-    print(_historyChartData);
+    // print(_historyChartData);
     return SizedBox(
       width: 1000,
       child: SingleChildScrollView(
@@ -250,8 +254,8 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                             onTap: () {
                               //
                               context
-                                  .read<GetPHvalue_Bloc>()
-                                  .add(GetPHvalue_Get());
+                                  .read<Getbalancevalue_Bloc>()
+                                  .add(Getbalancevalue_Get());
                             },
                             child: Container(
                               height: 40,
@@ -270,8 +274,8 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                               //     .read<P5BALANCEBODYCW3L_Bloc>()
                               //     .add(P5BALANCEBODYCW3L_SETDATA());
                               context
-                                  .read<GetPHvalue_Bloc>()
-                                  .add(GetPHvalue_Get());
+                                  .read<Getbalancevalue_Bloc>()
+                                  .add(Getbalancevalue_Get());
                               context
                                   .read<P5BALANCEBODYCW3L_Bloc>()
                                   .add(P5BALANCEBODYCW3L_SETDATA());
@@ -572,6 +576,198 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                                 SizedBox(
                                   width: 250,
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P5BALANCEBODYCW3LVAR.WX = 'D01W31';
+                                          });
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P5BALANCEBODYCW3LVAR.WX ==
+                                                  'D01W31'
+                                              ? Colors.yellowAccent
+                                              : (P5BALANCEBODYCW3LVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("W3 (g)"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 95,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child: Text(
+                                                P5BALANCEBODYCW3LVAR.D01W31)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // context
+                                          //     .read<P5BALANCEBODYCW3L_Bloc>()
+                                          //     .add(
+                                          //         P5BALANCEBODYCW3L_Bloc_CLEARW11());
+                                          // context
+                                          //     .read<GetPHvalue_Bloc>()
+                                          //     .add(GetPHvalue_Get());
+                                          P5BALANCEBODYCW3LVAR.DX = 'D01W31';
+                                          context
+                                              .read<P5BALANCEBODYCW3L_Bloc>()
+                                              .add(
+                                                  P5BALANCEBODYCW3L_CLEARW11());
+                                          onLoadingFAKE(context);
+                                          Future.delayed(
+                                              const Duration(
+                                                  milliseconds: 2000), () {
+                                            context
+                                                .read<
+                                                    P5BALANCEBODYCW3LGETSET_Bloc>()
+                                                .add(
+                                                    P5BALANCEBODYCW3LGETSET_GET());
+
+                                            setState(() {
+                                              setState(() {
+                                                P5BALANCEBODYCW3LVAR.Result01 =
+                                                    '';
+                                              });
+                                            });
+                                          });
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 60,
+                                          color: P5BALANCEBODYCW3LVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 250,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P5BALANCEBODYCW3LVAR.WX = 'D01W41';
+                                          });
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P5BALANCEBODYCW3LVAR.WX ==
+                                                  'D01W41'
+                                              ? Colors.yellowAccent
+                                              : (P5BALANCEBODYCW3LVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("W4 (g)"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 95,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child: Text(
+                                                P5BALANCEBODYCW3LVAR.D01W41)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // context
+                                          //     .read<P5BALANCEBODYCW3L_Bloc>()
+                                          //     .add(
+                                          //         P5BALANCEBODYCW3L_Bloc_CLEARW11());
+                                          // context
+                                          //     .read<GetPHvalue_Bloc>()
+                                          //     .add(GetPHvalue_Get());
+                                          P5BALANCEBODYCW3LVAR.DX = 'D01W41';
+                                          context
+                                              .read<P5BALANCEBODYCW3L_Bloc>()
+                                              .add(
+                                                  P5BALANCEBODYCW3L_CLEARW11());
+                                          onLoadingFAKE(context);
+                                          Future.delayed(
+                                              const Duration(
+                                                  milliseconds: 2000), () {
+                                            context
+                                                .read<
+                                                    P5BALANCEBODYCW3LGETSET_Bloc>()
+                                                .add(
+                                                    P5BALANCEBODYCW3LGETSET_GET());
+
+                                            setState(() {
+                                              setState(() {
+                                                P5BALANCEBODYCW3LVAR.Result01 =
+                                                    '';
+                                              });
+                                            });
+                                          });
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 60,
+                                          color: P5BALANCEBODYCW3LVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 250,
+                                  child: Row(
                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
@@ -644,74 +840,74 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                       ],
                     ),
 
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            children: [
-                              if (P5BALANCEBODYCW3LVAR.dip12 != '') ...[
-                                Container(
-                                  height: 40,
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      "dip 1-2 : " + P5BALANCEBODYCW3LVAR.dip12,
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              if (P5BALANCEBODYCW3LVAR.dip13 != '') ...[
-                                Container(
-                                  height: 40,
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      "dip 1-3 : " + P5BALANCEBODYCW3LVAR.dip13,
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 40,
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      "dip 2-3 : " + P5BALANCEBODYCW3LVAR.dip23,
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: P5BALANCEBODYCW3LVAR.dip13 != ''
-                                  ? 120
-                                  : P5BALANCEBODYCW3LVAR.dip12 != ''
-                                      ? 40
-                                      : 0,
-                              color: Colors.amber,
-                              child: const Center(
-                                child: Text(
-                                  "RECAL",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    // Row(
+                    //   children: [
+                    // Expanded(
+                    //   flex: 2,
+                    //   child: Column(
+                    //     children: [
+                    //       if (P5BALANCEBODYCW3LVAR.dip12 != '') ...[
+                    //         Container(
+                    //           height: 40,
+                    //           color: Colors.green,
+                    //           child: Center(
+                    //             child: Text(
+                    //               "dip 1-2 : " + P5BALANCEBODYCW3LVAR.dip12,
+                    //               style: TextStyle(color: Colors.white),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //       if (P5BALANCEBODYCW3LVAR.dip13 != '') ...[
+                    //         Container(
+                    //           height: 40,
+                    //           color: Colors.green,
+                    //           child: Center(
+                    //             child: Text(
+                    //               "dip 1-3 : " + P5BALANCEBODYCW3LVAR.dip13,
+                    //               style: TextStyle(color: Colors.white),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           height: 40,
+                    //           color: Colors.green,
+                    //           child: Center(
+                    //             child: Text(
+                    //               "dip 2-3 : " + P5BALANCEBODYCW3LVAR.dip23,
+                    //               style: TextStyle(color: Colors.white),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ],
+                    //   ),
+                    // ),
+                    // Expanded(
+                    //   flex: 1,
+                    //   child: InkWell(
+                    //     onTap: () {},
+                    //     child: Container(
+                    //       height: P5BALANCEBODYCW3LVAR.dip13 != ''
+                    //           ? 120
+                    //           : P5BALANCEBODYCW3LVAR.dip12 != ''
+                    //               ? 40
+                    //               : 0,
+                    //       color: Colors.amber,
+                    //       child: const Center(
+                    //         child: Text(
+                    //           "RECAL",
+                    //           style: TextStyle(color: Colors.white),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    //   ],
+                    // ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
                     // InkWell(
                     //   onTap: () {
                     //     // print(ConverstStr(P5BALANCEBODYCW3LVAR.area));
@@ -751,42 +947,6 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                       children: [
                         Expanded(
                           flex: 1,
-                          // child: Container(
-                          //   height: 62,
-                          //   color: Colors.blue.shade300,
-                          //   child: Column(
-                          //     children: [
-                          //       const SizedBox(
-                          //         height: 5,
-                          //       ),
-                          //       const Center(child: Text('AREA')),
-                          //       Row(
-                          //         mainAxisAlignment:
-                          //             MainAxisAlignment.spaceAround,
-                          //         children: [
-                          //           ComInputText(
-                          //             isNumberOnly: true,
-                          //             isEnabled:
-                          //                 P5BALANCEBODYCW3LVAR.Result == '',
-                          //             width: 100,
-                          //             height: 40,
-                          //             isContr: P5BALANCEBODYCW3LVAR.iscontrol,
-                          //             fnContr: (input) {
-                          //               setState(() {
-                          //                 P5BALANCEBODYCW3LVAR.iscontrol = input;
-                          //               });
-                          //             },
-                          //             sValue: P5BALANCEBODYCW3LVAR.area,
-                          //             returnfunc: (String s) {
-                          //               P5BALANCEBODYCW3LVAR.area = s;
-                          //             },
-                          //           ),
-                          //           Text("cm2")
-                          //         ],
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                           child: InkWell(
                             onTap: () {
                               print(ConverstStr(P5BALANCEBODYCW3LVAR.D01area));
@@ -867,17 +1027,199 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                     const SizedBox(
                       height: 5,
                     ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              print(ConverstStr(P5BALANCEBODYCW3LVAR.D01area));
+
+                              context
+                                  .read<P5BALANCEBODYCW3L_Bloc>()
+                                  .add(P5BALANCEBODYCW3L_CAL());
+                              if (P5BALANCEBODYCW3LVAR.Result02 == '') {
+                                setState(() {
+                                  if (P5BALANCEBODYCW3LVAR.D01W21 != '' &&
+                                      P5BALANCEBODYCW3LVAR.D01W31 != '' &&
+                                      P5BALANCEBODYCW3LVAR.D01area != '') {
+                                    P5BALANCEBODYCW3LVAR
+                                        .Result02 = ((double.parse(ConverstStr(
+                                                    P5BALANCEBODYCW3LVAR
+                                                        .D01W21)) -
+                                                double.parse(ConverstStr(
+                                                    P5BALANCEBODYCW3LVAR
+                                                        .D01W31))) /
+                                            double.parse(ConverstStr(
+                                                P5BALANCEBODYCW3LVAR.D01area)) *
+                                            10000)
+                                        .toStringAsFixed(2);
+
+                                    P5BALANCEBODYCW3LVAR
+                                        .D01W21_31 = (double.parse(ConverstStr(
+                                                P5BALANCEBODYCW3LVAR.D01W21)) -
+                                            double.parse(ConverstStr(
+                                                P5BALANCEBODYCW3LVAR.D01W31)))
+                                        .toStringAsFixed(4);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P5BALANCEBODYCW3LVAR.Result02 = '';
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 62,
+                              color: P5BALANCEBODYCW3LVAR.Result02 == ''
+                                  ? Colors.orange
+                                  : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P5BALANCEBODYCW3LVAR.Result02 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text(
+                                      'RESULT02 ${P5BALANCEBODYCW3LVAR.Result02}'),
+                                )),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              print(ConverstStr(P5BALANCEBODYCW3LVAR.D01area));
+
+                              context
+                                  .read<P5BALANCEBODYCW3L_Bloc>()
+                                  .add(P5BALANCEBODYCW3L_CAL());
+                              if (P5BALANCEBODYCW3LVAR.Result03 == '') {
+                                setState(() {
+                                  if (P5BALANCEBODYCW3LVAR.D01W31 != '' &&
+                                      P5BALANCEBODYCW3LVAR.D01W41 != '' &&
+                                      P5BALANCEBODYCW3LVAR.D01area != '') {
+                                    P5BALANCEBODYCW3LVAR
+                                        .Result03 = ((double.parse(ConverstStr(
+                                                    P5BALANCEBODYCW3LVAR
+                                                        .D01W31)) -
+                                                double.parse(ConverstStr(
+                                                    P5BALANCEBODYCW3LVAR
+                                                        .D01W41))) /
+                                            double.parse(ConverstStr(
+                                                P5BALANCEBODYCW3LVAR.D01area)) *
+                                            10000)
+                                        .toStringAsFixed(2);
+
+                                    P5BALANCEBODYCW3LVAR
+                                        .D01W31_41 = (double.parse(ConverstStr(
+                                                P5BALANCEBODYCW3LVAR.D01W31)) -
+                                            double.parse(ConverstStr(
+                                                P5BALANCEBODYCW3LVAR.D01W41)))
+                                        .toStringAsFixed(4);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P5BALANCEBODYCW3LVAR.Result03 = '';
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 62,
+                              color: P5BALANCEBODYCW3LVAR.Result03 == ''
+                                  ? Colors.orange
+                                  : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P5BALANCEBODYCW3LVAR.Result03 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text(
+                                      'RESULT03 ${P5BALANCEBODYCW3LVAR.Result03}'),
+                                )),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     InkWell(
                       onTap: () {
                         // CuPage = Page1();
                         // MainBodyContext.read<ChangePage_Bloc>()
                         //     .add(ChangePage_nodrower());
+                        // if (P5BALANCEBODYCW3LVAR.Result01 != '' &&
+                        //     P5BALANCEBODYCW3LVAR.Result02 != '' &&
+                        //     P5BALANCEBODYCW3LVAR.Result03 != '') {
                         context
                             .read<P5BALANCEBODYCW3L_Bloc>()
                             .add(P5BALANCEBODYCW3L_CAL());
                         context
                             .read<P5BALANCEBODYCW3L_Bloc>()
                             .add(P5BALANCEBODYCW3L_TEMP_SAVE());
+                        // } else {
+                        //   WORNINGpop(
+                        //     context,
+                        //     [
+                        //       "DATA NOT COMPLETE",
+                        //       "PLEASE CHECK",
+                        //     ],
+                        //     100,
+                        //     100,
+                        //   );
+                        // }
                       },
                       child: Container(
                         height: 62,
@@ -907,6 +1249,27 @@ class _P5BALANCEBODYCW3LState extends State<P5BALANCEBODYCW3L> {
                         // context
                         //     .read<P5BALANCEBODYCW3L_Bloc>()
                         //     .add(P5BALANCEBODYCW3L_Bloc_SEND_TO_SAR());
+                        // } else {
+                        //   WORNINGpop(
+                        //     context,
+                        //     [
+                        //       "DATA NOT COMPLETE",
+                        //       "PLEASE CHECK",
+                        //     ],
+                        //     100,
+                        //     100,
+                        //   );
+                        // }
+
+                        // if (P5BALANCEBODYCW3LVAR.Result01 != '' &&
+                        //     P5BALANCEBODYCW3LVAR.Result02 != '' &&
+                        //     P5BALANCEBODYCW3LVAR.Result03 != '') {
+                        //   context
+                        //       .read<P5BALANCEBODYCW3L_Bloc>()
+                        //       .add(P5BALANCEBODYCW3L_CAL());
+                        //   context
+                        //       .read<P5BALANCEBODYCW3L_Bloc>()
+                        //       .add(P5BALANCEBODYCW3L_TEMP_SAVE());
                         // } else {
                         //   WORNINGpop(
                         //     context,
@@ -1157,6 +1520,7 @@ class _LineChart extends StatelessWidget {
 
     return LineChart(
       chartData,
+
       // LineChartData(),
       // swapAnimationDuration: const Duration(milliseconds: 250),
     );

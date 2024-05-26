@@ -1,4 +1,4 @@
-class P5BALANCEBODYCW3LVAR {
+class P6BALANCEBODYNVCVAR {
   static bool iscontrol = true;
   static String ReqNo = '';
   static String TYPE = '';
@@ -6,14 +6,17 @@ class P5BALANCEBODYCW3LVAR {
   static String D01W11 = '';
   static String D01W21 = '';
   static String D01W31 = '';
-  static String D01W41 = '';
-  static String D01W11_21 = '';
-  static String D01W21_31 = '';
-  static String D01W31_41 = '';
+  static String D01ANS = '';
+
+  static String D02W11 = '';
+  static String D02W21 = '';
+  static String D02W31 = '';
+  static String D02ANS = '';
 
   static String D01area = '';
 
   static String D01NOitem = '';
+  static String D02NOitem = '';
 
   static String WX = '';
   static String DX = '';
@@ -22,7 +25,6 @@ class P5BALANCEBODYCW3LVAR {
 
   static String Result01 = '';
   static String Result02 = '';
-  static String Result03 = '';
 
   static String SPEChi = '';
   static String SPEClow = '';
@@ -106,10 +108,14 @@ class P5BALANCEBODYCW3LVAR {
   static String mem = '-';
 }
 
-reserall_P5BALANCEBODYCW3LVAR() {
-  P5BALANCEBODYCW3LVAR.D01W11 = '';
-  P5BALANCEBODYCW3LVAR.D01W21 = '';
-  P5BALANCEBODYCW3LVAR.D01W11_21 = '';
-  P5BALANCEBODYCW3LVAR.D01area = '';
-  P5BALANCEBODYCW3LVAR.D01NOitem = '';
+reserall_P6BALANCEBODYNVCVAR() {
+  P6BALANCEBODYNVCVAR.D01W11 = '';
+  P6BALANCEBODYNVCVAR.D01W21 = '';
+  P6BALANCEBODYNVCVAR.D01W31 = '';
+  P6BALANCEBODYNVCVAR.D02W11 = '';
+  P6BALANCEBODYNVCVAR.D02W21 = '';
+  P6BALANCEBODYNVCVAR.D02W31 = '';
+  P6BALANCEBODYNVCVAR.D02ANS = '';
+  P6BALANCEBODYNVCVAR.D01area = '';
+  P6BALANCEBODYNVCVAR.D01NOitem = '';
 }
