@@ -196,22 +196,17 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "TYPE : ${P42XRFBODYSTDVAR.InstrumentName}"),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
                                       "CustFull : ${P42XRFBODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "ItemName : ${P42XRFBODYSTDVAR.itemName}"),
+                                      "Sample Type : ${P42XRFBODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Dilition time : ${P42XRFBODYSTDVAR.Mag}"),
+                                      "Item Name : ${P42XRFBODYSTDVAR.itemName}"),
                                 ),
 
                                 //P42XRFBODYSTDVAR.itemName
@@ -236,14 +231,19 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Sampling Name : ${P42XRFBODYSTDVAR.SampleName}"),
+                                      "Sampling Type : ${P42XRFBODYSTDVAR.SampleName}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "Position : ${P42XRFBODYSTDVAR.Mag}"),
                                 ),
                               ],
                             ),
                           ),
+
                           // Row(
                           //   children: [
-
                           //   ],
                           // ),
                           // Row(
@@ -271,7 +271,10 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text("preview XRF #1"),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("XRF #1"),
+                              ),
                               Container(
                                 width: 150,
                                 height: 40,
@@ -295,7 +298,10 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text("preview XRF #2"),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("XRF #2"),
+                              ),
                               Container(
                                 width: 150,
                                 height: 40,
@@ -312,28 +318,7 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                         ),
                       ],
                     ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
-                    // SizedBox(
-                    //   height: 40,
-                    //   // color: Colors.red,
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //     children: [
-                    //       const Text("preview TM"),
-                    //       Container(
-                    //         width: 150,
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //           // color: Colors.black,
-                    //           border: Border.all(color: Colors.blue, width: 2),
-                    //         ),
-                    //         child: Center(child: Text(P42XRFBODYSTDVAR.temp)),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
+
                     const SizedBox(
                       height: 15,
                     ),
@@ -561,6 +546,7 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                                 ),
                               ],
                             ),
+
                             // const SizedBox(
                             //   height: 5,
                             // ),
@@ -577,7 +563,6 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                             //               setState(() {
                             //                 P42XRFBODYSTDVAR.WX = 'D01W11';
                             //               });
-
                             //               context
                             //                   .read<GetPHvalue_Bloc>()
                             //                   .add(GetPHvalue_Get());
@@ -622,7 +607,6 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                             //                 context
                             //                     .read<P42XRFBODYSTDGETSET_Bloc>()
                             //                     .add(P42XRFBODYSTDGETSET_GET());
-
                             //                 setState(() {
                             //                   setState(() {
                             //                     P42XRFBODYSTDVAR.Result01 = '';
@@ -647,6 +631,7 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                             //     ),
                             //   ],
                             // ),
+
                             const SizedBox(
                               height: 5,
                             ),

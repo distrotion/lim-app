@@ -82,7 +82,7 @@ class P33TOCBODYSTD_Bloc extends Bloc<P33TOCBODYSTD_Event, String> {
       '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
-        "TYPE": "36SARTOCSTD",
+        "TYPE": "37SARTOCSTD",
         "FUNCTION": "UPDATEDATAPPM",
         "WX": "ALL"
       },
@@ -100,7 +100,7 @@ class P33TOCBODYSTD_Bloc extends Bloc<P33TOCBODYSTD_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "36SARTOCSTD",
+        "TYPE": "37SARTOCSTD",
         "FUNCTION": "DELETEDATAW11",
         "DX": P33TOCBODYSTDVAR.DX,
       },
@@ -117,7 +117,7 @@ class P33TOCBODYSTD_Bloc extends Bloc<P33TOCBODYSTD_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "36SARTOCSTD",
+        "TYPE": "37SARTOCSTD",
         "FUNCTION": "UPDATEDATAVOLUME",
         "D01NOitem": P33TOCBODYSTDVAR.D01NOitem,
         "D02NOitem": P33TOCBODYSTDVAR.D02NOitem,
@@ -142,7 +142,7 @@ class P33TOCBODYSTD_Bloc extends Bloc<P33TOCBODYSTD_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "36SARTOCSTD",
+        "TYPE": "37SARTOCSTD",
         "FUNCTION": "UPDATEDATAVOLUME",
         "D01NOitem": P33TOCBODYSTDVAR.D01NOitem,
         "D02NOitem": P33TOCBODYSTDVAR.D02NOitem,

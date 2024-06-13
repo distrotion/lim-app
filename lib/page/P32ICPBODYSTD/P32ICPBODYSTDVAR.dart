@@ -16,6 +16,9 @@ class P32ICPBODYSTDVAR {
   static String WX = '';
   static String DX = '';
 
+  static String D01DIL = '';
+  static String D02DIL = '';
+
   //
 
   static String Result01 = '';

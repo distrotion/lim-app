@@ -14,6 +14,7 @@ import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 
+import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 
@@ -49,6 +50,8 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
 
     P33TOCBODYSTDVAR.value01 = '';
     P33TOCBODYSTDVAR.value02 = '';
+    P33TOCBODYSTDVAR.value03 = '';
+    P33TOCBODYSTDVAR.value04 = '';
     context.read<P33TOCBODYSTDGETSET_Bloc>().add(P33TOCBODYSTDGETSET_GET());
     context.read<GetTOCvalue_Bloc>().add(GetTOCvalue_Get());
 
@@ -65,6 +68,8 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
 
     P33TOCBODYSTDVAR.value01 = widget.value?.value01 ?? '';
     P33TOCBODYSTDVAR.value02 = widget.value?.value02 ?? '';
+    P33TOCBODYSTDVAR.value03 = widget.value?.value03 ?? '';
+    P33TOCBODYSTDVAR.value04 = widget.value?.value04 ?? '';
     P33TOCBODYSTDGETSETCLASS dataset = widget.SET ?? P33TOCBODYSTDGETSETCLASS();
 
     P33TOCBODYSTDVAR.ReqNo = dataset.ReqNo;
@@ -73,6 +78,7 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
     P33TOCBODYSTDVAR.UID = dataset.UID;
     P33TOCBODYSTDVAR.ItemName = dataset.ItemName;
     P33TOCBODYSTDVAR.Mag = dataset.Mag;
+    P33TOCBODYSTDVAR.SampleCode = dataset.SampleCode;
 
     P33TOCBODYSTDVAR.D01W11 = dataset.D01W11;
     P33TOCBODYSTDVAR.D01W21 = dataset.D01W21;
@@ -101,6 +107,15 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
       P33TOCBODYSTDVAR.iscontrol = true;
       P33TOCBODYSTDVAR.D02NOitem = dataset.D02NOitem;
     }
+    P33TOCBODYSTDVAR.D01TC = dataset.D01TC;
+    P33TOCBODYSTDVAR.D02TC = dataset.D02TC;
+    P33TOCBODYSTDVAR.D01IC = dataset.D01IC;
+    P33TOCBODYSTDVAR.D02IC = dataset.D02IC;
+
+    P33TOCBODYSTDVAR.D01DITC = dataset.D01DITC;
+    P33TOCBODYSTDVAR.D02DITC = dataset.D02DITC;
+    P33TOCBODYSTDVAR.D01DIIC = dataset.D01DIIC;
+    P33TOCBODYSTDVAR.D02DIIC = dataset.D02DIIC;
 
     // P33TOCBODYSTDVAR.Result = P33TOCBODYSTDVAR.W11;
 
@@ -195,22 +210,17 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "TYPE : ${P33TOCBODYSTDVAR.InstrumentName}"),
+                                      "CustFull : ${P33TOCBODYSTDVAR.InstrumentName}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "CustFull : ${P33TOCBODYSTDVAR.CustFull}"),
+                                      "Sample Name : ${P33TOCBODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "ItemName : ${P33TOCBODYSTDVAR.itemName}"),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Dilition time : ${P33TOCBODYSTDVAR.Mag}"),
+                                      "Sample tank : ${P33TOCBODYSTDVAR.itemName}"),
                                 ),
 
                                 //P33TOCBODYSTDVAR.itemName
@@ -234,8 +244,8 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Sampling Name : ${P33TOCBODYSTDVAR.SampleName}"),
+                                  child:
+                                      Text("Dilution: ${P33TOCBODYSTDVAR.Mag}"),
                                 ),
                               ],
                             ),
@@ -270,7 +280,10 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text("preview TOC #1"),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text("TOC #1 TC"),
+                              ),
                               Container(
                                 width: 150,
                                 height: 40,
@@ -294,7 +307,41 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text("preview TOC #2"),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text("TOC #2 TC"),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  // color: Colors.black,
+                                  border:
+                                      Border.all(color: Colors.blue, width: 2),
+                                ),
+                                child: Center(
+                                    child: Text(P33TOCBODYSTDVAR.value03)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          // color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text("TOC #1 IC"),
+                              ),
                               Container(
                                 width: 150,
                                 height: 40,
@@ -309,30 +356,35 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                             ],
                           ),
                         ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          height: 40,
+                          // color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text("TOC #2 IC"),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  // color: Colors.black,
+                                  border:
+                                      Border.all(color: Colors.blue, width: 2),
+                                ),
+                                child: Center(
+                                    child: Text(P33TOCBODYSTDVAR.value04)),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
-                    // SizedBox(
-                    //   height: 40,
-                    //   // color: Colors.red,
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //     children: [
-                    //       const Text("preview TM"),
-                    //       Container(
-                    //         width: 150,
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //           // color: Colors.black,
-                    //           border: Border.all(color: Colors.blue, width: 2),
-                    //         ),
-                    //         child: Center(child: Text(P33TOCBODYSTDVAR.temp)),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                     const SizedBox(
                       height: 15,
                     ),
@@ -404,75 +456,73 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                       children: [
                         Column(
                           children: [
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P33TOCBODYSTDVAR.SEND == ''
-                            //                   ? Colors.brown
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("TAG"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 120,
-                            //             // color: Colors.blue,
-                            //             child: Container(
-                            //               height: 62,
-                            //               // color: Colors.blue.shade300,
-                            //               child: Row(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.spaceAround,
-                            //                 children: [
-                            //                   ComInputText(
-                            //                     isNumberOnly: true,
-                            //                     isEnabled:
-                            //                         P33TOCBODYSTDVAR.Result01 ==
-                            //                             '',
-                            //                     width: 120,
-                            //                     height: 40,
-                            //                     isContr:
-                            //                         P33TOCBODYSTDVAR.iscontrol,
-                            //                     fnContr: (input) {
-                            //                       setState(() {
-                            //                         P33TOCBODYSTDVAR.iscontrol =
-                            //                             input;
-                            //                       });
-                            //                     },
-                            //                     sValue:
-                            //                         P33TOCBODYSTDVAR.D01NOitem,
-                            //                     returnfunc: (String s) {
-                            //                       P33TOCBODYSTDVAR.D01NOitem = s;
-                            //                     },
-                            //                   ),
-                            //                   Text("")
-                            //                 ],
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P33TOCBODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("Dilute 1 TC"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 150,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: false,
+                                                width: 100,
+                                                height: 40,
+                                                isContr:
+                                                    P33TOCBODYSTDVAR.iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P33TOCBODYSTDVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue:
+                                                    P33TOCBODYSTDVAR.D01DITC,
+                                                returnfunc: (String s) {
+                                                  P33TOCBODYSTDVAR.D01DITC = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -503,7 +553,7 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                                   ? Colors.green
                                                   : Colors.grey.shade400),
                                           child: const Center(
-                                            child: Text("TOC #1"),
+                                            child: Text("TOC #1 TC"),
                                           ),
                                         ),
                                       ),
@@ -516,33 +566,33 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P33TOCBODYSTDVAR.D01W11)),
+                                                Text(P33TOCBODYSTDVAR.D01TC)),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          P33TOCBODYSTDVAR.DX = 'D01W11';
-                                          onLoadingFAKE(context);
-                                          context
-                                              .read<P33TOCBODYSTD_Bloc>()
-                                              .add(P33TOCBODYSTD_CLEARW11());
-                                          Future.delayed(
-                                              const Duration(
-                                                  milliseconds: 2000), () {
-                                            context
-                                                .read<
-                                                    P33TOCBODYSTDGETSET_Bloc>()
-                                                .add(P33TOCBODYSTDGETSET_GET());
+                                          // P33TOCBODYSTDVAR.DX = 'D01W11';
+                                          // onLoadingFAKE(context);
+                                          // context
+                                          //     .read<P33TOCBODYSTD_Bloc>()
+                                          //     .add(P33TOCBODYSTD_CLEARW11());
+                                          // Future.delayed(
+                                          //     const Duration(
+                                          //         milliseconds: 2000), () {
+                                          //   context
+                                          //       .read<
+                                          //           P33TOCBODYSTDGETSET_Bloc>()
+                                          //       .add(P33TOCBODYSTDGETSET_GET());
 
-                                            setState(() {
-                                              setState(() {
-                                                P33TOCBODYSTDVAR.Result01 = '';
-                                                P33TOCBODYSTDVAR.Result02 = '';
-                                              });
-                                            });
-                                          });
+                                          //   setState(() {
+                                          //     setState(() {
+                                          //       P33TOCBODYSTDVAR.Result01 = '';
+                                          //       P33TOCBODYSTDVAR.Result02 = '';
+                                          //     });
+                                          //   });
+                                          // });
                                         },
                                         child: Container(
                                           height: 40,
@@ -560,92 +610,6 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                 ),
                               ],
                             ),
-                            // const SizedBox(
-                            //   height: 5,
-                            // ),
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {
-                            //               setState(() {
-                            //                 P33TOCBODYSTDVAR.WX = 'D01W11';
-                            //               });
-
-                            //               context
-                            //                   .read<GetPHvalue_Bloc>()
-                            //                   .add(GetPHvalue_Get());
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P33TOCBODYSTDVAR.WX == 'D01W11'
-                            //                   ? Colors.yellowAccent
-                            //                   : (P33TOCBODYSTDVAR.SEND == ''
-                            //                       ? Colors.green
-                            //                       : Colors.grey.shade400),
-                            //               child: const Center(
-                            //                 child: Text("TEMP"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 100,
-                            //             color: Colors.blue,
-                            //             child: Center(
-                            //                 child:
-                            //                     Text(P33TOCBODYSTDVAR.D01W11)),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //           InkWell(
-                            //             onTap: () {
-                            //               P33TOCBODYSTDVAR.DX = 'D01W11';
-                            //               onLoadingFAKE(context);
-                            //               context
-                            //                   .read<P33TOCBODYSTD_Bloc>()
-                            //                   .add(P33TOCBODYSTD_CLEARW11());
-                            //               Future.delayed(
-                            //                   const Duration(
-                            //                       milliseconds: 2000), () {
-                            //                 context
-                            //                     .read<P33TOCBODYSTDGETSET_Bloc>()
-                            //                     .add(P33TOCBODYSTDGETSET_GET());
-
-                            //                 setState(() {
-                            //                   setState(() {
-                            //                     P33TOCBODYSTDVAR.Result01 = '';
-                            //                     P33TOCBODYSTDVAR.Result02 = '';
-                            //                   });
-                            //                 });
-                            //               });
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 45,
-                            //               color: P33TOCBODYSTDVAR.SEND == ''
-                            //                   ? Colors.orange
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("CLEAR"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -656,76 +620,73 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                         ),
                         Column(
                           children: [
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P33TOCBODYSTDVAR.SEND == ''
-                            //                   ? Colors.brown
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("TAG"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 120,
-                            //             // color: Colors.blue,
-                            //             child: Container(
-                            //               height: 62,
-                            //               // color: Colors.blue.shade300,
-                            //               child: Row(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.spaceAround,
-                            //                 children: [
-                            //                   ComInputText(
-                            //                     isNumberOnly: true,
-                            //                     isEnabled:
-                            //                         P33TOCBODYSTDVAR.Result02 ==
-                            //                             '',
-                            //                     width: 120,
-                            //                     height: 40,
-                            //                     isContr:
-                            //                         P33TOCBODYSTDVAR.iscontrol,
-                            //                     fnContr: (input) {
-                            //                       setState(() {
-                            //                         P33TOCBODYSTDVAR.iscontrol =
-                            //                             input;
-                            //                       });
-                            //                     },
-                            //                     sValue:
-                            //                         P33TOCBODYSTDVAR.D02NOitem,
-                            //                     returnfunc: (String s) {
-                            //                       P33TOCBODYSTDVAR.D02NOitem = s;
-                            //                     },
-                            //                   ),
-                            //                   Text("")
-                            //                 ],
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P33TOCBODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("Dilute 2 TC"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 150,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: false,
+                                                width: 100,
+                                                height: 40,
+                                                isContr:
+                                                    P33TOCBODYSTDVAR.iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P33TOCBODYSTDVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue:
+                                                    P33TOCBODYSTDVAR.D02DITC,
+                                                returnfunc: (String s) {
+                                                  P33TOCBODYSTDVAR.D02DITC = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -756,7 +717,7 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                                   ? Colors.green
                                                   : Colors.grey.shade400),
                                           child: const Center(
-                                            child: Text("TOC #2"),
+                                            child: Text("TOC #2 TC"),
                                           ),
                                         ),
                                       ),
@@ -769,7 +730,340 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P33TOCBODYSTDVAR.D02W11)),
+                                                Text(P33TOCBODYSTDVAR.D02TC)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // P33TOCBODYSTDVAR.DX = 'D02W11';
+                                          // onLoadingFAKE(context);
+                                          // context
+                                          //     .read<P33TOCBODYSTD_Bloc>()
+                                          //     .add(P33TOCBODYSTD_CLEARW11());
+                                          // Future.delayed(
+                                          //     const Duration(
+                                          //         milliseconds: 2000), () {
+                                          //   context
+                                          //       .read<
+                                          //           P33TOCBODYSTDGETSET_Bloc>()
+                                          //       .add(P33TOCBODYSTDGETSET_GET());
+
+                                          //   setState(() {
+                                          //     setState(() {
+                                          //       P33TOCBODYSTDVAR.Result01 = '';
+                                          //       P33TOCBODYSTDVAR.Result02 = '';
+                                          //     });
+                                          //   });
+                                          // });
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 45,
+                                          color: P33TOCBODYSTDVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P33TOCBODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("Dilute 1 IC"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 150,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: false,
+                                                width: 100,
+                                                height: 40,
+                                                isContr:
+                                                    P33TOCBODYSTDVAR.iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P33TOCBODYSTDVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue:
+                                                    P33TOCBODYSTDVAR.D01DIIC,
+                                                returnfunc: (String s) {
+                                                  P33TOCBODYSTDVAR.D01DIIC = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P33TOCBODYSTDVAR.WX = 'D01W11';
+                                          });
+
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P33TOCBODYSTDVAR.WX == 'D01W11'
+                                              ? Colors.yellowAccent
+                                              : (P33TOCBODYSTDVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("TOC #1 IC"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child:
+                                                Text(P33TOCBODYSTDVAR.D01IC)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // P33TOCBODYSTDVAR.DX = 'D01W11';
+                                          // onLoadingFAKE(context);
+                                          // context
+                                          //     .read<P33TOCBODYSTD_Bloc>()
+                                          //     .add(P33TOCBODYSTD_CLEARW11());
+                                          // Future.delayed(
+                                          //     const Duration(
+                                          //         milliseconds: 2000), () {
+                                          //   context
+                                          //       .read<
+                                          //           P33TOCBODYSTDGETSET_Bloc>()
+                                          //       .add(P33TOCBODYSTDGETSET_GET());
+
+                                          //   setState(() {
+                                          //     setState(() {
+                                          //       P33TOCBODYSTDVAR.Result01 = '';
+                                          //       P33TOCBODYSTDVAR.Result02 = '';
+                                          //     });
+                                          //   });
+                                          // });
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 45,
+                                          color: P33TOCBODYSTDVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P33TOCBODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("Dilute 2 IC"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 150,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: false,
+                                                width: 100,
+                                                height: 40,
+                                                isContr:
+                                                    P33TOCBODYSTDVAR.iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P33TOCBODYSTDVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue:
+                                                    P33TOCBODYSTDVAR.D02DIIC,
+                                                returnfunc: (String s) {
+                                                  P33TOCBODYSTDVAR.D02DIIC = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P33TOCBODYSTDVAR.WX = 'D02W11';
+                                          });
+
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P33TOCBODYSTDVAR.WX == 'D02W11'
+                                              ? Colors.yellowAccent
+                                              : (P33TOCBODYSTDVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("TOC #2 IC"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child:
+                                                Text(P33TOCBODYSTDVAR.D02IC)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -813,92 +1107,6 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                                 ),
                               ],
                             ),
-                            // const SizedBox(
-                            //   height: 5,
-                            // ),
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {
-                            //               setState(() {
-                            //                 P33TOCBODYSTDVAR.WX = 'D01W11';
-                            //               });
-
-                            //               context
-                            //                   .read<GetPHvalue_Bloc>()
-                            //                   .add(GetPHvalue_Get());
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P33TOCBODYSTDVAR.WX == 'D01W11'
-                            //                   ? Colors.yellowAccent
-                            //                   : (P33TOCBODYSTDVAR.SEND == ''
-                            //                       ? Colors.green
-                            //                       : Colors.grey.shade400),
-                            //               child: const Center(
-                            //                 child: Text("TEMP"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 100,
-                            //             color: Colors.blue,
-                            //             child: Center(
-                            //                 child:
-                            //                     Text(P33TOCBODYSTDVAR.D02W11)),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //           InkWell(
-                            //             onTap: () {
-                            //               P33TOCBODYSTDVAR.DX = 'D02W11';
-                            //               onLoadingFAKE(context);
-                            //               context
-                            //                   .read<P33TOCBODYSTD_Bloc>()
-                            //                   .add(P33TOCBODYSTD_CLEARW11());
-                            //               Future.delayed(
-                            //                   const Duration(
-                            //                       milliseconds: 2000), () {
-                            //                 context
-                            //                     .read<P33TOCBODYSTDGETSET_Bloc>()
-                            //                     .add(P33TOCBODYSTDGETSET_GET());
-
-                            //                 setState(() {
-                            //                   setState(() {
-                            //                     P33TOCBODYSTDVAR.Result01 = '';
-                            //                     P33TOCBODYSTDVAR.Result02 = '';
-                            //                   });
-                            //                 });
-                            //               });
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 45,
-                            //               color: P33TOCBODYSTDVAR.SEND == ''
-                            //                   ? Colors.orange
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("CLEAR"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -907,71 +1115,6 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                       ],
                     ),
 
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            children: [
-                              if (P33TOCBODYSTDVAR.dip12 != '') ...[
-                                Container(
-                                  height: 40,
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      "dip 1-2 : " + P33TOCBODYSTDVAR.dip12,
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              if (P33TOCBODYSTDVAR.dip13 != '') ...[
-                                Container(
-                                  height: 40,
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      "dip 1-3 : " + P33TOCBODYSTDVAR.dip13,
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 40,
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      "dip 2-3 : " + P33TOCBODYSTDVAR.dip23,
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: P33TOCBODYSTDVAR.dip13 != ''
-                                  ? 120
-                                  : P33TOCBODYSTDVAR.dip12 != ''
-                                      ? 40
-                                      : 0,
-                              color: Colors.amber,
-                              child: const Center(
-                                child: Text(
-                                  "RECAL",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                     const SizedBox(
                       height: 5,
                     ),
@@ -1010,156 +1153,150 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                     const SizedBox(
                       height: 5,
                     ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       flex: 1,
-                    //       // child: Container(
-                    //       //   height: 62,
-                    //       //   color: Colors.blue.shade300,
-                    //       //   child: Column(
-                    //       //     children: [
-                    //       //       const SizedBox(
-                    //       //         height: 5,
-                    //       //       ),
-                    //       //       const Center(child: Text('AREA')),
-                    //       //       Row(
-                    //       //         mainAxisAlignment:
-                    //       //             MainAxisAlignment.spaceAround,
-                    //       //         children: [
-                    //       //           ComInputText(
-                    //       //             isNumberOnly: true,
-                    //       //             isEnabled:
-                    //       //                 P33TOCBODYSTDVAR.Result == '',
-                    //       //             width: 100,
-                    //       //             height: 40,
-                    //       //             isContr: P33TOCBODYSTDVAR.iscontrol,
-                    //       //             fnContr: (input) {
-                    //       //               setState(() {
-                    //       //                 P33TOCBODYSTDVAR.iscontrol = input;
-                    //       //               });
-                    //       //             },
-                    //       //             sValue: P33TOCBODYSTDVAR.area,
-                    //       //             returnfunc: (String s) {
-                    //       //               P33TOCBODYSTDVAR.area = s;
-                    //       //             },
-                    //       //           ),
-                    //       //           Text("cm2")
-                    //       //         ],
-                    //       //       ),
-                    //       //     ],
-                    //       //   ),
-                    //       // ),
-                    //       child: InkWell(
-                    //         onTap: () {
-                    //           print(ConverstStr(P33TOCBODYSTDVAR.D01VOLUME));
-                    //           print(ConverstStr(P33TOCBODYSTDVAR.D02VOLUME));
-                    //           context
-                    //               .read<P33TOCBODYSTD_Bloc>()
-                    //               .add(P33TOCBODYSTD_CAL());
-                    //           if (P33TOCBODYSTDVAR.Result01 == '') {
-                    //             setState(() {
-                    //               if (P33TOCBODYSTDVAR.D01W11 != '' &&
-                    //                   P33TOCBODYSTDVAR.D01W21 != '' &&
-                    //                   P33TOCBODYSTDVAR.D01VOLUME != '') {
-                    //                 P33TOCBODYSTDVAR.Result01 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P33TOCBODYSTDVAR
-                    //                                         .D01W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P33TOCBODYSTDVAR
-                    //                                         .D01W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P33TOCBODYSTDVAR
-                    //                                     .D01VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          // child: Container(
+                          //   height: 62,
+                          //   color: Colors.blue.shade300,
+                          //   child: Column(
+                          //     children: [
+                          //       const SizedBox(
+                          //         height: 5,
+                          //       ),
+                          //       const Center(child: Text('AREA')),
+                          //       Row(
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceAround,
+                          //         children: [
+                          //           ComInputText(
+                          //             isNumberOnly: true,
+                          //             isEnabled:
+                          //                 P33TOCBODYSTDVAR.Result == '',
+                          //             width: 100,
+                          //             height: 40,
+                          //             isContr: P33TOCBODYSTDVAR.iscontrol,
+                          //             fnContr: (input) {
+                          //               setState(() {
+                          //                 P33TOCBODYSTDVAR.iscontrol = input;
+                          //               });
+                          //             },
+                          //             sValue: P33TOCBODYSTDVAR.area,
+                          //             returnfunc: (String s) {
+                          //               P33TOCBODYSTDVAR.area = s;
+                          //             },
+                          //           ),
+                          //           Text("cm2")
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          child: InkWell(
+                            onTap: () {
+                              print(ConverstStr(P33TOCBODYSTDVAR.D01VOLUME));
+                              print(ConverstStr(P33TOCBODYSTDVAR.D02VOLUME));
+                              context
+                                  .read<P33TOCBODYSTD_Bloc>()
+                                  .add(P33TOCBODYSTD_CAL());
+                              if (P33TOCBODYSTDVAR.Result01 == '') {
+                                setState(() {
+                                  if (P33TOCBODYSTDVAR.D01W11 != '' &&
+                                      P33TOCBODYSTDVAR.D01W21 != '' &&
+                                      P33TOCBODYSTDVAR.D01VOLUME != '') {
+                                    P33TOCBODYSTDVAR
+                                        .Result01 = ((double.parse(ConverstStr(
+                                                    P33TOCBODYSTDVAR.D01W21)) -
+                                                double.parse(ConverstStr(
+                                                    P33TOCBODYSTDVAR.D01W11))) /
+                                            double.parse(ConverstStr(
+                                                P33TOCBODYSTDVAR.D01VOLUME)) *
+                                            1000000)
+                                        .toStringAsFixed(2);
 
-                    //                 P33TOCBODYSTDVAR
-                    //                     .D01W11_21 = (double.parse(ConverstStr(
-                    //                             P33TOCBODYSTDVAR.D01W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P33TOCBODYSTDVAR.D01W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //               if (P33TOCBODYSTDVAR.D02W11 != '' &&
-                    //                   P33TOCBODYSTDVAR.D02W21 != '' &&
-                    //                   P33TOCBODYSTDVAR.D02VOLUME != '') {
-                    //                 P33TOCBODYSTDVAR.Result02 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P33TOCBODYSTDVAR
-                    //                                         .D02W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P33TOCBODYSTDVAR
-                    //                                         .D02W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P33TOCBODYSTDVAR
-                    //                                     .D02VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
+                                    P33TOCBODYSTDVAR.D01W11_21 = (double.parse(
+                                                ConverstStr(
+                                                    P33TOCBODYSTDVAR.D01W21)) -
+                                            double.parse(ConverstStr(
+                                                P33TOCBODYSTDVAR.D01W11)))
+                                        .toStringAsFixed(4);
+                                  }
+                                  if (P33TOCBODYSTDVAR.D02W11 != '' &&
+                                      P33TOCBODYSTDVAR.D02W21 != '' &&
+                                      P33TOCBODYSTDVAR.D02VOLUME != '') {
+                                    P33TOCBODYSTDVAR
+                                        .Result02 = ((double.parse(ConverstStr(
+                                                    P33TOCBODYSTDVAR.D02W21)) -
+                                                double.parse(ConverstStr(
+                                                    P33TOCBODYSTDVAR.D02W11))) /
+                                            double.parse(ConverstStr(
+                                                P33TOCBODYSTDVAR.D02VOLUME)) *
+                                            1000000)
+                                        .toStringAsFixed(2);
 
-                    //                 P33TOCBODYSTDVAR
-                    //                     .D02W11_21 = (double.parse(ConverstStr(
-                    //                             P33TOCBODYSTDVAR.D02W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P33TOCBODYSTDVAR.D02W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //             });
-                    //           } else {
-                    //             setState(() {
-                    //               P33TOCBODYSTDVAR.Result01 = '';
-                    //               P33TOCBODYSTDVAR.Result02 = '';
-                    //             });
-                    //           }
-                    //         },
-                    //         child: Container(
-                    //           height: 62,
-                    //           color: P33TOCBODYSTDVAR.Result01 == '' ||
-                    //                   P33TOCBODYSTDVAR.Result02 == ''
-                    //               ? Colors.orange
-                    //               : Colors.deepOrange,
-                    //           child: Center(
-                    //             child: Text(
-                    //               P33TOCBODYSTDVAR.Result01 == '' ||
-                    //                       P33TOCBODYSTDVAR.Result02 == ''
-                    //                   ? "CAL"
-                    //                   : "RE CAL",
-                    //               style: TextStyle(color: Colors.white),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Container(
-                    //         height: 62,
-                    //         color: Colors.lightGreen,
-                    //         child: Column(
-                    //           children: [
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Center(
-                    //                 child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(bottom: 5, top: 5),
-                    //               child: Text(
-                    //                   'RESULT01 ${P33TOCBODYSTDVAR.Result01}'),
-                    //             )),
-                    //             Center(
-                    //                 child: Text(
-                    //                     'RESULT02 ${P33TOCBODYSTDVAR.Result02}')),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
+                                    P33TOCBODYSTDVAR.D02W11_21 = (double.parse(
+                                                ConverstStr(
+                                                    P33TOCBODYSTDVAR.D02W21)) -
+                                            double.parse(ConverstStr(
+                                                P33TOCBODYSTDVAR.D02W11)))
+                                        .toStringAsFixed(4);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P33TOCBODYSTDVAR.Result01 = '';
+                                  P33TOCBODYSTDVAR.Result02 = '';
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 62,
+                              color: P33TOCBODYSTDVAR.Result01 == '' ||
+                                      P33TOCBODYSTDVAR.Result02 == ''
+                                  ? Colors.orange
+                                  : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P33TOCBODYSTDVAR.Result01 == '' ||
+                                          P33TOCBODYSTDVAR.Result02 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text(
+                                      'RESULT01 ${P33TOCBODYSTDVAR.Result01}'),
+                                )),
+                                Center(
+                                    child: Text(
+                                        'RESULT02 ${P33TOCBODYSTDVAR.Result02}')),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     InkWell(
                       onTap: () {
                         // CuPage = Page1();
@@ -1168,6 +1305,7 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                         // context
                         //     .read<P33TOCBODYSTD_Bloc>()
                         //     .add(P33TOCBODYSTD_CAL());
+                        print("----------->>>>>");
                         context
                             .read<P33TOCBODYSTD_Bloc>()
                             .add(P33TOCBODYSTD_TEMP_SAVE());

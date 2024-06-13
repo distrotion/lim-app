@@ -112,7 +112,7 @@ class _P31ICPREQTABLEState extends State<P31ICPREQTABLE> {
               B02: 'Customer NAME', //f19
               B03: 'Due date', //f9
               B04: 'Sample Name', //f17
-              B05: 'Item Name', //f30
+              B05: 'Sample Code', //f30
               B06: 'Dilution time', //f16
               B07: 'NO', //--
               B08: 'ACTION',
@@ -204,12 +204,14 @@ class tabledetailsearch extends StatelessWidget {
             .replaceAll("00:00:00", "")
             .replaceAll("GMT", "")), //f17
         B04: _data_exp[i].f41,
-        B05: _data_exp[i].f04,
+        // B05: _data_exp[i].f04,
+        B05: _data_exp[i].f39,
         B06: _data_exp[i].f26,
 
-        B07: (_data_exp[i].f06).toString(),
-        B08: '',
-        B09: '',
+        // B07: (_data_exp[i].f06).toString(),
+        B07: (_data_exp[i].f30).toString(),
+        B08: _data_exp[i].f39,
+        B09: _data_exp[i].f26,
         B10: '',
         B11: _data_exp[i].f02,
         B12: _data_exp[i].f70,
@@ -221,7 +223,7 @@ class tabledetailsearch extends StatelessWidget {
                     ? Colors.yellow
                     : Colors.transparent,
         isSELECTFUNC: true,
-        SELECTFUNC: (PO, CP, FG) async {
+        SELECTFUNC: (PO, CP, FG, SR, DI) async {
           print(PO);
           print(CP);
           print(FG);
@@ -275,8 +277,7 @@ class tabledetailsearch extends StatelessWidget {
               }
             });
             // } else if (CP == "Cwt") {
-          }
-          if (CP == "TOC") {
+          } else if (CP == "TOC") {
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -290,6 +291,8 @@ class tabledetailsearch extends StatelessWidget {
                       '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
                       data: {
                         "REQNO": PO,
+                        "SampleCode": SR,
+                        "DILUTE": DI,
                         "UID": FG,
                       },
                     ).then((value) {

@@ -45,7 +45,7 @@ class P32ICPBODYSTDGETSET_Bloc
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      print(databuff);
+      // print(databuff);
       if (databuff.length > 0) {
         output.ReqNo =
             databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';

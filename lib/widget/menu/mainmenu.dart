@@ -7,6 +7,7 @@ import '../../mainBody.dart';
 import '../../page/page1.dart';
 import '../../page/page100.dart';
 import '../../page/page2.dart';
+import '../../page/page200.dart';
 import '../../page/page3.dart';
 import '../../page/page4.dart';
 import '../../page/page5.dart';
@@ -91,6 +92,12 @@ class Data_Menu_mainmenu extends StatelessWidget {
             Lv: 1,
           ),
         ],
+
+        menu_normal(
+          name: "UPLOAD LIMX",
+          page: Page200(),
+          Lv: 1,
+        ),
 
         // menu_normal(
         //   name: "BALANCE CHM-01",

@@ -14,6 +14,7 @@ import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 
+import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 
@@ -192,11 +193,7 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                                   child: Text(
                                       "REQ NO : ${P32ICPBODYSTDVAR.ReqNo}"),
                                 ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "TYPE : ${P32ICPBODYSTDVAR.InstrumentName}"),
-                                ),
+
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -205,12 +202,12 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "ItemName : ${P32ICPBODYSTDVAR.itemName}"),
+                                      "Sample name : ${P32ICPBODYSTDVAR.itemName}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Dilition time : ${P32ICPBODYSTDVAR.Mag}"),
+                                      "Item Name : ${P32ICPBODYSTDVAR.Mag}"),
                                 ),
 
                                 //P32ICPBODYSTDVAR.itemName
@@ -235,7 +232,12 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Sampling Name : ${P32ICPBODYSTDVAR.SampleName}"),
+                                      "Sampling Type : ${P32ICPBODYSTDVAR.SampleName}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "Dilution : ${P32ICPBODYSTDVAR.Mag}"),
                                 ),
                               ],
                             ),
@@ -473,6 +475,72 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                             //     ),
                             //   ],
                             // ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P32ICPBODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("Dilute 1"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 150,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: false,
+                                                width: 100,
+                                                height: 40,
+                                                isContr:
+                                                    P32ICPBODYSTDVAR.iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P32ICPBODYSTDVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue: P32ICPBODYSTDVAR.D01DIL,
+                                                returnfunc: (String s) {
+                                                  P32ICPBODYSTDVAR.D01DIL = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -725,6 +793,72 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                             //     ),
                             //   ],
                             // ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P32ICPBODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("Dilute 2"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 150,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: false,
+                                                width: 100,
+                                                height: 40,
+                                                isContr:
+                                                    P32ICPBODYSTDVAR.iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P32ICPBODYSTDVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue: P32ICPBODYSTDVAR.D02DIL,
+                                                returnfunc: (String s) {
+                                                  P32ICPBODYSTDVAR.D02DIL = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
 
                             const SizedBox(
                               height: 5,
@@ -972,36 +1106,19 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
                     // InkWell(
                     //   onTap: () {
                     //     // print(ConverstStr(P32ICPBODYSTDVAR.area));
-                    //     if (P32ICPBODYSTDVAR.Result == '') {
-                    //       setState(() {
-                    //         P32ICPBODYSTDVAR.Result = ((double.parse(
-                    //                         ConverstStr(
-                    //                             P32ICPBODYSTDVAR.W11)) -
-                    //                     double.parse(ConverstStr(
-                    //                         P32ICPBODYSTDVAR.W12))) /
-                    //                 double.parse(
-                    //                     ConverstStr(P32ICPBODYSTDVAR.area)) *
-                    //                 10000)
-                    //             .toStringAsFixed(2);
-                    //       });
-                    //     } else {
-                    //       setState(() {
-                    //         P32ICPBODYSTDVAR.Result = '';
-                    //       });
-                    //     }
                     //   },
                     //   child: Container(
                     //     height: 40,
                     //     color: Colors.orange,
                     //     child: Center(
                     //       child: Text(
-                    //         P32ICPBODYSTDVAR.Result == '' ? "CAL" : "RE CAL",
+                    //         P32ICPBODYSTDVAR.Result01 == '' ? "CAL" : "RE CAL",
                     //         style: TextStyle(color: Colors.white),
                     //       ),
                     //     ),
@@ -1010,156 +1127,95 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                     const SizedBox(
                       height: 5,
                     ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       flex: 1,
-                    //       // child: Container(
-                    //       //   height: 62,
-                    //       //   color: Colors.blue.shade300,
-                    //       //   child: Column(
-                    //       //     children: [
-                    //       //       const SizedBox(
-                    //       //         height: 5,
-                    //       //       ),
-                    //       //       const Center(child: Text('AREA')),
-                    //       //       Row(
-                    //       //         mainAxisAlignment:
-                    //       //             MainAxisAlignment.spaceAround,
-                    //       //         children: [
-                    //       //           ComInputText(
-                    //       //             isNumberOnly: true,
-                    //       //             isEnabled:
-                    //       //                 P32ICPBODYSTDVAR.Result == '',
-                    //       //             width: 100,
-                    //       //             height: 40,
-                    //       //             isContr: P32ICPBODYSTDVAR.iscontrol,
-                    //       //             fnContr: (input) {
-                    //       //               setState(() {
-                    //       //                 P32ICPBODYSTDVAR.iscontrol = input;
-                    //       //               });
-                    //       //             },
-                    //       //             sValue: P32ICPBODYSTDVAR.area,
-                    //       //             returnfunc: (String s) {
-                    //       //               P32ICPBODYSTDVAR.area = s;
-                    //       //             },
-                    //       //           ),
-                    //       //           Text("cm2")
-                    //       //         ],
-                    //       //       ),
-                    //       //     ],
-                    //       //   ),
-                    //       // ),
-                    //       child: InkWell(
-                    //         onTap: () {
-                    //           print(ConverstStr(P32ICPBODYSTDVAR.D01VOLUME));
-                    //           print(ConverstStr(P32ICPBODYSTDVAR.D02VOLUME));
-                    //           context
-                    //               .read<P32ICPBODYSTD_Bloc>()
-                    //               .add(P32ICPBODYSTD_CAL());
-                    //           if (P32ICPBODYSTDVAR.Result01 == '') {
-                    //             setState(() {
-                    //               if (P32ICPBODYSTDVAR.D01W11 != '' &&
-                    //                   P32ICPBODYSTDVAR.D01W21 != '' &&
-                    //                   P32ICPBODYSTDVAR.D01VOLUME != '') {
-                    //                 P32ICPBODYSTDVAR.Result01 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P32ICPBODYSTDVAR
-                    //                                         .D01W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P32ICPBODYSTDVAR
-                    //                                         .D01W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P32ICPBODYSTDVAR
-                    //                                     .D01VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P32ICPBODYSTDVAR
-                    //                     .D01W11_21 = (double.parse(ConverstStr(
-                    //                             P32ICPBODYSTDVAR.D01W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P32ICPBODYSTDVAR.D01W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //               if (P32ICPBODYSTDVAR.D02W11 != '' &&
-                    //                   P32ICPBODYSTDVAR.D02W21 != '' &&
-                    //                   P32ICPBODYSTDVAR.D02VOLUME != '') {
-                    //                 P32ICPBODYSTDVAR.Result02 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P32ICPBODYSTDVAR
-                    //                                         .D02W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P32ICPBODYSTDVAR
-                    //                                         .D02W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P32ICPBODYSTDVAR
-                    //                                     .D02VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P32ICPBODYSTDVAR
-                    //                     .D02W11_21 = (double.parse(ConverstStr(
-                    //                             P32ICPBODYSTDVAR.D02W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P32ICPBODYSTDVAR.D02W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //             });
-                    //           } else {
-                    //             setState(() {
-                    //               P32ICPBODYSTDVAR.Result01 = '';
-                    //               P32ICPBODYSTDVAR.Result02 = '';
-                    //             });
-                    //           }
-                    //         },
-                    //         child: Container(
-                    //           height: 62,
-                    //           color: P32ICPBODYSTDVAR.Result01 == '' ||
-                    //                   P32ICPBODYSTDVAR.Result02 == ''
-                    //               ? Colors.orange
-                    //               : Colors.deepOrange,
-                    //           child: Center(
-                    //             child: Text(
-                    //               P32ICPBODYSTDVAR.Result01 == '' ||
-                    //                       P32ICPBODYSTDVAR.Result02 == ''
-                    //                   ? "CAL"
-                    //                   : "RE CAL",
-                    //               style: TextStyle(color: Colors.white),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Container(
-                    //         height: 62,
-                    //         color: Colors.lightGreen,
-                    //         child: Column(
-                    //           children: [
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Center(
-                    //                 child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(bottom: 5, top: 5),
-                    //               child: Text(
-                    //                   'RESULT01 ${P32ICPBODYSTDVAR.Result01}'),
-                    //             )),
-                    //             Center(
-                    //                 child: Text(
-                    //                     'RESULT02 ${P32ICPBODYSTDVAR.Result02}')),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          // child: Container(
+                          //   height: 62,
+                          //   color: Colors.blue.shade300,
+                          //   child: Column(
+                          //     children: [
+                          //       const SizedBox(
+                          //         height: 5,
+                          //       ),
+                          //       const Center(child: Text('AREA')),
+                          //       Row(
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceAround,
+                          //         children: [
+                          //           ComInputText(
+                          //             isNumberOnly: true,
+                          //             isEnabled:
+                          //                 P32ICPBODYSTDVAR.Result == '',
+                          //             width: 100,
+                          //             height: 40,
+                          //             isContr: P32ICPBODYSTDVAR.iscontrol,
+                          //             fnContr: (input) {
+                          //               setState(() {
+                          //                 P32ICPBODYSTDVAR.iscontrol = input;
+                          //               });
+                          //             },
+                          //             sValue: P32ICPBODYSTDVAR.area,
+                          //             returnfunc: (String s) {
+                          //               P32ICPBODYSTDVAR.area = s;
+                          //             },
+                          //           ),
+                          //           Text("cm2")
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Container(
+                              height: 62,
+                              color: P32ICPBODYSTDVAR.Result01 == '' ||
+                                      P32ICPBODYSTDVAR.Result02 == ''
+                                  ? Colors.orange
+                                  : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P32ICPBODYSTDVAR.Result01 == '' ||
+                                          P32ICPBODYSTDVAR.Result02 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text(
+                                      'RESULT01 ${P32ICPBODYSTDVAR.Result01}'),
+                                )),
+                                Center(
+                                    child: Text(
+                                        'RESULT02 ${P32ICPBODYSTDVAR.Result02}')),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     InkWell(
                       onTap: () {
                         // CuPage = Page1();

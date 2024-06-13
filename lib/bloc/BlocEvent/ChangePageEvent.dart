@@ -33,11 +33,11 @@ class ChangePage_Bloc extends Bloc<ChangePage_Event, Widget> {
           "Error", "No have permission", enumNotificationlist.Error);
     }
 
-    if (USERDATA.INSMASTER == '') {
-      CuPage = Page0();
-      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
-          "Error", "Instrument error", enumNotificationlist.Error);
-    }
+    // if (USERDATA.INSMASTER == '') {
+    //   CuPage = Page0();
+    //   BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+    //       "Error", "Instrument error", enumNotificationlist.Error);
+    // }
 
     Navigator.pop(MenuContext);
     emit(CuPage);

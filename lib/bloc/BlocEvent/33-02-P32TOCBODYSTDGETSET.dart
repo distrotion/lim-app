@@ -65,39 +65,53 @@ class P33TOCBODYSTDGETSET_Bloc
             : '';
 
         if (databuff[0]['data01'] != null) {
-          output.D01W11 = databuff[0]['data01']['W11'] != null
-              ? databuff[0]['data01']['W11'].toString()
+          output.D01TC = databuff[0]['data01']['TC'] != null
+              ? databuff[0]['data01']['TC'].toString()
+              : '';
+          output.D01IC = databuff[0]['data01']['IC'] != null
+              ? databuff[0]['data01']['IC'].toString()
+              : '';
+          output.D01DITC = databuff[0]['data01']['DITC'] != null
+              ? databuff[0]['data01']['DITC'].toString()
+              : '';
+          output.D01DIIC = databuff[0]['data01']['DIIC'] != null
+              ? databuff[0]['data01']['DIIC'].toString()
               : '';
         }
-        if (databuff[0]['data01'] != null) {
-          output.D01W21 = databuff[0]['data01']['W21'] != null
-              ? databuff[0]['data01']['W21'].toString()
-              : '';
-        }
-        if (databuff[0]['data01_volum'] != null) {
-          output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
-              ? databuff[0]['data01_volum']['volum'].toString()
-              : '';
-        }
+
+        // if (databuff[0]['data01_volum'] != null) {
+        //   output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
+        //       ? databuff[0]['data01_volum']['volum'].toString()
+        //       : '';
+        // }
         output.D01NOitem = databuff[0]['D01NOitem'] != null
             ? databuff[0]['D01NOitem'].toString()
             : '';
 
         if (databuff[0]['data02'] != null) {
-          output.D02W11 = databuff[0]['data02']['W11'] != null
-              ? databuff[0]['data02']['W11'].toString()
+          output.D02TC = databuff[0]['data02']['TC'] != null
+              ? databuff[0]['data02']['TC'].toString()
+              : '';
+          output.D02IC = databuff[0]['data02']['IC'] != null
+              ? databuff[0]['data02']['IC'].toString()
+              : '';
+          output.D02DITC = databuff[0]['data02']['DITC'] != null
+              ? databuff[0]['data02']['DITC'].toString()
+              : '';
+          output.D02DIIC = databuff[0]['data02']['DIIC'] != null
+              ? databuff[0]['data02']['DIIC'].toString()
               : '';
         }
-        if (databuff[0]['data02'] != null) {
-          output.D02W21 = databuff[0]['data02']['W21'] != null
-              ? databuff[0]['data02']['W21'].toString()
-              : '';
-        }
-        if (databuff[0]['data02_volum'] != null) {
-          output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
-              ? databuff[0]['data02_volum']['volum'].toString()
-              : '';
-        }
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W21 = databuff[0]['data02']['W21'] != null
+        //       ? databuff[0]['data02']['W21'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data02_volum'] != null) {
+        //   output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
+        //       ? databuff[0]['data02_volum']['volum'].toString()
+        //       : '';
+        // }
 
         output.D02NOitem = databuff[0]['D02NOitem'] != null
             ? databuff[0]['D02NOitem'].toString()
@@ -117,6 +131,10 @@ class P33TOCBODYSTDGETSET_Bloc
 
         output.Mag =
             databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
+
+        output.SampleCode = databuff[0]['SampleCode'] != null
+            ? databuff[0]['SampleCode'].toString()
+            : '';
       }
     }
 
@@ -163,6 +181,15 @@ class P33TOCBODYSTDGETSETCLASS {
     this.DueDate1 = '',
     this.SampleName = '',
     this.Mag = '',
+    this.SampleCode = '',
+    this.D01TC = '',
+    this.D01IC = '',
+    this.D01DITC = '',
+    this.D01DIIC = '',
+    this.D02TC = '',
+    this.D02IC = '',
+    this.D02DITC = '',
+    this.D02DIIC = '',
   });
   String ReqNo;
   String InstrumentName;
@@ -186,4 +213,15 @@ class P33TOCBODYSTDGETSETCLASS {
   String DueDate1;
   String SampleName;
   String Mag;
+  String SampleCode;
+
+  String D01TC;
+  String D01IC;
+  String D01DITC;
+  String D01DIIC;
+
+  String D02TC;
+  String D02IC;
+  String D02DITC;
+  String D02DIIC;
 }

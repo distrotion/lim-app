@@ -237,6 +237,8 @@ class _P31WIDGETFIELDState extends State<P31WIDGETFIELD> {
                                 widget.B01,
                                 widget.B11,
                                 widget.B12,
+                                widget.B08,
+                                widget.B09,
                               ) ??
                               () {};
                         },

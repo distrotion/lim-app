@@ -16,6 +16,9 @@ class P33TOCBODYSTDVAR {
   static String WX = '';
   static String DX = '';
 
+  static String D01DIL_TC = '';
+  static String D02DIL_TC = '';
+
   //
 
   static String Result01 = '';
@@ -96,12 +99,24 @@ class P33TOCBODYSTDVAR {
 
   static String value01 = '';
   static String value02 = '';
+  static String value03 = '';
+  static String value04 = '';
 
   static bool isShowingMainData = true;
 
   static String itemName = '';
 
   static String mem = '-';
+
+  static String D01TC = '';
+  static String D01IC = '';
+  static String D01DITC = '';
+  static String D01DIIC = '';
+
+  static String D02TC = '';
+  static String D02IC = '';
+  static String D02DITC = '';
+  static String D02DIIC = '';
 }
 
 reserall_P33TOCBODYSTDVAR() {
