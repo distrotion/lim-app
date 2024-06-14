@@ -117,6 +117,12 @@ class P42XRFBODYSTDGETSET_Bloc
 
         output.Mag =
             databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
+        output.RemarkNo = databuff[0]['RemarkNo'] != null
+            ? databuff[0]['RemarkNo'].toString()
+            : '';
+        output.SampleCode = databuff[0]['SampleCode'] != null
+            ? databuff[0]['SampleCode'].toString()
+            : '';
       }
     }
 
@@ -163,6 +169,8 @@ class P42XRFBODYSTDGETSETCLASS {
     this.DueDate1 = '',
     this.SampleName = '',
     this.Mag = '',
+    this.RemarkNo = '',
+    this.SampleCode = '',
   });
   String ReqNo;
   String InstrumentName;
@@ -186,4 +194,6 @@ class P42XRFBODYSTDGETSETCLASS {
   String DueDate1;
   String SampleName;
   String Mag;
+  String RemarkNo;
+  String SampleCode;
 }

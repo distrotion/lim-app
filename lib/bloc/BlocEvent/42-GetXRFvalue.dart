@@ -28,38 +28,41 @@ class GetXRFvalue_Bloc extends Bloc<GetXRFvalue_Event, XRFDATAclass> {
     final response01 = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/getvalue_${USERDATA.INSMASTER}',
       data: {
-        "barcode": P42XRFBODYSTDVAR.ReqNo.replaceAll("-", "/"),
-        "NO": "1",
+        // "barcode": P42XRFBODYSTDVAR.ReqNo,
+        "NO": P42XRFBODYSTDVAR.RemarkNo,
+        "barcode": P42XRFBODYSTDVAR.SampleCode,
       },
     );
 
     if (response01.statusCode == 200) {
       var databuXRF = response01.data;
-      // print(databuXRF);
+      print(databuXRF);
       // output = databuXRF;
-      if (databuXRF['ppm'] != null) {
+      if (databuXRF['XRFR1'] != null) {
         output.value01 =
-            databuXRF['ppm'] != null ? databuXRF['ppm'].toString() : '';
-      }
-    }
-
-    final response02 = await Dio().post(
-      '${selectBLANCE(USERDATA.Branch)}/getvalue_${USERDATA.INSMASTER}',
-      data: {
-        "barcode": P42XRFBODYSTDVAR.ReqNo.replaceAll("-", "/"),
-        "NO": "2",
-      },
-    );
-
-    if (response02.statusCode == 200) {
-      var databuXRF = response02.data;
-      // print(databuXRF);
-      // output = databuXRF;
-      if (databuXRF['ppm'] != null) {
+            databuXRF['XRFR1'] != null ? databuXRF['XRFR1'].toString() : '';
         output.value02 =
-            databuXRF['ppm'] != null ? databuXRF['ppm'].toString() : '';
+            databuXRF['XRFR2'] != null ? databuXRF['XRFR2'].toString() : '';
       }
     }
+
+    // final response02 = await Dio().post(
+    //   '${selectBLANCE(USERDATA.Branch)}/getvalue_${USERDATA.INSMASTER}',
+    //   data: {
+    //     "barcode": P42XRFBODYSTDVAR.ReqNo,
+    //     "NO": "2",
+    //   },
+    // );
+
+    // if (response02.statusCode == 200) {
+    //   var databuXRF = response02.data;
+    //   // print(databuXRF);
+    //   // output = databuXRF;
+    //   if (databuXRF['ppm'] != null) {
+    //     output.value02 =
+    //         databuXRF['ppm'] != null ? databuXRF['ppm'].toString() : '';
+    //   }
+    // }
     // print(output);
     emit(output);
   }

@@ -33,7 +33,7 @@ class P41XRFREQGET_Bloc extends Bloc<P41XRFREQGET_Event, List<dataset>> {
   Future<void> _GETDATALISTFROMSAR(
       List<dataset> toAdd, Emitter<List<dataset>> emit) async {
     final response = await Dio().post(
-      '${serverG}GETLIST/request_XRF_ALL',
+      '${serverG}GETLIST/request_XRF_USER',
       data: {
         // "name": "Khota",
         // "name": "Wannipha",

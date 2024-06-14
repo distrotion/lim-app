@@ -83,6 +83,8 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
     P42XRFBODYSTDVAR.SampleName = dataset.SampleName;
 
     P42XRFBODYSTDVAR.itemName = dataset.ItemName;
+    P42XRFBODYSTDVAR.RemarkNo = dataset.RemarkNo;
+    P42XRFBODYSTDVAR.SampleCode = dataset.SampleCode;
 
     if (P42XRFBODYSTDVAR.D01VOLUME == '') {
       P42XRFBODYSTDVAR.iscontrol = true;
@@ -237,6 +239,11 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                       "Position : ${P42XRFBODYSTDVAR.Mag}"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      "RemarkNo : ${P42XRFBODYSTDVAR.RemarkNo}"),
                                 ),
                               ],
                             ),
@@ -509,26 +516,26 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          P42XRFBODYSTDVAR.DX = 'D01W11';
-                                          onLoadingFAKE(context);
-                                          context
-                                              .read<P42XRFBODYSTD_Bloc>()
-                                              .add(P42XRFBODYSTD_CLEARW11());
-                                          Future.delayed(
-                                              const Duration(
-                                                  milliseconds: 2000), () {
-                                            context
-                                                .read<
-                                                    P42XRFBODYSTDGETSET_Bloc>()
-                                                .add(P42XRFBODYSTDGETSET_GET());
+                                          // P42XRFBODYSTDVAR.DX = 'D01W11';
+                                          // onLoadingFAKE(context);
+                                          // context
+                                          //     .read<P42XRFBODYSTD_Bloc>()
+                                          //     .add(P42XRFBODYSTD_CLEARW11());
+                                          // Future.delayed(
+                                          //     const Duration(
+                                          //         milliseconds: 2000), () {
+                                          //   context
+                                          //       .read<
+                                          //           P42XRFBODYSTDGETSET_Bloc>()
+                                          //       .add(P42XRFBODYSTDGETSET_GET());
 
-                                            setState(() {
-                                              setState(() {
-                                                P42XRFBODYSTDVAR.Result01 = '';
-                                                P42XRFBODYSTDVAR.Result02 = '';
-                                              });
-                                            });
-                                          });
+                                          //   setState(() {
+                                          //     setState(() {
+                                          //       P42XRFBODYSTDVAR.Result01 = '';
+                                          //       P42XRFBODYSTDVAR.Result02 = '';
+                                          //     });
+                                          //   });
+                                          // });
                                         },
                                         child: Container(
                                           height: 40,
@@ -762,26 +769,26 @@ class _P42XRFBODYSTDState extends State<P42XRFBODYSTD> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          P42XRFBODYSTDVAR.DX = 'D02W11';
-                                          onLoadingFAKE(context);
-                                          context
-                                              .read<P42XRFBODYSTD_Bloc>()
-                                              .add(P42XRFBODYSTD_CLEARW11());
-                                          Future.delayed(
-                                              const Duration(
-                                                  milliseconds: 2000), () {
-                                            context
-                                                .read<
-                                                    P42XRFBODYSTDGETSET_Bloc>()
-                                                .add(P42XRFBODYSTDGETSET_GET());
+                                          // P42XRFBODYSTDVAR.DX = 'D02W11';
+                                          // onLoadingFAKE(context);
+                                          // context
+                                          //     .read<P42XRFBODYSTD_Bloc>()
+                                          //     .add(P42XRFBODYSTD_CLEARW11());
+                                          // Future.delayed(
+                                          //     const Duration(
+                                          //         milliseconds: 2000), () {
+                                          //   context
+                                          //       .read<
+                                          //           P42XRFBODYSTDGETSET_Bloc>()
+                                          //       .add(P42XRFBODYSTDGETSET_GET());
 
-                                            setState(() {
-                                              setState(() {
-                                                P42XRFBODYSTDVAR.Result01 = '';
-                                                P42XRFBODYSTDVAR.Result02 = '';
-                                              });
-                                            });
-                                          });
+                                          //   setState(() {
+                                          //     setState(() {
+                                          //       P42XRFBODYSTDVAR.Result01 = '';
+                                          //       P42XRFBODYSTDVAR.Result02 = '';
+                                          //     });
+                                          //   });
+                                          // });
                                         },
                                         child: Container(
                                           height: 40,

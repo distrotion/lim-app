@@ -113,7 +113,7 @@ class _P41XRFREQTABLEState extends State<P41XRFREQTABLE> {
               B03: 'Due date', //f9
               B04: 'Sample Name', //f17
               B05: 'Item Name', //f30
-              B06: 'Dilution time', //f16
+              B06: 'Sample Code', //f16
               B07: 'NO', //--
               B08: 'ACTION',
               CB01: Colors.black54,
@@ -205,7 +205,7 @@ class tabledetailsearch extends StatelessWidget {
             .replaceAll("GMT", "")), //f17
         B04: _data_exp[i].f41,
         B05: _data_exp[i].f04,
-        B06: _data_exp[i].f26,
+        B06: _data_exp[i].f39,
 
         B07: (_data_exp[i].f06).toString(),
         B08: '',
