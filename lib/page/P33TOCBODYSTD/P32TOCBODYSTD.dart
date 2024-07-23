@@ -1195,60 +1195,38 @@ class _P33TOCBODYSTDState extends State<P33TOCBODYSTD> {
                           // ),
                           child: InkWell(
                             onTap: () {
-                              print(ConverstStr(P33TOCBODYSTDVAR.D01VOLUME));
-                              print(ConverstStr(P33TOCBODYSTDVAR.D02VOLUME));
-                              context
-                                  .read<P33TOCBODYSTD_Bloc>()
-                                  .add(P33TOCBODYSTD_CAL());
-                              if (P33TOCBODYSTDVAR.Result01 == '') {
-                                setState(() {
-                                  if (P33TOCBODYSTDVAR.D01W11 != '' &&
-                                      P33TOCBODYSTDVAR.D01W21 != '' &&
-                                      P33TOCBODYSTDVAR.D01VOLUME != '') {
-                                    P33TOCBODYSTDVAR
-                                        .Result01 = ((double.parse(ConverstStr(
-                                                    P33TOCBODYSTDVAR.D01W21)) -
-                                                double.parse(ConverstStr(
-                                                    P33TOCBODYSTDVAR.D01W11))) /
-                                            double.parse(ConverstStr(
-                                                P33TOCBODYSTDVAR.D01VOLUME)) *
-                                            1000000)
-                                        .toStringAsFixed(2);
+                              // print(ConverstStr(P33TOCBODYSTDVAR.D01VOLUME));
+                              // print(ConverstStr(P33TOCBODYSTDVAR.D02VOLUME));
+                              // context
+                              //     .read<P33TOCBODYSTD_Bloc>()
+                              //     .add(P33TOCBODYSTD_CAL());
 
-                                    P33TOCBODYSTDVAR.D01W11_21 = (double.parse(
-                                                ConverstStr(
-                                                    P33TOCBODYSTDVAR.D01W21)) -
-                                            double.parse(ConverstStr(
-                                                P33TOCBODYSTDVAR.D01W11)))
-                                        .toStringAsFixed(4);
-                                  }
-                                  if (P33TOCBODYSTDVAR.D02W11 != '' &&
-                                      P33TOCBODYSTDVAR.D02W21 != '' &&
-                                      P33TOCBODYSTDVAR.D02VOLUME != '') {
-                                    P33TOCBODYSTDVAR
-                                        .Result02 = ((double.parse(ConverstStr(
-                                                    P33TOCBODYSTDVAR.D02W21)) -
-                                                double.parse(ConverstStr(
-                                                    P33TOCBODYSTDVAR.D02W11))) /
-                                            double.parse(ConverstStr(
-                                                P33TOCBODYSTDVAR.D02VOLUME)) *
-                                            1000000)
-                                        .toStringAsFixed(2);
+                              P33TOCBODYSTDVAR.D01TC = dataset.D01TC;
+                              P33TOCBODYSTDVAR.D02TC = dataset.D02TC;
+                              P33TOCBODYSTDVAR.D01IC = dataset.D01IC;
+                              P33TOCBODYSTDVAR.D02IC = dataset.D02IC;
 
-                                    P33TOCBODYSTDVAR.D02W11_21 = (double.parse(
-                                                ConverstStr(
-                                                    P33TOCBODYSTDVAR.D02W21)) -
-                                            double.parse(ConverstStr(
-                                                P33TOCBODYSTDVAR.D02W11)))
-                                        .toStringAsFixed(4);
-                                  }
-                                });
-                              } else {
-                                setState(() {
-                                  P33TOCBODYSTDVAR.Result01 = '';
-                                  P33TOCBODYSTDVAR.Result02 = '';
-                                });
-                              }
+                              setState(() {
+                                if (P33TOCBODYSTDVAR.D01TC != '' &&
+                                    P33TOCBODYSTDVAR.D01IC != '') {
+                                  P33TOCBODYSTDVAR.Result01 = ((double.parse(
+                                              ConverstStr(
+                                                  P33TOCBODYSTDVAR.D01TC)) -
+                                          double.parse(ConverstStr(
+                                              P33TOCBODYSTDVAR.D01IC))))
+                                      .toStringAsFixed(2);
+                                }
+
+                                if (P33TOCBODYSTDVAR.D02TC != '' &&
+                                    P33TOCBODYSTDVAR.D02IC != '') {
+                                  P33TOCBODYSTDVAR.Result02 = ((double.parse(
+                                              ConverstStr(
+                                                  P33TOCBODYSTDVAR.D02TC)) -
+                                          double.parse(ConverstStr(
+                                              P33TOCBODYSTDVAR.D02IC))))
+                                      .toStringAsFixed(2);
+                                }
+                              });
                             },
                             child: Container(
                               height: 62,

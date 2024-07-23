@@ -114,7 +114,7 @@ class _P31ICPREQTABLEState extends State<P31ICPREQTABLE> {
               B04: 'Sample Name', //f17
               B05: 'Sample Code', //f30
               B06: 'Dilution time', //f16
-              B07: 'NO', //--
+              B07: USERDATA.INSMASTER == "BP12TOC01" ? 'NO' : 'Item Name', //--
               B08: 'ACTION',
               CB01: Colors.black54,
               CB02: Colors.black54,
@@ -209,7 +209,9 @@ class tabledetailsearch extends StatelessWidget {
         B06: _data_exp[i].f26,
 
         // B07: (_data_exp[i].f06).toString(),
-        B07: (_data_exp[i].f30).toString(),
+        B07: USERDATA.INSMASTER == "BP12TOC01"
+            ? (_data_exp[i].f30).toString()
+            : _data_exp[i].f20,
         B08: _data_exp[i].f39,
         B09: _data_exp[i].f26,
         B10: '',

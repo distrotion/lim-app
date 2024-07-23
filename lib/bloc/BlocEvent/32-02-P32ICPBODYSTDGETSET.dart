@@ -45,7 +45,7 @@ class P32ICPBODYSTDGETSET_Bloc
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      // print(databuff);
+      print(databuff);
       if (databuff.length > 0) {
         output.ReqNo =
             databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
@@ -117,6 +117,23 @@ class P32ICPBODYSTDGETSET_Bloc
 
         output.Mag =
             databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
+        output.SampleCode = databuff[0]['SampleCode'] != null
+            ? databuff[0]['SampleCode'].toString()
+            : '';
+
+        if (databuff[0]['SARDATA'] != null) {
+          //DilutionTime_2
+          if (databuff[0]['SARDATA'].length > 0) {
+            output.DilutionTime_1 =
+                databuff[0]['SARDATA'][0]['DilutionTime_1'] != null
+                    ? databuff[0]['SARDATA'][0]['DilutionTime_1'].toString()
+                    : '';
+            output.DilutionTime_2 =
+                databuff[0]['SARDATA'][0]['DilutionTime_2'] != null
+                    ? databuff[0]['SARDATA'][0]['DilutionTime_2'].toString()
+                    : '';
+          }
+        }
       }
     }
 
@@ -163,6 +180,10 @@ class P32ICPBODYSTDGETSETCLASS {
     this.DueDate1 = '',
     this.SampleName = '',
     this.Mag = '',
+    this.SampleCode = '',
+    //
+    this.DilutionTime_1 = '',
+    this.DilutionTime_2 = '',
   });
   String ReqNo;
   String InstrumentName;
@@ -186,4 +207,8 @@ class P32ICPBODYSTDGETSETCLASS {
   String DueDate1;
   String SampleName;
   String Mag;
+  String SampleCode;
+
+  String DilutionTime_1;
+  String DilutionTime_2;
 }

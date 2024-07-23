@@ -154,7 +154,7 @@ class P32ICPBODYSTD_Bloc extends Bloc<P32ICPBODYSTD_Event, String> {
       },
     ).then((value) async {
       final response = await Dio().post(
-        '${selectBLANCE(USERDATA.Branch)}/TEMPSAVETOSAR_ICP',
+        '${selectBLANCE(USERDATA.Branch)}/TEMPSAVETOSAR_ICP_PDF',
         data: {
           "USER": USERDATA.NAME,
           "Branch": USERDATA.Branch,

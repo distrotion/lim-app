@@ -28,22 +28,22 @@ class GetICPvalue_Bloc extends Bloc<GetICPvalue_Event, ICPDATAclass> {
     final response02 = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/getvalue_${USERDATA.INSMASTER}',
       data: {
-        "barcode": P32ICPBODYSTDVAR.ReqNo.replaceAll("-", "/"),
+        "barcode": P32ICPBODYSTDVAR.ReqNo,
         "ItemName": P32ICPBODYSTDVAR.ItemName,
+        "SampleCode": P32ICPBODYSTDVAR.SampleCode, //.replaceAll("-", "/")
+        "DILUTE": P32ICPBODYSTDVAR.D01DIL,
       },
     );
-
+//.replaceAll("-", "/")
     if (response02.statusCode == 200) {
       var databuICP = response02.data;
       // print(databuICP);
       // output = databuICP;
-      if (databuICP['ICP1'] != null) {
+      if (databuICP['ICPR1'] != null) {
         output.value01 =
-            databuICP['ICP1'] != null ? databuICP['ICP1'].toString() : '';
-      }
-      if (databuICP['ICP2'] != null) {
+            databuICP['ICPR1'] != null ? databuICP['ICPR1'].toString() : '';
         output.value02 =
-            databuICP['ICP2'] != null ? databuICP['ICP2'].toString() : '';
+            databuICP['ICPR2'] != null ? databuICP['ICPR2'].toString() : '';
       }
     }
     // print(output);

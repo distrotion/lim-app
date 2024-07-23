@@ -38,7 +38,9 @@ class _App_BarState extends State<App_Bar> {
           //Text("  |  <--->  |  " + current_page.toString()),
           Spacer(),
           Text(
-              "${USERDATA.INSMASTER != '' ? "USE: " : ""}${USERDATA.INSMASTER} ${USERDATA.INSMASTER != '' ? "|" : ""} ${USERDATA.ID}(${USERDATA.NAME})  Branch: ${USERDATA.Branch} "),
+            "${USERDATA.INSMASTER != '' ? "USE: " : ""}${USERDATA.INSMASTER} ${USERDATA.INSMASTER != '' ? "|" : ""} ${USERDATA.ID}(${USERDATA.NAME})  Branch: ${USERDATA.Branch} ",
+            style: const TextStyle(color: Colors.white),
+          ),
           Pack_topright_bar(),
         ],
       ),

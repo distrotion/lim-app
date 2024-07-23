@@ -107,6 +107,29 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
                   }
                 }
               }
+            } else if (dataexList[i].contains("RTR")) {
+              List<String> req = dataexList[i].split(":");
+
+              for (var s = 0; s < req.length; s++) {
+                if (s == 1) {
+                  print(req[s]);
+
+                  k = 1;
+                  code = req[s];
+                  List<String> listcode = code.split("/");
+                  for (var a = 0; a < listcode.length; a++) {
+                    if (a == 0) {
+                      reqs = listcode[0];
+                    }
+                    if (a == 1) {
+                      R = listcode[1];
+                    }
+                    if (a == 2) {
+                      DI = listcode[1];
+                    }
+                  }
+                }
+              }
             }
           }
           if (dataexList[i].contains("Sequence No") && k == 2) {
@@ -165,7 +188,7 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
             "VALUE": LISTSETPDF[d].VALUE,
           });
         }
-
+        print(outdataset);
         Dio().post(
           '${serverG}LIMX/ICPSETDATA',
           data: {

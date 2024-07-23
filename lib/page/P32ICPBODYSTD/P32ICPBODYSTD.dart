@@ -81,6 +81,7 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
     P32ICPBODYSTDVAR.SamplingDate = _monthreplce(dataset.SamplingDate);
     P32ICPBODYSTDVAR.DueDate1 = _monthreplce(dataset.DueDate1);
     P32ICPBODYSTDVAR.SampleName = dataset.SampleName;
+    P32ICPBODYSTDVAR.SampleCode = dataset.SampleCode;
 
     P32ICPBODYSTDVAR.itemName = dataset.ItemName;
 
@@ -101,6 +102,28 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
     if (P32ICPBODYSTDVAR.D02NOitem == '') {
       P32ICPBODYSTDVAR.iscontrol = true;
       P32ICPBODYSTDVAR.D02NOitem = dataset.D02NOitem;
+    }
+
+    if (dataset.DilutionTime_1 == '') {
+      if (P32ICPBODYSTDVAR.Mag == '-') {
+        P32ICPBODYSTDVAR.D01DIL = dataset.DilutionTime_1;
+      } else {
+        P32ICPBODYSTDVAR.D01DIL = P32ICPBODYSTDVAR.Mag;
+      }
+    } else {
+      P32ICPBODYSTDVAR.D01DIL = dataset.DilutionTime_1;
+    }
+
+    print(P32ICPBODYSTDVAR.D01DIL);
+
+    if (dataset.DilutionTime_2 == '') {
+      if (P32ICPBODYSTDVAR.Mag == '-') {
+        P32ICPBODYSTDVAR.D02DIL = dataset.DilutionTime_2;
+      } else {
+        P32ICPBODYSTDVAR.D02DIL = P32ICPBODYSTDVAR.Mag;
+      }
+    } else {
+      P32ICPBODYSTDVAR.D02DIL = dataset.DilutionTime_2;
     }
 
     // P32ICPBODYSTDVAR.Result = P32ICPBODYSTDVAR.W11;
@@ -202,12 +225,12 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Sample name : ${P32ICPBODYSTDVAR.itemName}"),
+                                      "Sample name : ${P32ICPBODYSTDVAR.SampleName}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      "Item Name : ${P32ICPBODYSTDVAR.Mag}"),
+                                      "Item Name : ${P32ICPBODYSTDVAR.itemName}"),
                                 ),
 
                                 //P32ICPBODYSTDVAR.itemName
@@ -274,7 +297,7 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                             children: [
                               const Text("preview ICP #1"),
                               Container(
-                                width: 150,
+                                width: 140,
                                 height: 40,
                                 decoration: BoxDecoration(
                                   // color: Colors.black,
@@ -298,7 +321,7 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                             children: [
                               const Text("preview ICP #2"),
                               Container(
-                                width: 150,
+                                width: 140,
                                 height: 40,
                                 decoration: BoxDecoration(
                                   // color: Colors.black,
@@ -1168,7 +1191,22 @@ class _P32ICPBODYSTDState extends State<P32ICPBODYSTD> {
                           //   ),
                           // ),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              P32ICPBODYSTDVAR.Result01 = (double.parse(
+                                          ConverstStr(
+                                              P32ICPBODYSTDVAR.D01DIL)) *
+                                      double.parse(
+                                          ConverstStr(P32ICPBODYSTDVAR.D01W11)))
+                                  .toStringAsFixed(2);
+
+                              P32ICPBODYSTDVAR.Result02 = (double.parse(
+                                          ConverstStr(
+                                              P32ICPBODYSTDVAR.D02DIL)) *
+                                      double.parse(
+                                          ConverstStr(P32ICPBODYSTDVAR.D02W11)))
+                                  .toStringAsFixed(2);
+                              setState(() {});
+                            },
                             child: Container(
                               height: 62,
                               color: P32ICPBODYSTDVAR.Result01 == '' ||
