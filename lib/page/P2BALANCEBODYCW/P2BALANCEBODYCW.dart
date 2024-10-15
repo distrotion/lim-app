@@ -1231,30 +1231,30 @@ class _LineChart extends StatelessWidget {
   LineTouchData get lineTouchData1 => LineTouchData(
         handleBuiltInTouches: true,
         touchTooltipData: LineTouchTooltipData(
-            tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+            // tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
             getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
-              return touchedBarSpots.map((barSpot) {
-                final flSpot = barSpot;
-                if (historyChartData.length == 1) {
-                  return LineTooltipItem(
-                    'RESULT : ${flSpot.y}',
-                    TextStyle(
-                      color: Colors.grey[900],
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                } else {
-                  return LineTooltipItem(
-                    '${flSpot.y} ${historyChartData[flSpot.x.toInt()].resultApproveUnit}\nDate\n${historyChartData[flSpot.x.toInt()].samplingDate}',
-                    TextStyle(
-                      fontSize: 15,
-                      color: Colors.grey[900],
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                }
-              }).toList();
-            }),
+          return touchedBarSpots.map((barSpot) {
+            final flSpot = barSpot;
+            if (historyChartData.length == 1) {
+              return LineTooltipItem(
+                'RESULT : ${flSpot.y}',
+                TextStyle(
+                  color: Colors.grey[900],
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            } else {
+              return LineTooltipItem(
+                '${flSpot.y} ${historyChartData[flSpot.x.toInt()].resultApproveUnit}\nDate\n${historyChartData[flSpot.x.toInt()].samplingDate}',
+                TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey[900],
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }
+          }).toList();
+        }),
       );
 
   FlTitlesData get titlesData1 => FlTitlesData(

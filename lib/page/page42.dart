@@ -5,7 +5,7 @@ import '../bloc/BlocEvent/42-01-P42XRFBODYSTD.dart';
 
 import '../bloc/BlocEvent/42-02-P42XRFBODYSTDGETSET.dart';
 import '../bloc/BlocEvent/42-03-P42XRFBODYSTDgetgraph.dart';
-import '../bloc/BlocEvent/42-GetXRFvalue.dart';
+import '../bloc/BlocEvent/41-GetXRFvalue.dart';
 import '../bloc/cubit/POP-searchHistoryChartData.dart';
 import 'P42XRFBODYSTD/P42XRFBODYSTD.dart';
 
