@@ -33,7 +33,7 @@ class P31ICPREQGET_Bloc extends Bloc<P31ICPREQGET_Event, List<dataset>> {
       List<dataset> toAdd, Emitter<List<dataset>> emit) async {
     String service = 'request_ICP_USER';
     // String service = 'request_ICP_ALL';
-    if (USERDATA.INSMASTER == "BP12TOC01") {
+    if (USERDATA.INSMASTER == "BP12TOC01" || USERDATA.INSMASTER == "HESTOC01") {
       // service = 'request_TOC_ALL';
       service = 'request_TOC_USER';
     } else {}

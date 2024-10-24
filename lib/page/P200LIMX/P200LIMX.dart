@@ -5,7 +5,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:convert';
-import '../../bloc/cubit/00-01-TESTINGOCR_cubit.dart';
+import '../../bloc/cubit/00-01-ICPOCR_cubit.dart';
+import '../../bloc/cubit/00-02-ICS2000OCR_cubit.dart';
 import '../../bloc/cubit/NotificationEvent.dart';
 import '../../data/global.dart';
 
@@ -340,9 +341,56 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 200,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text("ICS-2000(PDF)"),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    var picked = await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['pdf', 'xps'],
+                    );
+                    Uint8List? imageByte;
+                    if (picked != null) {
+                      imageByte = picked.files.first.bytes;
+                      // print(imageByte!.toList());
+                      await context
+                          .read<ICS2000OCR_Cubit>()
+                          .FilePathTESTcu(imageByte!.toList(), "1234");
+                      setState(() {});
+                    }
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 100,
+                    color: Colors.red,
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      color: Colors.red,
+                      child: const Center(
+                        child: Text("UPLOAD"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
+ 
+ 
   }
 }
 

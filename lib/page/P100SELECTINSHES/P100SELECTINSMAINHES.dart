@@ -340,7 +340,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                         // color: Colors.blue,
                         color: Colors.red,
                         child: const Center(
-                          child: Text("ICS 2000"),
+                          child: Text("ICS-2100"),
                         ),
                       ),
                     ],
