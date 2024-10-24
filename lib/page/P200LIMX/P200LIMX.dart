@@ -104,9 +104,11 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       String cleanupWhitespace(String input) =>
                           input.split(_whitespaceRE).join(",");
                       //----
+
                       List<DATASET2V> setdatablist = [];
                       for (var i = 0; i < dataexList.length; i++) {
-                        if (dataexList[i].contains("RTB")) {
+                        if (dataexList[i].contains("RTB") ||
+                            dataexList[i].contains("RTR")) {
                           // print(cleanupWhitespace(dataexList[i]));
                           List<String> dtList =
                               cleanupWhitespace(dataexList[i]).split(",");
@@ -263,7 +265,8 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               .replaceAll(',', '')
                               .replaceAll('\r', '');
                         }
-                        if (dataexList[i].contains("RTB")) {
+                        if (dataexList[i].contains("RTB") ||
+                            dataexList[i].contains("RTR")) {
                           List<String> dtList = dataexList[i].split(",");
                           DATASET setdatab = DATASET();
 
@@ -389,8 +392,6 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
         ],
       ),
     );
- 
- 
   }
 }
 

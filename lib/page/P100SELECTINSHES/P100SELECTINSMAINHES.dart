@@ -216,8 +216,8 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                       Container(
                         height: 50,
                         width: 125,
-                        // color: Colors.blue,
-                        color: Colors.red,
+                        color: Colors.blue,
+                        // color: Colors.red,
                         child: const Center(
                           child: Text("XRF Primus II"),
                         ),
@@ -259,8 +259,8 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                       Container(
                         height: 50,
                         width: 125,
-                        // color: Colors.blue,
-                        color: Colors.red,
+                        color: Colors.blue,
+                        // color: Colors.red,
                         child: const Center(
                           child: Text("TOC"),
                         ),
@@ -298,8 +298,8 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                       Container(
                         height: 50,
                         width: 125,
-                        // color: Colors.blue,
-                        color: Colors.red,
+                        color: Colors.blue,
+                        // color: Colors.red,
                         child: const Center(
                           child: Text("ICP Perkin"),
                         ),

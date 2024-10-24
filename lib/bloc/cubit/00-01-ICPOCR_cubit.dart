@@ -84,7 +84,8 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
           // if (dataexList[i].contains("Sample ID")) {
           if (dataexList[i].contains("Mean Data") && k == 0 && code == '') {
             //
-            if (dataexList[i].contains("RTB")) {
+            if (dataexList[i].contains("RTB") ||
+                dataexList[i].contains("RTR")) {
               List<String> req = dataexList[i].split(":");
 
               for (var s = 0; s < req.length; s++) {
