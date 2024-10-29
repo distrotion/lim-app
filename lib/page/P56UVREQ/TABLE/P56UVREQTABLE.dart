@@ -15,7 +15,7 @@ import '../../../widget/common/popup.dart';
 
 import '../../page12.dart';
 import '../../page2.dart';
-import '../../Page32.dart';
+import '../../Page57.dart';
 import '../../page3.dart';
 import '../../page33.dart';
 import '../../page4.dart';
@@ -114,7 +114,8 @@ class _P56UVREQTABLEState extends State<P56UVREQTABLE> {
               B04: 'Sample Name', //f17
               B05: 'Sample Code', //f30
               B06: 'Dilution time', //f16
-              B07: USERDATA.INSMASTER == "BP12TOC01" ? 'NO' : 'Item Name', //--
+              // B07: USERDATA.INSMASTER == "BP12UV01" ? 'NO' : 'Item Name', //--
+              B07: 'Instrument',
               B08: 'ACTION',
               CB01: Colors.black54,
               CB02: Colors.black54,
@@ -209,14 +210,16 @@ class tabledetailsearch extends StatelessWidget {
         B06: _data_exp[i].f26,
 
         // B07: (_data_exp[i].f06).toString(),
-        B07: USERDATA.INSMASTER == "BP12TOC01"
-            ? (_data_exp[i].f30).toString()
-            : _data_exp[i].f20,
+        // B07: USERDATA.INSMASTER == "BP12UV01"
+        //     ? (_data_exp[i].f30).toString()
+        //     : _data_exp[i].f20,
+        B07: _data_exp[i].f19,
         B08: _data_exp[i].f39,
         B09: _data_exp[i].f26,
         B10: '',
         B11: _data_exp[i].f02,
         B12: _data_exp[i].f70,
+
         CB01: _data_exp[i].f36 == 'finish-no'
             ? Colors.red
             : _data_exp[i].f36 == 'finish'
@@ -225,13 +228,16 @@ class tabledetailsearch extends StatelessWidget {
                     ? Colors.yellow
                     : Colors.transparent,
         isSELECTFUNC: true,
-        SELECTFUNC: (PO, CP, FG, SR, DI) async {
+        SELECTFUNC: (
+          PO,
+          CP,
+          FG,
+        ) async {
           print(PO);
           print(CP);
           print(FG);
 
-          // if (CP == "Sludge") {
-          if (CP == "ICP") {
+          if (CP.contains("Ti")) {
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -252,58 +258,8 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page32(),
-                              '36SARICPSTD/GENREQ');
-                        } else {
-                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
-                        }
-                      }
-                    });
-                  } else {
-                    // WORNINGpop(context, ["test", "test"], 100, 200);
-
-                    // CuPage = Page3();
-                    // MainBodyContext.read<ChangePage_Bloc>()
-                    //     .add(ChangePage_nodrower());
-                    WORNINGpop(
-                      context,
-                      [
-                        "BLOCK",
-                        "PLEASE CHECK",
-                      ],
-                      100,
-                      100,
-                    );
-                  }
-                }
-              }
-            });
-            // } else if (CP == "Cwt") {
-          } else if (CP == "TOC") {
-            final response = Dio().post(
-              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
-              data: {},
-            ).then((value) {
-              if (value.statusCode == 200) {
-                var databuICP = value.data;
-                // print('>>>>${databuICP['REQNO']}');
-                if (databuICP['REQNO'] != null) {
-                  if (databuICP['REQNO'].toString() == '') {
-                    final response = Dio().post(
-                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
-                      data: {
-                        "REQNO": PO,
-                        "SampleCode": SR,
-                        "DILUTE": DI,
-                        "UID": FG,
-                      },
-                    ).then((value) {
-                      if (value.statusCode == 200) {
-                        var databuICP = value.data;
-
-                        if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page33(),
-                              '37SARTOCSTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page57(),
+                              '41SARUVSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }

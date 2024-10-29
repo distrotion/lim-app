@@ -344,6 +344,51 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
               ],
             ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Row(
+          //     children: [
+          //       Container(
+          //         height: 40,
+          //         width: 200,
+          //         color: Colors.blue,
+          //         child: Center(
+          //           child: Text("ICS-2000(PDF)"),
+          //         ),
+          //       ),
+          //       InkWell(
+          //         onTap: () async {
+          //           var picked = await FilePicker.platform.pickFiles(
+          //             type: FileType.custom,
+          //             allowedExtensions: ['pdf', 'xps'],
+          //           );
+          //           Uint8List? imageByte;
+          //           if (picked != null) {
+          //             imageByte = picked.files.first.bytes;
+          //             // print(imageByte!.toList());
+          //             await context
+          //                 .read<ICS2000OCR_Cubit>()
+          //                 .FilePathTESTcu(imageByte!.toList(), "1234");
+          //             setState(() {});
+          //           }
+          //         },
+          //         child: Container(
+          //           height: 40,
+          //           width: 100,
+          //           color: Colors.red,
+          //           child: Container(
+          //             height: 40,
+          //             width: 100,
+          //             color: Colors.red,
+          //             child: const Center(
+          //               child: Text("UPLOAD"),
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -353,23 +398,118 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                   width: 200,
                   color: Colors.blue,
                   child: Center(
-                    child: Text("ICS-2000(PDF)"),
+                    child: Text("Ti(UV)"),
                   ),
                 ),
                 InkWell(
                   onTap: () async {
                     var picked = await FilePicker.platform.pickFiles(
                       type: FileType.custom,
-                      allowedExtensions: ['pdf', 'xps'],
+                      allowedExtensions: ['csv'],
                     );
                     Uint8List? imageByte;
                     if (picked != null) {
                       imageByte = picked.files.first.bytes;
-                      // print(imageByte!.toList());
-                      await context
-                          .read<ICS2000OCR_Cubit>()
-                          .FilePathTESTcu(imageByte!.toList(), "1234");
-                      setState(() {});
+                      const asciiDecoder = AsciiDecoder();
+                      final result = asciiDecoder.convert(imageByte!.toList());
+                      // print(result);
+                      List<String> dataexList = result.split("\n");
+                      // print(dataexList);
+                      List<DATASETTIUV> setdatablist = [];
+                      String type = '';
+                      for (var i = 0; i < dataexList.length; i++) {
+                        if (i == 0) {
+                          print(dataexList[0]
+                              .replaceAll('"', '')
+                              .replaceAll(',', ''));
+                          type = dataexList[0]
+                              .replaceAll('"', '')
+                              .replaceAll(',', '')
+                              .replaceAll('\r', '');
+                        }
+                        if (dataexList[i].contains("RTB") ||
+                            dataexList[i].contains("RTR")) {
+                          List<String> dtList = dataexList[i].split(",");
+                          DATASETTIUV setdatab = DATASETTIUV();
+
+                          for (var j = 0; j < dtList.length; j++) {
+                            // print(dtList[j].replaceAll(" ", ""));
+
+                            String DATAgeteach = dtList[j].replaceAll(" ", "");
+                            if (j == 0) {
+                              //
+                              // setdatab.type = type;
+                              setdatab.code = DATAgeteach.replaceAll('"', '');
+                              List<String> dtList = DATAgeteach.split("/");
+                              for (var k = 0; k < dtList.length; k++) {
+                                if (k == 0) {
+                                  setdatab.REQ = dtList[k].replaceAll('"', '');
+                                }
+                                if (k == 1) {
+                                  setdatab.R = dtList[k].replaceAll('"', '');
+                                }
+                                if (k == 2) {
+                                  setdatab.DI1 = dtList[k].replaceAll('"', '');
+                                }
+                              }
+                            } else if (j == 5) {
+                              setdatab.VALUE = dtList[j].replaceAll('"', '');
+                            } else if (j == 4) {
+                              setdatab.DI2 = dtList[j].replaceAll('"', '');
+                            }
+                          }
+                          setdatablist.add(setdatab);
+                        }
+                      }
+                      // print(setdatablist);
+                      List<Map<String, String>> outdataset = [];
+                      for (var s = 0; s < setdatablist.length; s++) {
+                        print({
+                          "code": setdatablist[s].code,
+                          "REQ": setdatablist[s].REQ,
+                          "R": setdatablist[s].R,
+                          "DIM": setdatablist[s].DIM,
+                          "DI1": setdatablist[s].DI1,
+                          "DI2": setdatablist[s].DI2,
+                          "VALUE": setdatablist[s].VALUE,
+                        });
+                        outdataset.add({
+                          "code": setdatablist[s].code,
+                          "REQ": setdatablist[s].REQ,
+                          "R": setdatablist[s].R,
+                          "DIM": setdatablist[s].DIM,
+                          "DI1": setdatablist[s].DI1,
+                          "DI2": setdatablist[s].DI2,
+                          "VALUE": setdatablist[s].VALUE,
+                        });
+                      }
+
+                      Dio().post(
+                        '${serverG}LIMX/UVSETDATA',
+                        data: {
+                          "DATA": outdataset,
+                        },
+                      ).then((value) {
+                        print(value);
+                        BlocProvider.of<BlocNotification>(contextGB)
+                            .UpdateNotification("Complete", "Upload completed",
+                                enumNotificationlist.Success);
+                      });
+
+                      // Dio().post(
+                      //   '${serverG}LIMX/XRFSETDATA',
+                      //   data: {
+                      //     "DATA": outdataset,
+                      //   },
+                      // ).then((value) {
+                      //   BlocProvider.of<BlocNotification>(contextGB)
+                      //       .UpdateNotification("Complete", "Upload completed",
+                      //           enumNotificationlist.Success);
+                      // });
+                      // await context
+                      //     .read<TESTINGOCR_Cubit>()
+                      //     .FilePathTESTcu(imageByte!.toList(), "1234");
+                      // setState(() {});
                     }
                   },
                   child: Container(
@@ -430,5 +570,24 @@ class DATASET {
   String REQ;
   String R;
   String DI;
+  String VALUE;
+}
+
+class DATASETTIUV {
+  DATASETTIUV({
+    this.code = '',
+    this.REQ = '',
+    this.R = '',
+    this.DIM = '',
+    this.DI1 = '',
+    this.DI2 = '',
+    this.VALUE = '',
+  });
+  String code;
+  String REQ;
+  String R;
+  String DIM;
+  String DI1;
+  String DI2;
   String VALUE;
 }

@@ -33,7 +33,7 @@ class P56WIDGETFIELD extends StatefulWidget {
     this.forntsize,
   }) : super(key: key);
   double? height;
-  Function? SELECTFUNC;
+  Function(String, String, String)? SELECTFUNC;
   bool? isSELECTFUNC;
   double? forntsize;
   String? B01;
@@ -234,9 +234,9 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
                       child: InkWell(
                         onTap: () {
                           widget.SELECTFUNC!(
-                                widget.B01,
-                                widget.B11,
-                                widget.B12,
+                                widget.B01 ?? '',
+                                widget.B11 ?? '',
+                                widget.B12 ?? '',
                               ) ??
                               () {};
                         },
