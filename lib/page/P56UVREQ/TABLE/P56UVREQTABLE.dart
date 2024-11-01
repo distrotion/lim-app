@@ -20,6 +20,7 @@ import '../../page3.dart';
 import '../../page33.dart';
 import '../../page4.dart';
 
+import '../../page58.dart';
 import '../P56UVREQVAR.dart';
 import 'P56UVREQTABLEFIELD.dart';
 
@@ -238,6 +239,8 @@ class tabledetailsearch extends StatelessWidget {
           print(FG);
 
           if (CP.contains("Ti")) {
+            USERDATA.INSMASTER = 'BP12UV01';
+            //BP12OCA01
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -260,6 +263,56 @@ class tabledetailsearch extends StatelessWidget {
                         if (databuICP['msg'].toString() == 'ok') {
                           GENREQSG(context, _data_exp[i], Page57(),
                               '41SARUVSTD/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+            // } else if (CP == "Cwt") {
+          } else if (CP.contains("OCA")) {
+            USERDATA.INSMASTER = 'BP12OCA01';
+
+            final response = Dio().post(
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuICP = value.data;
+                // print('>>>>${databuICP['REQNO']}');
+                if (databuICP['REQNO'] != null) {
+                  if (databuICP['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
+                      data: {
+                        "REQNO": PO,
+                        "UID": FG,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuICP = value.data;
+
+                        if (databuICP['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page58(),
+                              '42SAROCASTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }

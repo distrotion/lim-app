@@ -50,8 +50,8 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
 
     P58OCABODYSTDVAR.value01 = '';
     P58OCABODYSTDVAR.value02 = '';
-    // context.read<P58OCABODYSTDGETSET_Bloc>().add(P58OCABODYSTDGETSET_GET());
-    // context.read<GetOCAvalue_Bloc>().add(GetOCAvalue_Get());
+    context.read<P58OCABODYSTDGETSET_Bloc>().add(P58OCABODYSTDGETSET_GET());
+    context.read<GetOCAvalue_Bloc>().add(GetOCAvalue_Get());
 
     P58OCABODYSTDVAR.D01VOLUME = '';
     P58OCABODYSTDVAR.Result01 = '';
@@ -280,7 +280,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text("OCA #1"),
+                                child: Text("OCA R1 #1"),
                               ),
                               Container(
                                 width: 150,
@@ -307,7 +307,117 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text("OCA #2"),
+                                child: Text("OCA R2 #1"),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  // color: Colors.black,
+                                  border:
+                                      Border.all(color: Colors.blue, width: 2),
+                                ),
+                                child: Center(
+                                    child: Text(P58OCABODYSTDVAR.value02)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          // color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("OCA R1 #2"),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  // color: Colors.black,
+                                  border:
+                                      Border.all(color: Colors.blue, width: 2),
+                                ),
+                                child: Center(
+                                    child: Text(P58OCABODYSTDVAR.value01)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          height: 40,
+                          // color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("OCA R2 #2"),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  // color: Colors.black,
+                                  border:
+                                      Border.all(color: Colors.blue, width: 2),
+                                ),
+                                child: Center(
+                                    child: Text(P58OCABODYSTDVAR.value02)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          // color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("OCA R1 #3"),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  // color: Colors.black,
+                                  border:
+                                      Border.all(color: Colors.blue, width: 2),
+                                ),
+                                child: Center(
+                                    child: Text(P58OCABODYSTDVAR.value01)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          height: 40,
+                          // color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("OCA R2 #3"),
                               ),
                               Container(
                                 width: 150,
@@ -397,75 +507,6 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                       children: [
                         Column(
                           children: [
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P58OCABODYSTDVAR.SEND == ''
-                            //                   ? Colors.brown
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("TAG"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 120,
-                            //             // color: Colors.blue,
-                            //             child: Container(
-                            //               height: 62,
-                            //               // color: Colors.blue.shade300,
-                            //               child: Row(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.spaceAround,
-                            //                 children: [
-                            //                   ComInputText(
-                            //                     isNumberOnly: true,
-                            //                     isEnabled:
-                            //                         P58OCABODYSTDVAR.Result01 ==
-                            //                             '',
-                            //                     width: 120,
-                            //                     height: 40,
-                            //                     isContr:
-                            //                         P58OCABODYSTDVAR.iscontrol,
-                            //                     fnContr: (input) {
-                            //                       setState(() {
-                            //                         P58OCABODYSTDVAR.iscontrol =
-                            //                             input;
-                            //                       });
-                            //                     },
-                            //                     sValue:
-                            //                         P58OCABODYSTDVAR.D01NOitem,
-                            //                     returnfunc: (String s) {
-                            //                       P58OCABODYSTDVAR.D01NOitem = s;
-                            //                     },
-                            //                   ),
-                            //                   Text("")
-                            //                 ],
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -515,28 +556,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         height: 5,
                                       ),
                                       InkWell(
-                                        onTap: () {
-                                          // P58OCABODYSTDVAR.DX = 'D01W11';
-                                          // onLoadingFAKE(context);
-                                          // context
-                                          //     .read<P58OCABODYSTD_Bloc>()
-                                          //     .add(P58OCABODYSTD_CLEARW11());
-                                          // Future.delayed(
-                                          //     const Duration(
-                                          //         milliseconds: 2000), () {
-                                          //   context
-                                          //       .read<
-                                          //           P58OCABODYSTDGETSET_Bloc>()
-                                          //       .add(P58OCABODYSTDGETSET_GET());
-
-                                          //   setState(() {
-                                          //     setState(() {
-                                          //       P58OCABODYSTDVAR.Result01 = '';
-                                          //       P58OCABODYSTDVAR.Result02 = '';
-                                          //     });
-                                          //   });
-                                          // });
-                                        },
+                                        onTap: () {},
                                         child: Container(
                                           height: 40,
                                           width: 45,
@@ -553,92 +573,6 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                 ),
                               ],
                             ),
-
-                            // const SizedBox(
-                            //   height: 5,
-                            // ),
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {
-                            //               setState(() {
-                            //                 P58OCABODYSTDVAR.WX = 'D01W11';
-                            //               });
-                            //               context
-                            //                   .read<GetPHvalue_Bloc>()
-                            //                   .add(GetPHvalue_Get());
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P58OCABODYSTDVAR.WX == 'D01W11'
-                            //                   ? Colors.yellowAccent
-                            //                   : (P58OCABODYSTDVAR.SEND == ''
-                            //                       ? Colors.green
-                            //                       : Colors.grey.shade400),
-                            //               child: const Center(
-                            //                 child: Text("TEMP"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 100,
-                            //             color: Colors.blue,
-                            //             child: Center(
-                            //                 child:
-                            //                     Text(P58OCABODYSTDVAR.D01W11)),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //           InkWell(
-                            //             onTap: () {
-                            //               P58OCABODYSTDVAR.DX = 'D01W11';
-                            //               onLoadingFAKE(context);
-                            //               context
-                            //                   .read<P58OCABODYSTD_Bloc>()
-                            //                   .add(P58OCABODYSTD_CLEARW11());
-                            //               Future.delayed(
-                            //                   const Duration(
-                            //                       milliseconds: 2000), () {
-                            //                 context
-                            //                     .read<P58OCABODYSTDGETSET_Bloc>()
-                            //                     .add(P58OCABODYSTDGETSET_GET());
-                            //                 setState(() {
-                            //                   setState(() {
-                            //                     P58OCABODYSTDVAR.Result01 = '';
-                            //                     P58OCABODYSTDVAR.Result02 = '';
-                            //                   });
-                            //                 });
-                            //               });
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 45,
-                            //               color: P58OCABODYSTDVAR.SEND == ''
-                            //                   ? Colors.orange
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("CLEAR"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-
                             const SizedBox(
                               height: 5,
                             ),
@@ -649,76 +583,6 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                         ),
                         Column(
                           children: [
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P58OCABODYSTDVAR.SEND == ''
-                            //                   ? Colors.brown
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("TAG"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 120,
-                            //             // color: Colors.blue,
-                            //             child: Container(
-                            //               height: 62,
-                            //               // color: Colors.blue.shade300,
-                            //               child: Row(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.spaceAround,
-                            //                 children: [
-                            //                   ComInputText(
-                            //                     isNumberOnly: true,
-                            //                     isEnabled:
-                            //                         P58OCABODYSTDVAR.Result02 ==
-                            //                             '',
-                            //                     width: 120,
-                            //                     height: 40,
-                            //                     isContr:
-                            //                         P58OCABODYSTDVAR.iscontrol,
-                            //                     fnContr: (input) {
-                            //                       setState(() {
-                            //                         P58OCABODYSTDVAR.iscontrol =
-                            //                             input;
-                            //                       });
-                            //                     },
-                            //                     sValue:
-                            //                         P58OCABODYSTDVAR.D02NOitem,
-                            //                     returnfunc: (String s) {
-                            //                       P58OCABODYSTDVAR.D02NOitem = s;
-                            //                     },
-                            //                   ),
-                            //                   Text("")
-                            //                 ],
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-
                             const SizedBox(
                               height: 5,
                             ),
@@ -768,28 +632,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         height: 5,
                                       ),
                                       InkWell(
-                                        onTap: () {
-                                          // P58OCABODYSTDVAR.DX = 'D02W11';
-                                          // onLoadingFAKE(context);
-                                          // context
-                                          //     .read<P58OCABODYSTD_Bloc>()
-                                          //     .add(P58OCABODYSTD_CLEARW11());
-                                          // Future.delayed(
-                                          //     const Duration(
-                                          //         milliseconds: 2000), () {
-                                          //   context
-                                          //       .read<
-                                          //           P58OCABODYSTDGETSET_Bloc>()
-                                          //       .add(P58OCABODYSTDGETSET_GET());
-
-                                          //   setState(() {
-                                          //     setState(() {
-                                          //       P58OCABODYSTDVAR.Result01 = '';
-                                          //       P58OCABODYSTDVAR.Result02 = '';
-                                          //     });
-                                          //   });
-                                          // });
-                                        },
+                                        onTap: () {},
                                         child: Container(
                                           height: 40,
                                           width: 45,
@@ -806,92 +649,312 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                 ),
                               ],
                             ),
-                            // const SizedBox(
-                            //   height: 5,
-                            // ),
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {
-                            //               setState(() {
-                            //                 P58OCABODYSTDVAR.WX = 'D01W11';
-                            //               });
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P58OCABODYSTDVAR.WX = 'D01W11';
+                                          });
 
-                            //               context
-                            //                   .read<GetPHvalue_Bloc>()
-                            //                   .add(GetPHvalue_Get());
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P58OCABODYSTDVAR.WX == 'D01W11'
-                            //                   ? Colors.yellowAccent
-                            //                   : (P58OCABODYSTDVAR.SEND == ''
-                            //                       ? Colors.green
-                            //                       : Colors.grey.shade400),
-                            //               child: const Center(
-                            //                 child: Text("TEMP"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 100,
-                            //             color: Colors.blue,
-                            //             child: Center(
-                            //                 child:
-                            //                     Text(P58OCABODYSTDVAR.D02W11)),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //           InkWell(
-                            //             onTap: () {
-                            //               P58OCABODYSTDVAR.DX = 'D02W11';
-                            //               onLoadingFAKE(context);
-                            //               context
-                            //                   .read<P58OCABODYSTD_Bloc>()
-                            //                   .add(P58OCABODYSTD_CLEARW11());
-                            //               Future.delayed(
-                            //                   const Duration(
-                            //                       milliseconds: 2000), () {
-                            //                 context
-                            //                     .read<P58OCABODYSTDGETSET_Bloc>()
-                            //                     .add(P58OCABODYSTDGETSET_GET());
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P58OCABODYSTDVAR.WX == 'D01W11'
+                                              ? Colors.yellowAccent
+                                              : (P58OCABODYSTDVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("OCA #1"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child:
+                                                Text(P58OCABODYSTDVAR.D01W11)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 45,
+                                          color: P58OCABODYSTDVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P58OCABODYSTDVAR.WX = 'D02W11';
+                                          });
 
-                            //                 setState(() {
-                            //                   setState(() {
-                            //                     P58OCABODYSTDVAR.Result01 = '';
-                            //                     P58OCABODYSTDVAR.Result02 = '';
-                            //                   });
-                            //                 });
-                            //               });
-                            //             },
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 45,
-                            //               color: P58OCABODYSTDVAR.SEND == ''
-                            //                   ? Colors.orange
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("CLEAR"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P58OCABODYSTDVAR.WX == 'D02W11'
+                                              ? Colors.yellowAccent
+                                              : (P58OCABODYSTDVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("OCA #2"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child:
+                                                Text(P58OCABODYSTDVAR.D02W11)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 45,
+                                          color: P58OCABODYSTDVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P58OCABODYSTDVAR.WX = 'D01W11';
+                                          });
+
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P58OCABODYSTDVAR.WX == 'D01W11'
+                                              ? Colors.yellowAccent
+                                              : (P58OCABODYSTDVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("OCA #1"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child:
+                                                Text(P58OCABODYSTDVAR.D01W11)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 45,
+                                          color: P58OCABODYSTDVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            P58OCABODYSTDVAR.WX = 'D02W11';
+                                          });
+
+                                          context
+                                              .read<GetPHvalue_Bloc>()
+                                              .add(GetPHvalue_Get());
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P58OCABODYSTDVAR.WX == 'D02W11'
+                                              ? Colors.yellowAccent
+                                              : (P58OCABODYSTDVAR.SEND == ''
+                                                  ? Colors.green
+                                                  : Colors.grey.shade400),
+                                          child: const Center(
+                                            child: Text("OCA #2"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: Colors.blue,
+                                        child: Center(
+                                            child:
+                                                Text(P58OCABODYSTDVAR.D02W11)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 45,
+                                          color: P58OCABODYSTDVAR.SEND == ''
+                                              ? Colors.orange
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("CLEAR"),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),

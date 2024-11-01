@@ -39,7 +39,7 @@ class P58OCABODYSTDGETSET_Bloc
     final response = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/GETREGISTERSET_${USERDATA.INSMASTER}',
       data: {
-        "collection": "UVdataSTD",
+        "collection": "OCAdataSTD",
       },
     );
 
