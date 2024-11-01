@@ -552,100 +552,97 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       imageByte = picked.files.first.bytes;
                       const asciiDecoder = AsciiDecoder();
                       final result = asciiDecoder.convert(imageByte!.toList());
-                      print(result);
+                      // print(result);
                       List<String> dataexList = result.split("\n");
                       // print(dataexList);
-                      List<DATASETTIUV> setdatablist = [];
-                      // String type = '';
-                      // for (var i = 0; i < dataexList.length; i++) {
-                      //   if (i == 0) {
-                      //     print(dataexList[0]
-                      //         .replaceAll('"', '')
-                      //         .replaceAll(',', ''));
-                      //     type = dataexList[0]
-                      //         .replaceAll('"', '')
-                      //         .replaceAll(',', '')
-                      //         .replaceAll('\r', '');
-                      //   }
-                      //   if (dataexList[i].contains("RTB") ||
-                      //       dataexList[i].contains("RTR")) {
-                      //     List<String> dtList = dataexList[i].split(",");
-                      //     DATASETTIUV setdatab = DATASETTIUV();
+                      List<DATASETOCA> setdatablist = [];
+                      String type = '';
+                      for (var i = 0; i < dataexList.length; i++) {
+                        // if (i == 0) {
+                        //   // print(dataexList[1]
+                        //   //     .replaceAll('"', '')
+                        //   //     .replaceAll(',', ''));
+                        //   // type = dataexList[1]
+                        //   //     .replaceAll('"', '')
+                        //   //     .replaceAll(',', '');
+                        //   // .replaceAll('\r', '');
+                        // }
+                        if (dataexList[i].contains("RTB") ||
+                            dataexList[i].contains("RTR")) {
+                          // print(dataexList[i]);
+                          List<String> dtList = dataexList[i].split(",");
+                          print(dtList);
+                          DATASETOCA setdatab = DATASETOCA();
 
-                      //     for (var j = 0; j < dtList.length; j++) {
-                      //       // print(dtList[j].replaceAll(" ", ""));
+                          for (var j = 0; j < dtList.length; j++) {
+                            // print(dtList[j].replaceAll(" ", ""));
 
-                      //       String DATAgeteach = dtList[j].replaceAll(" ", "");
-                      //       if (j == 0) {
-                      //         //
-                      //         // setdatab.type = type;
-                      //         setdatab.code = DATAgeteach.replaceAll('"', '');
-                      //         List<String> dtList = DATAgeteach.split("/");
-                      //         for (var k = 0; k < dtList.length; k++) {
-                      //           if (k == 0) {
-                      //             setdatab.REQ = dtList[k].replaceAll('"', '');
-                      //           }
-                      //           if (k == 1) {
-                      //             setdatab.R = dtList[k].replaceAll('"', '');
-                      //           }
-                      //           if (k == 2) {
-                      //             setdatab.DI1 = dtList[k].replaceAll('"', '');
-                      //           }
-                      //         }
-                      //       } else if (j == 5) {
-                      //         setdatab.VALUE = dtList[j].replaceAll('"', '');
-                      //       } else if (j == 4) {
-                      //         setdatab.DI2 = dtList[j].replaceAll('"', '');
-                      //       }
-                      //     }
-                      //     setdatablist.add(setdatab);
-                      //   }
-                      // }
-                      // // print(setdatablist);
-                      // List<Map<String, String>> outdataset = [];
-                      // for (var s = 0; s < setdatablist.length; s++) {
-                      //   print({
-                      //     "code": setdatablist[s].code,
-                      //     "REQ": setdatablist[s].REQ,
-                      //     "R": setdatablist[s].R,
-                      //     "DIM": setdatablist[s].DIM,
-                      //     "DI1": setdatablist[s].DI1,
-                      //     "DI2": setdatablist[s].DI2,
-                      //     "VALUE": setdatablist[s].VALUE,
-                      //   });
-                      //   outdataset.add({
-                      //     "code": setdatablist[s].code,
-                      //     "REQ": setdatablist[s].REQ,
-                      //     "R": setdatablist[s].R,
-                      //     "DIM": setdatablist[s].DIM,
-                      //     "DI1": setdatablist[s].DI1,
-                      //     "DI2": setdatablist[s].DI2,
-                      //     "VALUE": setdatablist[s].VALUE,
-                      //   });
-                      // }
+                            String DATAgeteach = dtList[j].replaceAll(" ", "");
+                            print(DATAgeteach);
+                            if (j == 0) {
+                              //
+                              // setdatab.type = type;
+                              setdatab.code = DATAgeteach.replaceAll('"', '');
+                              List<String> dtList = DATAgeteach.split("/");
+                              for (var k = 0; k < dtList.length; k++) {
+                                if (k == 0) {
+                                  setdatab.REQ = dtList[k].replaceAll('"', '');
+                                }
+                                if (k == 1) {
+                                  setdatab.R = dtList[k].replaceAll('"', '');
+                                }
+                                if (k == 2) {
+                                  setdatab.DI1 = dtList[k].replaceAll('"', '');
+                                }
+                              }
+                            } else if (j == 1) {
+                              setdatab.VALUE01 = dtList[j].replaceAll('"', '');
+                            } else if (j == 2) {
+                              setdatab.VALUE02 = dtList[j].replaceAll('"', '');
+                            } else if (j == 3) {
+                              setdatab.VALUE03 = dtList[j].replaceAll('"', '');
+                            } else {}
+                          }
+                          setdatablist.add(setdatab);
+                        }
+                      }
+                      // print(setdatablist);
+                      List<Map<String, String>> outdataset = [];
+                      for (var s = 0; s < setdatablist.length; s++) {
+                        print({
+                          "code": setdatablist[s].code,
+                          "REQ": setdatablist[s].REQ,
+                          "R": setdatablist[s].R,
+                          "DIM": setdatablist[s].DIM,
+                          "DI1": setdatablist[s].DI1,
+                          "DI2": setdatablist[s].DI2,
+                          "VALUE01": setdatablist[s].VALUE01,
+                          "VALUE02": setdatablist[s].VALUE02,
+                          "VALUE03": setdatablist[s].VALUE03,
+                        });
+                        outdataset.add({
+                          "code": setdatablist[s].code,
+                          "REQ": setdatablist[s].REQ,
+                          "R": setdatablist[s].R,
+                          "DIM": setdatablist[s].DIM,
+                          "DI1": setdatablist[s].DI1,
+                          "DI2": setdatablist[s].DI2,
+                          "VALUE01": setdatablist[s].VALUE01,
+                          "VALUE02": setdatablist[s].VALUE02,
+                          "VALUE03": setdatablist[s].VALUE03,
+                        });
+                      }
 
-                      // Dio().post(
-                      //   '${serverG}LIMX/UVSETDATA',
-                      //   data: {
-                      //     "DATA": outdataset,
-                      //   },
-                      // ).then((value) {
-                      //   print(value);
-                      //   BlocProvider.of<BlocNotification>(contextGB)
-                      //       .UpdateNotification("Complete", "Upload completed",
-                      //           enumNotificationlist.Success);
-                      // });
-
-                      // Dio().post(
-                      //   '${serverG}LIMX/XRFSETDATA',
-                      //   data: {
-                      //     "DATA": outdataset,
-                      //   },
-                      // ).then((value) {
-                      //   BlocProvider.of<BlocNotification>(contextGB)
-                      //       .UpdateNotification("Complete", "Upload completed",
-                      //           enumNotificationlist.Success);
-                      // });
+                      Dio().post(
+                        '${serverG}LIMX/OCASETDATA',
+                        data: {
+                          "DATA": outdataset,
+                        },
+                      ).then((value) {
+                        BlocProvider.of<BlocNotification>(contextGB)
+                            .UpdateNotification("Complete", "Upload completed",
+                                enumNotificationlist.Success);
+                      });
                       // await context
                       //     .read<TESTINGOCR_Cubit>()
                       //     .FilePathTESTcu(imageByte!.toList(), "1234");

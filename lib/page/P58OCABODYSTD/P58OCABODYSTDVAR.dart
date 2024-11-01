@@ -4,7 +4,13 @@ class P58OCABODYSTDVAR {
   static String TYPE = '';
 
   static String D01W11 = '';
+  static String D01W12 = '';
+  static String D01W13 = '';
+
   static String D01W21 = '';
+  static String D01W22 = '';
+  static String D01W23 = '';
+
   static String D01W11_21 = '';
   static String D02W11 = '';
   static String D02W21 = '';
@@ -96,6 +102,10 @@ class P58OCABODYSTDVAR {
 
   static String value01 = '';
   static String value02 = '';
+  static String value03 = '';
+  static String value04 = '';
+  static String value05 = '';
+  static String value06 = '';
 
   static bool isShowingMainData = true;
 

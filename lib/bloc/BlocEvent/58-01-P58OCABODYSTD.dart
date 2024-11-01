@@ -194,7 +194,7 @@ class P58OCABODYSTD_Bloc extends Bloc<P58OCABODYSTD_Event, String> {
     String output = '';
 
     final response = await Dio().post(
-      '${selectBLANCE(USERDATA.Branch)}/SENDTOSAR_UV',
+      '${selectBLANCE(USERDATA.Branch)}/SENDTOSAR_OCA',
       data: {
         "USER": USERDATA.NAME,
         "REQNO": P58OCABODYSTDVAR.ReqNo,

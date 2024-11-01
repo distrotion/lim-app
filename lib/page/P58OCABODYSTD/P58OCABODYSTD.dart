@@ -66,6 +66,11 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
 
     P58OCABODYSTDVAR.value01 = widget.value?.value01 ?? '';
     P58OCABODYSTDVAR.value02 = widget.value?.value02 ?? '';
+    P58OCABODYSTDVAR.value03 = widget.value?.value03 ?? '';
+    P58OCABODYSTDVAR.value04 = widget.value?.value04 ?? '';
+    P58OCABODYSTDVAR.value05 = widget.value?.value05 ?? '';
+    P58OCABODYSTDVAR.value06 = widget.value?.value06 ?? '';
+
     P58OCABODYSTDGETSETCLASS dataset = widget.SET ?? P58OCABODYSTDGETSETCLASS();
 
     P58OCABODYSTDVAR.ReqNo = dataset.ReqNo;
@@ -76,7 +81,11 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
     P58OCABODYSTDVAR.Mag = dataset.Mag;
 
     P58OCABODYSTDVAR.D01W11 = dataset.D01W11;
+    P58OCABODYSTDVAR.D01W12 = dataset.D01W12;
+    P58OCABODYSTDVAR.D01W13 = dataset.D01W13;
     P58OCABODYSTDVAR.D01W21 = dataset.D01W21;
+    P58OCABODYSTDVAR.D01W22 = dataset.D01W22;
+    P58OCABODYSTDVAR.D01W23 = dataset.D01W23;
 
     P58OCABODYSTDVAR.SamplingDate = _monthreplce(dataset.SamplingDate);
     P58OCABODYSTDVAR.DueDate1 = _monthreplce(dataset.DueDate1);
@@ -318,7 +327,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                       Border.all(color: Colors.blue, width: 2),
                                 ),
                                 child: Center(
-                                    child: Text(P58OCABODYSTDVAR.value02)),
+                                    child: Text(P58OCABODYSTDVAR.value04)),
                               ),
                             ],
                           ),
@@ -346,7 +355,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                       Border.all(color: Colors.blue, width: 2),
                                 ),
                                 child: Center(
-                                    child: Text(P58OCABODYSTDVAR.value01)),
+                                    child: Text(P58OCABODYSTDVAR.value02)),
                               ),
                             ],
                           ),
@@ -373,7 +382,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                       Border.all(color: Colors.blue, width: 2),
                                 ),
                                 child: Center(
-                                    child: Text(P58OCABODYSTDVAR.value02)),
+                                    child: Text(P58OCABODYSTDVAR.value05)),
                               ),
                             ],
                           ),
@@ -401,7 +410,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                       Border.all(color: Colors.blue, width: 2),
                                 ),
                                 child: Center(
-                                    child: Text(P58OCABODYSTDVAR.value01)),
+                                    child: Text(P58OCABODYSTDVAR.value03)),
                               ),
                             ],
                           ),
@@ -428,7 +437,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                       Border.all(color: Colors.blue, width: 2),
                                 ),
                                 child: Center(
-                                    child: Text(P58OCABODYSTDVAR.value02)),
+                                    child: Text(P58OCABODYSTDVAR.value06)),
                               ),
                             ],
                           ),
@@ -626,7 +635,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P58OCABODYSTDVAR.D02W11)),
+                                                Text(P58OCABODYSTDVAR.D01W21)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -703,7 +712,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P58OCABODYSTDVAR.D01W11)),
+                                                Text(P58OCABODYSTDVAR.D01W12)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -779,7 +788,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P58OCABODYSTDVAR.D02W11)),
+                                                Text(P58OCABODYSTDVAR.D01W22)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -856,7 +865,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P58OCABODYSTDVAR.D01W11)),
+                                                Text(P58OCABODYSTDVAR.D01W13)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -932,7 +941,7 @@ class _P58OCABODYSTDState extends State<P58OCABODYSTD> {
                                         color: Colors.blue,
                                         child: Center(
                                             child:
-                                                Text(P58OCABODYSTDVAR.D02W11)),
+                                                Text(P58OCABODYSTDVAR.D01W23)),
                                       ),
                                       const SizedBox(
                                         height: 5,

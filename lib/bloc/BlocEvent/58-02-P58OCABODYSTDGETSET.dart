@@ -68,10 +68,25 @@ class P58OCABODYSTDGETSET_Bloc
           output.D01W11 = databuff[0]['data01']['W11'] != null
               ? databuff[0]['data01']['W11'].toString()
               : '';
+
+          output.D01W12 = databuff[0]['data01']['W12'] != null
+              ? databuff[0]['data01']['W12'].toString()
+              : '';
+          output.D01W13 = databuff[0]['data01']['W13'] != null
+              ? databuff[0]['data01']['W13'].toString()
+              : '';
         }
-        if (databuff[0]['data01'] != null) {
-          output.D01W21 = databuff[0]['data01']['W21'] != null
-              ? databuff[0]['data01']['W21'].toString()
+        if (databuff[0]['data02'] != null) {
+          output.D01W21 = databuff[0]['data02']['W11'] != null
+              ? databuff[0]['data02']['W11'].toString()
+              : '';
+
+          output.D01W22 = databuff[0]['data02']['W12'] != null
+              ? databuff[0]['data02']['W12'].toString()
+              : '';
+
+          output.D01W23 = databuff[0]['data02']['W13'] != null
+              ? databuff[0]['data02']['W13'].toString()
               : '';
         }
         if (databuff[0]['data01_volum'] != null) {
@@ -153,7 +168,11 @@ class P58OCABODYSTDGETSETCLASS {
     this.CustShort = '',
     //
     this.D01W11 = '',
+    this.D01W12 = '',
+    this.D01W13 = '',
     this.D01W21 = '',
+    this.D01W22 = '',
+    this.D01W23 = '',
     this.D01VOLUME = '',
     this.D01ANS = '',
     this.D01NOitem = '',
@@ -177,7 +196,13 @@ class P58OCABODYSTDGETSETCLASS {
   String CustShort;
 
   String D01W11;
+  String D01W12;
+  String D01W13;
+
   String D01W21;
+  String D01W22;
+  String D01W23;
+
   String D01VOLUME;
   String D01ANS;
   String D01NOitem;
