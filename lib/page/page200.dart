@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/cubit/00-01-ICPOCR_cubit.dart';
 import '../bloc/cubit/00-02-ICS2000OCR_cubit.dart';
+import '../bloc/cubit/00-03-IC8100EX.dart';
 import 'P200LIMX/P200LIMX.dart';
 
 class Page200 extends StatelessWidget {
@@ -39,6 +40,22 @@ class Page200BlocTableBody2 extends StatelessWidget {
     return BlocProvider(
         create: (_) => ICS2000OCR_Cubit(),
         child: BlocBuilder<ICS2000OCR_Cubit, ICS2000OCRdataout>(
+          builder: (context, Qdata) {
+            return Page200BlocTableBody3();
+          },
+        ));
+  }
+}
+
+class Page200BlocTableBody3 extends StatelessWidget {
+  /// {@macro counter_page}
+  const Page200BlocTableBody3({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (_) => IC8100EX_Cubit(),
+        child: BlocBuilder<IC8100EX_Cubit, IC8100EXdataout>(
           builder: (context, Qdata) {
             return Page200Body();
           },

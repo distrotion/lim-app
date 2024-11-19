@@ -1,12 +1,15 @@
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:excel/excel.dart';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:convert';
 import '../../bloc/cubit/00-01-ICPOCR_cubit.dart';
 import '../../bloc/cubit/00-02-ICS2000OCR_cubit.dart';
+import '../../bloc/cubit/00-03-IC8100EX.dart';
 import '../../bloc/cubit/NotificationEvent.dart';
 import '../../data/global.dart';
 
@@ -440,7 +443,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               //
                               // setdatab.type = type;
                               setdatab.code = DATAgeteach.replaceAll('"', '');
-                              List<String> dtList = DATAgeteach.split("/");
+                              List<String> dtList = DATAgeteach.split(".");
                               for (var k = 0; k < dtList.length; k++) {
                                 if (k == 0) {
                                   setdatab.REQ = dtList[k].replaceAll('"', '');
@@ -583,7 +586,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               //
                               // setdatab.type = type;
                               setdatab.code = DATAgeteach.replaceAll('"', '');
-                              List<String> dtList = DATAgeteach.split("/");
+                              List<String> dtList = DATAgeteach.split(".");
                               for (var k = 0; k < dtList.length; k++) {
                                 if (k == 0) {
                                   setdatab.REQ = dtList[k].replaceAll('"', '');
@@ -666,6 +669,184 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 200,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text("IC-8100EX(pdf)"),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    var picked = await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['pdf'],
+                    );
+                    Uint8List? dataByte;
+                    if (picked != null) {
+                      //
+                      dataByte = picked.files.first.bytes;
+                      // print(imageByte!.toList());
+                      await context
+                          .read<IC8100EX_Cubit>()
+                          .FilePathTESTcu(dataByte!.toList(), "1234");
+                      setState(() {});
+                    }
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 100,
+                    color: Colors.red,
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      color: Colors.red,
+                      child: const Center(
+                        child: Text("UPLOAD"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Row(
+          //     children: [
+          //       Container(
+          //         height: 40,
+          //         width: 200,
+          //         color: Colors.blue,
+          //         child: Center(
+          //           child: Text("ICS2000(CSV)"),
+          //         ),
+          //       ),
+          //       InkWell(
+          //         onTap: () async {
+          //           var picked = await FilePicker.platform.pickFiles(
+          //             type: FileType.custom,
+          //             allowedExtensions: ['xlsx'],
+          //           );
+          //           Uint8List? dataByte;
+          //           if (picked != null) {
+          //             dataByte = picked.files.first.bytes;
+          //             // print(dataByte);
+          //             // const asciiDecoder = AsciiDecoder();
+          //             // final result = asciiDecoder.convert(dataByte!.toList());
+          //             const asciiDecoder = AsciiDecoder();
+          //             final result = asciiDecoder.convert(dataByte!.toList());
+          //             // print(result);
+          //             List<String> dataexList = result.split("\n");
+          //             print(dataexList);
+
+          //             // print(result);
+          //             // List<String> dataexList = result.split("\n");
+          //             // print(dataexList);
+          //             // List<DATASETOCA> setdatablist = [];
+          //             // String type = '';
+          //             // for (var i = 0; i < dataexList.length; i++) {
+
+          //             //   if (dataexList[i].contains("RTB") ||
+          //             //       dataexList[i].contains("RTR")) {
+          //             //     // print(dataexList[i]);
+          //             //     List<String> dtList = dataexList[i].split(",");
+          //             //     print(dtList);
+          //             //     DATASETOCA setdatab = DATASETOCA();
+
+          //             //     for (var j = 0; j < dtList.length; j++) {
+          //             //       // print(dtList[j].replaceAll(" ", ""));
+
+          //             //       String DATAgeteach = dtList[j].replaceAll(" ", "");
+          //             //       print(DATAgeteach);
+          //             //       if (j == 0) {
+          //             //         //
+          //             //         // setdatab.type = type;
+          //             //         setdatab.code = DATAgeteach.replaceAll('"', '');
+          //             //         List<String> dtList = DATAgeteach.split("/");
+          //             //         for (var k = 0; k < dtList.length; k++) {
+          //             //           if (k == 0) {
+          //             //             setdatab.REQ = dtList[k].replaceAll('"', '');
+          //             //           }
+          //             //           if (k == 1) {
+          //             //             setdatab.R = dtList[k].replaceAll('"', '');
+          //             //           }
+          //             //           if (k == 2) {
+          //             //             setdatab.DI1 = dtList[k].replaceAll('"', '');
+          //             //           }
+          //             //         }
+          //             //       } else if (j == 1) {
+          //             //         setdatab.VALUE01 = dtList[j].replaceAll('"', '');
+          //             //       } else if (j == 2) {
+          //             //         setdatab.VALUE02 = dtList[j].replaceAll('"', '');
+          //             //       } else if (j == 3) {
+          //             //         setdatab.VALUE03 = dtList[j].replaceAll('"', '');
+          //             //       } else {}
+          //             //     }
+          //             //     setdatablist.add(setdatab);
+          //             //   }
+          //             // }
+          //             // // print(setdatablist);
+          //             // List<Map<String, String>> outdataset = [];
+          //             // for (var s = 0; s < setdatablist.length; s++) {
+          //             //   print({
+          //             //     "code": setdatablist[s].code,
+          //             //     "REQ": setdatablist[s].REQ,
+          //             //     "R": setdatablist[s].R,
+          //             //     "DIM": setdatablist[s].DIM,
+          //             //     "DI1": setdatablist[s].DI1,
+          //             //     "DI2": setdatablist[s].DI2,
+          //             //     "VALUE01": setdatablist[s].VALUE01,
+          //             //     "VALUE02": setdatablist[s].VALUE02,
+          //             //     "VALUE03": setdatablist[s].VALUE03,
+          //             //   });
+          //             //   outdataset.add({
+          //             //     "code": setdatablist[s].code,
+          //             //     "REQ": setdatablist[s].REQ,
+          //             //     "R": setdatablist[s].R,
+          //             //     "DIM": setdatablist[s].DIM,
+          //             //     "DI1": setdatablist[s].DI1,
+          //             //     "DI2": setdatablist[s].DI2,
+          //             //     "VALUE01": setdatablist[s].VALUE01,
+          //             //     "VALUE02": setdatablist[s].VALUE02,
+          //             //     "VALUE03": setdatablist[s].VALUE03,
+          //             //   });
+          //             // }
+
+          //             // Dio().post(
+          //             //   '${serverG}LIMX/OCASETDATA',
+          //             //   data: {
+          //             //     "DATA": outdataset,
+          //             //   },
+          //             // ).then((value) {
+          //             //   BlocProvider.of<BlocNotification>(contextGB)
+          //             //       .UpdateNotification("Complete", "Upload completed",
+          //             //           enumNotificationlist.Success);
+          //             // });
+          //           }
+          //         },
+          //         child: Container(
+          //           height: 40,
+          //           width: 100,
+          //           color: Colors.red,
+          //           child: Container(
+          //             height: 40,
+          //             width: 100,
+          //             color: Colors.red,
+          //             child: const Center(
+          //               child: Text("UPLOAD"),
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
