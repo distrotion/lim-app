@@ -120,7 +120,7 @@ class _P52IC01BODYSTDState extends State<P52IC01BODYSTD> {
       P52IC01BODYSTDVAR.mem = '';
     }
 
-    print(_historyChartData);
+    // print(_historyChartData);
     return SizedBox(
       width: 1000,
       child: SingleChildScrollView(

@@ -150,44 +150,91 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
         ),
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  USERDATA.INSMASTER = 'BP12FF01';
-                  CuPage = Page21();
-                  MainBodyContext.read<ChangePage_Bloc>()
-                      .add(ChangePage_nodrower());
-                },
-                child: Row(
-                  children: [
-                    Container(
-                      height: 78,
-                      width: 128.0,
-                      decoration: const BoxDecoration(
-                        // color: Colors.white,
-                        // color: Colors.red,
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/BP12FF01.jpg"),
-                          fit: BoxFit.fitHeight,
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      USERDATA.INSMASTER = 'BP12FF01';
+                      CuPage = Page21();
+                      MainBodyContext.read<ChangePage_Bloc>()
+                          .add(ChangePage_nodrower());
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 78,
+                          width: 128.0,
+                          decoration: const BoxDecoration(
+                            // color: Colors.white,
+                            // color: Colors.red,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/BP12FF01.jpg"),
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 50,
+                          width: 125,
+                          color: Colors.blue,
+                          // color: Colors.red,
+                          child: const Center(
+                            child: Text("Ion Meter(FF01)"),
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Container(
-                      height: 50,
-                      width: 125,
-                      color: Colors.blue,
-                      // color: Colors.red,
-                      child: const Center(
-                        child: Text("Ion Meter(FF01)"),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      USERDATA.INSMASTER = 'BP12PH01';
+                      CuPage = Page21();
+                      MainBodyContext.read<ChangePage_Bloc>()
+                          .add(ChangePage_nodrower());
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 78,
+                          width: 128.0,
+                          decoration: const BoxDecoration(
+                            // color: Colors.white,
+                            // color: Colors.red,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/BP12FF01.jpg"),
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 50,
+                          width: 125,
+                          // color: Colors.blue,
+                          color: Colors.red,
+                          child: const Center(
+                            child: Text("pH Meter(PH01)"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -318,7 +365,7 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  USERDATA.INSMASTER = 'BP12IC01';
+                  USERDATA.INSMASTER = 'BP12ICS2000';
                   CuPage = Page51();
                   MainBodyContext.read<ChangePage_Bloc>()
                       .add(ChangePage_nodrower());
@@ -343,8 +390,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                     Container(
                       height: 50,
                       width: 125,
-                      // color: Colors.blue,
-                      color: Colors.red,
+                      color: Colors.blue,
+                      // color: Colors.red,
                       child: const Center(
                         child: Text("ICS 2000"),
                       ),
@@ -357,7 +404,7 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  USERDATA.INSMASTER = 'BP12IC02';
+                  USERDATA.INSMASTER = 'BP12ICS8100';
                   CuPage = Page51();
                   MainBodyContext.read<ChangePage_Bloc>()
                       .add(ChangePage_nodrower());
@@ -382,8 +429,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                     Container(
                       height: 50,
                       width: 125,
-                      // color: Colors.blue,
-                      color: Colors.red,
+                      color: Colors.blue,
+                      // color: Colors.red,
                       child: const Center(
                         child: Text("IC 8100EX"),
                       ),

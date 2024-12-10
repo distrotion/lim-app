@@ -20,6 +20,8 @@ import '../../page3.dart';
 import '../../page33.dart';
 import '../../page4.dart';
 
+import '../../page53.dart';
+import '../../page54.dart';
 import '../P51ICREQVAR.dart';
 import 'P51ICREQTABLEFIELD.dart';
 
@@ -225,13 +227,15 @@ class tabledetailsearch extends StatelessWidget {
                     ? Colors.yellow
                     : Colors.transparent,
         isSELECTFUNC: true,
-        SELECTFUNC: (PO, CP, FG, SR, DI) async {
+        SELECTFUNC: (PO, CP, FG) async {
           print(PO);
           print(CP);
           print(FG);
 
           // if (CP == "Sludge") {
-          if (CP == "ICP") {
+          if (USERDATA.INSMASTER == 'BP12ICS2000') {
+            print(
+                '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -252,8 +256,8 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page32(),
-                              '36SARICPSTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page53(),
+                              '52SARICS2000STD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -279,7 +283,9 @@ class tabledetailsearch extends StatelessWidget {
               }
             });
             // } else if (CP == "Cwt") {
-          } else if (CP == "TOC") {
+          } else if (USERDATA.INSMASTER == 'BP12ICS8100') {
+            print(
+                '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -293,8 +299,6 @@ class tabledetailsearch extends StatelessWidget {
                       '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
                       data: {
                         "REQNO": PO,
-                        "SampleCode": SR,
-                        "DILUTE": DI,
                         "UID": FG,
                       },
                     ).then((value) {
@@ -302,8 +306,8 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page33(),
-                              '37SARTOCSTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page54(),
+                              '53SARIC8100EXSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }

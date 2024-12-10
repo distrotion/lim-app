@@ -33,6 +33,7 @@ class _P51ICREQMAINState extends State<P51ICREQMAIN> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     context.read<P51ICREQGET_Bloc>().add(GETDATALISTFROMSAR());
     context.read<P51ICREQGETSTR_Bloc>().add(P51ICREQGETSTR_ROOM());
     // reserall_P4BALANCEBODYSLUDGEVAR();
