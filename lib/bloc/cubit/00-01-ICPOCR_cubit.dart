@@ -90,8 +90,7 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
 
               for (var s = 0; s < req.length; s++) {
                 if (s == 1) {
-                  // print(req[s]);
-
+                  //print('----'+req[s]);
                   k = 1;
                   code = req[s];
                   List<String> listcode = code.split("/");
@@ -113,7 +112,7 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
 
               for (var s = 0; s < req.length; s++) {
                 if (s == 1) {
-                  print(req[s]);
+                  //print(req[s]);
 
                   k = 1;
                   code = req[s];
@@ -133,7 +132,8 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
               }
             }
           }
-          if (dataexList[i].contains("Sequence No") && k == 2) {
+          if ((dataexList[i].contains("Sequence No") || dataexList[i].contains("Method"))  && k == 2) {
+            //print('Edit k = 0 : '+ dataexList[i]);
             k = 0;
             code = '';
             reqs = '';
@@ -141,7 +141,9 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
             DI = '';
           }
 
-          if (k == 2) {
+          if (k == 2 && dataexList[i] != '') {
+            dataexList[i] = dataexList[i].replaceAll(' .', '.');
+            //print('k=2\n'+dataexList[i] );
             // print(cleanupWhitespace(dataexList[i])); SETPDF.code
             List<String> listsetdata =
                 cleanupWhitespace(dataexList[i]).split(",");
@@ -165,8 +167,7 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
           }
 
           if (dataexList[i].contains("Analyte") && k == 1) {
-            //
-            // print(dataexList[i]);
+            //print(i.toString()+ ':' + dataexList[i]);
             k = 2;
           }
         }
@@ -189,7 +190,7 @@ class TESTINGOCR_Cubit extends Cubit<TESTINGdataout> {
             "VALUE": LISTSETPDF[d].VALUE,
           });
         }
-        print(outdataset);
+        //print(outdataset);
         Dio().post(
           '${serverG}LIMX/ICPSETDATA',
           data: {
