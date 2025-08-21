@@ -9,6 +9,8 @@ import '../../page/page100.dart';
 import '../../page/page2.dart';
 import '../../page/page200.dart';
 import '../../page/page3.dart';
+import '../../page/page300.dart';
+import '../../page/page320.dart';
 import '../../page/page4.dart';
 import '../../page/page5.dart';
 import '../../page/page99.dart';
@@ -92,6 +94,17 @@ class Data_Menu_mainmenu extends StatelessWidget {
             Lv: 1,
           ),
         ],
+
+        menu_normal(
+          name: "Balance CAL",
+          page: Page300(),
+          Lv: 1,
+        ),
+        menu_normal(
+          name: "Balance History",
+          page: Page320(),
+          Lv: 1,
+        ),
 
         menu_normal(
           name: "UPLOAD LIMX",

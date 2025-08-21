@@ -32,6 +32,8 @@ String serverG = 'http://172.23.10.51:15152/';
 String serverSARS = 'http://172.23.10.51:5000';
 String serverSARMAIN = 'http://172.23.10.51:1885';
 
+String serverNRBP12 = 'http://172.23.10.51:2600/';
+
 class serverNG {
   // static String BP12 = 'http://127.0.0.1:2600';
   // static String HES = 'http://127.0.0.1:2700';
