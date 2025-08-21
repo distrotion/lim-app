@@ -10,6 +10,8 @@ import '../../mainBody.dart';
 import '../../model/model.dart';
 import '../P2BALANCEBODYCW/P2BALANCEBODYCWVAR.dart';
 import '../P4BALANCEBODYSLUDGE/P4BALANCEBODYSLUDGEVAR.dart';
+import '../P53ICS2000BODYSTD/P53ICS2000BODYSTDVAR.dart';
+import '../P54ICS8100BODYSTD/P54ICS8100BODYSTDVAR.dart';
 import '../page1.dart';
 import '../page100.dart';
 import '../page99.dart';
@@ -38,6 +40,10 @@ class _P51ICREQMAINState extends State<P51ICREQMAIN> {
     context.read<P51ICREQGETSTR_Bloc>().add(P51ICREQGETSTR_ROOM());
     // reserall_P4BALANCEBODYSLUDGEVAR();
     // reserall_P2BALANCEBODYCWVAR();
+    P53ICS2000BODYSTDVAR.D01NOitem = '';
+    P53ICS2000BODYSTDVAR.D02NOitem = '';
+    P54ICS8100BODYSTDVAR.D01NOitem = '';
+    P54ICS8100BODYSTDVAR.D02NOitem = '';
   }
 
   @override

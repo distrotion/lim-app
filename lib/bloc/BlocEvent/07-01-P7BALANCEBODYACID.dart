@@ -82,7 +82,7 @@ class P7BALANCEBODYACID_Bloc extends Bloc<P7BALANCEBODYACID_Event, String> {
       '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
       data: {
         "IP": webHOOK,
-        "TYPE": "04SARBALANCEACID",
+        "TYPE": "07SARBALANCEACID",
         "FUNCTION": "UPDATEDATAWEIGHT",
         "WX": P7BALANCEBODYACIDVAR.WX
       },
@@ -100,7 +100,7 @@ class P7BALANCEBODYACID_Bloc extends Bloc<P7BALANCEBODYACID_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "04SARBALANCEACID",
+        "TYPE": "07SARBALANCEACID",
         "FUNCTION": "DELETEDATAW11",
         "DX": P7BALANCEBODYACIDVAR.DX,
       },
@@ -118,7 +118,7 @@ class P7BALANCEBODYACID_Bloc extends Bloc<P7BALANCEBODYACID_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "04SARBALANCEACID",
+        "TYPE": "07SARBALANCEACID",
         "FUNCTION": "UPDATEDATAVOLUME",
         "D01NOitem": P7BALANCEBODYACIDVAR.D01NOitem,
         "D02NOitem": P7BALANCEBODYACIDVAR.D02NOitem,
@@ -143,7 +143,7 @@ class P7BALANCEBODYACID_Bloc extends Bloc<P7BALANCEBODYACID_Event, String> {
       data: {
         "IP": webHOOK,
         "USER": USERDATA.NAME,
-        "TYPE": "04SARBALANCEACID",
+        "TYPE": "07SARBALANCEACID",
         "FUNCTION": "UPDATEDATAVOLUME",
         "D01NOitem": P7BALANCEBODYACIDVAR.D01NOitem,
         "D02NOitem": P7BALANCEBODYACIDVAR.D02NOitem,

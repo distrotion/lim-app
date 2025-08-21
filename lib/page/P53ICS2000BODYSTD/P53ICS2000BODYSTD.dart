@@ -14,6 +14,7 @@ import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 
+import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 
@@ -113,9 +114,15 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
       P53ICS2000BODYSTDVAR.D01VOLUME = dataset.D01VOLUME;
     }
     if (P53ICS2000BODYSTDVAR.D01NOitem == '') {
-      P53ICS2000BODYSTDVAR.iscontrol = true;
-      P53ICS2000BODYSTDVAR.D01NOitem = dataset.D01NOitem;
+      if (dataset.D01VOLUME == '') {
+        P53ICS2000BODYSTDVAR.iscontrol = true;
+        P53ICS2000BODYSTDVAR.D01NOitem = dataset.Mag;
+      } else {
+        P53ICS2000BODYSTDVAR.iscontrol = true;
+        P53ICS2000BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
+      }
     }
+
     P53ICS2000BODYSTDVAR.D02W11 = dataset.D02W11;
     P53ICS2000BODYSTDVAR.D02W21 = dataset.D02W21;
     if (P53ICS2000BODYSTDVAR.D02VOLUME == '') {
@@ -123,9 +130,22 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
       P53ICS2000BODYSTDVAR.D02VOLUME = dataset.D02VOLUME;
     }
     if (P53ICS2000BODYSTDVAR.D02NOitem == '') {
-      P53ICS2000BODYSTDVAR.iscontrol = true;
-      P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02NOitem;
+      // P53ICS2000BODYSTDVAR.iscontrol = true;
+      // P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02NOitem;
+
+      if (dataset.D02VOLUME == '') {
+        P53ICS2000BODYSTDVAR.iscontrol = true;
+        P53ICS2000BODYSTDVAR.D02NOitem = dataset.Mag;
+      } else {
+        P53ICS2000BODYSTDVAR.iscontrol = true;
+        P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
+      }
     }
+
+    print("------------------------");
+
+    print(dataset.Mag);
+    print("------------------------");
 
     // P53ICS2000BODYSTDVAR.Result = P53ICS2000BODYSTDVAR.W11;
 
@@ -730,75 +750,76 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                       children: [
                         Column(
                           children: [
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 240,
-                            //       child: Row(
-                            //         mainAxisAlignment:
-                            //             MainAxisAlignment.spaceBetween,
-                            //         children: [
-                            //           InkWell(
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               height: 40,
-                            //               width: 80,
-                            //               color: P53ICS2000BODYSTDVAR.SEND == ''
-                            //                   ? Colors.brown
-                            //                   : Colors.grey.shade400,
-                            //               child: const Center(
-                            //                 child: Text("TAG"),
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 10,
-                            //           ),
-                            //           Container(
-                            //             height: 40,
-                            //             width: 120,
-                            //             // color: Colors.blue,
-                            //             child: Container(
-                            //               height: 62,
-                            //               // color: Colors.blue.shade300,
-                            //               child: Row(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.spaceAround,
-                            //                 children: [
-                            //                   ComInputText(
-                            //                     isNumberOnly: true,
-                            //                     isEnabled:
-                            //                         P53ICS2000BODYSTDVAR.Result01 ==
-                            //                             '',
-                            //                     width: 120,
-                            //                     height: 40,
-                            //                     isContr:
-                            //                         P53ICS2000BODYSTDVAR.iscontrol,
-                            //                     fnContr: (input) {
-                            //                       setState(() {
-                            //                         P53ICS2000BODYSTDVAR.iscontrol =
-                            //                             input;
-                            //                       });
-                            //                     },
-                            //                     sValue:
-                            //                         P53ICS2000BODYSTDVAR.D01NOitem,
-                            //                     returnfunc: (String s) {
-                            //                       P53ICS2000BODYSTDVAR.D01NOitem = s;
-                            //                     },
-                            //                   ),
-                            //                   Text("")
-                            //                 ],
-                            //               ),
-                            //             ),
-                            //           ),
-                            //           const SizedBox(
-                            //             height: 5,
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P53ICS2000BODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("DI01"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 120,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: P53ICS2000BODYSTDVAR
+                                                        .Result01 ==
+                                                    '',
+                                                width: 120,
+                                                height: 40,
+                                                isContr: P53ICS2000BODYSTDVAR
+                                                    .iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P53ICS2000BODYSTDVAR
+                                                        .iscontrol = input;
+                                                  });
+                                                },
+                                                sValue: P53ICS2000BODYSTDVAR
+                                                    .D01NOitem,
+                                                returnfunc: (String s) {
+                                                  P53ICS2000BODYSTDVAR
+                                                      .D01NOitem = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -983,6 +1004,76 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                         ),
                         Column(
                           children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P53ICS2000BODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("DI02"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 120,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: P53ICS2000BODYSTDVAR
+                                                        .Result01 ==
+                                                    '',
+                                                width: 120,
+                                                height: 40,
+                                                isContr: P53ICS2000BODYSTDVAR
+                                                    .iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P53ICS2000BODYSTDVAR
+                                                        .iscontrol = input;
+                                                  });
+                                                },
+                                                sValue: P53ICS2000BODYSTDVAR
+                                                    .D02NOitem,
+                                                returnfunc: (String s) {
+                                                  P53ICS2000BODYSTDVAR
+                                                      .D02NOitem = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -1587,8 +1678,8 @@ class _LineChart extends StatelessWidget {
             double.parse(ConverstStr(historyChartData[i].resultApprove));
       }
     }
-    print(minResult);
-    print(maxResult);
+    // print(minResult);
+    // print(maxResult);
     if (historyChartData.length > 0) {
       if (double.parse(ConverstStr(historyChartData[0].stdMin)) > 0 &&
           double.parse(ConverstStr(historyChartData[0].stdMin)) < minResult) {

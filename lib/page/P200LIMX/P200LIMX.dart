@@ -646,6 +646,9 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                             .UpdateNotification("Complete", "Upload completed",
                                 enumNotificationlist.Success);
                       });
+
+                      //----------------//----------------
+
                       // await context
                       //     .read<TESTINGOCR_Cubit>()
                       //     .FilePathTESTcu(imageByte!.toList(), "1234");
@@ -704,104 +707,201 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         DATASETICS8100 setdatab = DATASETICS8100();
                         for (var j = 0; j < datarow[i].length; j++) {
                           String data = (datarow[i][j]?.value ?? '').toString();
-                          if (j == 3) {
-                            // print("${data}   ");
-                            if (data.contains("F")) {
+                          if (datarow[i].length <= 3) {
+                            if (j == 3) {
                               print("${data}   ");
-                              settingdata = data;
+                              if (data.contains("Fluoride") ||
+                                  data.contains("F")) {
+                                print("${data}   ");
+                                settingdata = data;
+                              }
+                              if (data.contains("Chloride") ||
+                                  data.contains("Cl")) {
+                                print("${data}   ");
+                                settingdata = data;
+                              }
+                              if (data.contains("Nitrate") ||
+                                  data.contains("NO3")) {
+                                print("${data}   ");
+                                settingdata = data;
+                              }
+                              if (data.contains("Sulphate") ||
+                                  data.contains("SO4")) {
+                                print("${data}   ");
+                                settingdata = data;
+                              }
+                              if (data.contains("Phosphate") ||
+                                  data.contains("PO4")) {
+                                print("${data}   ");
+                                settingdata = data;
+                              }
+                              if (data.contains("P2O7") ||
+                                  data.contains("P2O7")) {
+                                print("${data}   ");
+                                settingdata = data;
+                              }
                             }
-                            if (data.contains("Cl")) {
-                              print("${data}   ");
-                              settingdata = data;
-                            }
-                            if (data.contains("NO3")) {
-                              print("${data}   ");
-                              settingdata = data;
-                            }
-                            if (data.contains("SO4")) {
-                              print("${data}   ");
-                              settingdata = data;
-                            }
-                            if (data.contains("PO4")) {
-                              print("${data}   ");
-                              settingdata = data;
-                            }
+                            if (j == 2) {
+                              setdatab.code = data;
+                              // print(datarow[i][j]?.value);
+                              // setdatab.code = data;
+                              List<String> dtList = data.split("/");
+                              if (data.contains("RTB") ||
+                                  data.contains("RTR")) {
+                                // print(
+                                //     "${data}   : ${(datarow[i][5]?.value ?? '')} ");
+                                for (var k = 0; k < dtList.length; k++) {
+                                  if (k == 0) {
+                                    setdatab.REQ =
+                                        dtList[k].replaceAll('"', '');
+                                    // print(setdatab.REQ);
+                                  }
+                                  if (k == 1) {
+                                    setdatab.R = dtList[k].replaceAll('"', '');
+                                    // print(setdatab.R);
+                                  }
+                                  if (k == 2) {
+                                    setdatab.DI1 =
+                                        dtList[k].replaceAll('"', '');
+                                    // print(setdatab.DI1);
+                                  }
+                                }
 
-                            if (data.contains("P2O7")) {
-                              print("${data}   ");
-                              settingdata = data;
-                            }
-                          }
-                          if (j == 2) {
-                            setdatab.code = data;
-                            // print(datarow[i][j]?.value);
-                            // setdatab.code = data;
-                            List<String> dtList = data.split("/");
-                            if (data.contains("RTB") || data.contains("RTR")) {
-                              // print(
-                              //     "${data}   : ${(datarow[i][5]?.value ?? '')} ");
-                              for (var k = 0; k < dtList.length; k++) {
-                                if (k == 0) {
-                                  setdatab.REQ = dtList[k].replaceAll('"', '');
-                                  // print(setdatab.REQ);
+                                // setdatab.code = data;
+                                // setdatab.Fluoride =
+                                //     (datarow[i][3]?.value ?? '').toString();
+                                // print(setdatab.code);
+                                // print(setdatab.value);
+                                // print(settingdata);
+
+                                if (settingdata.contains("Fluoride") ||
+                                    settingdata.contains("F")) {
+                                  print(
+                                      "${data}  ${(datarow[i][3]?.value ?? '')} ");
+                                  setdatab.Fluoride =
+                                      (datarow[i][3]?.value ?? '').toString();
                                 }
-                                if (k == 1) {
-                                  setdatab.R = dtList[k].replaceAll('"', '');
-                                  // print(setdatab.R);
+                                if (settingdata.contains("Chloride") ||
+                                    settingdata.contains("Cl")) {
+                                  print(
+                                      "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                  setdatab.Chloride =
+                                      (datarow[i][3]?.value ?? '').toString();
                                 }
-                                if (k == 2) {
-                                  setdatab.DI1 = dtList[k].replaceAll('"', '');
-                                  // print(setdatab.DI1);
+                                if (settingdata.contains("Nitrate") ||
+                                    settingdata.contains("NO3")) {
+                                  print(
+                                      "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                  setdatab.Nitrate =
+                                      (datarow[i][3]?.value ?? '').toString();
+                                }
+                                if (settingdata.contains("Sulphate") ||
+                                    settingdata.contains("SO4")) {
+                                  print(
+                                      "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                  setdatab.Sulphate =
+                                      (datarow[i][3]?.value ?? '').toString();
+                                }
+                                if (settingdata.contains("Phosphate") ||
+                                    settingdata.contains("PO4")) {
+                                  print(
+                                      "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                  setdatab.Phosphate =
+                                      (datarow[i][3]?.value ?? '').toString();
+                                }
+                                if (settingdata.contains("P2O7") ||
+                                    settingdata.contains("P2O7")) {
+                                  print(
+                                      "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                  setdatab.P2O7 =
+                                      (datarow[i][3]?.value ?? '').toString();
                                 }
                               }
-
+                            }
+                          } else {
+                            if (j == 2) {
+                              setdatab.code = data;
+                              // print(datarow[i][j]?.value);
                               // setdatab.code = data;
-                              // setdatab.Fluoride =
-                              //     (datarow[i][3]?.value ?? '').toString();
-                              // print(setdatab.code);
-                              // print(setdatab.value);
-                              if (settingdata.contains("F")) {
+                              List<String> dtList = data.split("/");
+                              if (data.contains("RTB") ||
+                                  data.contains("RTR")) {
+                                // print(
+                                //     "${data}   : ${(datarow[i][5]?.value ?? '')} ");
+                                for (var k = 0; k < dtList.length; k++) {
+                                  if (k == 0) {
+                                    setdatab.REQ =
+                                        dtList[k].replaceAll('"', '');
+                                    // print(setdatab.REQ);
+                                  }
+                                  if (k == 1) {
+                                    setdatab.R = dtList[k].replaceAll('"', '');
+                                    // print(setdatab.R);
+                                  }
+                                  if (k == 2) {
+                                    setdatab.DI1 =
+                                        dtList[k].replaceAll('"', '');
+                                    // print(setdatab.DI1);
+                                  }
+                                }
+
+                                // setdatab.code = data;
+                                // setdatab.Fluoride =
+                                //     (datarow[i][3]?.value ?? '').toString();
+                                // print(setdatab.code);
+                                // print(setdatab.value);
+                                // print(settingdata);
+
+                                // if (settingdata.contains("Fluoride") ||
+                                //     settingdata.contains("F")) {
                                 print(
                                     "${data}  ${(datarow[i][3]?.value ?? '')} ");
                                 setdatab.Fluoride =
                                     (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("Cl")) {
+                                // }
+                                // if (settingdata.contains("Chloride") ||
+                                //     settingdata.contains("Cl")) {
                                 print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                    "${data}   ${(datarow[i][4]?.value ?? '')} ");
                                 setdatab.Chloride =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("NO3")) {
+                                    (datarow[i][4]?.value ?? '').toString();
+                                // }
+                                // if (settingdata.contains("Nitrate") ||
+                                //     settingdata.contains("NO3")) {
                                 print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                    "${data}   ${(datarow[i][5]?.value ?? '')} ");
                                 setdatab.Nitrate =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("SO4")) {
+                                    (datarow[i][5]?.value ?? '').toString();
+                                // }
+                                // if (settingdata.contains("Sulphate") ||
+                                //     settingdata.contains("SO4")) {
                                 print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                    "${data}   ${(datarow[i][7]?.value ?? '')} ");
                                 setdatab.Sulphate =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("PO4")) {
+                                    (datarow[i][7]?.value ?? '').toString();
+                                // }
+                                // if (settingdata.contains("Phosphate") ||
+                                //     settingdata.contains("PO4")) {
                                 print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                    "${data}   ${(datarow[i][6]?.value ?? '')} ");
                                 setdatab.Phosphate =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("P2O7")) {
-                                print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.P2O7 =
-                                    (datarow[i][3]?.value ?? '').toString();
+                                    (datarow[i][6]?.value ?? '').toString();
+                                // }
+                                // if (settingdata.contains("P2O7") ||
+                                //     settingdata.contains("P2O7")) {
+                                // print(
+                                //     "${data}   ${(datarow[i][3]?.value ?? '')} ");
+                                // setdatab.P2O7 =
+                                //     (datarow[i][3]?.value ?? '').toString();
+                                // }
                               }
                             }
                           }
-                        }
-                        if (setdatab.REQ.contains("RTB") ||
-                            setdatab.REQ.contains("RTR")) {
-                          setdatablist.add(setdatab);
+                          if (setdatab.REQ.contains("RTB") ||
+                              setdatab.REQ.contains("RTR") &&
+                                  j == datarow[i].length - 1) {
+                            setdatablist.add(setdatab);
+                          }
                         }
                       }
                       print(setdatablist.length);

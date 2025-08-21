@@ -16,59 +16,44 @@ class Page56 extends StatelessWidget {
 }
 
 class Page56BlocTableBody extends StatelessWidget {
-  const Page56BlocTableBody({
-    Key? key,
-  }) : super(key: key);
+  const Page56BlocTableBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P56UVREQGET_Bloc(),
-        child: BlocBuilder<P56UVREQGET_Bloc, List<dataset>>(
-          builder: (context, data) {
-            return Page1BlocTableBodySTR(
-              data: data,
-            );
-          },
-        ));
+      create: (_) => P56UVREQGET_Bloc(),
+      child: BlocBuilder<P56UVREQGET_Bloc, List<dataset>>(
+        builder: (context, data) {
+          return Page1BlocTableBodySTR(data: data);
+        },
+      ),
+    );
   }
 }
 
 class Page1BlocTableBodySTR extends StatelessWidget {
-  Page1BlocTableBodySTR({
-    Key? key,
-    this.data,
-  }) : super(key: key);
+  Page1BlocTableBodySTR({Key? key, this.data}) : super(key: key);
   List<dataset>? data;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P56UVREQGETSTR_Bloc(),
-        child: BlocBuilder<P56UVREQGETSTR_Bloc, String>(
-          builder: (context, str) {
-            return Page56Body(
-              data: data,
-              str: str,
-            );
-          },
-        ));
+      create: (_) => P56UVREQGETSTR_Bloc(),
+      child: BlocBuilder<P56UVREQGETSTR_Bloc, String>(
+        builder: (context, str) {
+          return Page56Body(data: data, str: str);
+        },
+      ),
+    );
   }
 }
 
 class Page56Body extends StatelessWidget {
-  Page56Body({
-    Key? key,
-    this.data,
-    this.str,
-  }) : super(key: key);
+  Page56Body({Key? key, this.data, this.str}) : super(key: key);
   List<dataset>? data;
   String? str;
   @override
   Widget build(BuildContext context) {
-    return P56UVREQMAIN(
-      data: data,
-      str: str,
-    );
+    return P56UVREQMAIN(data: data, str: str);
   }
 }

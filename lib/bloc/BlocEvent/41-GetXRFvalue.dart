@@ -25,12 +25,16 @@ class GetXRFvalue_Bloc extends Bloc<GetXRFvalue_Event, XRFDATAclass> {
       XRFDATAclass toAdd, Emitter<XRFDATAclass> emit) async {
     XRFDATAclass output = XRFDATAclass();
 
+    if (P42XRFBODYSTDVAR.itemName.contains(' ')) {
+      P42XRFBODYSTDVAR.itemName = P42XRFBODYSTDVAR.itemName.split(' ')[0];
+    }
     final response01 = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/getvalue_${USERDATA.INSMASTER}',
       data: {
         // "barcode": P42XRFBODYSTDVAR.ReqNo,
         "NO": P42XRFBODYSTDVAR.RemarkNo,
         "barcode": P42XRFBODYSTDVAR.SampleCode,
+        "type": P42XRFBODYSTDVAR.itemName,
       },
     );
 

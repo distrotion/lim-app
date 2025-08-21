@@ -14,6 +14,7 @@ import '../../bloc/cubit/POP-searchHistoryChartData.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 
+import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 
@@ -112,19 +113,37 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
       P54ICS8100BODYSTDVAR.iscontrol = true;
       P54ICS8100BODYSTDVAR.D01VOLUME = dataset.D01VOLUME;
     }
+    // if (P54ICS8100BODYSTDVAR.D01NOitem == '') {
+    //   P54ICS8100BODYSTDVAR.iscontrol = true;
+    //   P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01NOitem;
+    // }
     if (P54ICS8100BODYSTDVAR.D01NOitem == '') {
-      P54ICS8100BODYSTDVAR.iscontrol = true;
-      P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01NOitem;
+      if (dataset.D01VOLUME == '') {
+        P54ICS8100BODYSTDVAR.iscontrol = true;
+        P54ICS8100BODYSTDVAR.D01NOitem = dataset.Mag;
+      } else {
+        P54ICS8100BODYSTDVAR.iscontrol = true;
+        P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
+      }
     }
     P54ICS8100BODYSTDVAR.D02W11 = dataset.D02W11;
     P54ICS8100BODYSTDVAR.D02W21 = dataset.D02W21;
     if (P54ICS8100BODYSTDVAR.D02VOLUME == '') {
       P54ICS8100BODYSTDVAR.iscontrol = true;
-      P54ICS8100BODYSTDVAR.D02VOLUME = dataset.D02VOLUME;
+      P54ICS8100BODYSTDVAR.D02VOLUME = dataset.D01VOLUME;
     }
+    // if (P54ICS8100BODYSTDVAR.D02NOitem == '') {
+    //   P54ICS8100BODYSTDVAR.iscontrol = true;
+    //   P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
+    // }
     if (P54ICS8100BODYSTDVAR.D02NOitem == '') {
-      P54ICS8100BODYSTDVAR.iscontrol = true;
-      P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
+      if (dataset.D02VOLUME == '') {
+        P54ICS8100BODYSTDVAR.iscontrol = true;
+        P54ICS8100BODYSTDVAR.D02NOitem = dataset.Mag;
+      } else {
+        P54ICS8100BODYSTDVAR.iscontrol = true;
+        P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
+      }
     }
 
     // P54ICS8100BODYSTDVAR.Result = P54ICS8100BODYSTDVAR.W11;
@@ -474,11 +493,11 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                           ),
                         ],
                       ),
-                    if (P54ICS8100BODYSTDVAR.itemName.contains("PO42"))
+                    if (P54ICS8100BODYSTDVAR.itemName.contains("SO4"))
                       const SizedBox(
                         height: 15,
                       ),
-                    if (P54ICS8100BODYSTDVAR.itemName.contains("PO42"))
+                    if (P54ICS8100BODYSTDVAR.itemName.contains("SO4"))
                       Row(
                         children: [
                           SizedBox(
@@ -799,6 +818,76 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                             //     ),
                             //   ],
                             // ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P54ICS8100BODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("DI01"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 120,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: P54ICS8100BODYSTDVAR
+                                                        .Result01 ==
+                                                    '',
+                                                width: 120,
+                                                height: 40,
+                                                isContr: P54ICS8100BODYSTDVAR
+                                                    .iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P54ICS8100BODYSTDVAR
+                                                        .iscontrol = input;
+                                                  });
+                                                },
+                                                sValue: P54ICS8100BODYSTDVAR
+                                                    .D01NOitem,
+                                                returnfunc: (String s) {
+                                                  P54ICS8100BODYSTDVAR
+                                                      .D01NOitem = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
@@ -983,6 +1072,76 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                         ),
                         Column(
                           children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 240,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 40,
+                                          width: 80,
+                                          color: P54ICS8100BODYSTDVAR.SEND == ''
+                                              ? Colors.brown
+                                              : Colors.grey.shade400,
+                                          child: const Center(
+                                            child: Text("DI02"),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 120,
+                                        // color: Colors.blue,
+                                        child: Container(
+                                          height: 62,
+                                          // color: Colors.blue.shade300,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ComInputText(
+                                                isNumberOnly: true,
+                                                isEnabled: P54ICS8100BODYSTDVAR
+                                                        .Result01 ==
+                                                    '',
+                                                width: 120,
+                                                height: 40,
+                                                isContr: P54ICS8100BODYSTDVAR
+                                                    .iscontrol,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    P54ICS8100BODYSTDVAR
+                                                        .iscontrol = input;
+                                                  });
+                                                },
+                                                sValue: P54ICS8100BODYSTDVAR
+                                                    .D02NOitem,
+                                                returnfunc: (String s) {
+                                                  P54ICS8100BODYSTDVAR
+                                                      .D02NOitem = s;
+                                                },
+                                              ),
+                                              Text("")
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 5,
                             ),

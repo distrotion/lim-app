@@ -48,6 +48,5 @@ String selectBLANCE(input) {
   } else if (input == "RAYONG") {
     serverN = serverNG.HES;
   }
-
   return serverN;
 }
