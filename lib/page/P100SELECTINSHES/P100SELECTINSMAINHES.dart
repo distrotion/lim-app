@@ -76,8 +76,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESBALANCE02';
                     CuPage = Page1();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -114,8 +113,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESBALANCE03';
                     CuPage = Page1();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -193,8 +191,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESXRF01';
                     CuPage = Page41();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -236,8 +233,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESTOC01';
                     CuPage = Page31();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -275,8 +271,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESICP01';
                     CuPage = Page31();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -314,8 +309,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESIC01';
                     CuPage = Page51();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -353,8 +347,7 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                   onTap: () {
                     USERDATA.INSMASTER = 'HESUV01';
                     CuPage = Page56();
-                    MainBodyContext.read<ChangePage_Bloc>()
-                        .add(ChangePage_nodrower());
+                    MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                   },
                   child: Row(
                     children: [
@@ -376,8 +369,8 @@ class _P100SELECTINSHESMAINState extends State<P100SELECTINSHESMAIN> {
                       Container(
                         height: 50,
                         width: 125,
-                        // color: Colors.blue,
-                        color: Colors.red,
+                        color: Colors.blue,
+                        // color: Colors.red,
                         child: const Center(
                           child: Text("UV"),
                         ),

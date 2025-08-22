@@ -152,26 +152,11 @@ class tabledetailsearchlist extends StatelessWidget {
     List<dataset> _data_exp = [];
 
     for (int i = 0; i < _data.length; i++) {
-      if (_data[i]
-                  .f01
-                  .toUpperCase()
-                  .contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f02
-                  .toUpperCase()
-                  .contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f03
-                  .toUpperCase()
-                  .contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f04
-                  .toUpperCase()
-                  .contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f05
-                  .toUpperCase()
-                  .contains(P56UVREQVAR.SEARCH.toUpperCase())
+      if (_data[i].f01.toUpperCase().contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f02.toUpperCase().contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f03.toUpperCase().contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f04.toUpperCase().contains(P56UVREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f05.toUpperCase().contains(P56UVREQVAR.SEARCH.toUpperCase())
           // _data[i].f05.contains(P56UVREQVAR.SEARCH)
           ) {
         _data_exp.add(_data[i]);
@@ -198,13 +183,9 @@ class tabledetailsearch extends StatelessWidget {
       tableout.add(P56WIDGETFIELD(
         height: 45,
         B01: _data_exp[i].f01,
-        B01L:
-            "(${monthreplce(_data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""))})",
+        B01L: "(${monthreplce(_data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""))})",
         B02: _data_exp[i].f03,
-        B03: monthreplce(_data_exp[i]
-            .f17
-            .replaceAll("00:00:00", "")
-            .replaceAll("GMT", "")), //f17
+        B03: monthreplce(_data_exp[i].f17.replaceAll("00:00:00", "").replaceAll("GMT", "")), //f17
         B04: _data_exp[i].f41,
         // B05: _data_exp[i].f04,
         B05: _data_exp[i].f39,
@@ -239,7 +220,7 @@ class tabledetailsearch extends StatelessWidget {
           print(FG);
 
           if (CP.contains("Ti")) {
-            USERDATA.INSMASTER = 'BP12UV01';
+            USERDATA.INSMASTER = 'HESUV01';
             //BP12OCA01
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
@@ -261,8 +242,7 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page57(),
-                              '41SARUVSTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page57(), '41SARUVSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -311,8 +291,7 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page58(),
-                              '42SAROCASTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page58(), '42SAROCASTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -375,8 +354,7 @@ class tabledetailinside extends StatelessWidget {
   }
 }
 
-GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
-    String where) async {
+GENREQSG(BuildContext contextin, dataset datainput, Widget widpage, String where) async {
   //
   Dio().post(
     '${serverG}${where}',
