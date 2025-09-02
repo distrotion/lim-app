@@ -220,7 +220,13 @@ class tabledetailsearch extends StatelessWidget {
           print(FG);
 
           if (CP.contains("Ti")) {
-            USERDATA.INSMASTER = 'HESUV01';
+            if (USERDATA.Branch == "RAYONG") {
+              USERDATA.INSMASTER = 'HESUV01';
+            } else {
+              USERDATA.INSMASTER = 'BP12UV01';
+            }
+
+            // USERDATA.INSMASTER = 'HESUV01';
             //BP12OCA01
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
@@ -269,8 +275,14 @@ class tabledetailsearch extends StatelessWidget {
             });
             // } else if (CP == "Cwt") {
           } else if (CP.contains("OCA")) {
-            USERDATA.INSMASTER = 'BP12OCA01';
+            if (USERDATA.Branch == "RAYONG") {
+              USERDATA.INSMASTER = 'HESOCA01';
+            } else {
+              USERDATA.INSMASTER = 'BP12OCA01';
+            }
 
+            // print('----------------------');
+            // print('${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},

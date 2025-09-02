@@ -74,25 +74,18 @@ class P58OCABODYSTD_Bloc extends Bloc<P58OCABODYSTD_Event, String> {
     emit(output);
   }
 
-  Future<void> _P58OCABODYSTD_SETDATA(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P58OCABODYSTD_SETDATA(String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/ACTION_${USERDATA.INSMASTER}',
-      data: {
-        "IP": webHOOK,
-        "TYPE": "42SAROCASTD",
-        "FUNCTION": "UPDATEDATAPPM",
-        "WX": "ALL"
-      },
+      data: {"IP": webHOOK, "TYPE": "42SAROCASTD", "FUNCTION": "UPDATEDATAPPM", "WX": "ALL"},
     );
 
     emit(output);
   }
 
-  Future<void> _P58OCABODYSTD_CLEARW11(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P58OCABODYSTD_CLEARW11(String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
@@ -133,8 +126,7 @@ class P58OCABODYSTD_Bloc extends Bloc<P58OCABODYSTD_Event, String> {
     emit(output);
   }
 
-  Future<void> _P58OCABODYSTD_TEMP_SAVE(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P58OCABODYSTD_TEMP_SAVE(String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final responseR = await Dio().post(
@@ -189,8 +181,7 @@ class P58OCABODYSTD_Bloc extends Bloc<P58OCABODYSTD_Event, String> {
     emit(output);
   }
 
-  Future<void> _P58OCABODYSTD_SEND_TO_SAR(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P58OCABODYSTD_SEND_TO_SAR(String toAdd, Emitter<String> emit) async {
     String output = '';
 
     final response = await Dio().post(
@@ -217,8 +208,7 @@ class P58OCABODYSTD_Bloc extends Bloc<P58OCABODYSTD_Event, String> {
   //   emit(output);
   // }
 
-  Future<void> _P58OCABODYSTD_CLEARROOM(
-      String toAdd, Emitter<String> emit) async {
+  Future<void> _P58OCABODYSTD_CLEARROOM(String toAdd, Emitter<String> emit) async {
     String output = '';
     final response = await Dio().post(
       '${selectBLANCE(USERDATA.Branch)}/CLEARREGISTER_${USERDATA.INSMASTER}',

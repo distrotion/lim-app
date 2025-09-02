@@ -85,14 +85,11 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(widget.B01 ?? '',
-                        style: TxtStyle(
-                            color: widget.FCB ?? Colors.black,
-                            fontSize: widget.forntsize ?? 14)),
+                        style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
                     if (widget.B01L != null && widget.B01L != '') ...[
                       Text(widget.B01L ?? '',
-                          style: TxtStyle(
-                              color: widget.FCB ?? Colors.black,
-                              fontSize: widget.forntsize ?? 14)),
+                          style:
+                              TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
                     ],
                   ],
                 ),
@@ -110,9 +107,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B02 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                    style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
               ),
             ),
           ),
@@ -127,9 +122,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B03 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                    style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
               ),
             ),
           ),
@@ -144,9 +137,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B04 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                    style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
               ),
             ),
           ),
@@ -161,9 +152,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B05 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                    style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
               ),
             ),
           ),
@@ -178,9 +167,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B06 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                    style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
               ),
             ),
           ),
@@ -196,9 +183,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
               ),
               child: Center(
                 child: Text(widget.B07 ?? '',
-                    style: TxtStyle(
-                        color: widget.FCB ?? Colors.black,
-                        fontSize: widget.forntsize ?? 14)),
+                    style: TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
               ),
             ),
           ),
@@ -244,8 +229,7 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
                           decoration: BoxDecoration(
                             color: Colors.blue,
                             border: Border.all(color: Colors.black),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
+                            borderRadius: const BorderRadius.all(Radius.circular(8)),
                           ),
                           child: const Center(
                             child: Text("SELECT"),
@@ -255,9 +239,8 @@ class _P56WIDGETFIELDState extends State<P56WIDGETFIELD> {
                     )
                   : Center(
                       child: Text(widget.B08 ?? '',
-                          style: TxtStyle(
-                              color: widget.FCB ?? Colors.black,
-                              fontSize: widget.forntsize ?? 14)),
+                          style:
+                              TxtStyle(color: widget.FCB ?? Colors.black, fontSize: widget.forntsize ?? 14)),
                     ),
             ),
           ),

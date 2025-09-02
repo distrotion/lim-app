@@ -21,8 +21,7 @@ class GetOCAvalue_Bloc extends Bloc<GetOCAvalue_Event, OCADATAclass> {
       return _flush(OCADATAclass(), emit);
     });
   }
-  Future<void> _GetOCAvalue_Get(
-      OCADATAclass toAdd, Emitter<OCADATAclass> emit) async {
+  Future<void> _GetOCAvalue_Get(OCADATAclass toAdd, Emitter<OCADATAclass> emit) async {
     OCADATAclass output = OCADATAclass();
 
     final response01 = await Dio().post(
@@ -39,19 +38,13 @@ class GetOCAvalue_Bloc extends Bloc<GetOCAvalue_Event, OCADATAclass> {
       print(databuOCA);
       // output = databuOCA;
       if (databuOCA['OCAR11'] != null) {
-        output.value01 =
-            databuOCA['OCAR11'] != null ? databuOCA['OCAR11'].toString() : '';
-        output.value02 =
-            databuOCA['OCAR12'] != null ? databuOCA['OCAR12'].toString() : '';
-        output.value03 =
-            databuOCA['OCAR13'] != null ? databuOCA['OCAR13'].toString() : '';
+        output.value01 = databuOCA['OCAR11'] != null ? databuOCA['OCAR11'].toString() : '';
+        output.value02 = databuOCA['OCAR12'] != null ? databuOCA['OCAR12'].toString() : '';
+        output.value03 = databuOCA['OCAR13'] != null ? databuOCA['OCAR13'].toString() : '';
 
-        output.value04 =
-            databuOCA['OCAR21'] != null ? databuOCA['OCAR21'].toString() : '';
-        output.value05 =
-            databuOCA['OCAR22'] != null ? databuOCA['OCAR22'].toString() : '';
-        output.value06 =
-            databuOCA['OCAR23'] != null ? databuOCA['OCAR23'].toString() : '';
+        output.value04 = databuOCA['OCAR21'] != null ? databuOCA['OCAR21'].toString() : '';
+        output.value05 = databuOCA['OCAR22'] != null ? databuOCA['OCAR22'].toString() : '';
+        output.value06 = databuOCA['OCAR23'] != null ? databuOCA['OCAR23'].toString() : '';
       }
     }
 
