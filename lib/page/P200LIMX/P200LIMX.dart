@@ -1465,9 +1465,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                     if (picked != null) {
                       imageByte = picked.files.first.bytes;
                       // print(imageByte!.toList());
-                      await context
-                          .read<TESTINGOCR_Cubit>()
-                          .FilePathTESTcu(imageByte!.toList(), "1234");
+                      await context.read<TESTINGOCR_Cubit>().FilePathTESTcu(imageByte!.toList(), "1234");
                       setState(() {});
                     }
                   },
@@ -1517,17 +1515,14 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       //----
                       final _whitespaceRE = RegExp(r"\s+");
 
-                      String cleanupWhitespace(String input) =>
-                          input.split(_whitespaceRE).join(",");
+                      String cleanupWhitespace(String input) => input.split(_whitespaceRE).join(",");
                       //----
 
                       List<DATASET2V> setdatablist = [];
                       for (var i = 0; i < dataexList.length; i++) {
-                        if (dataexList[i].contains("RTB") ||
-                            dataexList[i].contains("RTR")) {
+                        if (dataexList[i].contains("RTB") || dataexList[i].contains("RTR")) {
                           // print(cleanupWhitespace(dataexList[i]));
-                          List<String> dtList =
-                              cleanupWhitespace(dataexList[i]).split(",");
+                          List<String> dtList = cleanupWhitespace(dataexList[i]).split(",");
                           DATASET2V setdatab = DATASET2V();
                           // print(dtList);
 
@@ -1550,11 +1545,8 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                   // print(setdatab.R);
                                 }
                                 if (k == 2) {
-                                  List<String> dtListinlist =
-                                      dtList[k].split("-");
-                                  for (var l = 0;
-                                      l < dtListinlist.length;
-                                      l++) {
+                                  List<String> dtListinlist = dtList[k].split("-");
+                                  for (var l = 0; l < dtListinlist.length; l++) {
                                     if (l == 0) {
                                       setdatab.DI1 = dtListinlist[l];
                                       // print(setdatab.DI1);
@@ -1617,8 +1609,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         },
                       ).then((value) {
                         BlocProvider.of<BlocNotification>(contextGB)
-                            .UpdateNotification("Complete", "Upload completed",
-                                enumNotificationlist.Success);
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
                       });
                       // await context
                       //     .read<TESTINGOCR_Cubit>()
@@ -1673,16 +1664,10 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       String type = '';
                       for (var i = 0; i < dataexList.length; i++) {
                         if (i == 0) {
-                          print(dataexList[0]
-                              .replaceAll('"', '')
-                              .replaceAll(',', ''));
-                          type = dataexList[0]
-                              .replaceAll('"', '')
-                              .replaceAll(',', '')
-                              .replaceAll('\r', '');
+                          print(dataexList[0].replaceAll('"', '').replaceAll(',', ''));
+                          type = dataexList[0].replaceAll('"', '').replaceAll(',', '').replaceAll('\r', '');
                         }
-                        if (dataexList[i].contains("RTB") ||
-                            dataexList[i].contains("RTR")) {
+                        if (dataexList[i].contains("RTB") || dataexList[i].contains("RTR")) {
                           List<String> dtList = dataexList[i].split(",");
                           DATASET setdatab = DATASET();
 
@@ -1739,8 +1724,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         },
                       ).then((value) {
                         BlocProvider.of<BlocNotification>(contextGB)
-                            .UpdateNotification("Complete", "Upload completed",
-                                enumNotificationlist.Success);
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
                       });
                       // await context
                       //     .read<TESTINGOCR_Cubit>()
@@ -1835,16 +1819,10 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       String type = '';
                       for (var i = 0; i < dataexList.length; i++) {
                         if (i == 0) {
-                          print(dataexList[0]
-                              .replaceAll('"', '')
-                              .replaceAll(',', ''));
-                          type = dataexList[0]
-                              .replaceAll('"', '')
-                              .replaceAll(',', '')
-                              .replaceAll('\r', '');
+                          print(dataexList[0].replaceAll('"', '').replaceAll(',', ''));
+                          type = dataexList[0].replaceAll('"', '').replaceAll(',', '').replaceAll('\r', '');
                         }
-                        if (dataexList[i].contains("RTB") ||
-                            dataexList[i].contains("RTR")) {
+                        if (dataexList[i].contains("RTB") || dataexList[i].contains("RTR")) {
                           List<String> dtList = dataexList[i].split(",");
                           DATASETTIUV setdatab = DATASETTIUV();
 
@@ -1908,8 +1886,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       ).then((value) {
                         print(value);
                         BlocProvider.of<BlocNotification>(contextGB)
-                            .UpdateNotification("Complete", "Upload completed",
-                                enumNotificationlist.Success);
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
                       });
 
                       // Dio().post(
@@ -1983,8 +1960,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         //   //     .replaceAll(',', '');
                         //   // .replaceAll('\r', '');
                         // }
-                        if (dataexList[i].contains("RTB") ||
-                            dataexList[i].contains("RTR")) {
+                        if (dataexList[i].contains("RTB") || dataexList[i].contains("RTR")) {
                           // print(dataexList[i]);
                           List<String> dtList = dataexList[i].split(",");
                           print(dtList);
@@ -2056,8 +2032,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         },
                       ).then((value) {
                         BlocProvider.of<BlocNotification>(contextGB)
-                            .UpdateNotification("Complete", "Upload completed",
-                                enumNotificationlist.Success);
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
                       });
                       // await context
                       //     .read<TESTINGOCR_Cubit>()
@@ -2109,6 +2084,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       // print(excel);
 
                       var datarow = excel.tables["Sheet1"]?.rows ?? [];
+                      // print(datarow);
                       // DATASETICS8100 setdatab = DATASETICS8100();
                       List<DATASETICS8100> setdatablist = [];
                       String settingdata = '';
@@ -2151,69 +2127,23 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                             // setdatab.code = data;
                             List<String> dtList = data.split("/");
                             if (data.contains("RTB") || data.contains("RTR")) {
-                              // print(
-                              //     "${data}   : ${(datarow[i][5]?.value ?? '')} ");
-                              for (var k = 0; k < dtList.length; k++) {
-                                if (k == 0) {
-                                  setdatab.REQ = dtList[k].replaceAll('"', '');
-                                  // print(setdatab.REQ);
-                                }
-                                if (k == 1) {
-                                  setdatab.R = dtList[k].replaceAll('"', '');
-                                  // print(setdatab.R);
-                                }
-                                if (k == 2) {
-                                  setdatab.DI1 = dtList[k].replaceAll('"', '');
-                                  // print(setdatab.DI1);
-                                }
-                              }
+                              setdatab.REQ = dtList[0];
+                              setdatab.R = dtList[1];
+                              setdatab.DI1 = dtList[2];
 
-                              // setdatab.code = data;
-                              // setdatab.Fluoride =
-                              //     (datarow[i][3]?.value ?? '').toString();
-                              // print(setdatab.code);
-                              // print(setdatab.value);
-                              if (settingdata.contains("F")) {
-                                print(
-                                    "${data}  ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.Fluoride =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("Cl")) {
-                                print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.Chloride =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("NO3")) {
-                                print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.Nitrate =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("SO4")) {
-                                print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.Sulphate =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("PO4")) {
-                                print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.Phosphate =
-                                    (datarow[i][3]?.value ?? '').toString();
-                              }
-                              if (settingdata.contains("P2O7")) {
-                                print(
-                                    "${data}   ${(datarow[i][3]?.value ?? '')} ");
-                                setdatab.P2O7 =
-                                    (datarow[i][3]?.value ?? '').toString();
+                              setdatab.Fluoride = cleanValue(datarow[i][3]?.value);
+                              setdatab.Chloride = cleanValue(datarow[i][4]?.value);
+                              setdatab.Nitrate = cleanValue(datarow[i][5]?.value);
+                              setdatab.Phosphate = cleanValue(datarow[i][6]?.value);
+                              setdatab.Sulphate = cleanValue(datarow[i][7]?.value);
+
+                              if (datarow[i].length > 8) {
+                                setdatab.P2O7 = cleanValue(datarow[i][8]?.value);
                               }
                             }
                           }
                         }
-                        if (setdatab.REQ.contains("RTB") ||
-                            setdatab.REQ.contains("RTR")) {
+                        if (setdatab.REQ.contains("RTB") || setdatab.REQ.contains("RTR")) {
                           setdatablist.add(setdatab);
                         }
                       }
@@ -2250,7 +2180,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                           "P2O7": setdatablist[s].P2O7,
                         });
                       }
-
+                      print(outdataset);
                       Dio().post(
                         '${serverG}LIMX/IC8100EXSETDATA',
                         data: {
@@ -2258,8 +2188,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         },
                       ).then((value) {
                         BlocProvider.of<BlocNotification>(contextGB)
-                            .UpdateNotification("Complete", "Upload completed",
-                                enumNotificationlist.Success);
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
                       });
 
                       // List<String> dataexList = result.split("\n");
@@ -2322,7 +2251,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                       //     print(cell?.value);
                       //   }
                       // }
-                      var datarow = excel.tables["Sheet1"]?.rows ?? [];
+                      var datarow = excel.tables["Summary"]?.rows ?? [];
                       List<DATASETICS2000> setdatablist = [];
                       String settingdata = '';
                       for (var i = 0; i < datarow.length; i++) {
@@ -2353,7 +2282,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               settingdata = data;
                             }
 
-                            if (data.contains("P2O7")) {
+                            if (data.contains("Pyrophosphate")) {
                               print("${data}   ");
                               settingdata = data;
                             }
@@ -2380,83 +2309,86 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                 }
                               }
                               if (settingdata.contains("Fluoride")) {
-                                print(
-                                    "${data}  ${(datarow[i][5]?.value ?? '')} ");
-                                setdatab.Fluoride =
-                                    (datarow[i][5]?.value ?? '').toString();
+                                print("${data}  ${(datarow[i][7]?.value ?? '')} ");
+                                setdatab.Fluoride = (datarow[i][7]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Chloride")) {
-                                print(
-                                    "${data}   ${(datarow[i][5]?.value ?? '')} ");
-                                setdatab.Chloride =
-                                    (datarow[i][5]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                setdatab.Chloride = (datarow[i][7]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Nitrate")) {
-                                print(
-                                    "${data}   ${(datarow[i][5]?.value ?? '')} ");
-                                setdatab.Nitrate =
-                                    (datarow[i][5]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                setdatab.Nitrate = (datarow[i][7]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Sulphate")) {
-                                print(
-                                    "${data}   ${(datarow[i][5]?.value ?? '')} ");
-                                setdatab.Sulphate =
-                                    (datarow[i][5]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                setdatab.Sulphate = (datarow[i][7]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Phosphate")) {
-                                print(
-                                    "${data}   ${(datarow[i][5]?.value ?? '')} ");
-                                setdatab.Phosphate =
-                                    (datarow[i][5]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                setdatab.Phosphate = (datarow[i][7]?.value ?? '').toString();
                               }
-                              if (settingdata.contains("P2O7")) {
-                                print(
-                                    "${data}   ${(datarow[i][5]?.value ?? '')} ");
-                                setdatab.P2O7 =
-                                    (datarow[i][5]?.value ?? '').toString();
+                              if (settingdata.contains("Pyrophosphate")) {
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                setdatab.P2O7 = (datarow[i][7]?.value ?? '').toString();
                               }
                             }
                           }
                         }
                         // setdatablist.add(setdatab);
-                        if (setdatab.REQ.contains("RTB") ||
-                            setdatab.REQ.contains("RTR")) {
+                        if (setdatab.REQ.contains("RTB") || setdatab.REQ.contains("RTR")) {
                           setdatablist.add(setdatab);
                         }
                       }
                       print(setdatablist.length);
 
                       List<Map<String, String>> outdataset = [];
+                      Map<String, Map<String, String>> merged = {};
+
                       for (var s = 0; s < setdatablist.length; s++) {
-                        print({
-                          "code": setdatablist[s].code,
-                          "REQ": setdatablist[s].REQ,
-                          "R": setdatablist[s].R,
-                          "DIM": setdatablist[s].DIM,
-                          "DI1": setdatablist[s].DI1,
-                          "DI2": setdatablist[s].DI2,
-                          "Fluoride": setdatablist[s].Fluoride,
-                          "Chloride": setdatablist[s].Chloride,
-                          "Nitrate": setdatablist[s].Nitrate,
-                          "Sulphate": setdatablist[s].Sulphate,
-                          "Phosphate": setdatablist[s].Phosphate,
-                          "P2O7": setdatablist[s].P2O7,
-                        });
-                        outdataset.add({
-                          "code": setdatablist[s].code,
-                          "REQ": setdatablist[s].REQ,
-                          "R": setdatablist[s].R,
-                          "DIM": setdatablist[s].DIM,
-                          "DI1": setdatablist[s].DI1,
-                          "DI2": setdatablist[s].DI2,
-                          "Fluoride": setdatablist[s].Fluoride,
-                          "Chloride": setdatablist[s].Chloride,
-                          "Nitrate": setdatablist[s].Nitrate,
-                          "Sulphate": setdatablist[s].Sulphate,
-                          "Phosphate": setdatablist[s].Phosphate,
-                          "P2O7": setdatablist[s].P2O7,
-                        });
+                        var item = setdatablist[s];
+
+                        if (!merged.containsKey(item.code)) {
+                          merged[item.code] = {
+                            "code": item.code,
+                            "REQ": item.REQ,
+                            "R": item.R,
+                            "DIM": item.DIM,
+                            "DI1": item.DI1,
+                            "DI2": item.DI2,
+                            "Fluoride": "",
+                            "Chloride": "",
+                            "Nitrate": "",
+                            "Sulphate": "",
+                            "Phosphate": "",
+                            "P2O7": "",
+                          };
+                        }
+
+                        if (item.Fluoride.isNotEmpty) {
+                          merged[item.code]!["Fluoride"] = cleanValue(item.Fluoride);
+                        }
+                        if (item.Chloride.isNotEmpty) {
+                          merged[item.code]!["Chloride"] = cleanValue(item.Chloride);
+                        }
+                        if (item.Nitrate.isNotEmpty) {
+                          merged[item.code]!["Nitrate"] = cleanValue(item.Nitrate);
+                        }
+                        if (item.Sulphate.isNotEmpty) {
+                          merged[item.code]!["Sulphate"] = cleanValue(item.Sulphate);
+                        }
+                        if (item.Phosphate.isNotEmpty) {
+                          merged[item.code]!["Phosphate"] = cleanValue(item.Phosphate);
+                        }
+                        if (item.P2O7.isNotEmpty) {
+                          merged[item.code]!["P2O7"] = cleanValue(item.P2O7);
+                        }
                       }
+
+                      outdataset = merged.values.toList();
+
+                      print(outdataset);
+
                       Dio().post(
                         '${serverG}LIMX/ICS2000SETDATA',
                         data: {
@@ -2464,8 +2396,314 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         },
                       ).then((value) {
                         BlocProvider.of<BlocNotification>(contextGB)
-                            .UpdateNotification("Complete", "Upload completed",
-                                enumNotificationlist.Success);
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
+                      });
+
+                      // }
+                      // }
+                      // const asciiDecoder = AsciiDecoder();
+                      // final result = asciiDecoder.convert(dataByte!.toList());
+                      // const asciiDecoder = AsciiDecoder();
+                      // final result = asciiDecoder.convert(dataByte!.toList());
+                      // print(result);
+                      // List<String> dataexList = result.split("\n");
+                      // print(dataexList);
+
+                      // print(result);
+                      // List<String> dataexList = result.split("\n");
+                      // print(dataexList);
+                      // List<DATASETOCA> setdatablist = [];
+                      // String type = '';
+                      // for (var i = 0; i < dataexList.length; i++) {
+
+                      //   if (dataexList[i].contains("RTB") ||
+                      //       dataexList[i].contains("RTR")) {
+                      //     // print(dataexList[i]);
+                      //     List<String> dtList = dataexList[i].split(",");
+                      //     print(dtList);
+                      //     DATASETOCA setdatab = DATASETOCA();
+
+                      //     for (var j = 0; j < dtList.length; j++) {
+                      //       // print(dtList[j].replaceAll(" ", ""));
+
+                      //       String DATAgeteach = dtList[j].replaceAll(" ", "");
+                      //       print(DATAgeteach);
+                      //       if (j == 0) {
+                      //         //
+                      //         // setdatab.type = type;
+                      //         setdatab.code = DATAgeteach.replaceAll('"', '');
+                      //         List<String> dtList = DATAgeteach.split("/");
+                      //         for (var k = 0; k < dtList.length; k++) {
+                      //           if (k == 0) {
+                      //             setdatab.REQ = dtList[k].replaceAll('"', '');
+                      //           }
+                      //           if (k == 1) {
+                      //             setdatab.R = dtList[k].replaceAll('"', '');
+                      //           }
+                      //           if (k == 2) {
+                      //             setdatab.DI1 = dtList[k].replaceAll('"', '');
+                      //           }
+                      //         }
+                      //       } else if (j == 1) {
+                      //         setdatab.VALUE01 = dtList[j].replaceAll('"', '');
+                      //       } else if (j == 2) {
+                      //         setdatab.VALUE02 = dtList[j].replaceAll('"', '');
+                      //       } else if (j == 3) {
+                      //         setdatab.VALUE03 = dtList[j].replaceAll('"', '');
+                      //       } else {}
+                      //     }
+                      //     setdatablist.add(setdatab);
+                      //   }
+                      // }
+                      // // print(setdatablist);
+                      // List<Map<String, String>> outdataset = [];
+                      // for (var s = 0; s < setdatablist.length; s++) {
+                      //   print({
+                      //     "code": setdatablist[s].code,
+                      //     "REQ": setdatablist[s].REQ,
+                      //     "R": setdatablist[s].R,
+                      //     "DIM": setdatablist[s].DIM,
+                      //     "DI1": setdatablist[s].DI1,
+                      //     "DI2": setdatablist[s].DI2,
+                      //     "VALUE01": setdatablist[s].VALUE01,
+                      //     "VALUE02": setdatablist[s].VALUE02,
+                      //     "VALUE03": setdatablist[s].VALUE03,
+                      //   });
+                      //   outdataset.add({
+                      //     "code": setdatablist[s].code,
+                      //     "REQ": setdatablist[s].REQ,
+                      //     "R": setdatablist[s].R,
+                      //     "DIM": setdatablist[s].DIM,
+                      //     "DI1": setdatablist[s].DI1,
+                      //     "DI2": setdatablist[s].DI2,
+                      //     "VALUE01": setdatablist[s].VALUE01,
+                      //     "VALUE02": setdatablist[s].VALUE02,
+                      //     "VALUE03": setdatablist[s].VALUE03,
+                      //   });
+                      // }
+
+                      // Dio().post(
+                      //   '${serverG}LIMX/OCASETDATA',
+                      //   data: {
+                      //     "DATA": outdataset,
+                      //   },
+                      // ).then((value) {
+                      //   BlocProvider.of<BlocNotification>(contextGB)
+                      //       .UpdateNotification("Complete", "Upload completed",
+                      //           enumNotificationlist.Success);
+                      // });
+                    }
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 100,
+                    color: Colors.red,
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      color: Colors.red,
+                      child: const Center(
+                        child: Text("UPLOAD"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 200,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text("ICS2100(xlsx)"),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    var picked = await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['xlsx'],
+                    );
+                    Uint8List? dataByte;
+                    if (picked != null) {
+                      dataByte = picked.files.first.bytes;
+                      var excel = Excel.decodeBytes(dataByte!.toList());
+
+                      // print(excel);
+                      // for (var table in excel.tables.keys) {
+                      // print(table); //sheet Name
+                      // print(excel.tables[table]?.maxColumns);
+                      // print(excel.tables[table]?.maxRows);
+                      // if (table == "Sheet1") {
+                      // for (var row in excel.tables["Sheet1"]?.rows ?? []) {
+                      //   //
+                      //   for (var cell in row) {
+                      //     print(cell?.value);
+                      //   }
+                      // }
+                      var datarow = excel.tables["Summary - INJ. vs ANION"]?.rows ?? [];
+                      List<DATASETICS2000> setdatablist = [];
+                      String settingdata = '';
+                      for (var i = 0; i < datarow.length; i++) {
+                        DATASETICS2000 setdatab = DATASETICS2000();
+                        for (var j = 0; j < datarow[i].length; j++) {
+                          String data = (datarow[i][j]?.value ?? '').toString();
+
+                          if (j == 2) {
+                            // print("${data}   ");
+                            if (data.contains("Fluoride")) {
+                              print("${data}   ");
+                              settingdata = data;
+                            }
+                            if (data.contains("Chloride")) {
+                              print("${data}   ");
+                              settingdata = data;
+                            }
+                            if (data.contains("Nitrate")) {
+                              print("${data}   ");
+                              settingdata = data;
+                            }
+                            if (data.contains("Sulphate")) {
+                              print("${data}   ");
+                              settingdata = data;
+                            }
+                            if (data.contains("Phosphate")) {
+                              print("${data}   ");
+                              settingdata = data;
+                            }
+
+                            if (data.contains("Pyrophosphate")) {
+                              print("${data}   ");
+                              settingdata = data;
+                            }
+                          }
+                          if (j == 1) {
+                            // print(datarow[i][j]?.value);
+                            setdatab.code = data;
+                            List<String> dtList = data.split("/");
+                            if (data.contains("RTB") || data.contains("RTR")) {
+                              // print(
+                              //     "${data}   : ${(datarow[i][5]?.value ?? '')} ");
+                              for (var k = 0; k < dtList.length; k++) {
+                                if (k == 0) {
+                                  setdatab.REQ = dtList[k].replaceAll('"', '');
+                                  // print(setdatab.REQ);
+                                }
+                                if (k == 1) {
+                                  setdatab.R = dtList[k].replaceAll('"', '');
+                                  // print(setdatab.R);
+                                }
+                                if (k == 2) {
+                                  setdatab.DI1 = dtList[k].replaceAll('"', '');
+                                  // print(setdatab.DI1);
+                                }
+                              }
+                              if (settingdata.contains("Fluoride")) {
+                                print("${data}  ${(datarow[i][7]?.value ?? '')} ");
+                                double value =
+                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                setdatab.Fluoride = value.toStringAsFixed(4);
+                              }
+                              if (settingdata.contains("Chloride")) {
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                double value =
+                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                setdatab.Chloride = value.toStringAsFixed(4);
+                              }
+                              if (settingdata.contains("Nitrate")) {
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                double value =
+                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                setdatab.Nitrate = value.toStringAsFixed(4);
+                              }
+                              if (settingdata.contains("Sulphate")) {
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                double value =
+                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                setdatab.Sulphate = value.toStringAsFixed(4);
+                              }
+                              if (settingdata.contains("Phosphate")) {
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                double value =
+                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                setdatab.Phosphate = value.toStringAsFixed(4);
+                              }
+                              if (settingdata.contains("Pyrophosphate")) {
+                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
+                                double value =
+                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                setdatab.P2O7 = value.toStringAsFixed(4);
+                              }
+                            }
+                          }
+                        }
+                        // setdatablist.add(setdatab);
+                        if (setdatab.REQ.contains("RTB") || setdatab.REQ.contains("RTR")) {
+                          setdatablist.add(setdatab);
+                        }
+                      }
+                      print(setdatablist.length);
+
+                      List<Map<String, String>> outdataset = [];
+                      Map<String, Map<String, String>> merged = {};
+
+                      for (var s = 0; s < setdatablist.length; s++) {
+                        var item = setdatablist[s];
+
+                        if (!merged.containsKey(item.code)) {
+                          merged[item.code] = {
+                            "code": item.code,
+                            "REQ": item.REQ,
+                            "R": item.R,
+                            "DIM": item.DIM,
+                            "DI1": item.DI1,
+                            "DI2": item.DI2,
+                            "Fluoride": "",
+                            "Chloride": "",
+                            "Nitrate": "",
+                            "Sulphate": "",
+                            "Phosphate": "",
+                            "P2O7": "",
+                          };
+                        }
+
+                        if (item.Fluoride.isNotEmpty) {
+                          merged[item.code]!["Fluoride"] = cleanValue(item.Fluoride);
+                        }
+                        if (item.Chloride.isNotEmpty) {
+                          merged[item.code]!["Chloride"] = cleanValue(item.Chloride);
+                        }
+                        if (item.Nitrate.isNotEmpty) {
+                          merged[item.code]!["Nitrate"] = cleanValue(item.Nitrate);
+                        }
+                        if (item.Sulphate.isNotEmpty) {
+                          merged[item.code]!["Sulphate"] = cleanValue(item.Sulphate);
+                        }
+                        if (item.Phosphate.isNotEmpty) {
+                          merged[item.code]!["Phosphate"] = cleanValue(item.Phosphate);
+                        }
+                        if (item.P2O7.isNotEmpty) {
+                          merged[item.code]!["P2O7"] = cleanValue(item.P2O7);
+                        }
+                      }
+
+                      outdataset = merged.values.toList();
+
+                      print(outdataset);
+
+                      Dio().post(
+                        '${serverG}LIMX/ICS2100SETDATA',
+                        data: {
+                          "DATA": outdataset,
+                        },
+                      ).then((value) {
+                        BlocProvider.of<BlocNotification>(contextGB)
+                            .UpdateNotification("Complete", "Upload completed", enumNotificationlist.Success);
                       });
 
                       // }
@@ -2722,4 +2960,10 @@ class DATASETICS8100 {
   String Sulphate;
   String Phosphate;
   String P2O7;
+}
+
+String cleanValue(dynamic val) {
+  String v = (val ?? '').toString();
+  if (v == '0' || v == '0.0' || v == 'n.a.') return '';
+  return v;
 }

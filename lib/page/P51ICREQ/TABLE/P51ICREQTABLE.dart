@@ -152,26 +152,11 @@ class tabledetailsearchlist extends StatelessWidget {
     List<dataset> _data_exp = [];
 
     for (int i = 0; i < _data.length; i++) {
-      if (_data[i]
-                  .f01
-                  .toUpperCase()
-                  .contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f02
-                  .toUpperCase()
-                  .contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f03
-                  .toUpperCase()
-                  .contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f04
-                  .toUpperCase()
-                  .contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
-              _data[i]
-                  .f05
-                  .toUpperCase()
-                  .contains(P51ICREQVAR.SEARCH.toUpperCase())
+      if (_data[i].f01.toUpperCase().contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f02.toUpperCase().contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f03.toUpperCase().contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f04.toUpperCase().contains(P51ICREQVAR.SEARCH.toUpperCase()) ||
+              _data[i].f05.toUpperCase().contains(P51ICREQVAR.SEARCH.toUpperCase())
           // _data[i].f05.contains(P51ICREQVAR.SEARCH)
           ) {
         _data_exp.add(_data[i]);
@@ -198,22 +183,16 @@ class tabledetailsearch extends StatelessWidget {
       tableout.add(P51WIDGETFIELD(
         height: 45,
         B01: _data_exp[i].f01,
-        B01L:
-            "(${monthreplce(_data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""))})",
+        B01L: "(${monthreplce(_data_exp[i].f05.replaceAll("00:00:00", "").replaceAll("GMT", ""))})",
         B02: _data_exp[i].f03,
-        B03: monthreplce(_data_exp[i]
-            .f17
-            .replaceAll("00:00:00", "")
-            .replaceAll("GMT", "")), //f17
+        B03: monthreplce(_data_exp[i].f17.replaceAll("00:00:00", "").replaceAll("GMT", "")), //f17
         B04: _data_exp[i].f41,
         // B05: _data_exp[i].f04,
         B05: _data_exp[i].f39,
         B06: _data_exp[i].f26,
 
         // B07: (_data_exp[i].f06).toString(),
-        B07: USERDATA.INSMASTER == "BP12TOC01"
-            ? (_data_exp[i].f30).toString()
-            : _data_exp[i].f20,
+        B07: USERDATA.INSMASTER == "BP12TOC01" ? (_data_exp[i].f30).toString() : _data_exp[i].f20,
         B08: _data_exp[i].f39,
         B09: _data_exp[i].f26,
         B10: '',
@@ -234,8 +213,7 @@ class tabledetailsearch extends StatelessWidget {
 
           // if (CP == "Sludge") {
           if (USERDATA.INSMASTER == 'BP12ICS2000') {
-            print(
-                '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
+            print('${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -256,8 +234,55 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page53(),
-                              '52SARICS2000STD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page53(), '52SARICS2000STD/GENREQ');
+                        } else {
+                          // WORNINGpop(context, ["test2", "test2"], 100, 200);
+                        }
+                      }
+                    });
+                  } else {
+                    // WORNINGpop(context, ["test", "test"], 100, 200);
+
+                    // CuPage = Page3();
+                    // MainBodyContext.read<ChangePage_Bloc>()
+                    //     .add(ChangePage_nodrower());
+                    WORNINGpop(
+                      context,
+                      [
+                        "BLOCK",
+                        "PLEASE CHECK",
+                      ],
+                      100,
+                      100,
+                    );
+                  }
+                }
+              }
+            });
+            // } else if (CP == "Cwt") {
+          } else if (USERDATA.INSMASTER == 'BP12ICS2100' || USERDATA.INSMASTER == 'HESIC01') {
+            print('${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
+            final response = Dio().post(
+              '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
+              data: {},
+            ).then((value) {
+              if (value.statusCode == 200) {
+                var databuICP = value.data;
+                // print('>>>>${databuICP['REQNO']}');
+                if (databuICP['REQNO'] != null) {
+                  if (databuICP['REQNO'].toString() == '') {
+                    final response = Dio().post(
+                      '${selectBLANCE(USERDATA.Branch)}/SETREGISTER_${USERDATA.INSMASTER}',
+                      data: {
+                        "REQNO": PO,
+                        "UID": FG,
+                      },
+                    ).then((value) {
+                      if (value.statusCode == 200) {
+                        var databuICP = value.data;
+
+                        if (databuICP['msg'].toString() == 'ok') {
+                          GENREQSG(context, _data_exp[i], Page53(), '54SARICS2100STD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -284,8 +309,7 @@ class tabledetailsearch extends StatelessWidget {
             });
             // } else if (CP == "Cwt") {
           } else if (USERDATA.INSMASTER == 'BP12ICS8100') {
-            print(
-                '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
+            print('${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}');
             final response = Dio().post(
               '${selectBLANCE(USERDATA.Branch)}/GETREGISTER_${USERDATA.INSMASTER}',
               data: {},
@@ -306,8 +330,7 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page54(),
-                              '53SARIC8100EXSTD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page54(), '53SARIC8100EXSTD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -370,8 +393,7 @@ class tabledetailinside extends StatelessWidget {
   }
 }
 
-GENREQSG(BuildContext contextin, dataset datainput, Widget widpage,
-    String where) async {
+GENREQSG(BuildContext contextin, dataset datainput, Widget widpage, String where) async {
   //
   Dio().post(
     '${serverG}${where}',
