@@ -22,6 +22,7 @@ import '../../page4.dart';
 
 import '../../page53.dart';
 import '../../page54.dart';
+import '../../page55.dart';
 import '../P51ICREQVAR.dart';
 import 'P51ICREQTABLEFIELD.dart';
 
@@ -282,7 +283,7 @@ class tabledetailsearch extends StatelessWidget {
                         var databuICP = value.data;
 
                         if (databuICP['msg'].toString() == 'ok') {
-                          GENREQSG(context, _data_exp[i], Page53(), '54SARICS2100STD/GENREQ');
+                          GENREQSG(context, _data_exp[i], Page55(), '54SARICS2100STD/GENREQ');
                         } else {
                           // WORNINGpop(context, ["test2", "test2"], 100, 200);
                         }
@@ -395,6 +396,7 @@ class tabledetailinside extends StatelessWidget {
 
 GENREQSG(BuildContext contextin, dataset datainput, Widget widpage, String where) async {
   //
+  print('teststetstestestestetse');
   Dio().post(
     '${serverG}${where}',
     data: {
