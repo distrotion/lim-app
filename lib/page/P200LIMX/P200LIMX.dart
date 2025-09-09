@@ -2273,7 +2273,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               print("${data}   ");
                               settingdata = data;
                             }
-                            if (data.contains("Sulphate")) {
+                            if (data.contains("Sulphate") || data.contains("Sulfate")) {
                               print("${data}   ");
                               settingdata = data;
                             }
@@ -2320,7 +2320,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
                                 setdatab.Nitrate = (datarow[i][7]?.value ?? '').toString();
                               }
-                              if (settingdata.contains("Sulphate")) {
+                              if (settingdata.contains("Sulphate") || settingdata.contains("Sulfate")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
                                 setdatab.Sulphate = (datarow[i][7]?.value ?? '').toString();
                               }
@@ -2568,7 +2568,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               print("${data}   ");
                               settingdata = data;
                             }
-                            if (data.contains("Sulphate")) {
+                            if (data.contains("Sulphate") || data.contains("Sulfate")) {
                               print("${data}   ");
                               settingdata = data;
                             }
@@ -2603,41 +2603,54 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                   // print(setdatab.DI1);
                                 }
                               }
+                              String v = cleanValue(datarow[i][7]?.value);
                               if (settingdata.contains("Fluoride")) {
                                 print("${data}  ${(datarow[i][7]?.value ?? '')} ");
-                                double value =
-                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
-                                setdatab.Fluoride = value.toStringAsFixed(4);
+                                if (v.isNotEmpty) {
+                                  double value =
+                                      double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                  setdatab.Fluoride = value.toStringAsFixed(4);
+                                }
                               }
                               if (settingdata.contains("Chloride")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                double value =
-                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
-                                setdatab.Chloride = value.toStringAsFixed(4);
+                                if (v.isNotEmpty) {
+                                  double value =
+                                      double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                  setdatab.Chloride = value.toStringAsFixed(4);
+                                }
                               }
                               if (settingdata.contains("Nitrate")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                double value =
-                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
-                                setdatab.Nitrate = value.toStringAsFixed(4);
+                                if (v.isNotEmpty) {
+                                  double value =
+                                      double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                  setdatab.Nitrate = value.toStringAsFixed(4);
+                                }
                               }
-                              if (settingdata.contains("Sulphate")) {
+                              if (settingdata.contains("Sulphate") || settingdata.contains("Sulfate")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                double value =
-                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
-                                setdatab.Sulphate = value.toStringAsFixed(4);
+                                if (v.isNotEmpty) {
+                                  double value =
+                                      double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                  setdatab.Sulphate = value.toStringAsFixed(4);
+                                }
                               }
                               if (settingdata.contains("Phosphate")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                double value =
-                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
-                                setdatab.Phosphate = value.toStringAsFixed(4);
+                                if (v.isNotEmpty) {
+                                  double value =
+                                      double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                  setdatab.Phosphate = value.toStringAsFixed(4);
+                                }
                               }
                               if (settingdata.contains("Pyrophosphate")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                double value =
-                                    double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
-                                setdatab.P2O7 = value.toStringAsFixed(4);
+                                if (v.isNotEmpty) {
+                                  double value =
+                                      double.tryParse((datarow[i][7]?.value ?? '').toString()) ?? 0.0;
+                                  setdatab.P2O7 = value.toStringAsFixed(4);
+                                }
                               }
                             }
                           }

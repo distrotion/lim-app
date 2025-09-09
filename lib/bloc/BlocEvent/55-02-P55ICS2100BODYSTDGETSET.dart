@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
 
 import '../../page/P55ICS2100BODYSTD/P55ICS2100BODYSTD.dart';
+import '../../page/P55ICS2100BODYSTD/P55ICS2100BODYSTDVAR.dart';
 import '../../widget/common/Loading.dart';
 
 //-------------------------------------------------
@@ -44,7 +45,9 @@ class P55ICS2100BODYSTDGETSET_Bloc extends Bloc<P55ICS2100BODYSTDGETSET_Event, P
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      print(databuff);
+      // print('tannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
+      // print(databuff);
+
       if (databuff.length > 0) {
         output.ReqNo = databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
 
@@ -55,33 +58,77 @@ class P55ICS2100BODYSTDGETSET_Bloc extends Bloc<P55ICS2100BODYSTDGETSET_Event, P
         output.UID = databuff[0]['UID'] != null ? databuff[0]['UID'].toString() : '';
 
         output.ItemName = databuff[0]['ItemName'] != null ? databuff[0]['ItemName'].toString() : '';
+        print(output.ItemName);
+        if (databuff[0]['data01'] != null) {
+          var data01W11 = databuff[0]['data01']['W11'];
 
-        if (databuff[0]['data01'] != null) {
-          output.D01W11 = databuff[0]['data01']['W11'] != null ? databuff[0]['data01']['W11'].toString() : '';
+          if (data01W11 != null && data01W11 is Map) {
+            if (output.ItemName.contains("T-F")) {
+              output.D01W11 = data01W11['FluorideR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("Cl")) {
+              output.D01W11 = data01W11['ChlorideR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("NO3")) {
+              output.D01W11 = data01W11['NitrateR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("SO4")) {
+              output.D01W11 = data01W11['SulphateR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("PO4")) {
+              output.D01W11 = data01W11['PhosphateR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("P2O7")) {
+              output.D01W11 = data01W11['P2O7R1']?.toString() ?? '';
+            }
+          } else {
+            output.D01W11 = '';
+          }
         }
-        if (databuff[0]['data01'] != null) {
-          output.D01W21 = databuff[0]['data01']['W21'] != null ? databuff[0]['data01']['W21'].toString() : '';
-        }
-        if (databuff[0]['data01_volum'] != null) {
-          output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
-              ? databuff[0]['data01_volum']['volum'].toString()
-              : '';
-        }
-        output.D01NOitem = databuff[0]['D01NOitem'] != null ? databuff[0]['D01NOitem'].toString() : '';
 
         if (databuff[0]['data02'] != null) {
-          output.D02W11 = databuff[0]['data02']['W11'] != null ? databuff[0]['data02']['W11'].toString() : '';
-        }
-        if (databuff[0]['data02'] != null) {
-          output.D02W21 = databuff[0]['data02']['W21'] != null ? databuff[0]['data02']['W21'].toString() : '';
-        }
-        if (databuff[0]['data02_volum'] != null) {
-          output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
-              ? databuff[0]['data02_volum']['volum'].toString()
-              : '';
+          var data02W11 = databuff[0]['data02']['W11'];
+
+          if (data02W11 != null && data02W11 is Map) {
+            if (output.ItemName.contains("T-F")) {
+              output.D02W11 = data02W11['FluorideR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("Cl")) {
+              output.D02W11 = data02W11['ChlorideR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("NO3")) {
+              output.D02W11 = data02W11['NitrateR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("SO4")) {
+              output.D02W11 = data02W11['SulphateR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("PO4")) {
+              output.D02W11 = data02W11['PhosphateR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("P2O7")) {
+              output.D02W11 = data02W11['P2O7R2']?.toString() ?? '';
+            }
+          } else {
+            output.D02W11 = '';
+          }
         }
 
-        output.D02NOitem = databuff[0]['D02NOitem'] != null ? databuff[0]['D02NOitem'].toString() : '';
+        // if (databuff[0]['data01'] != null) {
+        //   output.D01W11 = databuff[0]['data01']['W11'] != null ? databuff[0]['data01']['W11'].toString() : '';
+        // }
+        // if (databuff[0]['data01'] != null) {
+        //   output.D01W21 = databuff[0]['data01']['W21'] != null ? databuff[0]['data01']['W21'].toString() : '';
+        // }
+        // if (databuff[0]['data01_volum'] != null) {
+        //   output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
+        //       ? databuff[0]['data01_volum']['volum'].toString()
+        //       : '';
+        // }
+        // output.D01NOitem = databuff[0]['D01NOitem'] != null ? databuff[0]['D01NOitem'].toString() : '';
+
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W11 = databuff[0]['data02']['W11'] != null ? databuff[0]['data02']['W11'].toString() : '';
+        // }
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W21 = databuff[0]['data02']['W21'] != null ? databuff[0]['data02']['W21'].toString() : '';
+        // }
+        // if (databuff[0]['data02_volum'] != null) {
+        //   output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
+        //       ? databuff[0]['data02_volum']['volum'].toString()
+        //       : '';
+        // }
+
+        // output.D02NOitem = databuff[0]['D02NOitem'] != null ? databuff[0]['D02NOitem'].toString() : '';
 
         output.SamplingDate =
             databuff[0]['SamplingDate'] != null ? databuff[0]['SamplingDate'].toString() : '';

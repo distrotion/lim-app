@@ -17,8 +17,7 @@ class P54ICS8100BODYSTDGETSET_SET extends P54ICS8100BODYSTDGETSET_Event {}
 
 class flush extends P54ICS8100BODYSTDGETSET_Event {}
 
-class P54ICS8100BODYSTDGETSET_Bloc
-    extends Bloc<P54ICS8100BODYSTDGETSET_Event, P54ICS8100BODYSTDGETSETCLASS> {
+class P54ICS8100BODYSTDGETSET_Bloc extends Bloc<P54ICS8100BODYSTDGETSET_Event, P54ICS8100BODYSTDGETSETCLASS> {
   P54ICS8100BODYSTDGETSET_Bloc() : super(P54ICS8100BODYSTDGETSETCLASS()) {
     on<P54ICS8100BODYSTDGETSET_GET>((event, emit) {
       return _P54ICS8100BODYSTDGETSET_GET(P54ICS8100BODYSTDGETSETCLASS(), emit);
@@ -30,8 +29,8 @@ class P54ICS8100BODYSTDGETSET_Bloc
       return _flush(P54ICS8100BODYSTDGETSETCLASS(), emit);
     });
   }
-  Future<void> _P54ICS8100BODYSTDGETSET_GET(P54ICS8100BODYSTDGETSETCLASS toAdd,
-      Emitter<P54ICS8100BODYSTDGETSETCLASS> emit) async {
+  Future<void> _P54ICS8100BODYSTDGETSET_GET(
+      P54ICS8100BODYSTDGETSETCLASS toAdd, Emitter<P54ICS8100BODYSTDGETSETCLASS> emit) async {
     P54ICS8100BODYSTDGETSETCLASS output = P54ICS8100BODYSTDGETSETCLASS();
 
     FreeLoading(P54ICS8100BODYSTDcontext);
@@ -47,82 +46,109 @@ class P54ICS8100BODYSTDGETSET_Bloc
       var databuff = response.data;
       print(databuff);
       if (databuff.length > 0) {
-        output.ReqNo =
-            databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
+        output.ReqNo = databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
 
-        output.InstrumentName = databuff[0]['InstrumentName'] != null
-            ? databuff[0]['InstrumentName'].toString()
-            : '';
+        output.InstrumentName =
+            databuff[0]['InstrumentName'] != null ? databuff[0]['InstrumentName'].toString() : '';
 
-        output.CustShort = databuff[0]['CustShort'] != null
-            ? databuff[0]['CustShort'].toString()
-            : '';
-        output.UID =
-            databuff[0]['UID'] != null ? databuff[0]['UID'].toString() : '';
+        output.CustShort = databuff[0]['CustShort'] != null ? databuff[0]['CustShort'].toString() : '';
+        output.UID = databuff[0]['UID'] != null ? databuff[0]['UID'].toString() : '';
 
-        output.ItemName = databuff[0]['ItemName'] != null
-            ? databuff[0]['ItemName'].toString()
-            : '';
+        output.ItemName = databuff[0]['ItemName'] != null ? databuff[0]['ItemName'].toString() : '';
 
         if (databuff[0]['data01'] != null) {
-          output.D01W11 = databuff[0]['data01']['W11'] != null
-              ? databuff[0]['data01']['W11'].toString()
-              : '';
+          var data01W11 = databuff[0]['data01']['W11'];
+
+          if (data01W11 != null && data01W11 is Map) {
+            if (output.ItemName.contains("T-F")) {
+              output.D01W11 = data01W11['FluorideR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("Cl")) {
+              output.D01W11 = data01W11['ChlorideR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("NO3")) {
+              output.D01W11 = data01W11['NitrateR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("SO4")) {
+              output.D01W11 = data01W11['SulphateR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("PO4")) {
+              output.D01W11 = data01W11['PhosphateR1']?.toString() ?? '';
+            } else if (output.ItemName.contains("P2O7")) {
+              output.D01W11 = data01W11['P2O7R1']?.toString() ?? '';
+            }
+          } else {
+            output.D01W11 = '';
+          }
         }
-        if (databuff[0]['data01'] != null) {
-          output.D01W21 = databuff[0]['data01']['W21'] != null
-              ? databuff[0]['data01']['W21'].toString()
-              : '';
-        }
-        if (databuff[0]['data01_volum'] != null) {
-          output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
-              ? databuff[0]['data01_volum']['volum'].toString()
-              : '';
-        }
-        output.D01NOitem = databuff[0]['D01NOitem'] != null
-            ? databuff[0]['D01NOitem'].toString()
-            : '';
 
         if (databuff[0]['data02'] != null) {
-          output.D02W11 = databuff[0]['data02']['W11'] != null
-              ? databuff[0]['data02']['W11'].toString()
-              : '';
+          var data02W11 = databuff[0]['data02']['W11'];
+
+          if (data02W11 != null && data02W11 is Map) {
+            if (output.ItemName.contains("T-F")) {
+              output.D02W11 = data02W11['FluorideR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("Cl")) {
+              output.D02W11 = data02W11['ChlorideR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("NO3")) {
+              output.D02W11 = data02W11['NitrateR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("SO4")) {
+              output.D02W11 = data02W11['SulphateR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("PO4")) {
+              output.D02W11 = data02W11['PhosphateR2']?.toString() ?? '';
+            } else if (output.ItemName.contains("P2O7")) {
+              output.D02W11 = data02W11['P2O7R2']?.toString() ?? '';
+            }
+          } else {
+            output.D02W11 = '';
+          }
         }
-        if (databuff[0]['data02'] != null) {
-          output.D02W21 = databuff[0]['data02']['W21'] != null
-              ? databuff[0]['data02']['W21'].toString()
-              : '';
-        }
-        if (databuff[0]['data02_volum'] != null) {
-          output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
-              ? databuff[0]['data02_volum']['volum'].toString()
-              : '';
-        }
 
-        output.D02NOitem = databuff[0]['D02NOitem'] != null
-            ? databuff[0]['D02NOitem'].toString()
-            : '';
+        // if (databuff[0]['data01'] != null) {
+        //   output.D01W11 = databuff[0]['data01']['W11'] != null
+        //       ? databuff[0]['data01']['W11'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data01'] != null) {
+        //   output.D01W21 = databuff[0]['data01']['W21'] != null
+        //       ? databuff[0]['data01']['W21'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data01_volum'] != null) {
+        //   output.D01VOLUME = databuff[0]['data01_volum']['volum'] != null
+        //       ? databuff[0]['data01_volum']['volum'].toString()
+        //       : '';
+        // }
+        // output.D01NOitem = databuff[0]['D01NOitem'] != null
+        //     ? databuff[0]['D01NOitem'].toString()
+        //     : '';
 
-        output.SamplingDate = databuff[0]['SamplingDate'] != null
-            ? databuff[0]['SamplingDate'].toString()
-            : '';
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W11 = databuff[0]['data02']['W11'] != null
+        //       ? databuff[0]['data02']['W11'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data02'] != null) {
+        //   output.D02W21 = databuff[0]['data02']['W21'] != null
+        //       ? databuff[0]['data02']['W21'].toString()
+        //       : '';
+        // }
+        // if (databuff[0]['data02_volum'] != null) {
+        //   output.D02VOLUME = databuff[0]['data02_volum']['volum'] != null
+        //       ? databuff[0]['data02_volum']['volum'].toString()
+        //       : '';
+        // }
 
-        output.DueDate1 = databuff[0]['DueDate1'] != null
-            ? databuff[0]['DueDate1'].toString()
-            : '';
+        // output.D02NOitem = databuff[0]['D02NOitem'] != null
+        //     ? databuff[0]['D02NOitem'].toString()
+        //     : '';
 
-        output.SampleName = databuff[0]['SampleName'] != null
-            ? databuff[0]['SampleName'].toString()
-            : '';
+        output.SamplingDate =
+            databuff[0]['SamplingDate'] != null ? databuff[0]['SamplingDate'].toString() : '';
 
-        output.Mag =
-            databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
-        output.RemarkNo = databuff[0]['RemarkNo'] != null
-            ? databuff[0]['RemarkNo'].toString()
-            : '';
-        output.SampleCode = databuff[0]['SampleCode'] != null
-            ? databuff[0]['SampleCode'].toString()
-            : '';
+        output.DueDate1 = databuff[0]['DueDate1'] != null ? databuff[0]['DueDate1'].toString() : '';
+
+        output.SampleName = databuff[0]['SampleName'] != null ? databuff[0]['SampleName'].toString() : '';
+
+        output.Mag = databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
+        output.RemarkNo = databuff[0]['RemarkNo'] != null ? databuff[0]['RemarkNo'].toString() : '';
+        output.SampleCode = databuff[0]['SampleCode'] != null ? databuff[0]['SampleCode'].toString() : '';
       }
     }
 
@@ -132,15 +158,14 @@ class P54ICS8100BODYSTDGETSET_Bloc
 
 //34
 //19
-  Future<void> _P54ICS8100BODYSTDGETSET_SET(P54ICS8100BODYSTDGETSETCLASS toAdd,
-      Emitter<P54ICS8100BODYSTDGETSETCLASS> emit) async {
+  Future<void> _P54ICS8100BODYSTDGETSET_SET(
+      P54ICS8100BODYSTDGETSETCLASS toAdd, Emitter<P54ICS8100BODYSTDGETSETCLASS> emit) async {
     P54ICS8100BODYSTDGETSETCLASS output = P54ICS8100BODYSTDGETSETCLASS();
 
     emit(output);
   }
 
-  Future<void> _flush(P54ICS8100BODYSTDGETSETCLASS toAdd,
-      Emitter<P54ICS8100BODYSTDGETSETCLASS> emit) async {
+  Future<void> _flush(P54ICS8100BODYSTDGETSETCLASS toAdd, Emitter<P54ICS8100BODYSTDGETSETCLASS> emit) async {
     P54ICS8100BODYSTDGETSETCLASS output = P54ICS8100BODYSTDGETSETCLASS();
     emit(output);
   }
