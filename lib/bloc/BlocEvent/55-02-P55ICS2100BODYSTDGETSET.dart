@@ -140,6 +140,23 @@ class P55ICS2100BODYSTDGETSET_Bloc extends Bloc<P55ICS2100BODYSTDGETSET_Event, P
         output.Mag = databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
         output.RemarkNo = databuff[0]['RemarkNo'] != null ? databuff[0]['RemarkNo'].toString() : '';
         output.SampleCode = databuff[0]['SampleCode'] != null ? databuff[0]['SampleCode'].toString() : '';
+        // print('tammmmmmmmmmmmmmmmm');
+        // print(databuff[0]['SARDATA']);
+        // print(databuff[0]['SARDATA'][0]['DilutionTime_1']);
+        if (databuff[0]['SARDATA'] != null) {
+          //DilutionTime_2
+          if (databuff[0]['SARDATA'].length > 0) {
+            // print('yyyyyyyyyyyyyyyyyyyyyyyyyyy');
+            output.D01NOitem = databuff[0]['SARDATA'][0]['DilutionTime_1'] != null
+                ? databuff[0]['SARDATA'][0]['DilutionTime_1'].toString()
+                : '';
+            // print(output.D01NOitem);
+            output.D02NOitem = databuff[0]['SARDATA'][0]['DilutionTime_2'] != null
+                ? databuff[0]['SARDATA'][0]['DilutionTime_2'].toString()
+                : '';
+            // print(output.D02NOitem);
+          }
+        }
       }
     }
 

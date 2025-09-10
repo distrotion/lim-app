@@ -52,9 +52,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
 
     P53ICS2000BODYSTDVAR.value01 = '';
     P53ICS2000BODYSTDVAR.value02 = '';
-    context
-        .read<P53ICS2000BODYSTDGETSET_Bloc>()
-        .add(P53ICS2000BODYSTDGETSET_GET());
+    context.read<P53ICS2000BODYSTDGETSET_Bloc>().add(P53ICS2000BODYSTDGETSET_GET());
     context.read<GetICS2000value_Bloc>().add(GetICS2000value_Get());
 
     P53ICS2000BODYSTDVAR.D01VOLUME = '';
@@ -88,8 +86,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
     P53ICS2000BODYSTDVAR.P2O7R1 = widget.value?.P2O7R1 ?? '';
     P53ICS2000BODYSTDVAR.P2O7R2 = widget.value?.P2O7R2 ?? '';
 
-    P53ICS2000BODYSTDGETSETCLASS dataset =
-        widget.SET ?? P53ICS2000BODYSTDGETSETCLASS();
+    P53ICS2000BODYSTDGETSETCLASS dataset = widget.SET ?? P53ICS2000BODYSTDGETSETCLASS();
 
     P53ICS2000BODYSTDVAR.ReqNo = dataset.ReqNo;
     P53ICS2000BODYSTDVAR.InstrumentName = dataset.InstrumentName;
@@ -113,15 +110,24 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
       P53ICS2000BODYSTDVAR.iscontrol = true;
       P53ICS2000BODYSTDVAR.D01VOLUME = dataset.D01VOLUME;
     }
-    if (P53ICS2000BODYSTDVAR.D01NOitem == '') {
-      if (dataset.D01VOLUME == '') {
-        P53ICS2000BODYSTDVAR.iscontrol = true;
-        P53ICS2000BODYSTDVAR.D01NOitem = dataset.Mag;
-      } else {
-        P53ICS2000BODYSTDVAR.iscontrol = true;
-        P53ICS2000BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
-      }
+
+    if (dataset.D01NOitem == '') {
+      P53ICS2000BODYSTDVAR.iscontrol = true;
+      P53ICS2000BODYSTDVAR.D01NOitem = dataset.Mag;
+    } else {
+      P53ICS2000BODYSTDVAR.iscontrol = true;
+      P53ICS2000BODYSTDVAR.D01NOitem = dataset.D01NOitem;
     }
+
+    // if (P53ICS2000BODYSTDVAR.D01NOitem == '') {
+    //   if (dataset.D01VOLUME == '') {
+    //     P53ICS2000BODYSTDVAR.iscontrol = true;
+    //     P53ICS2000BODYSTDVAR.D01NOitem = dataset.Mag;
+    //   } else {
+    //     P53ICS2000BODYSTDVAR.iscontrol = true;
+    //     P53ICS2000BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
+    //   }
+    // }
 
     P53ICS2000BODYSTDVAR.D02W11 = dataset.D02W11;
     P53ICS2000BODYSTDVAR.D02W21 = dataset.D02W21;
@@ -129,18 +135,27 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
       P53ICS2000BODYSTDVAR.iscontrol = true;
       P53ICS2000BODYSTDVAR.D02VOLUME = dataset.D02VOLUME;
     }
-    if (P53ICS2000BODYSTDVAR.D02NOitem == '') {
-      // P53ICS2000BODYSTDVAR.iscontrol = true;
-      // P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02NOitem;
 
-      if (dataset.D02VOLUME == '') {
-        P53ICS2000BODYSTDVAR.iscontrol = true;
-        P53ICS2000BODYSTDVAR.D02NOitem = dataset.Mag;
-      } else {
-        P53ICS2000BODYSTDVAR.iscontrol = true;
-        P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
-      }
+    if (dataset.D02NOitem == '') {
+      P53ICS2000BODYSTDVAR.iscontrol = true;
+      P53ICS2000BODYSTDVAR.D02NOitem = dataset.Mag;
+    } else {
+      P53ICS2000BODYSTDVAR.iscontrol = true;
+      P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02NOitem;
     }
+
+    // if (P53ICS2000BODYSTDVAR.D02NOitem == '') {
+    //   // P53ICS2000BODYSTDVAR.iscontrol = true;
+    //   // P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02NOitem;
+
+    //   if (dataset.D02VOLUME == '') {
+    //     P53ICS2000BODYSTDVAR.iscontrol = true;
+    //     P53ICS2000BODYSTDVAR.D02NOitem = dataset.Mag;
+    //   } else {
+    //     P53ICS2000BODYSTDVAR.iscontrol = true;
+    //     P53ICS2000BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
+    //   }
+    // }
 
     print("------------------------");
 
@@ -155,9 +170,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
     if (P53ICS2000BODYSTDVAR.mem == 'GO' &&
         P53ICS2000BODYSTDVAR.UID != '' &&
         P53ICS2000BODYSTDVAR.InstrumentName != '') {
-      context
-          .read<P53ICS2000BODYSTDgetgraph_Bloc>()
-          .add(P53ICS2000BODYSTDgetgraph_get());
+      context.read<P53ICS2000BODYSTDgetgraph_Bloc>().add(P53ICS2000BODYSTDgetgraph_get());
       P53ICS2000BODYSTDVAR.mem = '';
     }
 
@@ -179,12 +192,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                     ),
                     InkWell(
                       onTap: () {
-                        context
-                            .read<P53ICS2000BODYSTD_Bloc>()
-                            .add(P53ICS2000BODYSTD_CLEARROOM());
+                        context.read<P53ICS2000BODYSTD_Bloc>().add(P53ICS2000BODYSTD_CLEARROOM());
                         CuPage = Page51();
-                        MainBodyContext.read<ChangePage_Bloc>()
-                            .add(ChangePage_nodrower());
+                        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                       },
                       child: SizedBox(
                         height: 60,
@@ -234,23 +244,19 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "REQ NO : ${P53ICS2000BODYSTDVAR.ReqNo}"),
+                                  child: Text("REQ NO : ${P53ICS2000BODYSTDVAR.ReqNo}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "CustFull : ${P53ICS2000BODYSTDVAR.CustFull}"),
+                                  child: Text("CustFull : ${P53ICS2000BODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Sample Type : ${P53ICS2000BODYSTDVAR.CustFull}"),
+                                  child: Text("Sample Type : ${P53ICS2000BODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Item Name : ${P53ICS2000BODYSTDVAR.itemName}"),
+                                  child: Text("Item Name : ${P53ICS2000BODYSTDVAR.itemName}"),
                                 ),
 
                                 //P53ICS2000BODYSTDVAR.itemName
@@ -264,28 +270,23 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "SAMPLING date : ${P53ICS2000BODYSTDVAR.SamplingDate}"),
+                                  child: Text("SAMPLING date : ${P53ICS2000BODYSTDVAR.SamplingDate}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Due date : ${P53ICS2000BODYSTDVAR.DueDate1}"),
+                                  child: Text("Due date : ${P53ICS2000BODYSTDVAR.DueDate1}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Sampling Type : ${P53ICS2000BODYSTDVAR.SampleName}"),
+                                  child: Text("Sampling Type : ${P53ICS2000BODYSTDVAR.SampleName}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Position : ${P53ICS2000BODYSTDVAR.Mag}"),
+                                  child: Text("Position : ${P53ICS2000BODYSTDVAR.Mag}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "RemarkNo : ${P53ICS2000BODYSTDVAR.RemarkNo}"),
+                                  child: Text("RemarkNo : ${P53ICS2000BODYSTDVAR.RemarkNo}"),
                                 ),
                               ],
                             ),
@@ -330,12 +331,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.FluorideR1)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.FluorideR1)),
                                 ),
                               ],
                             ),
@@ -358,12 +356,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.FluorideR2)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.FluorideR2)),
                                 ),
                               ],
                             ),
@@ -392,12 +387,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.ChlorideR1)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.ChlorideR1)),
                                 ),
                               ],
                             ),
@@ -420,12 +412,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.ChlorideR2)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.ChlorideR2)),
                                 ),
                               ],
                             ),
@@ -454,12 +443,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child:
-                                          Text(P53ICS2000BODYSTDVAR.NitrateR1)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.NitrateR1)),
                                 ),
                               ],
                             ),
@@ -482,12 +468,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child:
-                                          Text(P53ICS2000BODYSTDVAR.NitrateR2)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.NitrateR2)),
                                 ),
                               ],
                             ),
@@ -516,12 +499,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.SulphateR1)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.SulphateR1)),
                                 ),
                               ],
                             ),
@@ -544,12 +524,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.SulphateR2)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.SulphateR2)),
                                 ),
                               ],
                             ),
@@ -578,12 +555,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.PhosphateR1)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.PhosphateR1)),
                                 ),
                               ],
                             ),
@@ -606,12 +580,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P53ICS2000BODYSTDVAR.PhosphateR2)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.PhosphateR2)),
                                 ),
                               ],
                             ),
@@ -640,11 +611,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(P53ICS2000BODYSTDVAR.P2O7R1)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.P2O7R1)),
                                 ),
                               ],
                             ),
@@ -667,11 +636,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(P53ICS2000BODYSTDVAR.P2O7R2)),
+                                  child: Center(child: Text(P53ICS2000BODYSTDVAR.P2O7R2)),
                                 ),
                               ],
                             ),
@@ -691,9 +658,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                           InkWell(
                             onTap: () {
                               //
-                              context
-                                  .read<GetICS2000value_Bloc>()
-                                  .add(GetICS2000value_Get());
+                              context.read<GetICS2000value_Bloc>().add(GetICS2000value_Get());
                             },
                             child: Container(
                               height: 40,
@@ -711,15 +676,10 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                               // context
                               //     .read<P53ICS2000BODYSTD_Bloc>()
                               //     .add(P53ICS2000BODYSTD_SETDATA());
-                              context
-                                  .read<GetICS2000value_Bloc>()
-                                  .add(GetICS2000value_Get());
-                              context
-                                  .read<P53ICS2000BODYSTD_Bloc>()
-                                  .add(P53ICS2000BODYSTD_SETDATA());
+                              context.read<GetICS2000value_Bloc>().add(GetICS2000value_Get());
+                              context.read<P53ICS2000BODYSTD_Bloc>().add(P53ICS2000BODYSTD_SETDATA());
                               onLoadingFAKE(context);
-                              Future.delayed(const Duration(milliseconds: 2000),
-                                  () {
+                              Future.delayed(const Duration(milliseconds: 2000), () {
                                 context
                                     .read<P53ICS2000BODYSTDGETSET_Bloc>()
                                     .add(P53ICS2000BODYSTDGETSET_GET());
@@ -755,8 +715,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {},
@@ -782,29 +741,23 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                           height: 62,
                                           // color: Colors.blue.shade300,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P53ICS2000BODYSTDVAR
-                                                        .Result01 ==
-                                                    '',
+                                                // isEnabled: P53ICS2000BODYSTDVAR.Result01 == '',
+                                                isEnabled: false,
                                                 width: 120,
                                                 height: 40,
-                                                isContr: P53ICS2000BODYSTDVAR
-                                                    .iscontrol,
+                                                isContr: P53ICS2000BODYSTDVAR.iscontrol,
                                                 fnContr: (input) {
                                                   setState(() {
-                                                    P53ICS2000BODYSTDVAR
-                                                        .iscontrol = input;
+                                                    P53ICS2000BODYSTDVAR.iscontrol = input;
                                                   });
                                                 },
-                                                sValue: P53ICS2000BODYSTDVAR
-                                                    .D01NOitem,
+                                                sValue: P53ICS2000BODYSTDVAR.D01NOitem,
                                                 returnfunc: (String s) {
-                                                  P53ICS2000BODYSTDVAR
-                                                      .D01NOitem = s;
+                                                  P53ICS2000BODYSTDVAR.D01NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -828,8 +781,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
@@ -837,15 +789,12 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                             P53ICS2000BODYSTDVAR.WX = 'D01W11';
                                           });
 
-                                          context
-                                              .read<GetPHvalue_Bloc>()
-                                              .add(GetPHvalue_Get());
+                                          context.read<GetPHvalue_Bloc>().add(GetPHvalue_Get());
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P53ICS2000BODYSTDVAR.WX ==
-                                                  'D01W11'
+                                          color: P53ICS2000BODYSTDVAR.WX == 'D01W11'
                                               ? Colors.yellowAccent
                                               : (P53ICS2000BODYSTDVAR.SEND == ''
                                                   ? Colors.green
@@ -862,9 +811,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                         height: 40,
                                         width: 100,
                                         color: Colors.blue,
-                                        child: Center(
-                                            child: Text(
-                                                P53ICS2000BODYSTDVAR.D01W11)),
+                                        child: Center(child: Text(P53ICS2000BODYSTDVAR.D01W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -1009,8 +956,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {},
@@ -1036,29 +982,23 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                           height: 62,
                                           // color: Colors.blue.shade300,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P53ICS2000BODYSTDVAR
-                                                        .Result01 ==
-                                                    '',
+                                                // isEnabled: P53ICS2000BODYSTDVAR.Result01 == '',
+                                                isEnabled: false,
                                                 width: 120,
                                                 height: 40,
-                                                isContr: P53ICS2000BODYSTDVAR
-                                                    .iscontrol,
+                                                isContr: P53ICS2000BODYSTDVAR.iscontrol,
                                                 fnContr: (input) {
                                                   setState(() {
-                                                    P53ICS2000BODYSTDVAR
-                                                        .iscontrol = input;
+                                                    P53ICS2000BODYSTDVAR.iscontrol = input;
                                                   });
                                                 },
-                                                sValue: P53ICS2000BODYSTDVAR
-                                                    .D02NOitem,
+                                                sValue: P53ICS2000BODYSTDVAR.D02NOitem,
                                                 returnfunc: (String s) {
-                                                  P53ICS2000BODYSTDVAR
-                                                      .D02NOitem = s;
+                                                  P53ICS2000BODYSTDVAR.D02NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -1082,8 +1022,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
@@ -1091,15 +1030,12 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                             P53ICS2000BODYSTDVAR.WX = 'D02W11';
                                           });
 
-                                          context
-                                              .read<GetPHvalue_Bloc>()
-                                              .add(GetPHvalue_Get());
+                                          context.read<GetPHvalue_Bloc>().add(GetPHvalue_Get());
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P53ICS2000BODYSTDVAR.WX ==
-                                                  'D02W11'
+                                          color: P53ICS2000BODYSTDVAR.WX == 'D02W11'
                                               ? Colors.yellowAccent
                                               : (P53ICS2000BODYSTDVAR.SEND == ''
                                                   ? Colors.green
@@ -1116,9 +1052,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                                         height: 40,
                                         width: 100,
                                         color: Colors.blue,
-                                        child: Center(
-                                            child: Text(
-                                                P53ICS2000BODYSTDVAR.D02W11)),
+                                        child: Center(child: Text(P53ICS2000BODYSTDVAR.D02W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -1363,9 +1297,7 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                         // context
                         //     .read<P53ICS2000BODYSTD_Bloc>()
                         //     .add(P53ICS2000BODYSTD_CAL());
-                        context
-                            .read<P53ICS2000BODYSTD_Bloc>()
-                            .add(P53ICS2000BODYSTD_TEMP_SAVE());
+                        context.read<P53ICS2000BODYSTD_Bloc>().add(P53ICS2000BODYSTD_TEMP_SAVE());
                       },
                       child: Container(
                         height: 62,
@@ -1578,11 +1510,9 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 30.0, left: 6.0),
+                                padding: const EdgeInsets.only(right: 30.0, left: 6.0),
                                 child: _LineChart(
-                                  isShowingMainData:
-                                      P53ICS2000BODYSTDVAR.isShowingMainData,
+                                  isShowingMainData: P53ICS2000BODYSTDVAR.isShowingMainData,
                                   historyChartData: _historyChartData,
                                   // historyChartData: [],
                                 ),
@@ -1596,10 +1526,8 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                         IconButton(
                           icon: Icon(
                             Icons.refresh,
-                            color: Colors.white.withOpacity(
-                                P53ICS2000BODYSTDVAR.isShowingMainData
-                                    ? 1.0
-                                    : 0.5),
+                            color:
+                                Colors.white.withOpacity(P53ICS2000BODYSTDVAR.isShowingMainData ? 1.0 : 0.5),
                           ),
                           onPressed: () {
                             setState(() {
@@ -1653,8 +1581,7 @@ class _LineChart extends StatelessWidget {
   void manageData() {
     print("In manage");
     minX = 0;
-    if (historyChartData.length == 1 &&
-        double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+    if (historyChartData.length == 1 && double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
       maxX = 2;
       showBottomTile = false;
     } else if (historyChartData.length == 1) {
@@ -1667,15 +1594,11 @@ class _LineChart extends StatelessWidget {
     double minResult = 9999999;
 
     for (int i = 0; i < historyChartData.length; i++) {
-      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) <
-          minResult) {
-        minResult =
-            double.parse(ConverstStr(historyChartData[i].resultApprove));
+      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) < minResult) {
+        minResult = double.parse(ConverstStr(historyChartData[i].resultApprove));
       }
-      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) >
-          maxResult) {
-        maxResult =
-            double.parse(ConverstStr(historyChartData[i].resultApprove));
+      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) > maxResult) {
+        maxResult = double.parse(ConverstStr(historyChartData[i].resultApprove));
       }
     }
     // print(minResult);
@@ -1896,20 +1819,14 @@ class _LineChart extends StatelessWidget {
 
   List<FlSpot> upperLineData() {
     List<FlSpot> buff = [];
-    if (historyChartData.length == 1 &&
-        double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
-      buff.add(FlSpot(
-          2, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+    if (historyChartData.length == 1 && double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(2, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
     } else if (historyChartData.length == 1) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
-      buff.add(FlSpot(
-          1, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(1, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
     } else {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
       buff.add(FlSpot(historyChartData.length.toDouble() - 1,
           double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
     }
@@ -1934,20 +1851,14 @@ class _LineChart extends StatelessWidget {
 
   List<FlSpot> lowwerLineData() {
     List<FlSpot> buff = [];
-    if (historyChartData.length == 1 &&
-        double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
-      buff.add(FlSpot(
-          2, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+    if (historyChartData.length == 1 && double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(2, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
     } else if (historyChartData.length == 1) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
-      buff.add(FlSpot(
-          1, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(1, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
     } else {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
       buff.add(FlSpot(historyChartData.length.toDouble() - 1,
           double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
     }
@@ -1966,23 +1877,14 @@ class _LineChart extends StatelessWidget {
         ], */
         spots: ((() {
           if (historyChartData.length == 1 &&
-              double.parse(ConverstStr(historyChartData[0].resultApprove)) >
-                  0) {
+              double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
             //for (int i = 0; i < historyChartData.length; i++)
             print("addddddd");
-            return [
-              FlSpot(
-                  1,
-                  (double.parse(
-                      ConverstStr(historyChartData[0].resultApprove))))
-            ];
+            return [FlSpot(1, (double.parse(ConverstStr(historyChartData[0].resultApprove))))];
           } else {
             List<FlSpot> buff = [];
             for (int i = 0; i < historyChartData.length; i++) {
-              buff.add(FlSpot(
-                  i.toDouble(),
-                  (double.parse(
-                      ConverstStr(historyChartData[i].resultApprove)))));
+              buff.add(FlSpot(i.toDouble(), (double.parse(ConverstStr(historyChartData[i].resultApprove)))));
             }
             return buff;
           }

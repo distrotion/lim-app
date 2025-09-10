@@ -110,19 +110,29 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
       P55ICS2100BODYSTDVAR.iscontrol = true;
       P55ICS2100BODYSTDVAR.D01VOLUME = dataset.D01VOLUME;
     }
-    P55ICS2100BODYSTDVAR.D01NOitem = '';
-    P55ICS2100BODYSTDVAR.D02NOitem = '';
+    // P55ICS2100BODYSTDVAR.D01NOitem = '';
+    // P55ICS2100BODYSTDVAR.D02NOitem = '';
 
-    // print('TANNNNNNNNNN ${P55ICS2100BODYSTDVAR.D01NOitem}');
-    if (P55ICS2100BODYSTDVAR.D01NOitem == '') {
-      if (dataset.D01VOLUME == '') {
-        P55ICS2100BODYSTDVAR.iscontrol = true;
-        P55ICS2100BODYSTDVAR.D01NOitem = dataset.Mag;
-      } else {
-        P55ICS2100BODYSTDVAR.iscontrol = true;
-        P55ICS2100BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
-      }
+    if (dataset.D01NOitem == '') {
+      P55ICS2100BODYSTDVAR.iscontrol = true;
+      P55ICS2100BODYSTDVAR.D01NOitem = dataset.Mag;
+    } else {
+      P55ICS2100BODYSTDVAR.iscontrol = true;
+      P55ICS2100BODYSTDVAR.D01NOitem = dataset.D01NOitem;
     }
+
+    // print('111111111111 ${P55ICS2100BODYSTDVAR.D01NOitem}');
+    // if (P55ICS2100BODYSTDVAR.D01NOitem == '') {
+    //   if (dataset.D01VOLUME == '') {
+    //     P55ICS2100BODYSTDVAR.iscontrol = true;
+    //     P55ICS2100BODYSTDVAR.D01NOitem = dataset.Mag;
+    //     print('333333333333 ${P55ICS2100BODYSTDVAR.D01NOitem}');
+    //   } else {
+    //     P55ICS2100BODYSTDVAR.iscontrol = true;
+    //     P55ICS2100BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
+    //     print('222222222222 ${P55ICS2100BODYSTDVAR.D01NOitem}');
+    //   }
+    // }
 
     P55ICS2100BODYSTDVAR.D02W11 = dataset.D02W11;
     P55ICS2100BODYSTDVAR.D02W21 = dataset.D02W21;
@@ -130,18 +140,27 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
       P55ICS2100BODYSTDVAR.iscontrol = true;
       P55ICS2100BODYSTDVAR.D02VOLUME = dataset.D02VOLUME;
     }
-    if (P55ICS2100BODYSTDVAR.D02NOitem == '') {
-      // P55ICS2100BODYSTDVAR.iscontrol = true;
-      // P55ICS2100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
 
-      if (dataset.D02VOLUME == '') {
-        P55ICS2100BODYSTDVAR.iscontrol = true;
-        P55ICS2100BODYSTDVAR.D02NOitem = dataset.Mag;
-      } else {
-        P55ICS2100BODYSTDVAR.iscontrol = true;
-        P55ICS2100BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
-      }
+    if (dataset.D02NOitem == '') {
+      P55ICS2100BODYSTDVAR.iscontrol = true;
+      P55ICS2100BODYSTDVAR.D02NOitem = dataset.Mag;
+    } else {
+      P55ICS2100BODYSTDVAR.iscontrol = true;
+      P55ICS2100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
     }
+
+    // if (P55ICS2100BODYSTDVAR.D02NOitem == '') {
+    //   // P55ICS2100BODYSTDVAR.iscontrol = true;
+    //   // P55ICS2100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
+
+    //   if (dataset.D02VOLUME == '') {
+    //     P55ICS2100BODYSTDVAR.iscontrol = true;
+    //     P55ICS2100BODYSTDVAR.D02NOitem = dataset.Mag;
+    //   } else {
+    //     P55ICS2100BODYSTDVAR.iscontrol = true;
+    //     P55ICS2100BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
+    //   }
+    // }
 
     print("------------------------");
 
@@ -731,7 +750,8 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P55ICS2100BODYSTDVAR.Result01 == '',
+                                                // isEnabled: P55ICS2100BODYSTDVAR.Result01 == '',
+                                                isEnabled: false,
                                                 width: 120,
                                                 height: 40,
                                                 isContr: P55ICS2100BODYSTDVAR.iscontrol,
@@ -971,7 +991,8 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P55ICS2100BODYSTDVAR.Result01 == '',
+                                                // isEnabled: P55ICS2100BODYSTDVAR.Result01 == '',
+                                                isEnabled: false,
                                                 width: 120,
                                                 height: 40,
                                                 isContr: P55ICS2100BODYSTDVAR.iscontrol,

@@ -149,6 +149,16 @@ class P54ICS8100BODYSTDGETSET_Bloc extends Bloc<P54ICS8100BODYSTDGETSET_Event, P
         output.Mag = databuff[0]['Mag'] != null ? databuff[0]['Mag'].toString() : '';
         output.RemarkNo = databuff[0]['RemarkNo'] != null ? databuff[0]['RemarkNo'].toString() : '';
         output.SampleCode = databuff[0]['SampleCode'] != null ? databuff[0]['SampleCode'].toString() : '';
+        if (databuff[0]['SARDATA'] != null) {
+          if (databuff[0]['SARDATA'].length > 0) {
+            output.D01NOitem = databuff[0]['SARDATA'][0]['DilutionTime_1'] != null
+                ? databuff[0]['SARDATA'][0]['DilutionTime_1'].toString()
+                : '';
+            output.D02NOitem = databuff[0]['SARDATA'][0]['DilutionTime_2'] != null
+                ? databuff[0]['SARDATA'][0]['DilutionTime_2'].toString()
+                : '';
+          }
+        }
       }
     }
 

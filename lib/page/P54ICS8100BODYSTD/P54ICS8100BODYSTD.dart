@@ -52,9 +52,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
 
     P54ICS8100BODYSTDVAR.value01 = '';
     P54ICS8100BODYSTDVAR.value02 = '';
-    context
-        .read<P54ICS8100BODYSTDGETSET_Bloc>()
-        .add(P54ICS8100BODYSTDGETSET_GET());
+    context.read<P54ICS8100BODYSTDGETSET_Bloc>().add(P54ICS8100BODYSTDGETSET_GET());
     context.read<GetICS8100value_Bloc>().add(GetICS8100value_Get());
 
     P54ICS8100BODYSTDVAR.D01VOLUME = '';
@@ -88,8 +86,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
     P54ICS8100BODYSTDVAR.P2O7R1 = widget.value?.P2O7R1 ?? '';
     P54ICS8100BODYSTDVAR.P2O7R2 = widget.value?.P2O7R2 ?? '';
 
-    P54ICS8100BODYSTDGETSETCLASS dataset =
-        widget.SET ?? P54ICS8100BODYSTDGETSETCLASS();
+    P54ICS8100BODYSTDGETSETCLASS dataset = widget.SET ?? P54ICS8100BODYSTDGETSETCLASS();
 
     P54ICS8100BODYSTDVAR.ReqNo = dataset.ReqNo;
     P54ICS8100BODYSTDVAR.InstrumentName = dataset.InstrumentName;
@@ -117,15 +114,24 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
     //   P54ICS8100BODYSTDVAR.iscontrol = true;
     //   P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01NOitem;
     // }
-    if (P54ICS8100BODYSTDVAR.D01NOitem == '') {
-      if (dataset.D01VOLUME == '') {
-        P54ICS8100BODYSTDVAR.iscontrol = true;
-        P54ICS8100BODYSTDVAR.D01NOitem = dataset.Mag;
-      } else {
-        P54ICS8100BODYSTDVAR.iscontrol = true;
-        P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
-      }
+
+    if (dataset.D01NOitem == '') {
+      P54ICS8100BODYSTDVAR.iscontrol = true;
+      P54ICS8100BODYSTDVAR.D01NOitem = dataset.Mag;
+    } else {
+      P54ICS8100BODYSTDVAR.iscontrol = true;
+      P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01NOitem;
     }
+
+    // if (P54ICS8100BODYSTDVAR.D01NOitem == '') {
+    //   if (dataset.D01VOLUME == '') {
+    //     P54ICS8100BODYSTDVAR.iscontrol = true;
+    //     P54ICS8100BODYSTDVAR.D01NOitem = dataset.Mag;
+    //   } else {
+    //     P54ICS8100BODYSTDVAR.iscontrol = true;
+    //     P54ICS8100BODYSTDVAR.D01NOitem = dataset.D01VOLUME;
+    //   }
+    // }
     P54ICS8100BODYSTDVAR.D02W11 = dataset.D02W11;
     P54ICS8100BODYSTDVAR.D02W21 = dataset.D02W21;
     if (P54ICS8100BODYSTDVAR.D02VOLUME == '') {
@@ -136,15 +142,24 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
     //   P54ICS8100BODYSTDVAR.iscontrol = true;
     //   P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
     // }
-    if (P54ICS8100BODYSTDVAR.D02NOitem == '') {
-      if (dataset.D02VOLUME == '') {
-        P54ICS8100BODYSTDVAR.iscontrol = true;
-        P54ICS8100BODYSTDVAR.D02NOitem = dataset.Mag;
-      } else {
-        P54ICS8100BODYSTDVAR.iscontrol = true;
-        P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
-      }
+
+    if (dataset.D02NOitem == '') {
+      P54ICS8100BODYSTDVAR.iscontrol = true;
+      P54ICS8100BODYSTDVAR.D02NOitem = dataset.Mag;
+    } else {
+      P54ICS8100BODYSTDVAR.iscontrol = true;
+      P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02NOitem;
     }
+
+    // if (P54ICS8100BODYSTDVAR.D02NOitem == '') {
+    //   if (dataset.D02VOLUME == '') {
+    //     P54ICS8100BODYSTDVAR.iscontrol = true;
+    //     P54ICS8100BODYSTDVAR.D02NOitem = dataset.Mag;
+    //   } else {
+    //     P54ICS8100BODYSTDVAR.iscontrol = true;
+    //     P54ICS8100BODYSTDVAR.D02NOitem = dataset.D02VOLUME;
+    //   }
+    // }
 
     // P54ICS8100BODYSTDVAR.Result = P54ICS8100BODYSTDVAR.W11;
 
@@ -154,9 +169,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
     if (P54ICS8100BODYSTDVAR.mem == 'GO' &&
         P54ICS8100BODYSTDVAR.UID != '' &&
         P54ICS8100BODYSTDVAR.InstrumentName != '') {
-      context
-          .read<P54ICS8100BODYSTDgetgraph_Bloc>()
-          .add(P54ICS8100BODYSTDgetgraph_get());
+      context.read<P54ICS8100BODYSTDgetgraph_Bloc>().add(P54ICS8100BODYSTDgetgraph_get());
       P54ICS8100BODYSTDVAR.mem = '';
     }
 
@@ -178,12 +191,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                     ),
                     InkWell(
                       onTap: () {
-                        context
-                            .read<P54ICS8100BODYSTD_Bloc>()
-                            .add(P54ICS8100BODYSTD_CLEARROOM());
+                        context.read<P54ICS8100BODYSTD_Bloc>().add(P54ICS8100BODYSTD_CLEARROOM());
                         CuPage = Page51();
-                        MainBodyContext.read<ChangePage_Bloc>()
-                            .add(ChangePage_nodrower());
+                        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
                       },
                       child: SizedBox(
                         height: 60,
@@ -233,23 +243,19 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "REQ NO : ${P54ICS8100BODYSTDVAR.ReqNo}"),
+                                  child: Text("REQ NO : ${P54ICS8100BODYSTDVAR.ReqNo}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "CustFull : ${P54ICS8100BODYSTDVAR.CustFull}"),
+                                  child: Text("CustFull : ${P54ICS8100BODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Sample Type : ${P54ICS8100BODYSTDVAR.CustFull}"),
+                                  child: Text("Sample Type : ${P54ICS8100BODYSTDVAR.CustFull}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Item Name : ${P54ICS8100BODYSTDVAR.itemName}"),
+                                  child: Text("Item Name : ${P54ICS8100BODYSTDVAR.itemName}"),
                                 ),
 
                                 //P54ICS8100BODYSTDVAR.itemName
@@ -263,28 +269,23 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "SAMPLING date : ${P54ICS8100BODYSTDVAR.SamplingDate}"),
+                                  child: Text("SAMPLING date : ${P54ICS8100BODYSTDVAR.SamplingDate}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Due date : ${P54ICS8100BODYSTDVAR.DueDate1}"),
+                                  child: Text("Due date : ${P54ICS8100BODYSTDVAR.DueDate1}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Sampling Type : ${P54ICS8100BODYSTDVAR.SampleName}"),
+                                  child: Text("Sampling Type : ${P54ICS8100BODYSTDVAR.SampleName}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "Position : ${P54ICS8100BODYSTDVAR.Mag}"),
+                                  child: Text("Position : ${P54ICS8100BODYSTDVAR.Mag}"),
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                      "RemarkNo : ${P54ICS8100BODYSTDVAR.RemarkNo}"),
+                                  child: Text("RemarkNo : ${P54ICS8100BODYSTDVAR.RemarkNo}"),
                                 ),
                               ],
                             ),
@@ -329,12 +330,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.FluorideR1)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.FluorideR1)),
                                 ),
                               ],
                             ),
@@ -357,12 +355,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.FluorideR2)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.FluorideR2)),
                                 ),
                               ],
                             ),
@@ -391,12 +386,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.ChlorideR1)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.ChlorideR1)),
                                 ),
                               ],
                             ),
@@ -419,12 +411,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.ChlorideR2)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.ChlorideR2)),
                                 ),
                               ],
                             ),
@@ -453,12 +442,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child:
-                                          Text(P54ICS8100BODYSTDVAR.NitrateR1)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.NitrateR1)),
                                 ),
                               ],
                             ),
@@ -481,12 +467,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child:
-                                          Text(P54ICS8100BODYSTDVAR.NitrateR2)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.NitrateR2)),
                                 ),
                               ],
                             ),
@@ -515,12 +498,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.SulphateR1)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.SulphateR1)),
                                 ),
                               ],
                             ),
@@ -543,12 +523,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.SulphateR2)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.SulphateR2)),
                                 ),
                               ],
                             ),
@@ -577,12 +554,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.PhosphateR1)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.PhosphateR1)),
                                 ),
                               ],
                             ),
@@ -605,12 +579,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                          P54ICS8100BODYSTDVAR.PhosphateR2)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.PhosphateR2)),
                                 ),
                               ],
                             ),
@@ -639,11 +610,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(P54ICS8100BODYSTDVAR.P2O7R1)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.P2O7R1)),
                                 ),
                               ],
                             ),
@@ -666,11 +635,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     // color: Colors.black,
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
+                                    border: Border.all(color: Colors.blue, width: 2),
                                   ),
-                                  child: Center(
-                                      child: Text(P54ICS8100BODYSTDVAR.P2O7R2)),
+                                  child: Center(child: Text(P54ICS8100BODYSTDVAR.P2O7R2)),
                                 ),
                               ],
                             ),
@@ -690,9 +657,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                           InkWell(
                             onTap: () {
                               //
-                              context
-                                  .read<GetICS8100value_Bloc>()
-                                  .add(GetICS8100value_Get());
+                              context.read<GetICS8100value_Bloc>().add(GetICS8100value_Get());
                             },
                             child: Container(
                               height: 40,
@@ -710,15 +675,10 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                               // context
                               //     .read<P54ICS8100BODYSTD_Bloc>()
                               //     .add(P54ICS8100BODYSTD_SETDATA());
-                              context
-                                  .read<GetICS8100value_Bloc>()
-                                  .add(GetICS8100value_Get());
-                              context
-                                  .read<P54ICS8100BODYSTD_Bloc>()
-                                  .add(P54ICS8100BODYSTD_SETDATA());
+                              context.read<GetICS8100value_Bloc>().add(GetICS8100value_Get());
+                              context.read<P54ICS8100BODYSTD_Bloc>().add(P54ICS8100BODYSTD_SETDATA());
                               onLoadingFAKE(context);
-                              Future.delayed(const Duration(milliseconds: 8100),
-                                  () {
+                              Future.delayed(const Duration(milliseconds: 8100), () {
                                 context
                                     .read<P54ICS8100BODYSTDGETSET_Bloc>()
                                     .add(P54ICS8100BODYSTDGETSET_GET());
@@ -823,8 +783,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {},
@@ -850,29 +809,23 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                           height: 62,
                                           // color: Colors.blue.shade300,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P54ICS8100BODYSTDVAR
-                                                        .Result01 ==
-                                                    '',
+                                                // isEnabled: P54ICS8100BODYSTDVAR.Result01 == '',
+                                                isEnabled: false,
                                                 width: 120,
                                                 height: 40,
-                                                isContr: P54ICS8100BODYSTDVAR
-                                                    .iscontrol,
+                                                isContr: P54ICS8100BODYSTDVAR.iscontrol,
                                                 fnContr: (input) {
                                                   setState(() {
-                                                    P54ICS8100BODYSTDVAR
-                                                        .iscontrol = input;
+                                                    P54ICS8100BODYSTDVAR.iscontrol = input;
                                                   });
                                                 },
-                                                sValue: P54ICS8100BODYSTDVAR
-                                                    .D01NOitem,
+                                                sValue: P54ICS8100BODYSTDVAR.D01NOitem,
                                                 returnfunc: (String s) {
-                                                  P54ICS8100BODYSTDVAR
-                                                      .D01NOitem = s;
+                                                  P54ICS8100BODYSTDVAR.D01NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -896,8 +849,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
@@ -905,15 +857,12 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                             P54ICS8100BODYSTDVAR.WX = 'D01W11';
                                           });
 
-                                          context
-                                              .read<GetPHvalue_Bloc>()
-                                              .add(GetPHvalue_Get());
+                                          context.read<GetPHvalue_Bloc>().add(GetPHvalue_Get());
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P54ICS8100BODYSTDVAR.WX ==
-                                                  'D01W11'
+                                          color: P54ICS8100BODYSTDVAR.WX == 'D01W11'
                                               ? Colors.yellowAccent
                                               : (P54ICS8100BODYSTDVAR.SEND == ''
                                                   ? Colors.green
@@ -930,9 +879,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                         height: 40,
                                         width: 100,
                                         color: Colors.blue,
-                                        child: Center(
-                                            child: Text(
-                                                P54ICS8100BODYSTDVAR.D01W11)),
+                                        child: Center(child: Text(P54ICS8100BODYSTDVAR.D01W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -1077,8 +1024,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {},
@@ -1104,29 +1050,23 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                           height: 62,
                                           // color: Colors.blue.shade300,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
                                               ComInputText(
                                                 isNumberOnly: true,
-                                                isEnabled: P54ICS8100BODYSTDVAR
-                                                        .Result01 ==
-                                                    '',
+                                                // isEnabled: P54ICS8100BODYSTDVAR.Result01 == '',
+                                                isEnabled: false,
                                                 width: 120,
                                                 height: 40,
-                                                isContr: P54ICS8100BODYSTDVAR
-                                                    .iscontrol,
+                                                isContr: P54ICS8100BODYSTDVAR.iscontrol,
                                                 fnContr: (input) {
                                                   setState(() {
-                                                    P54ICS8100BODYSTDVAR
-                                                        .iscontrol = input;
+                                                    P54ICS8100BODYSTDVAR.iscontrol = input;
                                                   });
                                                 },
-                                                sValue: P54ICS8100BODYSTDVAR
-                                                    .D02NOitem,
+                                                sValue: P54ICS8100BODYSTDVAR.D02NOitem,
                                                 returnfunc: (String s) {
-                                                  P54ICS8100BODYSTDVAR
-                                                      .D02NOitem = s;
+                                                  P54ICS8100BODYSTDVAR.D02NOitem = s;
                                                 },
                                               ),
                                               Text("")
@@ -1150,8 +1090,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                 SizedBox(
                                   width: 240,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
@@ -1159,15 +1098,12 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                             P54ICS8100BODYSTDVAR.WX = 'D02W11';
                                           });
 
-                                          context
-                                              .read<GetPHvalue_Bloc>()
-                                              .add(GetPHvalue_Get());
+                                          context.read<GetPHvalue_Bloc>().add(GetPHvalue_Get());
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 80,
-                                          color: P54ICS8100BODYSTDVAR.WX ==
-                                                  'D02W11'
+                                          color: P54ICS8100BODYSTDVAR.WX == 'D02W11'
                                               ? Colors.yellowAccent
                                               : (P54ICS8100BODYSTDVAR.SEND == ''
                                                   ? Colors.green
@@ -1184,9 +1120,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                                         height: 40,
                                         width: 100,
                                         color: Colors.blue,
-                                        child: Center(
-                                            child: Text(
-                                                P54ICS8100BODYSTDVAR.D02W11)),
+                                        child: Center(child: Text(P54ICS8100BODYSTDVAR.D02W11)),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -1432,9 +1366,7 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                         // context
                         //     .read<P54ICS8100BODYSTD_Bloc>()
                         //     .add(P54ICS8100BODYSTD_CAL());
-                        context
-                            .read<P54ICS8100BODYSTD_Bloc>()
-                            .add(P54ICS8100BODYSTD_TEMP_SAVE());
+                        context.read<P54ICS8100BODYSTD_Bloc>().add(P54ICS8100BODYSTD_TEMP_SAVE());
                       },
                       child: Container(
                         height: 62,
@@ -1647,11 +1579,9 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 30.0, left: 6.0),
+                                padding: const EdgeInsets.only(right: 30.0, left: 6.0),
                                 child: _LineChart(
-                                  isShowingMainData:
-                                      P54ICS8100BODYSTDVAR.isShowingMainData,
+                                  isShowingMainData: P54ICS8100BODYSTDVAR.isShowingMainData,
                                   historyChartData: _historyChartData,
                                   // historyChartData: [],
                                 ),
@@ -1665,10 +1595,8 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                         IconButton(
                           icon: Icon(
                             Icons.refresh,
-                            color: Colors.white.withOpacity(
-                                P54ICS8100BODYSTDVAR.isShowingMainData
-                                    ? 1.0
-                                    : 0.5),
+                            color:
+                                Colors.white.withOpacity(P54ICS8100BODYSTDVAR.isShowingMainData ? 1.0 : 0.5),
                           ),
                           onPressed: () {
                             setState(() {
@@ -1722,8 +1650,7 @@ class _LineChart extends StatelessWidget {
   void manageData() {
     print("In manage");
     minX = 0;
-    if (historyChartData.length == 1 &&
-        double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+    if (historyChartData.length == 1 && double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
       maxX = 2;
       showBottomTile = false;
     } else if (historyChartData.length == 1) {
@@ -1736,15 +1663,11 @@ class _LineChart extends StatelessWidget {
     double minResult = 9999999;
 
     for (int i = 0; i < historyChartData.length; i++) {
-      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) <
-          minResult) {
-        minResult =
-            double.parse(ConverstStr(historyChartData[i].resultApprove));
+      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) < minResult) {
+        minResult = double.parse(ConverstStr(historyChartData[i].resultApprove));
       }
-      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) >
-          maxResult) {
-        maxResult =
-            double.parse(ConverstStr(historyChartData[i].resultApprove));
+      if (double.parse(ConverstStr(historyChartData[i].resultApprove)) > maxResult) {
+        maxResult = double.parse(ConverstStr(historyChartData[i].resultApprove));
       }
     }
     print(minResult);
@@ -1965,20 +1888,14 @@ class _LineChart extends StatelessWidget {
 
   List<FlSpot> upperLineData() {
     List<FlSpot> buff = [];
-    if (historyChartData.length == 1 &&
-        double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
-      buff.add(FlSpot(
-          2, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+    if (historyChartData.length == 1 && double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(2, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
     } else if (historyChartData.length == 1) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
-      buff.add(FlSpot(
-          1, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(1, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
     } else {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
       buff.add(FlSpot(historyChartData.length.toDouble() - 1,
           double.parse(ConverstStr(historyChartData[0].stdMax)).toDouble()));
     }
@@ -2003,20 +1920,14 @@ class _LineChart extends StatelessWidget {
 
   List<FlSpot> lowwerLineData() {
     List<FlSpot> buff = [];
-    if (historyChartData.length == 1 &&
-        double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
-      buff.add(FlSpot(
-          2, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+    if (historyChartData.length == 1 && double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(2, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
     } else if (historyChartData.length == 1) {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
-      buff.add(FlSpot(
-          1, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(1, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
     } else {
-      buff.add(FlSpot(
-          0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
+      buff.add(FlSpot(0, double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
       buff.add(FlSpot(historyChartData.length.toDouble() - 1,
           double.parse(ConverstStr(historyChartData[0].stdMin)).toDouble()));
     }
@@ -2035,23 +1946,14 @@ class _LineChart extends StatelessWidget {
         ], */
         spots: ((() {
           if (historyChartData.length == 1 &&
-              double.parse(ConverstStr(historyChartData[0].resultApprove)) >
-                  0) {
+              double.parse(ConverstStr(historyChartData[0].resultApprove)) > 0) {
             //for (int i = 0; i < historyChartData.length; i++)
             print("addddddd");
-            return [
-              FlSpot(
-                  1,
-                  (double.parse(
-                      ConverstStr(historyChartData[0].resultApprove))))
-            ];
+            return [FlSpot(1, (double.parse(ConverstStr(historyChartData[0].resultApprove))))];
           } else {
             List<FlSpot> buff = [];
             for (int i = 0; i < historyChartData.length; i++) {
-              buff.add(FlSpot(
-                  i.toDouble(),
-                  (double.parse(
-                      ConverstStr(historyChartData[i].resultApprove)))));
+              buff.add(FlSpot(i.toDouble(), (double.parse(ConverstStr(historyChartData[i].resultApprove)))));
             }
             return buff;
           }
