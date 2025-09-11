@@ -1019,9 +1019,6 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
                             Row(
                               children: [
                                 SizedBox(
@@ -1141,159 +1138,80 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
                     //     ),
                     //   ),
                     // ),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              print(ConverstStr(P55ICS2100BODYSTDVAR.D01VOLUME));
+                              print(ConverstStr(P55ICS2100BODYSTDVAR.D02VOLUME));
+                              context.read<P55ICS2100BODYSTD_Bloc>().add(P55ICS2100BODYSTD_CAL());
+                              if (P55ICS2100BODYSTDVAR.Result01 == '') {
+                                setState(() {
+                                  if (P55ICS2100BODYSTDVAR.D01W11 != '') {
+                                    P55ICS2100BODYSTDVAR.Result01 =
+                                        ((double.parse(ConverstStr(P55ICS2100BODYSTDVAR.D01W11))) *
+                                                (double.parse(ConverstStr(P55ICS2100BODYSTDVAR.D01NOitem))))
+                                            .toStringAsFixed(2);
+                                  }
+                                  if (P55ICS2100BODYSTDVAR.D02W11 != '') {
+                                    P55ICS2100BODYSTDVAR.Result02 =
+                                        ((double.parse(ConverstStr(P55ICS2100BODYSTDVAR.D02W11))) *
+                                                (double.parse(ConverstStr(P55ICS2100BODYSTDVAR.D02NOitem))))
+                                            .toStringAsFixed(2);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P55ICS2100BODYSTDVAR.Result01 = '';
+                                  P55ICS2100BODYSTDVAR.Result02 = '';
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 62,
+                              color:
+                                  P55ICS2100BODYSTDVAR.Result01 == '' || P55ICS2100BODYSTDVAR.Result02 == ''
+                                      ? Colors.orange
+                                      : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P55ICS2100BODYSTDVAR.Result01 == '' || P55ICS2100BODYSTDVAR.Result02 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text('RESULT01 ${P55ICS2100BODYSTDVAR.Result01}'),
+                                )),
+                                Center(child: Text('RESULT02 ${P55ICS2100BODYSTDVAR.Result02}')),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       flex: 1,
-                    //       // child: Container(
-                    //       //   height: 62,
-                    //       //   color: Colors.blue.shade300,
-                    //       //   child: Column(
-                    //       //     children: [
-                    //       //       const SizedBox(
-                    //       //         height: 5,
-                    //       //       ),
-                    //       //       const Center(child: Text('AREA')),
-                    //       //       Row(
-                    //       //         mainAxisAlignment:
-                    //       //             MainAxisAlignment.spaceAround,
-                    //       //         children: [
-                    //       //           ComInputText(
-                    //       //             isNumberOnly: true,
-                    //       //             isEnabled:
-                    //       //                 P55ICS2100BODYSTDVAR.Result == '',
-                    //       //             width: 100,
-                    //       //             height: 40,
-                    //       //             isContr: P55ICS2100BODYSTDVAR.iscontrol,
-                    //       //             fnContr: (input) {
-                    //       //               setState(() {
-                    //       //                 P55ICS2100BODYSTDVAR.iscontrol = input;
-                    //       //               });
-                    //       //             },
-                    //       //             sValue: P55ICS2100BODYSTDVAR.area,
-                    //       //             returnfunc: (String s) {
-                    //       //               P55ICS2100BODYSTDVAR.area = s;
-                    //       //             },
-                    //       //           ),
-                    //       //           Text("cm2")
-                    //       //         ],
-                    //       //       ),
-                    //       //     ],
-                    //       //   ),
-                    //       // ),
-                    //       child: InkWell(
-                    //         onTap: () {
-                    //           print(ConverstStr(P55ICS2100BODYSTDVAR.D01VOLUME));
-                    //           print(ConverstStr(P55ICS2100BODYSTDVAR.D02VOLUME));
-                    //           context
-                    //               .read<P55ICS2100BODYSTD_Bloc>()
-                    //               .add(P55ICS2100BODYSTD_CAL());
-                    //           if (P55ICS2100BODYSTDVAR.Result01 == '') {
-                    //             setState(() {
-                    //               if (P55ICS2100BODYSTDVAR.D01W11 != '' &&
-                    //                   P55ICS2100BODYSTDVAR.D01W21 != '' &&
-                    //                   P55ICS2100BODYSTDVAR.D01VOLUME != '') {
-                    //                 P55ICS2100BODYSTDVAR.Result01 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P55ICS2100BODYSTDVAR
-                    //                                         .D01W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P55ICS2100BODYSTDVAR
-                    //                                         .D01W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P55ICS2100BODYSTDVAR
-                    //                                     .D01VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P55ICS2100BODYSTDVAR
-                    //                     .D01W11_21 = (double.parse(ConverstStr(
-                    //                             P55ICS2100BODYSTDVAR.D01W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P55ICS2100BODYSTDVAR.D01W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //               if (P55ICS2100BODYSTDVAR.D02W11 != '' &&
-                    //                   P55ICS2100BODYSTDVAR.D02W21 != '' &&
-                    //                   P55ICS2100BODYSTDVAR.D02VOLUME != '') {
-                    //                 P55ICS2100BODYSTDVAR.Result02 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P55ICS2100BODYSTDVAR
-                    //                                         .D02W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P55ICS2100BODYSTDVAR
-                    //                                         .D02W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P55ICS2100BODYSTDVAR
-                    //                                     .D02VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P55ICS2100BODYSTDVAR
-                    //                     .D02W11_21 = (double.parse(ConverstStr(
-                    //                             P55ICS2100BODYSTDVAR.D02W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P55ICS2100BODYSTDVAR.D02W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //             });
-                    //           } else {
-                    //             setState(() {
-                    //               P55ICS2100BODYSTDVAR.Result01 = '';
-                    //               P55ICS2100BODYSTDVAR.Result02 = '';
-                    //             });
-                    //           }
-                    //         },
-                    //         child: Container(
-                    //           height: 62,
-                    //           color: P55ICS2100BODYSTDVAR.Result01 == '' ||
-                    //                   P55ICS2100BODYSTDVAR.Result02 == ''
-                    //               ? Colors.orange
-                    //               : Colors.deepOrange,
-                    //           child: Center(
-                    //             child: Text(
-                    //               P55ICS2100BODYSTDVAR.Result01 == '' ||
-                    //                       P55ICS2100BODYSTDVAR.Result02 == ''
-                    //                   ? "CAL"
-                    //                   : "RE CAL",
-                    //               style: TextStyle(color: Colors.white),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Container(
-                    //         height: 62,
-                    //         color: Colors.lightGreen,
-                    //         child: Column(
-                    //           children: [
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Center(
-                    //                 child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(bottom: 5, top: 5),
-                    //               child: Text(
-                    //                   'RESULT01 ${P55ICS2100BODYSTDVAR.Result01}'),
-                    //             )),
-                    //             Center(
-                    //                 child: Text(
-                    //                     'RESULT02 ${P55ICS2100BODYSTDVAR.Result02}')),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
                     InkWell(
                       onTap: () {
                         // CuPage = Page1();

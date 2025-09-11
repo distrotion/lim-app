@@ -1204,159 +1204,82 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                     //     ),
                     //   ),
                     // ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       flex: 1,
-                    //       // child: Container(
-                    //       //   height: 62,
-                    //       //   color: Colors.blue.shade300,
-                    //       //   child: Column(
-                    //       //     children: [
-                    //       //       const SizedBox(
-                    //       //         height: 5,
-                    //       //       ),
-                    //       //       const Center(child: Text('AREA')),
-                    //       //       Row(
-                    //       //         mainAxisAlignment:
-                    //       //             MainAxisAlignment.spaceAround,
-                    //       //         children: [
-                    //       //           ComInputText(
-                    //       //             isNumberOnly: true,
-                    //       //             isEnabled:
-                    //       //                 P54ICS8100BODYSTDVAR.Result == '',
-                    //       //             width: 100,
-                    //       //             height: 40,
-                    //       //             isContr: P54ICS8100BODYSTDVAR.iscontrol,
-                    //       //             fnContr: (input) {
-                    //       //               setState(() {
-                    //       //                 P54ICS8100BODYSTDVAR.iscontrol = input;
-                    //       //               });
-                    //       //             },
-                    //       //             sValue: P54ICS8100BODYSTDVAR.area,
-                    //       //             returnfunc: (String s) {
-                    //       //               P54ICS8100BODYSTDVAR.area = s;
-                    //       //             },
-                    //       //           ),
-                    //       //           Text("cm2")
-                    //       //         ],
-                    //       //       ),
-                    //       //     ],
-                    //       //   ),
-                    //       // ),
-                    //       child: InkWell(
-                    //         onTap: () {
-                    //           print(ConverstStr(P54ICS8100BODYSTDVAR.D01VOLUME));
-                    //           print(ConverstStr(P54ICS8100BODYSTDVAR.D02VOLUME));
-                    //           context
-                    //               .read<P54ICS8100BODYSTD_Bloc>()
-                    //               .add(P54ICS8100BODYSTD_CAL());
-                    //           if (P54ICS8100BODYSTDVAR.Result01 == '') {
-                    //             setState(() {
-                    //               if (P54ICS8100BODYSTDVAR.D01W11 != '' &&
-                    //                   P54ICS8100BODYSTDVAR.D01W21 != '' &&
-                    //                   P54ICS8100BODYSTDVAR.D01VOLUME != '') {
-                    //                 P54ICS8100BODYSTDVAR.Result01 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P54ICS8100BODYSTDVAR
-                    //                                         .D01W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P54ICS8100BODYSTDVAR
-                    //                                         .D01W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P54ICS8100BODYSTDVAR
-                    //                                     .D01VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P54ICS8100BODYSTDVAR
-                    //                     .D01W11_21 = (double.parse(ConverstStr(
-                    //                             P54ICS8100BODYSTDVAR.D01W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P54ICS8100BODYSTDVAR.D01W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //               if (P54ICS8100BODYSTDVAR.D02W11 != '' &&
-                    //                   P54ICS8100BODYSTDVAR.D02W21 != '' &&
-                    //                   P54ICS8100BODYSTDVAR.D02VOLUME != '') {
-                    //                 P54ICS8100BODYSTDVAR.Result02 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P54ICS8100BODYSTDVAR
-                    //                                         .D02W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P54ICS8100BODYSTDVAR
-                    //                                         .D02W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P54ICS8100BODYSTDVAR
-                    //                                     .D02VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P54ICS8100BODYSTDVAR
-                    //                     .D02W11_21 = (double.parse(ConverstStr(
-                    //                             P54ICS8100BODYSTDVAR.D02W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P54ICS8100BODYSTDVAR.D02W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //             });
-                    //           } else {
-                    //             setState(() {
-                    //               P54ICS8100BODYSTDVAR.Result01 = '';
-                    //               P54ICS8100BODYSTDVAR.Result02 = '';
-                    //             });
-                    //           }
-                    //         },
-                    //         child: Container(
-                    //           height: 62,
-                    //           color: P54ICS8100BODYSTDVAR.Result01 == '' ||
-                    //                   P54ICS8100BODYSTDVAR.Result02 == ''
-                    //               ? Colors.orange
-                    //               : Colors.deepOrange,
-                    //           child: Center(
-                    //             child: Text(
-                    //               P54ICS8100BODYSTDVAR.Result01 == '' ||
-                    //                       P54ICS8100BODYSTDVAR.Result02 == ''
-                    //                   ? "CAL"
-                    //                   : "RE CAL",
-                    //               style: TextStyle(color: Colors.white),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Container(
-                    //         height: 62,
-                    //         color: Colors.lightGreen,
-                    //         child: Column(
-                    //           children: [
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Center(
-                    //                 child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(bottom: 5, top: 5),
-                    //               child: Text(
-                    //                   'RESULT01 ${P54ICS8100BODYSTDVAR.Result01}'),
-                    //             )),
-                    //             Center(
-                    //                 child: Text(
-                    //                     'RESULT02 ${P54ICS8100BODYSTDVAR.Result02}')),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                     // const SizedBox(
                     //   height: 5,
                     // ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              print(ConverstStr(P54ICS8100BODYSTDVAR.D01VOLUME));
+                              print(ConverstStr(P54ICS8100BODYSTDVAR.D02VOLUME));
+                              context.read<P54ICS8100BODYSTD_Bloc>().add(P54ICS8100BODYSTD_CAL());
+                              if (P54ICS8100BODYSTDVAR.Result01 == '') {
+                                setState(() {
+                                  if (P54ICS8100BODYSTDVAR.D01W11 != '') {
+                                    P54ICS8100BODYSTDVAR.Result01 =
+                                        ((double.parse(ConverstStr(P54ICS8100BODYSTDVAR.D01W11))) *
+                                                (double.parse(ConverstStr(P54ICS8100BODYSTDVAR.D01NOitem))))
+                                            .toStringAsFixed(2);
+                                  }
+                                  if (P54ICS8100BODYSTDVAR.D02W11 != '') {
+                                    P54ICS8100BODYSTDVAR.Result02 =
+                                        ((double.parse(ConverstStr(P54ICS8100BODYSTDVAR.D02W11))) *
+                                                (double.parse(ConverstStr(P54ICS8100BODYSTDVAR.D02NOitem))))
+                                            .toStringAsFixed(2);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P54ICS8100BODYSTDVAR.Result01 = '';
+                                  P54ICS8100BODYSTDVAR.Result02 = '';
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 62,
+                              color:
+                                  P54ICS8100BODYSTDVAR.Result01 == '' || P54ICS8100BODYSTDVAR.Result02 == ''
+                                      ? Colors.orange
+                                      : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P54ICS8100BODYSTDVAR.Result01 == '' || P54ICS8100BODYSTDVAR.Result02 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text('RESULT01 ${P54ICS8100BODYSTDVAR.Result01}'),
+                                )),
+                                Center(child: Text('RESULT02 ${P54ICS8100BODYSTDVAR.Result02}')),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     InkWell(
                       onTap: () {
                         print("-------->");

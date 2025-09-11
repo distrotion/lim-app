@@ -1139,156 +1139,115 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                     const SizedBox(
                       height: 5,
                     ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       flex: 1,
-                    //       // child: Container(
-                    //       //   height: 62,
-                    //       //   color: Colors.blue.shade300,
-                    //       //   child: Column(
-                    //       //     children: [
-                    //       //       const SizedBox(
-                    //       //         height: 5,
-                    //       //       ),
-                    //       //       const Center(child: Text('AREA')),
-                    //       //       Row(
-                    //       //         mainAxisAlignment:
-                    //       //             MainAxisAlignment.spaceAround,
-                    //       //         children: [
-                    //       //           ComInputText(
-                    //       //             isNumberOnly: true,
-                    //       //             isEnabled:
-                    //       //                 P53ICS2000BODYSTDVAR.Result == '',
-                    //       //             width: 100,
-                    //       //             height: 40,
-                    //       //             isContr: P53ICS2000BODYSTDVAR.iscontrol,
-                    //       //             fnContr: (input) {
-                    //       //               setState(() {
-                    //       //                 P53ICS2000BODYSTDVAR.iscontrol = input;
-                    //       //               });
-                    //       //             },
-                    //       //             sValue: P53ICS2000BODYSTDVAR.area,
-                    //       //             returnfunc: (String s) {
-                    //       //               P53ICS2000BODYSTDVAR.area = s;
-                    //       //             },
-                    //       //           ),
-                    //       //           Text("cm2")
-                    //       //         ],
-                    //       //       ),
-                    //       //     ],
-                    //       //   ),
-                    //       // ),
-                    //       child: InkWell(
-                    //         onTap: () {
-                    //           print(ConverstStr(P53ICS2000BODYSTDVAR.D01VOLUME));
-                    //           print(ConverstStr(P53ICS2000BODYSTDVAR.D02VOLUME));
-                    //           context
-                    //               .read<P53ICS2000BODYSTD_Bloc>()
-                    //               .add(P53ICS2000BODYSTD_CAL());
-                    //           if (P53ICS2000BODYSTDVAR.Result01 == '') {
-                    //             setState(() {
-                    //               if (P53ICS2000BODYSTDVAR.D01W11 != '' &&
-                    //                   P53ICS2000BODYSTDVAR.D01W21 != '' &&
-                    //                   P53ICS2000BODYSTDVAR.D01VOLUME != '') {
-                    //                 P53ICS2000BODYSTDVAR.Result01 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P53ICS2000BODYSTDVAR
-                    //                                         .D01W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P53ICS2000BODYSTDVAR
-                    //                                         .D01W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P53ICS2000BODYSTDVAR
-                    //                                     .D01VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P53ICS2000BODYSTDVAR
-                    //                     .D01W11_21 = (double.parse(ConverstStr(
-                    //                             P53ICS2000BODYSTDVAR.D01W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P53ICS2000BODYSTDVAR.D01W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //               if (P53ICS2000BODYSTDVAR.D02W11 != '' &&
-                    //                   P53ICS2000BODYSTDVAR.D02W21 != '' &&
-                    //                   P53ICS2000BODYSTDVAR.D02VOLUME != '') {
-                    //                 P53ICS2000BODYSTDVAR.Result02 =
-                    //                     ((double.parse(ConverstStr(
-                    //                                     P53ICS2000BODYSTDVAR
-                    //                                         .D02W21)) -
-                    //                                 double.parse(ConverstStr(
-                    //                                     P53ICS2000BODYSTDVAR
-                    //                                         .D02W11))) /
-                    //                             double.parse(ConverstStr(
-                    //                                 P53ICS2000BODYSTDVAR
-                    //                                     .D02VOLUME)) *
-                    //                             1000000)
-                    //                         .toStringAsFixed(2);
-
-                    //                 P53ICS2000BODYSTDVAR
-                    //                     .D02W11_21 = (double.parse(ConverstStr(
-                    //                             P53ICS2000BODYSTDVAR.D02W21)) -
-                    //                         double.parse(ConverstStr(
-                    //                             P53ICS2000BODYSTDVAR.D02W11)))
-                    //                     .toStringAsFixed(4);
-                    //               }
-                    //             });
-                    //           } else {
-                    //             setState(() {
-                    //               P53ICS2000BODYSTDVAR.Result01 = '';
-                    //               P53ICS2000BODYSTDVAR.Result02 = '';
-                    //             });
-                    //           }
-                    //         },
-                    //         child: Container(
-                    //           height: 62,
-                    //           color: P53ICS2000BODYSTDVAR.Result01 == '' ||
-                    //                   P53ICS2000BODYSTDVAR.Result02 == ''
-                    //               ? Colors.orange
-                    //               : Colors.deepOrange,
-                    //           child: Center(
-                    //             child: Text(
-                    //               P53ICS2000BODYSTDVAR.Result01 == '' ||
-                    //                       P53ICS2000BODYSTDVAR.Result02 == ''
-                    //                   ? "CAL"
-                    //                   : "RE CAL",
-                    //               style: TextStyle(color: Colors.white),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Container(
-                    //         height: 62,
-                    //         color: Colors.lightGreen,
-                    //         child: Column(
-                    //           children: [
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Center(
-                    //                 child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(bottom: 5, top: 5),
-                    //               child: Text(
-                    //                   'RESULT01 ${P53ICS2000BODYSTDVAR.Result01}'),
-                    //             )),
-                    //             Center(
-                    //                 child: Text(
-                    //                     'RESULT02 ${P53ICS2000BODYSTDVAR.Result02}')),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          // child: Container(
+                          //   height: 62,
+                          //   color: Colors.blue.shade300,
+                          //   child: Column(
+                          //     children: [
+                          //       const SizedBox(
+                          //         height: 5,
+                          //       ),
+                          //       const Center(child: Text('AREA')),
+                          //       Row(
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceAround,
+                          //         children: [
+                          //           ComInputText(
+                          //             isNumberOnly: true,
+                          //             isEnabled:
+                          //                 P53ICS2000BODYSTDVAR.Result == '',
+                          //             width: 100,
+                          //             height: 40,
+                          //             isContr: P53ICS2000BODYSTDVAR.iscontrol,
+                          //             fnContr: (input) {
+                          //               setState(() {
+                          //                 P53ICS2000BODYSTDVAR.iscontrol = input;
+                          //               });
+                          //             },
+                          //             sValue: P53ICS2000BODYSTDVAR.area,
+                          //             returnfunc: (String s) {
+                          //               P53ICS2000BODYSTDVAR.area = s;
+                          //             },
+                          //           ),
+                          //           Text("cm2")
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          child: InkWell(
+                            onTap: () {
+                              print(ConverstStr(P53ICS2000BODYSTDVAR.D01VOLUME));
+                              print(ConverstStr(P53ICS2000BODYSTDVAR.D02VOLUME));
+                              context.read<P53ICS2000BODYSTD_Bloc>().add(P53ICS2000BODYSTD_CAL());
+                              if (P53ICS2000BODYSTDVAR.Result01 == '') {
+                                setState(() {
+                                  if (P53ICS2000BODYSTDVAR.D01W11 != '') {
+                                    P53ICS2000BODYSTDVAR.Result01 =
+                                        ((double.parse(ConverstStr(P53ICS2000BODYSTDVAR.D01W11))) *
+                                                (double.parse(ConverstStr(P53ICS2000BODYSTDVAR.D01NOitem))))
+                                            .toStringAsFixed(2);
+                                  }
+                                  if (P53ICS2000BODYSTDVAR.D02W11 != '') {
+                                    P53ICS2000BODYSTDVAR.Result02 =
+                                        ((double.parse(ConverstStr(P53ICS2000BODYSTDVAR.D02W11))) *
+                                                (double.parse(ConverstStr(P53ICS2000BODYSTDVAR.D02NOitem))))
+                                            .toStringAsFixed(2);
+                                  }
+                                });
+                              } else {
+                                setState(() {
+                                  P53ICS2000BODYSTDVAR.Result01 = '';
+                                  P53ICS2000BODYSTDVAR.Result02 = '';
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 62,
+                              color:
+                                  P53ICS2000BODYSTDVAR.Result01 == '' || P53ICS2000BODYSTDVAR.Result02 == ''
+                                      ? Colors.orange
+                                      : Colors.deepOrange,
+                              child: Center(
+                                child: Text(
+                                  P53ICS2000BODYSTDVAR.Result01 == '' || P53ICS2000BODYSTDVAR.Result02 == ''
+                                      ? "CAL"
+                                      : "RE CAL",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 62,
+                            color: Colors.lightGreen,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 5, top: 5),
+                                  child: Text('RESULT01 ${P53ICS2000BODYSTDVAR.Result01}'),
+                                )),
+                                Center(child: Text('RESULT02 ${P53ICS2000BODYSTDVAR.Result02}')),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     InkWell(
                       onTap: () {
                         // CuPage = Page1();
