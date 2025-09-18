@@ -45,8 +45,8 @@ class P55ICS2100BODYSTDGETSET_Bloc extends Bloc<P55ICS2100BODYSTDGETSET_Event, P
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      // print('tannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
-      // print(databuff);
+      print('tannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
+      print(databuff);
 
       if (databuff.length > 0) {
         output.ReqNo = databuff[0]['ReqNo'] != null ? databuff[0]['ReqNo'].toString() : '';
@@ -61,7 +61,7 @@ class P55ICS2100BODYSTDGETSET_Bloc extends Bloc<P55ICS2100BODYSTDGETSET_Event, P
         print(output.ItemName);
         if (databuff[0]['data01'] != null) {
           var data01W11 = databuff[0]['data01']['W11'];
-
+          print(data01W11);
           if (data01W11 != null && data01W11 is Map) {
             if (output.ItemName.contains("T-F")) {
               output.D01W11 = data01W11['FluorideR1']?.toString() ?? '';

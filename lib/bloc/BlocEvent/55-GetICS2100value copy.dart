@@ -39,6 +39,7 @@ class GetICS2100value_Bloc extends Bloc<GetICS2100value_Event, ICS2000DATAclass>
 
     if (response01.statusCode == 200) {
       var databuICS2000 = response01.data;
+      print('Test--------------------');
       print(databuICS2000);
       // output = databuICS2000;
       // if (databuICS2000['TiICS2000R1'] != null) {

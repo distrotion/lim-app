@@ -482,11 +482,11 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
                           ),
                         ],
                       ),
-                    if (P55ICS2100BODYSTDVAR.itemName.contains("PO42"))
+                    if (P55ICS2100BODYSTDVAR.itemName.contains("SO4"))
                       const SizedBox(
                         height: 15,
                       ),
-                    if (P55ICS2100BODYSTDVAR.itemName.contains("PO42"))
+                    if (P55ICS2100BODYSTDVAR.itemName.contains("SO4"))
                       Row(
                         children: [
                           SizedBox(
@@ -538,11 +538,11 @@ class _P55ICS2100BODYSTDState extends State<P55ICS2100BODYSTD> {
                           ),
                         ],
                       ),
-                    if (P55ICS2100BODYSTDVAR.itemName.contains("PO43"))
+                    if (P55ICS2100BODYSTDVAR.itemName.contains("PO4"))
                       const SizedBox(
                         height: 15,
                       ),
-                    if (P55ICS2100BODYSTDVAR.itemName.contains("PO43"))
+                    if (P55ICS2100BODYSTDVAR.itemName.contains("PO4"))
                       Row(
                         children: [
                           SizedBox(
