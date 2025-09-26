@@ -1,0 +1,10 @@
+^C:\USERS\AUTO\DESKTOP\LIM-APP\BUILD\WINDOWS\X64\CMAKEFILES\E91362D411624E020E460B515852E381\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/auto/Desktop/lim-app/windows -BC:/Users/auto/Desktop/lim-app/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/auto/Desktop/lim-app/build/windows/x64/lim_app.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
