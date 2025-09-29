@@ -12,6 +12,8 @@ import '../../page/page3.dart';
 import '../../page/page300.dart';
 import '../../page/page320.dart';
 import '../../page/page4.dart';
+import '../../page/page400.dart';
+import '../../page/page420.dart';
 import '../../page/page5.dart';
 import '../../page/page99.dart';
 import 'sub_widget.dart';
@@ -87,24 +89,33 @@ class Data_Menu_mainmenu extends StatelessWidget {
             page: Page99(),
             Lv: 1,
           ),
+          menu_normal(
+            name: "Balance CAL",
+            page: Page300(),
+            Lv: 1,
+          ),
+          menu_normal(
+            name: "Balance History",
+            page: Page320(),
+            Lv: 1,
+          ),
         ] else ...[
           menu_normal(
             name: "SELECT INS HES",
             page: Page100(),
             Lv: 1,
           ),
+          menu_normal(
+            name: "Balance CAL",
+            page: Page400(),
+            Lv: 1,
+          ),
+          menu_normal(
+            name: "Balance History",
+            page: Page420(),
+            Lv: 1,
+          ),
         ],
-
-        menu_normal(
-          name: "Balance CAL",
-          page: Page300(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "Balance History",
-          page: Page320(),
-          Lv: 1,
-        ),
 
         menu_normal(
           name: "UPLOAD LIMX",

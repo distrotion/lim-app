@@ -560,7 +560,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                     : () {
                         USERDATA.INSMASTER = 'BP12BALANCE01';
                         CuPage = Page1();
-                        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                        MainBodyContext.read<ChangePage_Bloc>()
+                            .add(ChangePage_nodrower());
                       },
                 child: Row(
                   children: [
@@ -581,7 +582,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                     Container(
                       height: 50,
                       width: 125,
-                      color: P300CALVAR.BA01.isNotEmpty && P300CALVAR.BA01 == 'OK' ? Colors.blue : Colors.red,
+                      color:
+                          P300CALVAR.BA01.isNotEmpty && P300CALVAR.BA01 == 'OK'
+                              ? Colors.blue
+                              : Colors.red,
                       // color: Colors.red,
                       child: const Center(
                         child: Text("T 071-002"),
@@ -597,7 +601,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12BALANCE02';
                   CuPage = Page1();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -636,7 +641,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                     : () {
                         USERDATA.INSMASTER = 'BP12BALANCE03';
                         CuPage = Page1();
-                        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                        MainBodyContext.read<ChangePage_Bloc>()
+                            .add(ChangePage_nodrower());
                       },
                 child: Row(
                   children: [
@@ -657,7 +663,10 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                     Container(
                       height: 50,
                       width: 125,
-                      color: P300CALVAR.BA03.isNotEmpty && P300CALVAR.BA03 == 'OK' ? Colors.blue : Colors.red,
+                      color:
+                          P300CALVAR.BA03.isNotEmpty && P300CALVAR.BA03 == 'OK'
+                              ? Colors.blue
+                              : Colors.red,
                       child: const Center(
                         child: Text("CTC-BAL-002"),
                       ),
@@ -676,7 +685,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12FF01';
                   CuPage = Page21();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -718,7 +728,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12XRF01';
                   CuPage = Page41();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -760,7 +771,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12TOC01';
                   CuPage = Page31();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -798,7 +810,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12ICP01';
                   CuPage = Page31();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -836,7 +849,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12ICS2000';
                   CuPage = Page51();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -874,7 +888,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12ICS2100';
                   CuPage = Page51();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -912,7 +927,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                 onTap: () {
                   USERDATA.INSMASTER = 'BP12ICS8100';
                   CuPage = Page51();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [
@@ -951,7 +967,8 @@ class _P99SELECTINSBP12MAINState extends State<P99SELECTINSBP12MAIN> {
                   USERDATA.INSMASTER = 'BP12UV01';
                   //BP12OCA01
                   CuPage = Page56();
-                  MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+                  MainBodyContext.read<ChangePage_Bloc>()
+                      .add(ChangePage_nodrower());
                 },
                 child: Row(
                   children: [

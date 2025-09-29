@@ -30,6 +30,7 @@ class P310BP12BALANCE01CALMAIN extends StatefulWidget {
 }
 
 class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
+  bool isInit = true;
   late List<Color> buttonColors; // เก็บสีของปุ่มแต่ละปุ่ม
   int? yellowButtonIndex;
   List<String> buttonValues = List.generate(25, (index) => '');
@@ -132,235 +133,236 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
   Widget build(BuildContext context) {
     P310BP12BALANCE01CALMAINcontext = context;
     List<P310BP12BALANCECALDATAclass> _datain = widget.data ?? [];
+    if (isInit) {
+      if (_datain.isNotEmpty) {
+        if (_datain[0].INSTRUMENT == 'BA01') {
+          P310BP12BALANCE01CALVAR.button1PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue = _datain[0].G11;
+          if (P310BP12BALANCE01CALVAR.targetValue > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue < 0.9999 ||
+              P310BP12BALANCE01CALVAR.targetValue > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue > 1.0001) {
+            P310BP12BALANCE01CALVAR.button1Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button1Text =
+                P310BP12BALANCE01CALVAR.targetValue.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue == 0) {
+            P310BP12BALANCE01CALVAR.button1Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button1Text = '';
+            P310BP12BALANCE01CALVAR.button1PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button1Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button1Text =
+                P310BP12BALANCE01CALVAR.targetValue.toStringAsFixed(4);
+          }
 
-    if (_datain.isNotEmpty) {
-      if (_datain[0].INSTRUMENT == 'BA01') {
-        P310BP12BALANCE01CALVAR.button1PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue = _datain[0].G11;
-        if (P310BP12BALANCE01CALVAR.targetValue > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue < 0.9999 ||
-            P310BP12BALANCE01CALVAR.targetValue > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue > 1.0001) {
-          P310BP12BALANCE01CALVAR.button1Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button1Text =
-              P310BP12BALANCE01CALVAR.targetValue.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue == 0) {
-          P310BP12BALANCE01CALVAR.button1Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button1Text = '';
-          P310BP12BALANCE01CALVAR.button1PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button1Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button1Text =
-              P310BP12BALANCE01CALVAR.targetValue.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button2PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue1 = _datain[0].G12;
+          if (P310BP12BALANCE01CALVAR.targetValue1 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue1 < 0.9999 ||
+              P310BP12BALANCE01CALVAR.targetValue1 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue1 > 1.0001) {
+            P310BP12BALANCE01CALVAR.button2Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button2Text =
+                P310BP12BALANCE01CALVAR.targetValue1.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue1 == 0) {
+            P310BP12BALANCE01CALVAR.button2Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button2Text = '';
+            P310BP12BALANCE01CALVAR.button2PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button2Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button2Text =
+                P310BP12BALANCE01CALVAR.targetValue1.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button2PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue1 = _datain[0].G12;
-        if (P310BP12BALANCE01CALVAR.targetValue1 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue1 < 0.9999 ||
-            P310BP12BALANCE01CALVAR.targetValue1 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue1 > 1.0001) {
-          P310BP12BALANCE01CALVAR.button2Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button2Text =
-              P310BP12BALANCE01CALVAR.targetValue1.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue1 == 0) {
-          P310BP12BALANCE01CALVAR.button2Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button2Text = '';
-          P310BP12BALANCE01CALVAR.button2PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button2Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button2Text =
-              P310BP12BALANCE01CALVAR.targetValue1.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button3PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue2 = _datain[0].G13;
+          if (P310BP12BALANCE01CALVAR.targetValue2 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue2 < 0.9999 ||
+              P310BP12BALANCE01CALVAR.targetValue2 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue2 > 1.0001) {
+            P310BP12BALANCE01CALVAR.button3Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button3Text =
+                P310BP12BALANCE01CALVAR.targetValue2.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue2 == 0) {
+            P310BP12BALANCE01CALVAR.button3Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button3Text = '';
+            P310BP12BALANCE01CALVAR.button3PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button3Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button3Text =
+                P310BP12BALANCE01CALVAR.targetValue2.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button3PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue2 = _datain[0].G13;
-        if (P310BP12BALANCE01CALVAR.targetValue2 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue2 < 0.9999 ||
-            P310BP12BALANCE01CALVAR.targetValue2 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue2 > 1.0001) {
-          P310BP12BALANCE01CALVAR.button3Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button3Text =
-              P310BP12BALANCE01CALVAR.targetValue2.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue2 == 0) {
-          P310BP12BALANCE01CALVAR.button3Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button3Text = '';
-          P310BP12BALANCE01CALVAR.button3PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button3Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button3Text =
-              P310BP12BALANCE01CALVAR.targetValue2.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button4PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue3 = _datain[0].G501;
+          if (P310BP12BALANCE01CALVAR.targetValue3 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue3 < 49.9997 ||
+              P310BP12BALANCE01CALVAR.targetValue3 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue3 > 50.0003) {
+            P310BP12BALANCE01CALVAR.button4Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button4Text =
+                P310BP12BALANCE01CALVAR.targetValue3.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue3 == 0) {
+            P310BP12BALANCE01CALVAR.button4Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button4Text = '';
+            P310BP12BALANCE01CALVAR.button4PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button4Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button4Text =
+                P310BP12BALANCE01CALVAR.targetValue3.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button4PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue3 = _datain[0].G501;
-        if (P310BP12BALANCE01CALVAR.targetValue3 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue3 < 49.9997 ||
-            P310BP12BALANCE01CALVAR.targetValue3 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue3 > 50.0003) {
-          P310BP12BALANCE01CALVAR.button4Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button4Text =
-              P310BP12BALANCE01CALVAR.targetValue3.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue3 == 0) {
-          P310BP12BALANCE01CALVAR.button4Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button4Text = '';
-          P310BP12BALANCE01CALVAR.button4PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button4Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button4Text =
-              P310BP12BALANCE01CALVAR.targetValue3.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button5PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue4 = _datain[0].G502;
+          if (P310BP12BALANCE01CALVAR.targetValue4 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue4 < 49.9997 ||
+              P310BP12BALANCE01CALVAR.targetValue4 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue4 > 50.0003) {
+            P310BP12BALANCE01CALVAR.button5Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button5Text =
+                P310BP12BALANCE01CALVAR.targetValue4.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue4 == 0) {
+            P310BP12BALANCE01CALVAR.button5Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button5Text = '';
+            P310BP12BALANCE01CALVAR.button5PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button5Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button5Text =
+                P310BP12BALANCE01CALVAR.targetValue4.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button5PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue4 = _datain[0].G502;
-        if (P310BP12BALANCE01CALVAR.targetValue4 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue4 < 49.9997 ||
-            P310BP12BALANCE01CALVAR.targetValue4 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue4 > 50.0003) {
-          P310BP12BALANCE01CALVAR.button5Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button5Text =
-              P310BP12BALANCE01CALVAR.targetValue4.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue4 == 0) {
-          P310BP12BALANCE01CALVAR.button5Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button5Text = '';
-          P310BP12BALANCE01CALVAR.button5PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button5Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button5Text =
-              P310BP12BALANCE01CALVAR.targetValue4.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button6PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue5 = _datain[0].G503;
+          if (P310BP12BALANCE01CALVAR.targetValue5 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue5 < 49.9997 ||
+              P310BP12BALANCE01CALVAR.targetValue5 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue5 > 50.0003) {
+            P310BP12BALANCE01CALVAR.button6Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button6Text =
+                P310BP12BALANCE01CALVAR.targetValue5.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue5 == 0) {
+            P310BP12BALANCE01CALVAR.button6Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button6Text = '';
+            P310BP12BALANCE01CALVAR.button6PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button6Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button6Text =
+                P310BP12BALANCE01CALVAR.targetValue5.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button6PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue5 = _datain[0].G503;
-        if (P310BP12BALANCE01CALVAR.targetValue5 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue5 < 49.9997 ||
-            P310BP12BALANCE01CALVAR.targetValue5 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue5 > 50.0003) {
-          P310BP12BALANCE01CALVAR.button6Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button6Text =
-              P310BP12BALANCE01CALVAR.targetValue5.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue5 == 0) {
-          P310BP12BALANCE01CALVAR.button6Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button6Text = '';
-          P310BP12BALANCE01CALVAR.button6PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button6Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button6Text =
-              P310BP12BALANCE01CALVAR.targetValue5.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button7PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue6 = _datain[0].G1001;
+          if (P310BP12BALANCE01CALVAR.targetValue6 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue6 < 99.9995 ||
+              P310BP12BALANCE01CALVAR.targetValue6 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue6 > 100.0005) {
+            P310BP12BALANCE01CALVAR.button7Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button7Text =
+                P310BP12BALANCE01CALVAR.targetValue6.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue6 == 0) {
+            P310BP12BALANCE01CALVAR.button7Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button7Text = '';
+            P310BP12BALANCE01CALVAR.button7PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button7Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button7Text =
+                P310BP12BALANCE01CALVAR.targetValue6.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button7PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue6 = _datain[0].G1001;
-        if (P310BP12BALANCE01CALVAR.targetValue6 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue6 < 99.9995 ||
-            P310BP12BALANCE01CALVAR.targetValue6 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue6 > 100.0005) {
-          P310BP12BALANCE01CALVAR.button7Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button7Text =
-              P310BP12BALANCE01CALVAR.targetValue6.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue6 == 0) {
-          P310BP12BALANCE01CALVAR.button7Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button7Text = '';
-          P310BP12BALANCE01CALVAR.button7PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button7Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button7Text =
-              P310BP12BALANCE01CALVAR.targetValue6.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button8PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue7 = _datain[0].G1002;
+          if (P310BP12BALANCE01CALVAR.targetValue7 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue7 < 99.9995 ||
+              P310BP12BALANCE01CALVAR.targetValue7 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue7 > 100.0005) {
+            P310BP12BALANCE01CALVAR.button8Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button8Text =
+                P310BP12BALANCE01CALVAR.targetValue7.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue7 == 0) {
+            P310BP12BALANCE01CALVAR.button8Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button8Text = '';
+            P310BP12BALANCE01CALVAR.button8PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button8Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button8Text =
+                P310BP12BALANCE01CALVAR.targetValue7.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button8PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue7 = _datain[0].G1002;
-        if (P310BP12BALANCE01CALVAR.targetValue7 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue7 < 99.9995 ||
-            P310BP12BALANCE01CALVAR.targetValue7 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue7 > 100.0005) {
-          P310BP12BALANCE01CALVAR.button8Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button8Text =
-              P310BP12BALANCE01CALVAR.targetValue7.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue7 == 0) {
-          P310BP12BALANCE01CALVAR.button8Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button8Text = '';
-          P310BP12BALANCE01CALVAR.button8PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button8Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button8Text =
-              P310BP12BALANCE01CALVAR.targetValue7.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button9PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue8 = _datain[0].G1003;
+          if (P310BP12BALANCE01CALVAR.targetValue8 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue8 < 99.9995 ||
+              P310BP12BALANCE01CALVAR.targetValue8 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue8 > 100.0005) {
+            P310BP12BALANCE01CALVAR.button9Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button9Text =
+                P310BP12BALANCE01CALVAR.targetValue8.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue8 == 0) {
+            P310BP12BALANCE01CALVAR.button9Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button9Text = '';
+            P310BP12BALANCE01CALVAR.button9PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button9Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button9Text =
+                P310BP12BALANCE01CALVAR.targetValue8.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button9PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue8 = _datain[0].G1003;
-        if (P310BP12BALANCE01CALVAR.targetValue8 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue8 < 99.9995 ||
-            P310BP12BALANCE01CALVAR.targetValue8 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue8 > 100.0005) {
-          P310BP12BALANCE01CALVAR.button9Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button9Text =
-              P310BP12BALANCE01CALVAR.targetValue8.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue8 == 0) {
-          P310BP12BALANCE01CALVAR.button9Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button9Text = '';
-          P310BP12BALANCE01CALVAR.button9PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button9Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button9Text =
-              P310BP12BALANCE01CALVAR.targetValue8.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button10PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue9 = _datain[0].G2001;
+          if (P310BP12BALANCE01CALVAR.targetValue9 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue9 < 199.9990 ||
+              P310BP12BALANCE01CALVAR.targetValue9 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue9 > 200.0010) {
+            P310BP12BALANCE01CALVAR.button10Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button10Text =
+                P310BP12BALANCE01CALVAR.targetValue9.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue9 == 0) {
+            P310BP12BALANCE01CALVAR.button10Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button10Text = '';
+            P310BP12BALANCE01CALVAR.button10PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button10Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button10Text =
+                P310BP12BALANCE01CALVAR.targetValue9.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button10PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue9 = _datain[0].G2001;
-        if (P310BP12BALANCE01CALVAR.targetValue9 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue9 < 199.9990 ||
-            P310BP12BALANCE01CALVAR.targetValue9 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue9 > 200.0010) {
-          P310BP12BALANCE01CALVAR.button10Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button10Text =
-              P310BP12BALANCE01CALVAR.targetValue9.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue9 == 0) {
-          P310BP12BALANCE01CALVAR.button10Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button10Text = '';
-          P310BP12BALANCE01CALVAR.button10PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button10Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button10Text =
-              P310BP12BALANCE01CALVAR.targetValue9.toStringAsFixed(4);
-        }
+          P310BP12BALANCE01CALVAR.button11PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue10 = _datain[0].G2002;
+          if (P310BP12BALANCE01CALVAR.targetValue10 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue10 < 199.9990 ||
+              P310BP12BALANCE01CALVAR.targetValue10 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue10 > 200.0010) {
+            P310BP12BALANCE01CALVAR.button11Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button11Text =
+                P310BP12BALANCE01CALVAR.targetValue10.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue10 == 0) {
+            P310BP12BALANCE01CALVAR.button11Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button11Text = '';
+            P310BP12BALANCE01CALVAR.button11PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button11Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button11Text =
+                P310BP12BALANCE01CALVAR.targetValue10.toStringAsFixed(4);
+          }
 
-        P310BP12BALANCE01CALVAR.button11PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue10 = _datain[0].G2002;
-        if (P310BP12BALANCE01CALVAR.targetValue10 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue10 < 199.9990 ||
-            P310BP12BALANCE01CALVAR.targetValue10 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue10 > 200.0010) {
-          P310BP12BALANCE01CALVAR.button11Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button11Text =
-              P310BP12BALANCE01CALVAR.targetValue10.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue10 == 0) {
-          P310BP12BALANCE01CALVAR.button11Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button11Text = '';
-          P310BP12BALANCE01CALVAR.button11PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button11Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button11Text =
-              P310BP12BALANCE01CALVAR.targetValue10.toStringAsFixed(4);
-        }
-
-        P310BP12BALANCE01CALVAR.button12PressCount = 2;
-        P310BP12BALANCE01CALVAR.targetValue11 = _datain[0].G2003;
-        if (P310BP12BALANCE01CALVAR.targetValue11 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue11 < 199.9990 ||
-            P310BP12BALANCE01CALVAR.targetValue11 > 0 &&
-                P310BP12BALANCE01CALVAR.targetValue11 > 200.0010) {
-          P310BP12BALANCE01CALVAR.button12Color = Colors.red;
-          P310BP12BALANCE01CALVAR.button12Text =
-              P310BP12BALANCE01CALVAR.targetValue11.toStringAsFixed(4);
-        } else if (P310BP12BALANCE01CALVAR.targetValue11 == 0) {
-          P310BP12BALANCE01CALVAR.button12Color = Colors.blue;
-          P310BP12BALANCE01CALVAR.button12Text = '';
-          P310BP12BALANCE01CALVAR.button12PressCount = 0;
-        } else {
-          P310BP12BALANCE01CALVAR.button12Color = Colors.green;
-          P310BP12BALANCE01CALVAR.button12Text =
-              P310BP12BALANCE01CALVAR.targetValue11.toStringAsFixed(4);
+          P310BP12BALANCE01CALVAR.button12PressCount = 2;
+          P310BP12BALANCE01CALVAR.targetValue11 = _datain[0].G2003;
+          if (P310BP12BALANCE01CALVAR.targetValue11 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue11 < 199.9990 ||
+              P310BP12BALANCE01CALVAR.targetValue11 > 0 &&
+                  P310BP12BALANCE01CALVAR.targetValue11 > 200.0010) {
+            P310BP12BALANCE01CALVAR.button12Color = Colors.red;
+            P310BP12BALANCE01CALVAR.button12Text =
+                P310BP12BALANCE01CALVAR.targetValue11.toStringAsFixed(4);
+          } else if (P310BP12BALANCE01CALVAR.targetValue11 == 0) {
+            P310BP12BALANCE01CALVAR.button12Color = Colors.blue;
+            P310BP12BALANCE01CALVAR.button12Text = '';
+            P310BP12BALANCE01CALVAR.button12PressCount = 0;
+          } else {
+            P310BP12BALANCE01CALVAR.button12Color = Colors.green;
+            P310BP12BALANCE01CALVAR.button12Text =
+                P310BP12BALANCE01CALVAR.targetValue11.toStringAsFixed(4);
+          }
         }
       }
     }
@@ -513,6 +515,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button2PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button3PressCount ==
                                       1 ||
@@ -610,6 +613,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button3PressCount ==
                                       1 ||
@@ -707,6 +711,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -850,6 +855,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -947,6 +953,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1044,6 +1051,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1187,6 +1195,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1284,6 +1293,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1381,6 +1391,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1524,6 +1535,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1621,6 +1633,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||
@@ -1719,6 +1732,7 @@ class _P310BP12BALANCE01CALMAINState extends State<P310BP12BALANCE01CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
+                              isInit = false;
                               if (P310BP12BALANCE01CALVAR.button1PressCount == 1 ||
                                   P310BP12BALANCE01CALVAR.button2PressCount ==
                                       1 ||

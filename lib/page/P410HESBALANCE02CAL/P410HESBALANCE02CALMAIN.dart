@@ -9,28 +9,29 @@ import 'package:lim_app/page/page300.dart';
 import 'package:lim_app/widget/common/Advancedropdown.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../bloc/BlocEvent/311-01-P311SENTDATA.dart';
+import '../../bloc/BlocEvent/300-01-P300GETDATA.dart';
+import '../../bloc/BlocEvent/310-01-P310SENTDATA.dart';
+import '../../bloc/BlocEvent/410-01-P410SENTDATA.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../page310.dart';
-import 'P311BP12BALANCE03CALVAR.dart';
+import 'P410HESBALANCE02CALVAR.dart';
 
-late BuildContext P311BP12BALANCE03CALMAINcontext;
+late BuildContext P410HESBALANCE02CALMAINcontext;
 bool Swap = false;
 
-class P311BP12BALANCE03CALMAIN extends StatefulWidget {
-  P311BP12BALANCE03CALMAIN({
-    super.key,
-    this.data,
-  });
-  List<P311BP12BALANCECALDATAclass>? data;
+class P410HESBALANCE02CALMAIN extends StatefulWidget {
+  final VoidCallback onClose;
+  P410HESBALANCE02CALMAIN({super.key, this.data, required this.onClose});
+  List<P410HESBALANCECALDATAclass>? data;
 
   @override
-  State<P311BP12BALANCE03CALMAIN> createState() =>
-      _P311BP12BALANCE03CALMAINState();
+  State<P410HESBALANCE02CALMAIN> createState() =>
+      _P410HESBALANCE02CALMAINState();
 }
 
-class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
+class _P410HESBALANCE02CALMAINState extends State<P410HESBALANCE02CALMAIN> {
+  bool isInit = true;
   late List<Color> buttonColors; // เก็บสีของปุ่มแต่ละปุ่ม
   int? yellowButtonIndex;
   List<String> buttonValues = List.generate(25, (index) => '');
@@ -72,53 +73,54 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
   void initState() {
     super.initState();
     buttonColors = List.generate(25, (index) => Colors.blue);
-    P311BP12BALANCE03CALVAR.summary1 = 0;
-    P311BP12BALANCE03CALVAR.summary2 = 0;
-    P311BP12BALANCE03CALVAR.summary3 = 0;
-    P311BP12BALANCE03CALVAR.summary4 = 0;
-    P311BP12BALANCE03CALVAR.password = "";
-    P311BP12BALANCE03CALVAR.button1PressCount = 0;
-    P311BP12BALANCE03CALVAR.button2PressCount = 0;
-    P311BP12BALANCE03CALVAR.button3PressCount = 0;
-    P311BP12BALANCE03CALVAR.button4PressCount = 0;
-    P311BP12BALANCE03CALVAR.button5PressCount = 0;
-    P311BP12BALANCE03CALVAR.button6PressCount = 0;
-    P311BP12BALANCE03CALVAR.button7PressCount = 0;
-    P311BP12BALANCE03CALVAR.button8PressCount = 0;
-    P311BP12BALANCE03CALVAR.button9PressCount = 0;
-    P311BP12BALANCE03CALVAR.button10PressCount = 0;
-    P311BP12BALANCE03CALVAR.button11PressCount = 0;
-    P311BP12BALANCE03CALVAR.button12PressCount = 0;
-    P311BP12BALANCE03CALVAR.button1Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button2Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button3Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button4Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button5Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button6Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button7Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button8Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button9Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button10Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button11Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button12Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button1Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button1Color = Colors.blue;
-    P311BP12BALANCE03CALVAR.button1Text = "";
-    P311BP12BALANCE03CALVAR.button2Text = "";
-    P311BP12BALANCE03CALVAR.button3Text = "";
-    P311BP12BALANCE03CALVAR.button4Text = "";
-    P311BP12BALANCE03CALVAR.button5Text = "";
-    P311BP12BALANCE03CALVAR.button6Text = "";
-    P311BP12BALANCE03CALVAR.button7Text = "";
-    P311BP12BALANCE03CALVAR.button8Text = "";
-    P311BP12BALANCE03CALVAR.button9Text = "";
-    P311BP12BALANCE03CALVAR.button10Text = "";
-    P311BP12BALANCE03CALVAR.button11Text = "";
-    P311BP12BALANCE03CALVAR.button12Text = "";
-    P311BP12BALANCE03CALVAR.Approve_By = "";
+    P410HESBALANCE02CALVAR.summary1 = 0;
+    P410HESBALANCE02CALVAR.summary2 = 0;
+    P410HESBALANCE02CALVAR.summary3 = 0;
+    P410HESBALANCE02CALVAR.summary4 = 0;
+    P410HESBALANCE02CALVAR.password = "";
+    P410HESBALANCE02CALVAR.button1PressCount = 0;
+    P410HESBALANCE02CALVAR.button2PressCount = 0;
+    P410HESBALANCE02CALVAR.button3PressCount = 0;
+    P410HESBALANCE02CALVAR.button4PressCount = 0;
+    P410HESBALANCE02CALVAR.button5PressCount = 0;
+    P410HESBALANCE02CALVAR.button6PressCount = 0;
+    P410HESBALANCE02CALVAR.button7PressCount = 0;
+    P410HESBALANCE02CALVAR.button8PressCount = 0;
+    P410HESBALANCE02CALVAR.button9PressCount = 0;
+    P410HESBALANCE02CALVAR.button10PressCount = 0;
+    P410HESBALANCE02CALVAR.button11PressCount = 0;
+    P410HESBALANCE02CALVAR.button12PressCount = 0;
+    P410HESBALANCE02CALVAR.button1Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button2Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button3Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button4Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button5Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button6Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button7Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button8Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button9Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button10Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button11Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button12Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button1Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button1Color = Colors.blue;
+    P410HESBALANCE02CALVAR.button1Text = "";
+    P410HESBALANCE02CALVAR.button2Text = "";
+    P410HESBALANCE02CALVAR.button3Text = "";
+    P410HESBALANCE02CALVAR.button4Text = "";
+    P410HESBALANCE02CALVAR.button5Text = "";
+    P410HESBALANCE02CALVAR.button6Text = "";
+    P410HESBALANCE02CALVAR.button7Text = "";
+    P410HESBALANCE02CALVAR.button8Text = "";
+    P410HESBALANCE02CALVAR.button9Text = "";
+    P410HESBALANCE02CALVAR.button10Text = "";
+    P410HESBALANCE02CALVAR.button11Text = "";
+    P410HESBALANCE02CALVAR.button12Text = "";
+    P410HESBALANCE02CALVAR.Approve_By = "";
+
     context
-        .read<P311BP12BALANCECALDATA_Bloc>()
-        .add(P311BP12BALANCECALDATA_GET4()); // เริ่มต้นปุ่มเป็นสีน้ำเงิน
+        .read<P410HESBALANCECALDATA_Bloc>()
+        .add(P410HESBALANCECALDATA_GET4()); // เริ่มต้นปุ่มเป็นสีน้ำเงิน
   }
 
   BoxDecoration _boxDecoration() {
@@ -130,238 +132,239 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
 
   @override
   Widget build(BuildContext context) {
-    P311BP12BALANCE03CALMAINcontext = context;
-    List<P311BP12BALANCECALDATAclass> _datain = widget.data ?? [];
+    P410HESBALANCE02CALMAINcontext = context;
+    List<P410HESBALANCECALDATAclass> _datain = widget.data ?? [];
+    print(_datain.length);
+    if (isInit) {
+      if (_datain.isNotEmpty) {
+        if (_datain[0].INSTRUMENT == 'BA02') {
+          P410HESBALANCE02CALVAR.button1PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue = _datain[0].G11;
+          if (P410HESBALANCE02CALVAR.targetValue > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue < 0.9999 ||
+              P410HESBALANCE02CALVAR.targetValue > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue > 1.0001) {
+            P410HESBALANCE02CALVAR.button1Color = Colors.red;
+            P410HESBALANCE02CALVAR.button1Text =
+                P410HESBALANCE02CALVAR.targetValue.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue == 0) {
+            P410HESBALANCE02CALVAR.button1Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button1Text = '';
+            P410HESBALANCE02CALVAR.button1PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button1Color = Colors.green;
+            P410HESBALANCE02CALVAR.button1Text =
+                P410HESBALANCE02CALVAR.targetValue.toStringAsFixed(4);
+          }
 
-    if (_datain.isNotEmpty) {
-      if (_datain[0].INSTRUMENT == 'BA03') {
-        P311BP12BALANCE03CALVAR.button1PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue = _datain[0].G11;
-        print(P311BP12BALANCE03CALVAR.targetValue);
-        if (P311BP12BALANCE03CALVAR.targetValue > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue < 0.9999 ||
-            P311BP12BALANCE03CALVAR.targetValue > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue > 1.0001) {
-          P311BP12BALANCE03CALVAR.button1Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button1Text =
-              P311BP12BALANCE03CALVAR.targetValue.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue == 0) {
-          P311BP12BALANCE03CALVAR.button1Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button1Text = '';
-          P311BP12BALANCE03CALVAR.button1PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button1Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button1Text =
-              P311BP12BALANCE03CALVAR.targetValue.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button2PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue1 = _datain[0].G12;
+          if (P410HESBALANCE02CALVAR.targetValue1 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue1 < 0.9999 ||
+              P410HESBALANCE02CALVAR.targetValue1 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue1 > 1.0001) {
+            P410HESBALANCE02CALVAR.button2Color = Colors.red;
+            P410HESBALANCE02CALVAR.button2Text =
+                P410HESBALANCE02CALVAR.targetValue1.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue1 == 0) {
+            P410HESBALANCE02CALVAR.button2Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button2Text = '';
+            P410HESBALANCE02CALVAR.button2PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button2Color = Colors.green;
+            P410HESBALANCE02CALVAR.button2Text =
+                P410HESBALANCE02CALVAR.targetValue1.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button2PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue1 = _datain[0].G12;
-        if (P311BP12BALANCE03CALVAR.targetValue1 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue1 < 0.9999 ||
-            P311BP12BALANCE03CALVAR.targetValue1 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue1 > 1.0001) {
-          P311BP12BALANCE03CALVAR.button2Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button2Text =
-              P311BP12BALANCE03CALVAR.targetValue1.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue1 == 0) {
-          P311BP12BALANCE03CALVAR.button2Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button2Text = '';
-          P311BP12BALANCE03CALVAR.button2PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button2Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button2Text =
-              P311BP12BALANCE03CALVAR.targetValue1.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button3PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue2 = _datain[0].G13;
+          if (P410HESBALANCE02CALVAR.targetValue2 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue2 < 0.9999 ||
+              P410HESBALANCE02CALVAR.targetValue2 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue2 > 1.0001) {
+            P410HESBALANCE02CALVAR.button3Color = Colors.red;
+            P410HESBALANCE02CALVAR.button3Text =
+                P410HESBALANCE02CALVAR.targetValue2.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue2 == 0) {
+            P410HESBALANCE02CALVAR.button3Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button3Text = '';
+            P410HESBALANCE02CALVAR.button3PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button3Color = Colors.green;
+            P410HESBALANCE02CALVAR.button3Text =
+                P410HESBALANCE02CALVAR.targetValue2.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button3PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue2 = _datain[0].G13;
-        if (P311BP12BALANCE03CALVAR.targetValue2 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue2 < 0.9999 ||
-            P311BP12BALANCE03CALVAR.targetValue2 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue2 > 1.0001) {
-          P311BP12BALANCE03CALVAR.button3Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button3Text =
-              P311BP12BALANCE03CALVAR.targetValue2.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue2 == 0) {
-          P311BP12BALANCE03CALVAR.button3Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button3Text = '';
-          P311BP12BALANCE03CALVAR.button3PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button3Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button3Text =
-              P311BP12BALANCE03CALVAR.targetValue2.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button4PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue3 = _datain[0].G501;
+          if (P410HESBALANCE02CALVAR.targetValue3 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue3 < 49.9997 ||
+              P410HESBALANCE02CALVAR.targetValue3 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue3 > 50.0003) {
+            P410HESBALANCE02CALVAR.button4Color = Colors.red;
+            P410HESBALANCE02CALVAR.button4Text =
+                P410HESBALANCE02CALVAR.targetValue3.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue3 == 0) {
+            P410HESBALANCE02CALVAR.button4Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button4Text = '';
+            P410HESBALANCE02CALVAR.button4PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button4Color = Colors.green;
+            P410HESBALANCE02CALVAR.button4Text =
+                P410HESBALANCE02CALVAR.targetValue3.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button4PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue3 = _datain[0].G501;
-        if (P311BP12BALANCE03CALVAR.targetValue3 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue3 < 49.9997 ||
-            P311BP12BALANCE03CALVAR.targetValue3 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue3 > 50.0003) {
-          P311BP12BALANCE03CALVAR.button4Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button4Text =
-              P311BP12BALANCE03CALVAR.targetValue3.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue3 == 0) {
-          P311BP12BALANCE03CALVAR.button4Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button4Text = '';
-          P311BP12BALANCE03CALVAR.button4PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button4Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button4Text =
-              P311BP12BALANCE03CALVAR.targetValue3.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button5PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue4 = _datain[0].G502;
+          if (P410HESBALANCE02CALVAR.targetValue4 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue4 < 49.9997 ||
+              P410HESBALANCE02CALVAR.targetValue4 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue4 > 50.0003) {
+            P410HESBALANCE02CALVAR.button5Color = Colors.red;
+            P410HESBALANCE02CALVAR.button5Text =
+                P410HESBALANCE02CALVAR.targetValue4.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue4 == 0) {
+            P410HESBALANCE02CALVAR.button5Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button5Text = '';
+            P410HESBALANCE02CALVAR.button5PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button5Color = Colors.green;
+            P410HESBALANCE02CALVAR.button5Text =
+                P410HESBALANCE02CALVAR.targetValue4.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button5PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue4 = _datain[0].G502;
-        if (P311BP12BALANCE03CALVAR.targetValue4 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue4 < 49.9997 ||
-            P311BP12BALANCE03CALVAR.targetValue4 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue4 > 50.0003) {
-          P311BP12BALANCE03CALVAR.button5Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button5Text =
-              P311BP12BALANCE03CALVAR.targetValue4.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue4 == 0) {
-          P311BP12BALANCE03CALVAR.button5Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button5Text = '';
-          P311BP12BALANCE03CALVAR.button5PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button5Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button5Text =
-              P311BP12BALANCE03CALVAR.targetValue4.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button6PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue5 = _datain[0].G503;
+          if (P410HESBALANCE02CALVAR.targetValue5 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue5 < 49.9997 ||
+              P410HESBALANCE02CALVAR.targetValue5 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue5 > 50.0003) {
+            P410HESBALANCE02CALVAR.button6Color = Colors.red;
+            P410HESBALANCE02CALVAR.button6Text =
+                P410HESBALANCE02CALVAR.targetValue5.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue5 == 0) {
+            P410HESBALANCE02CALVAR.button6Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button6Text = '';
+            P410HESBALANCE02CALVAR.button6PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button6Color = Colors.green;
+            P410HESBALANCE02CALVAR.button6Text =
+                P410HESBALANCE02CALVAR.targetValue5.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button6PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue5 = _datain[0].G503;
-        if (P311BP12BALANCE03CALVAR.targetValue5 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue5 < 49.9997 ||
-            P311BP12BALANCE03CALVAR.targetValue5 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue5 > 50.0003) {
-          P311BP12BALANCE03CALVAR.button6Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button6Text =
-              P311BP12BALANCE03CALVAR.targetValue5.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue5 == 0) {
-          P311BP12BALANCE03CALVAR.button6Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button6Text = '';
-          P311BP12BALANCE03CALVAR.button6PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button6Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button6Text =
-              P311BP12BALANCE03CALVAR.targetValue5.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button7PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue6 = _datain[0].G1001;
+          if (P410HESBALANCE02CALVAR.targetValue6 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue6 < 99.9995 ||
+              P410HESBALANCE02CALVAR.targetValue6 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue6 > 100.0005) {
+            P410HESBALANCE02CALVAR.button7Color = Colors.red;
+            P410HESBALANCE02CALVAR.button7Text =
+                P410HESBALANCE02CALVAR.targetValue6.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue6 == 0) {
+            P410HESBALANCE02CALVAR.button7Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button7Text = '';
+            P410HESBALANCE02CALVAR.button7PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button7Color = Colors.green;
+            P410HESBALANCE02CALVAR.button7Text =
+                P410HESBALANCE02CALVAR.targetValue6.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button7PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue6 = _datain[0].G1001;
-        if (P311BP12BALANCE03CALVAR.targetValue6 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue6 < 99.9995 ||
-            P311BP12BALANCE03CALVAR.targetValue6 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue6 > 100.0005) {
-          P311BP12BALANCE03CALVAR.button7Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button7Text =
-              P311BP12BALANCE03CALVAR.targetValue6.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue6 == 0) {
-          P311BP12BALANCE03CALVAR.button7Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button7Text = '';
-          P311BP12BALANCE03CALVAR.button7PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button7Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button7Text =
-              P311BP12BALANCE03CALVAR.targetValue6.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button8PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue7 = _datain[0].G1002;
+          if (P410HESBALANCE02CALVAR.targetValue7 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue7 < 99.9995 ||
+              P410HESBALANCE02CALVAR.targetValue7 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue7 > 100.0005) {
+            P410HESBALANCE02CALVAR.button8Color = Colors.red;
+            P410HESBALANCE02CALVAR.button8Text =
+                P410HESBALANCE02CALVAR.targetValue7.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue7 == 0) {
+            P410HESBALANCE02CALVAR.button8Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button8Text = '';
+            P410HESBALANCE02CALVAR.button8PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button8Color = Colors.green;
+            P410HESBALANCE02CALVAR.button8Text =
+                P410HESBALANCE02CALVAR.targetValue7.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button8PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue7 = _datain[0].G1002;
-        if (P311BP12BALANCE03CALVAR.targetValue7 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue7 < 99.9995 ||
-            P311BP12BALANCE03CALVAR.targetValue7 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue7 > 100.0005) {
-          P311BP12BALANCE03CALVAR.button8Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button8Text =
-              P311BP12BALANCE03CALVAR.targetValue7.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue7 == 0) {
-          P311BP12BALANCE03CALVAR.button8Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button8Text = '';
-          P311BP12BALANCE03CALVAR.button8PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button8Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button8Text =
-              P311BP12BALANCE03CALVAR.targetValue7.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button9PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue8 = _datain[0].G1003;
+          if (P410HESBALANCE02CALVAR.targetValue8 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue8 < 99.9995 ||
+              P410HESBALANCE02CALVAR.targetValue8 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue8 > 100.0005) {
+            P410HESBALANCE02CALVAR.button9Color = Colors.red;
+            P410HESBALANCE02CALVAR.button9Text =
+                P410HESBALANCE02CALVAR.targetValue8.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue8 == 0) {
+            P410HESBALANCE02CALVAR.button9Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button9Text = '';
+            P410HESBALANCE02CALVAR.button9PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button9Color = Colors.green;
+            P410HESBALANCE02CALVAR.button9Text =
+                P410HESBALANCE02CALVAR.targetValue8.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button9PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue8 = _datain[0].G1003;
-        if (P311BP12BALANCE03CALVAR.targetValue8 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue8 < 99.9995 ||
-            P311BP12BALANCE03CALVAR.targetValue8 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue8 > 100.0005) {
-          P311BP12BALANCE03CALVAR.button9Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button9Text =
-              P311BP12BALANCE03CALVAR.targetValue8.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue8 == 0) {
-          P311BP12BALANCE03CALVAR.button9Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button9Text = '';
-          P311BP12BALANCE03CALVAR.button9PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button9Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button9Text =
-              P311BP12BALANCE03CALVAR.targetValue8.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button10PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue9 = _datain[0].G2001;
+          if (P410HESBALANCE02CALVAR.targetValue9 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue9 < 199.9990 ||
+              P410HESBALANCE02CALVAR.targetValue9 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue9 > 200.0010) {
+            P410HESBALANCE02CALVAR.button10Color = Colors.red;
+            P410HESBALANCE02CALVAR.button10Text =
+                P410HESBALANCE02CALVAR.targetValue9.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue9 == 0) {
+            P410HESBALANCE02CALVAR.button10Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button10Text = '';
+            P410HESBALANCE02CALVAR.button10PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button10Color = Colors.green;
+            P410HESBALANCE02CALVAR.button10Text =
+                P410HESBALANCE02CALVAR.targetValue9.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button10PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue9 = _datain[0].G2001;
-        if (P311BP12BALANCE03CALVAR.targetValue9 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue9 < 199.9990 ||
-            P311BP12BALANCE03CALVAR.targetValue9 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue9 > 200.0010) {
-          P311BP12BALANCE03CALVAR.button10Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button10Text =
-              P311BP12BALANCE03CALVAR.targetValue9.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue9 == 0) {
-          P311BP12BALANCE03CALVAR.button10Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button10Text = '';
-          P311BP12BALANCE03CALVAR.button10PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button10Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button10Text =
-              P311BP12BALANCE03CALVAR.targetValue9.toStringAsFixed(4);
-        }
+          P410HESBALANCE02CALVAR.button11PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue10 = _datain[0].G2002;
+          if (P410HESBALANCE02CALVAR.targetValue10 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue10 < 199.9990 ||
+              P410HESBALANCE02CALVAR.targetValue10 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue10 > 200.0010) {
+            P410HESBALANCE02CALVAR.button11Color = Colors.red;
+            P410HESBALANCE02CALVAR.button11Text =
+                P410HESBALANCE02CALVAR.targetValue10.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue10 == 0) {
+            P410HESBALANCE02CALVAR.button11Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button11Text = '';
+            P410HESBALANCE02CALVAR.button11PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button11Color = Colors.green;
+            P410HESBALANCE02CALVAR.button11Text =
+                P410HESBALANCE02CALVAR.targetValue10.toStringAsFixed(4);
+          }
 
-        P311BP12BALANCE03CALVAR.button11PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue10 = _datain[0].G2002;
-        if (P311BP12BALANCE03CALVAR.targetValue10 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue10 < 199.9990 ||
-            P311BP12BALANCE03CALVAR.targetValue10 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue10 > 200.0010) {
-          P311BP12BALANCE03CALVAR.button11Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button11Text =
-              P311BP12BALANCE03CALVAR.targetValue10.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue10 == 0) {
-          P311BP12BALANCE03CALVAR.button11Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button11Text = '';
-          P311BP12BALANCE03CALVAR.button11PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button11Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button11Text =
-              P311BP12BALANCE03CALVAR.targetValue10.toStringAsFixed(4);
-        }
-
-        P311BP12BALANCE03CALVAR.button12PressCount = 2;
-        P311BP12BALANCE03CALVAR.targetValue11 = _datain[0].G2003;
-        if (P311BP12BALANCE03CALVAR.targetValue11 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue11 < 199.9990 ||
-            P311BP12BALANCE03CALVAR.targetValue11 > 0 &&
-                P311BP12BALANCE03CALVAR.targetValue11 > 200.0010) {
-          P311BP12BALANCE03CALVAR.button12Color = Colors.red;
-          P311BP12BALANCE03CALVAR.button12Text =
-              P311BP12BALANCE03CALVAR.targetValue11.toStringAsFixed(4);
-        } else if (P311BP12BALANCE03CALVAR.targetValue11 == 0) {
-          P311BP12BALANCE03CALVAR.button12Color = Colors.blue;
-          P311BP12BALANCE03CALVAR.button12Text = '';
-          P311BP12BALANCE03CALVAR.button12PressCount = 0;
-        } else {
-          P311BP12BALANCE03CALVAR.button12Color = Colors.green;
-          P311BP12BALANCE03CALVAR.button12Text =
-              P311BP12BALANCE03CALVAR.targetValue11.toStringAsFixed(4);
+          P410HESBALANCE02CALVAR.button12PressCount = 2;
+          P410HESBALANCE02CALVAR.targetValue11 = _datain[0].G2003;
+          if (P410HESBALANCE02CALVAR.targetValue11 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue11 < 199.9990 ||
+              P410HESBALANCE02CALVAR.targetValue11 > 0 &&
+                  P410HESBALANCE02CALVAR.targetValue11 > 200.0010) {
+            P410HESBALANCE02CALVAR.button12Color = Colors.red;
+            P410HESBALANCE02CALVAR.button12Text =
+                P410HESBALANCE02CALVAR.targetValue11.toStringAsFixed(4);
+          } else if (P410HESBALANCE02CALVAR.targetValue11 == 0) {
+            P410HESBALANCE02CALVAR.button12Color = Colors.blue;
+            P410HESBALANCE02CALVAR.button12Text = '';
+            P410HESBALANCE02CALVAR.button12PressCount = 0;
+          } else {
+            P410HESBALANCE02CALVAR.button12Color = Colors.green;
+            P410HESBALANCE02CALVAR.button12Text =
+                P410HESBALANCE02CALVAR.targetValue11.toStringAsFixed(4);
+          }
         }
       }
     }
@@ -395,7 +398,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('CTC-BAL-002'),
+        title: Text('HESBALANCE02'),
         actions: [
           IconButton(
             icon: Icon(Icons.save_as), // ปุ่ม Save
@@ -415,9 +418,8 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         onPressed: () {
                           Navigator.of(dialogContext).pop();
                           context
-                              .read<P311BP12BALANCECALDATA_Bloc>()
-                              .add(P311BP12BALANCECALDATA_GET3());
-                          // ปิด dialog
+                              .read<P410HESBALANCECALDATA_Bloc>()
+                              .add(P410HESBALANCECALDATA_GET3());
                         },
                       ),
                     ],
@@ -435,7 +437,6 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
           //     showDialog(
           //       context: context,
           //       builder: (BuildContext dialogContext) {
-          //         // ใช้ context ด้านนอก (ที่มี BlocProvider) แทน context ด้านใน dialog
           //         return AlertDialog(
           //           title: Text("ล้างข้อมูลแล้ว"),
           //           content: Text("ล้างข้อมูลบันทึกชั่วคราวเรียบร้อย"),
@@ -444,11 +445,10 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
           //               child: Text("OK"),
           //               onPressed: () {
           //                 Navigator.of(dialogContext)
-          //                     .pop(); // ปิด dialog ด้วย context ด้านใน
+          //                     .pop(); // ปิด Dialog ด้วย dialogContext
           //                 context
-          //                     .read<
-          //                         P311BP12BALANCECALDATA_Bloc>() // ใช้ context ด้านนอก
-          //                     .add(P311BP12BALANCECALDATA_GET5());
+          //                     .read<P410HESBALANCECALDATA_Bloc>()
+          //                     .add(P410HESBALANCECALDATA_GET5());
           //               },
           //             ),
           //           ],
@@ -517,78 +517,82 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button2PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button2PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
+                                  print(P410HESBALANCE02CALVAR.targetValue);
+                                  P410HESBALANCE02CALVAR.button1PressCount++;
 
-                                  P311BP12BALANCE03CALVAR.button1PressCount++;
-
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button1PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button1Color =
+                                    print("in if");
+                                    P410HESBALANCE02CALVAR.button1Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button1Text =
+                                    P410HESBALANCE02CALVAR.button1Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue >=
+                                    print("in else");
+                                    if ((P410HESBALANCE02CALVAR.targetValue >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
-                                                    .targetValue <
+                                            P410HESBALANCE02CALVAR.targetValue <
                                                 0.9999) ||
-                                        P311BP12BALANCE03CALVAR.targetValue >
+                                        P410HESBALANCE02CALVAR.targetValue >
                                             1.0001) {
-                                      P311BP12BALANCE03CALVAR.button1Color =
+                                      print("in else in if");
+                                      P410HESBALANCE02CALVAR.button1Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button1Text =
-                                          P311BP12BALANCE03CALVAR.targetValue
+                                      P410HESBALANCE02CALVAR.button1Text =
+                                          P410HESBALANCE02CALVAR.targetValue
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button1Color =
+                                      print("in else in else");
+                                      P410HESBALANCE02CALVAR.button1Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button1Text =
-                                          P311BP12BALANCE03CALVAR.targetValue
+                                      P410HESBALANCE02CALVAR.button1Text =
+                                          P410HESBALANCE02CALVAR.targetValue
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -597,7 +601,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button1Color,
+                                  P410HESBALANCE02CALVAR.button1Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -605,7 +609,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button1Text),
+                            child: Text(P410HESBALANCE02CALVAR.button1Text),
                           ),
                         ),
                         Container(
@@ -614,78 +618,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue1 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button2PressCount++;
+                                  P410HESBALANCE02CALVAR.button2PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button2PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button2Color =
+                                    P410HESBALANCE02CALVAR.button2Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button2Text =
+                                    P410HESBALANCE02CALVAR.button2Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue1 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue1 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue1 <
                                                 0.9999) ||
-                                        P311BP12BALANCE03CALVAR.targetValue1 >
+                                        P410HESBALANCE02CALVAR.targetValue1 >
                                             1.0001) {
-                                      P311BP12BALANCE03CALVAR.button2Color =
+                                      P410HESBALANCE02CALVAR.button2Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button2Text =
-                                          P311BP12BALANCE03CALVAR.targetValue1
+                                      P410HESBALANCE02CALVAR.button2Text =
+                                          P410HESBALANCE02CALVAR.targetValue1
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button2Color =
+                                      P410HESBALANCE02CALVAR.button2Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button2Text =
-                                          P311BP12BALANCE03CALVAR.targetValue1
+                                      P410HESBALANCE02CALVAR.button2Text =
+                                          P410HESBALANCE02CALVAR.targetValue1
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -694,7 +699,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button2Color,
+                                  P410HESBALANCE02CALVAR.button2Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -702,7 +707,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button2Text),
+                            child: Text(P410HESBALANCE02CALVAR.button2Text),
                           ),
                         ),
                         Container(
@@ -711,78 +716,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue2 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
+                                  print(P410HESBALANCE02CALVAR.targetValue2);
+                                  P410HESBALANCE02CALVAR.button3PressCount++;
 
-                                  P311BP12BALANCE03CALVAR.button3PressCount++;
-
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button3PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button3Color =
+                                    P410HESBALANCE02CALVAR.button3Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button3Text =
+                                    P410HESBALANCE02CALVAR.button3Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue2 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue2 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue2 <
                                                 0.9999) ||
-                                        P311BP12BALANCE03CALVAR.targetValue2 >
+                                        P410HESBALANCE02CALVAR.targetValue2 >
                                             1.0001) {
-                                      P311BP12BALANCE03CALVAR.button3Color =
+                                      P410HESBALANCE02CALVAR.button3Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button3Text =
-                                          P311BP12BALANCE03CALVAR.targetValue2
+                                      P410HESBALANCE02CALVAR.button3Text =
+                                          P410HESBALANCE02CALVAR.targetValue2
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button3Color =
+                                      P410HESBALANCE02CALVAR.button3Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button3Text =
-                                          P311BP12BALANCE03CALVAR.targetValue2
+                                      P410HESBALANCE02CALVAR.button3Text =
+                                          P410HESBALANCE02CALVAR.targetValue2
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -791,7 +797,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button3Color,
+                                  P410HESBALANCE02CALVAR.button3Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -799,7 +805,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button3Text),
+                            child: Text(P410HESBALANCE02CALVAR.button3Text),
                           ),
                         ),
                         Container(
@@ -810,13 +816,13 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             child: Builder(
                               builder: (context) {
                                 double val1 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button1Text) ??
+                                        P410HESBALANCE02CALVAR.button1Text) ??
                                     0;
                                 double val2 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button2Text) ??
+                                        P410HESBALANCE02CALVAR.button2Text) ??
                                     0;
                                 double val3 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button3Text) ??
+                                        P410HESBALANCE02CALVAR.button3Text) ??
                                     0;
 
                                 double sum = val1 + val2 + val3;
@@ -827,7 +833,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                                 if (val3 != 0) count++;
 
                                 double average = count > 0 ? sum / count : 0;
-                                P311BP12BALANCE03CALVAR.summary1 = average;
+                                P410HESBALANCE02CALVAR.summary1 = average;
 
                                 return Text(
                                   '${average.toStringAsFixed(4)}',
@@ -854,78 +860,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue3 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button4PressCount++;
+                                  P410HESBALANCE02CALVAR.button4PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button4PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button4Color =
+                                    P410HESBALANCE02CALVAR.button4Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button4Text =
+                                    P410HESBALANCE02CALVAR.button4Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue3 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue3 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue3 <
                                                 49.9997) ||
-                                        P311BP12BALANCE03CALVAR.targetValue3 >
+                                        P410HESBALANCE02CALVAR.targetValue3 >
                                             50.0003) {
-                                      P311BP12BALANCE03CALVAR.button4Color =
+                                      P410HESBALANCE02CALVAR.button4Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button4Text =
-                                          P311BP12BALANCE03CALVAR.targetValue3
+                                      P410HESBALANCE02CALVAR.button4Text =
+                                          P410HESBALANCE02CALVAR.targetValue3
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button4Color =
+                                      P410HESBALANCE02CALVAR.button4Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button4Text =
-                                          P311BP12BALANCE03CALVAR.targetValue3
+                                      P410HESBALANCE02CALVAR.button4Text =
+                                          P410HESBALANCE02CALVAR.targetValue3
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -934,7 +941,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button4Color,
+                                  P410HESBALANCE02CALVAR.button4Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -942,7 +949,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button4Text),
+                            child: Text(P410HESBALANCE02CALVAR.button4Text),
                           ),
                         ),
                         Container(
@@ -951,78 +958,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue4 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button5PressCount++;
+                                  P410HESBALANCE02CALVAR.button5PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button5PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button5Color =
+                                    P410HESBALANCE02CALVAR.button5Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button5Text =
+                                    P410HESBALANCE02CALVAR.button5Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue4 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue4 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue4 <
                                                 49.9997) ||
-                                        P311BP12BALANCE03CALVAR.targetValue4 >
+                                        P410HESBALANCE02CALVAR.targetValue4 >
                                             50.0003) {
-                                      P311BP12BALANCE03CALVAR.button5Color =
+                                      P410HESBALANCE02CALVAR.button5Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button5Text =
-                                          P311BP12BALANCE03CALVAR.targetValue4
+                                      P410HESBALANCE02CALVAR.button5Text =
+                                          P410HESBALANCE02CALVAR.targetValue4
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button5Color =
+                                      P410HESBALANCE02CALVAR.button5Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button5Text =
-                                          P311BP12BALANCE03CALVAR.targetValue4
+                                      P410HESBALANCE02CALVAR.button5Text =
+                                          P410HESBALANCE02CALVAR.targetValue4
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1031,7 +1039,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button5Color,
+                                  P410HESBALANCE02CALVAR.button5Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1039,7 +1047,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button5Text),
+                            child: Text(P410HESBALANCE02CALVAR.button5Text),
                           ),
                         ),
                         Container(
@@ -1048,78 +1056,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue5 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button6PressCount++;
+                                  P410HESBALANCE02CALVAR.button6PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button6PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button6Color =
+                                    P410HESBALANCE02CALVAR.button6Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button6Text =
+                                    P410HESBALANCE02CALVAR.button6Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue5 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue5 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue5 <
                                                 49.9997) ||
-                                        P311BP12BALANCE03CALVAR.targetValue5 >
+                                        P410HESBALANCE02CALVAR.targetValue5 >
                                             50.0003) {
-                                      P311BP12BALANCE03CALVAR.button6Color =
+                                      P410HESBALANCE02CALVAR.button6Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button6Text =
-                                          P311BP12BALANCE03CALVAR.targetValue5
+                                      P410HESBALANCE02CALVAR.button6Text =
+                                          P410HESBALANCE02CALVAR.targetValue5
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button6Color =
+                                      P410HESBALANCE02CALVAR.button6Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button6Text =
-                                          P311BP12BALANCE03CALVAR.targetValue5
+                                      P410HESBALANCE02CALVAR.button6Text =
+                                          P410HESBALANCE02CALVAR.targetValue5
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1128,7 +1137,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button6Color,
+                                  P410HESBALANCE02CALVAR.button6Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1136,7 +1145,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button6Text),
+                            child: Text(P410HESBALANCE02CALVAR.button6Text),
                           ),
                         ),
                         Container(
@@ -1147,13 +1156,13 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             child: Builder(
                               builder: (context) {
                                 double val1 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button4Text) ??
+                                        P410HESBALANCE02CALVAR.button4Text) ??
                                     0;
                                 double val2 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button5Text) ??
+                                        P410HESBALANCE02CALVAR.button5Text) ??
                                     0;
                                 double val3 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button6Text) ??
+                                        P410HESBALANCE02CALVAR.button6Text) ??
                                     0;
 
                                 double sum = val1 + val2 + val3;
@@ -1164,7 +1173,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                                 if (val3 != 0) count++;
 
                                 double average = count > 0 ? sum / count : 0;
-                                P311BP12BALANCE03CALVAR.summary2 = average;
+                                P410HESBALANCE02CALVAR.summary2 = average;
 
                                 return Text(
                                   '${average.toStringAsFixed(4)}',
@@ -1191,78 +1200,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue6 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button7PressCount++;
+                                  P410HESBALANCE02CALVAR.button7PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button7PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button7Color =
+                                    P410HESBALANCE02CALVAR.button7Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button7Text =
+                                    P410HESBALANCE02CALVAR.button7Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue6 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue6 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue6 <
                                                 99.9995) ||
-                                        P311BP12BALANCE03CALVAR.targetValue6 >
+                                        P410HESBALANCE02CALVAR.targetValue6 >
                                             100.0005) {
-                                      P311BP12BALANCE03CALVAR.button7Color =
+                                      P410HESBALANCE02CALVAR.button7Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button7Text =
-                                          P311BP12BALANCE03CALVAR.targetValue6
+                                      P410HESBALANCE02CALVAR.button7Text =
+                                          P410HESBALANCE02CALVAR.targetValue6
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button7Color =
+                                      P410HESBALANCE02CALVAR.button7Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button7Text =
-                                          P311BP12BALANCE03CALVAR.targetValue6
+                                      P410HESBALANCE02CALVAR.button7Text =
+                                          P410HESBALANCE02CALVAR.targetValue6
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1271,7 +1281,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button7Color,
+                                  P410HESBALANCE02CALVAR.button7Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1279,7 +1289,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button7Text),
+                            child: Text(P410HESBALANCE02CALVAR.button7Text),
                           ),
                         ),
                         Container(
@@ -1288,78 +1298,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue7 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button8PressCount++;
+                                  P410HESBALANCE02CALVAR.button8PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button8PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button8Color =
+                                    P410HESBALANCE02CALVAR.button8Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button8Text =
+                                    P410HESBALANCE02CALVAR.button8Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue7 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue7 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue7 <
                                                 99.9995) ||
-                                        P311BP12BALANCE03CALVAR.targetValue7 >
+                                        P410HESBALANCE02CALVAR.targetValue7 >
                                             100.0005) {
-                                      P311BP12BALANCE03CALVAR.button8Color =
+                                      P410HESBALANCE02CALVAR.button8Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button8Text =
-                                          P311BP12BALANCE03CALVAR.targetValue7
+                                      P410HESBALANCE02CALVAR.button8Text =
+                                          P410HESBALANCE02CALVAR.targetValue7
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button8Color =
+                                      P410HESBALANCE02CALVAR.button8Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button8Text =
-                                          P311BP12BALANCE03CALVAR.targetValue7
+                                      P410HESBALANCE02CALVAR.button8Text =
+                                          P410HESBALANCE02CALVAR.targetValue7
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1368,7 +1379,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button8Color,
+                                  P410HESBALANCE02CALVAR.button8Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1376,7 +1387,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button8Text),
+                            child: Text(P410HESBALANCE02CALVAR.button8Text),
                           ),
                         ),
                         Container(
@@ -1385,78 +1396,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue8 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button9PressCount++;
+                                  P410HESBALANCE02CALVAR.button9PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button9PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button9Color =
+                                    P410HESBALANCE02CALVAR.button9Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button9Text =
+                                    P410HESBALANCE02CALVAR.button9Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue8 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue8 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue8 <
                                                 99.9995) ||
-                                        P311BP12BALANCE03CALVAR.targetValue8 >
+                                        P410HESBALANCE02CALVAR.targetValue8 >
                                             100.0005) {
-                                      P311BP12BALANCE03CALVAR.button9Color =
+                                      P410HESBALANCE02CALVAR.button9Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button9Text =
-                                          P311BP12BALANCE03CALVAR.targetValue8
+                                      P410HESBALANCE02CALVAR.button9Text =
+                                          P410HESBALANCE02CALVAR.targetValue8
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button9Color =
+                                      P410HESBALANCE02CALVAR.button9Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button9Text =
-                                          P311BP12BALANCE03CALVAR.targetValue8
+                                      P410HESBALANCE02CALVAR.button9Text =
+                                          P410HESBALANCE02CALVAR.targetValue8
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1465,7 +1477,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button9Color,
+                                  P410HESBALANCE02CALVAR.button9Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1473,7 +1485,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button9Text),
+                            child: Text(P410HESBALANCE02CALVAR.button9Text),
                           ),
                         ),
                         Container(
@@ -1484,13 +1496,13 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             child: Builder(
                               builder: (context) {
                                 double val1 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button7Text) ??
+                                        P410HESBALANCE02CALVAR.button7Text) ??
                                     0;
                                 double val2 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button8Text) ??
+                                        P410HESBALANCE02CALVAR.button8Text) ??
                                     0;
                                 double val3 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button9Text) ??
+                                        P410HESBALANCE02CALVAR.button9Text) ??
                                     0;
 
                                 double sum = val1 + val2 + val3;
@@ -1501,7 +1513,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                                 if (val3 != 0) count++;
 
                                 double average = count > 0 ? sum / count : 0;
-                                P311BP12BALANCE03CALVAR.summary3 = average;
+                                P410HESBALANCE02CALVAR.summary3 = average;
 
                                 return Text(
                                   '${average.toStringAsFixed(4)}',
@@ -1528,78 +1540,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue9 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button10PressCount++;
+                                  P410HESBALANCE02CALVAR.button10PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button10PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button10Color =
+                                    P410HESBALANCE02CALVAR.button10Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button10Text =
+                                    P410HESBALANCE02CALVAR.button10Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR.targetValue9 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue9 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue9 <
                                                 199.9990) ||
-                                        P311BP12BALANCE03CALVAR.targetValue9 >
+                                        P410HESBALANCE02CALVAR.targetValue9 >
                                             200.0010) {
-                                      P311BP12BALANCE03CALVAR.button10Color =
+                                      P410HESBALANCE02CALVAR.button10Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button10Text =
-                                          P311BP12BALANCE03CALVAR.targetValue9
+                                      P410HESBALANCE02CALVAR.button10Text =
+                                          P410HESBALANCE02CALVAR.targetValue9
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button10Color =
+                                      P410HESBALANCE02CALVAR.button10Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button10Text =
-                                          P311BP12BALANCE03CALVAR.targetValue9
+                                      P410HESBALANCE02CALVAR.button10Text =
+                                          P410HESBALANCE02CALVAR.targetValue9
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1608,7 +1621,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button10Color,
+                                  P410HESBALANCE02CALVAR.button10Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1616,7 +1629,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button10Text),
+                            child: Text(P410HESBALANCE02CALVAR.button10Text),
                           ),
                         ),
                         Container(
@@ -1625,79 +1638,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button12PressCount ==
+                                  P410HESBALANCE02CALVAR.button12PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue10 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button11PressCount++;
+                                  P410HESBALANCE02CALVAR.button11PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button11PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button11Color =
+                                    P410HESBALANCE02CALVAR.button11Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button11Text =
+                                    P410HESBALANCE02CALVAR.button11Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR
-                                                    .targetValue10 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue10 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue10 <
                                                 199.9990) ||
-                                        P311BP12BALANCE03CALVAR.targetValue10 >
+                                        P410HESBALANCE02CALVAR.targetValue10 >
                                             200.0010) {
-                                      P311BP12BALANCE03CALVAR.button11Color =
+                                      P410HESBALANCE02CALVAR.button11Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button11Text =
-                                          P311BP12BALANCE03CALVAR.targetValue10
+                                      P410HESBALANCE02CALVAR.button11Text =
+                                          P410HESBALANCE02CALVAR.targetValue10
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button11Color =
+                                      P410HESBALANCE02CALVAR.button11Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button11Text =
-                                          P311BP12BALANCE03CALVAR.targetValue10
+                                      P410HESBALANCE02CALVAR.button11Text =
+                                          P410HESBALANCE02CALVAR.targetValue10
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1706,7 +1719,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button11Color,
+                                  P410HESBALANCE02CALVAR.button11Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1714,7 +1727,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button11Text),
+                            child: Text(P410HESBALANCE02CALVAR.button11Text),
                           ),
                         ),
                         Container(
@@ -1723,79 +1736,79 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           decoration: _boxDecoration(),
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (P311BP12BALANCE03CALVAR.button1PressCount == 1 ||
-                                  P311BP12BALANCE03CALVAR.button2PressCount ==
+                              isInit = false;
+                              if (P410HESBALANCE02CALVAR.button1PressCount == 1 ||
+                                  P410HESBALANCE02CALVAR.button2PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button3PressCount ==
+                                  P410HESBALANCE02CALVAR.button3PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button4PressCount ==
+                                  P410HESBALANCE02CALVAR.button4PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button5PressCount ==
+                                  P410HESBALANCE02CALVAR.button5PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button6PressCount ==
+                                  P410HESBALANCE02CALVAR.button6PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button7PressCount ==
+                                  P410HESBALANCE02CALVAR.button7PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button8PressCount ==
+                                  P410HESBALANCE02CALVAR.button8PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button9PressCount ==
+                                  P410HESBALANCE02CALVAR.button9PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button10PressCount ==
+                                  P410HESBALANCE02CALVAR.button10PressCount ==
                                       1 ||
-                                  P311BP12BALANCE03CALVAR.button11PressCount ==
+                                  P410HESBALANCE02CALVAR.button11PressCount ==
                                       1) {
                                 return;
                               }
                               final response = await Dio().post(
-                                "${serverNRBP12}GETVALUE03",
+                                "${serverNRHES}GETVALUE02_HES",
                                 data: {},
                               );
                               var input = [];
                               if (response.statusCode == 200) {
                                 var databuff = response.data;
                                 input = databuff;
-                                List<P311BP12BALANCECALDATAclass> outputdata =
+                                List<P410HESBALANCECALDATAclass> outputdata =
                                     input.map((data) {
-                                  return P311BP12BALANCECALDATAclass(
+                                  return P410HESBALANCECALDATAclass(
                                     GETVALUE: data['value'],
                                   );
                                 }).toList();
 
                                 // ใช้ค่าจาก outputdata ได้ที่นี่
                                 setState(() {
-                                  P311BP12BALANCE03CALVAR
+                                  P410HESBALANCE02CALVAR
                                       .targetValue11 = outputdata[
                                           0]
                                       .GETVALUE; // <<<<< ใช้จาก outputdata แทน _datain
 
-                                  P311BP12BALANCE03CALVAR.button12PressCount++;
+                                  P410HESBALANCE02CALVAR.button12PressCount++;
 
-                                  if (P311BP12BALANCE03CALVAR
+                                  if (P410HESBALANCE02CALVAR
                                           .button12PressCount ==
                                       1) {
-                                    P311BP12BALANCE03CALVAR.button12Color =
+                                    P410HESBALANCE02CALVAR.button12Color =
                                         Color.fromARGB(255, 235, 211, 0);
-                                    P311BP12BALANCE03CALVAR.button12Text =
+                                    P410HESBALANCE02CALVAR.button12Text =
                                         "กรุณาวางลูกตุ้ม";
                                   } else {
-                                    if ((P311BP12BALANCE03CALVAR
-                                                    .targetValue11 >=
+                                    if ((P410HESBALANCE02CALVAR.targetValue11 >=
                                                 0 &&
-                                            P311BP12BALANCE03CALVAR
+                                            P410HESBALANCE02CALVAR
                                                     .targetValue11 <
                                                 199.9990) ||
-                                        P311BP12BALANCE03CALVAR.targetValue11 >
+                                        P410HESBALANCE02CALVAR.targetValue11 >
                                             200.0010) {
-                                      P311BP12BALANCE03CALVAR.button12Color =
+                                      P410HESBALANCE02CALVAR.button12Color =
                                           Colors.red;
-                                      P311BP12BALANCE03CALVAR.button12Text =
-                                          P311BP12BALANCE03CALVAR.targetValue11
+                                      P410HESBALANCE02CALVAR.button12Text =
+                                          P410HESBALANCE02CALVAR.targetValue11
                                               .toStringAsFixed(4);
                                     } else {
-                                      P311BP12BALANCE03CALVAR.button12Color =
+                                      P410HESBALANCE02CALVAR.button12Color =
                                           Colors.green;
-                                      P311BP12BALANCE03CALVAR.button12Text =
-                                          P311BP12BALANCE03CALVAR.targetValue11
+                                      P410HESBALANCE02CALVAR.button12Text =
+                                          P410HESBALANCE02CALVAR.targetValue11
                                               .toStringAsFixed(4);
                                     }
                                   }
@@ -1804,7 +1817,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  P311BP12BALANCE03CALVAR.button12Color,
+                                  P410HESBALANCE02CALVAR.button12Color,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
@@ -1812,7 +1825,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                               padding: EdgeInsets.zero,
                               minimumSize: Size(100, 80),
                             ),
-                            child: Text(P311BP12BALANCE03CALVAR.button12Text),
+                            child: Text(P410HESBALANCE02CALVAR.button12Text),
                           ),
                         ),
                         Container(
@@ -1823,13 +1836,13 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                             child: Builder(
                               builder: (context) {
                                 double val1 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button10Text) ??
+                                        P410HESBALANCE02CALVAR.button10Text) ??
                                     0;
                                 double val2 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button11Text) ??
+                                        P410HESBALANCE02CALVAR.button11Text) ??
                                     0;
                                 double val3 = double.tryParse(
-                                        P311BP12BALANCE03CALVAR.button12Text) ??
+                                        P410HESBALANCE02CALVAR.button12Text) ??
                                     0;
 
                                 double sum = val1 + val2 + val3;
@@ -1840,7 +1853,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                                 if (val3 != 0) count++;
 
                                 double average = count > 0 ? sum / count : 0;
-                                P311BP12BALANCE03CALVAR.summary4 = average;
+                                P410HESBALANCE02CALVAR.summary4 = average;
 
                                 return Text(
                                   '${average.toStringAsFixed(4)}',
@@ -1880,20 +1893,18 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         border: Border.all(color: Colors.black, width: 1),
                       ),
                       child: Text(
-                        (P311BP12BALANCE03CALVAR.button1PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button2PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button3PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button4PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button5PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button6PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button7PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button8PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button9PressCount > 1 &&
-                                P311BP12BALANCE03CALVAR.button10PressCount >
-                                    1 &&
-                                P311BP12BALANCE03CALVAR.button11PressCount >
-                                    1 &&
-                                P311BP12BALANCE03CALVAR.button12PressCount > 1)
+                        (P410HESBALANCE02CALVAR.button1PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button2PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button3PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button4PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button5PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button6PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button7PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button8PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button9PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button10PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button11PressCount > 1 &&
+                                P410HESBALANCE02CALVAR.button12PressCount > 1)
                             ? 'Finish'
                             : 'Unfinish',
                         style: TextStyle(
@@ -1933,7 +1944,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         onTap: () {
                           setState(() {
                             isPressed = !isPressed;
-                            P311BP12BALANCE03CALVAR.status = "Reject";
+                            P410HESBALANCE02CALVAR.status = "Reject";
                             if (isPressed2) {
                               isPressed = false;
                               // ปิดปุ่ม Reject ถ้า Approve ถูกกด
@@ -1969,7 +1980,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         onTap: () {
                           setState(() {
                             isPressed2 = !isPressed2;
-                            P311BP12BALANCE03CALVAR.status = "Approve";
+                            P410HESBALANCE02CALVAR.status = "Approve";
                             if (isPressed) {
                               isPressed2 = false;
                               // ปิดปุ่ม Reject ถ้า Approve ถูกกด
@@ -2021,10 +2032,10 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                       ],
                       onChangeinside: (d, k) {
                         setState(() {
-                          P311BP12BALANCE03CALVAR.Approve_By = d;
+                          P410HESBALANCE02CALVAR.Approve_By = d;
                         });
                       },
-                      value: P311BP12BALANCE03CALVAR.Approve_By,
+                      value: P410HESBALANCE02CALVAR.Approve_By,
                       height: 30,
                       width: 120,
                       borderRaio: 1.0,
@@ -2046,7 +2057,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         style: TextStyle(fontSize: 6),
                         onChanged: (value) {
                           setState(() {
-                            P311BP12BALANCE03CALVAR.password =
+                            P410HESBALANCE02CALVAR.password =
                                 value; // อัปเดตตัวแปรเมื่อพิมพ์
                           });
                         },
@@ -2064,11 +2075,12 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                     SizedBox(width: 20), // ระยะห่างจากขอบซ้าย
                     ElevatedButton.icon(
                       onPressed: () async {
+                        // เรียกใช้ Bloc เพื่อโหลดข้อมูล Password จากเซิร์ฟเวอร์
                         final response = await Dio().post(
-                          "${serverNRBP12}CheckPassword",
+                          "${serverNRHES}CheckPassword_HES",
                           data: {
-                            "Approve_By": P311BP12BALANCE03CALVAR.Approve_By,
-                            "Password": P311BP12BALANCE03CALVAR.password,
+                            "Approve_By": P410HESBALANCE02CALVAR.Approve_By,
+                            "Password": P410HESBALANCE02CALVAR.password,
                           },
                         );
 
@@ -2076,43 +2088,42 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         if (response.statusCode == 200) {
                           var databuff = response.data;
                           input = databuff;
-                          List<P311BP12BALANCECALDATAclass> outputdata =
+                          List<P410HESBALANCECALDATAclass> outputdata =
                               input.map((data) {
-                            return P311BP12BALANCECALDATAclass(
+                            return P410HESBALANCECALDATAclass(
                               PASSWORD: data['Password'],
                             );
                           }).toList();
 
                           if (outputdata.isNotEmpty) {
-                            // P310BP12BALANCE01CALVAR.password =
+                            // P410HESBALANCE02CALVAR.password =
                             //     outputdata[0].PASSWORD;
 
                             // ตรวจสอบว่าเงื่อนไขการกดปุ่มทั้ง 12 ปุ่มครบหรือไม่
-                            if ((P311BP12BALANCE03CALVAR.button1PressCount >
+                            if ((P410HESBALANCE02CALVAR.button1PressCount > 1 &&
+                                    P410HESBALANCE02CALVAR.button2PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button2PressCount >
+                                    P410HESBALANCE02CALVAR.button3PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button3PressCount >
+                                    P410HESBALANCE02CALVAR.button4PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button4PressCount >
+                                    P410HESBALANCE02CALVAR.button5PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button5PressCount >
+                                    P410HESBALANCE02CALVAR.button6PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button6PressCount >
+                                    P410HESBALANCE02CALVAR.button7PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button7PressCount >
+                                    P410HESBALANCE02CALVAR.button8PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button8PressCount >
+                                    P410HESBALANCE02CALVAR.button9PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button9PressCount >
+                                    P410HESBALANCE02CALVAR.button10PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button10PressCount >
+                                    P410HESBALANCE02CALVAR.button11PressCount >
                                         1 &&
-                                    P311BP12BALANCE03CALVAR.button11PressCount >
-                                        1 &&
-                                    P311BP12BALANCE03CALVAR.button12PressCount >
+                                    P410HESBALANCE02CALVAR.button12PressCount >
                                         1) ||
-                                _datain[0].INSTRUMENT == 'BA03') {
+                                _datain[0].INSTRUMENT == 'BA02') {
                               // ✅ ป้องกัน _datain index error
                               if (outputdata[0].PASSWORD ==
                                   "Password not correct") {
@@ -2126,8 +2137,11 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                                 );
                               } else if (outputdata[0].PASSWORD ==
                                   "Password correct") {
+                                // P410HESBALANCE02CALMAINcontext.read<
+                                //         P410HESBALANCECALDATA_Bloc>()
+                                //     .add(P410HESBALANCECALDATA_GET());
                                 print("Save");
-                                Navigator.of(P311BP12BALANCE03CALMAINcontext)
+                                Navigator.of(P410HESBALANCE02CALMAINcontext)
                                     .pop(true);
 
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -2155,8 +2169,7 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                           print("ยังไม่ครบเงื่อนไข");
                         }
                       },
-
-                      icon: Icon(Icons.save, color: Colors.white), // ไอคอน Save
+                      icon: Icon(Icons.save, color: Colors.white),
                       label: Text(
                         "Save",
                         style: TextStyle(
@@ -2165,8 +2178,8 @@ class _P311BP12BALANCE03CALMAINState extends State<P311BP12BALANCE03CALMAIN> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue, // สีปุ่ม
-                        foregroundColor: Colors.white, // สีตัวอักษร
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       ),
