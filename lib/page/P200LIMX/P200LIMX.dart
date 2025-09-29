@@ -1670,7 +1670,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                         if (dataexList[i].contains("RTB") || dataexList[i].contains("RTR")) {
                           List<String> dtList = dataexList[i].split(",");
                           DATASET setdatab = DATASET();
-
+                          print(dtList);
                           for (var j = 0; j < dtList.length; j++) {
                             // print(dtList[j].replaceAll(" ", ""));
 
@@ -2309,28 +2309,28 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                 }
                               }
                               if (settingdata.contains("Fluoride")) {
-                                print("${data}  ${(datarow[i][7]?.value ?? '')} ");
-                                setdatab.Fluoride = (datarow[i][7]?.value ?? '').toString();
+                                print("${data}  ${(datarow[i][5]?.value ?? '')} ");
+                                setdatab.Fluoride = (datarow[i][5]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Chloride")) {
-                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                setdatab.Chloride = (datarow[i][7]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][5]?.value ?? '')} ");
+                                setdatab.Chloride = (datarow[i][5]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Nitrate")) {
-                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                setdatab.Nitrate = (datarow[i][7]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][5]?.value ?? '')} ");
+                                setdatab.Nitrate = (datarow[i][5]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Sulphate") || settingdata.contains("Sulfate")) {
-                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                setdatab.Sulphate = (datarow[i][7]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][5]?.value ?? '')} ");
+                                setdatab.Sulphate = (datarow[i][5]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Phosphate")) {
-                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                setdatab.Phosphate = (datarow[i][7]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][5]?.value ?? '')} ");
+                                setdatab.Phosphate = (datarow[i][5]?.value ?? '').toString();
                               }
                               if (settingdata.contains("Pyrophosphate")) {
-                                print("${data}   ${(datarow[i][7]?.value ?? '')} ");
-                                setdatab.P2O7 = (datarow[i][7]?.value ?? '').toString();
+                                print("${data}   ${(datarow[i][5]?.value ?? '')} ");
+                                setdatab.P2O7 = (datarow[i][5]?.value ?? '').toString();
                               }
                             }
                           }
@@ -2977,6 +2977,6 @@ class DATASETICS8100 {
 
 String cleanValue(dynamic val) {
   String v = (val ?? '').toString();
-  if (v == '0' || v == '0.0' || v == 'n.a.') return '';
+  if (v == '0' || v == '0.0' || v == 'n.a.') return '0';
   return v;
 }

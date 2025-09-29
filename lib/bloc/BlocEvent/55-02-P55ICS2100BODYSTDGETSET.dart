@@ -83,7 +83,7 @@ class P55ICS2100BODYSTDGETSET_Bloc extends Bloc<P55ICS2100BODYSTDGETSET_Event, P
 
         if (databuff[0]['data02'] != null) {
           var data02W11 = databuff[0]['data02']['W11'];
-
+          print(data02W11);
           if (data02W11 != null && data02W11 is Map) {
             if (output.ItemName.contains("T-F")) {
               output.D02W11 = data02W11['FluorideR2']?.toString() ?? '';
