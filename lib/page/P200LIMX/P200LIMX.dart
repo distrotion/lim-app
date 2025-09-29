@@ -2977,6 +2977,6 @@ class DATASETICS8100 {
 
 String cleanValue(dynamic val) {
   String v = (val ?? '').toString();
-  if (v == '0' || v == '0.0' || v == 'n.a.') return '';
+  if (v == '0' || v == '0.0' || v == 'n.a.') return '0';
   return v;
 }
