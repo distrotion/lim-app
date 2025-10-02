@@ -532,11 +532,11 @@ class _P54ICS8100BODYSTDState extends State<P54ICS8100BODYSTD> {
                           ),
                         ],
                       ),
-                    if (P54ICS8100BODYSTDVAR.itemName.contains("PO43"))
+                    if (P54ICS8100BODYSTDVAR.itemName.contains("PO4"))
                       const SizedBox(
                         height: 15,
                       ),
-                    if (P54ICS8100BODYSTDVAR.itemName.contains("PO43"))
+                    if (P54ICS8100BODYSTDVAR.itemName.contains("PO4"))
                       Row(
                         children: [
                           SizedBox(

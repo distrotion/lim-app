@@ -477,11 +477,11 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                           ),
                         ],
                       ),
-                    if (P53ICS2000BODYSTDVAR.itemName.contains("PO42"))
+                    if (P53ICS2000BODYSTDVAR.itemName.contains("SO4"))
                       const SizedBox(
                         height: 15,
                       ),
-                    if (P53ICS2000BODYSTDVAR.itemName.contains("PO42"))
+                    if (P53ICS2000BODYSTDVAR.itemName.contains("SO4"))
                       Row(
                         children: [
                           SizedBox(
@@ -533,11 +533,11 @@ class _P53ICS2000BODYSTDState extends State<P53ICS2000BODYSTD> {
                           ),
                         ],
                       ),
-                    if (P53ICS2000BODYSTDVAR.itemName.contains("PO43"))
+                    if (P53ICS2000BODYSTDVAR.itemName.contains("PO4"))
                       const SizedBox(
                         height: 15,
                       ),
-                    if (P53ICS2000BODYSTDVAR.itemName.contains("PO43"))
+                    if (P53ICS2000BODYSTDVAR.itemName.contains("PO4"))
                       Row(
                         children: [
                           SizedBox(
