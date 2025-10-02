@@ -2282,7 +2282,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               settingdata = data;
                             }
 
-                            if (data.contains("Pyrophosphate")) {
+                            if (data.contains("Pyrophosphate") || data.contains("P2O7")) {
                               print("${data}   ");
                               settingdata = data;
                             }
@@ -2328,7 +2328,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                 print("${data}   ${(datarow[i][5]?.value ?? '')} ");
                                 setdatab.Phosphate = (datarow[i][5]?.value ?? '').toString();
                               }
-                              if (settingdata.contains("Pyrophosphate")) {
+                              if (settingdata.contains("Pyrophosphate") || settingdata.contains("P207")) {
                                 print("${data}   ${(datarow[i][5]?.value ?? '')} ");
                                 setdatab.P2O7 = (datarow[i][5]?.value ?? '').toString();
                               }
@@ -2577,7 +2577,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                               settingdata = data;
                             }
 
-                            if (data.contains("Pyrophosphate")) {
+                            if (data.contains("Pyrophosphate") || data.contains("P2O7")) {
                               print("${data}   ");
                               settingdata = data;
                             }
@@ -2644,7 +2644,7 @@ class _P200LIMXUPDATEState extends State<P200LIMXUPDATE> {
                                   setdatab.Phosphate = value.toStringAsFixed(4);
                                 }
                               }
-                              if (settingdata.contains("Pyrophosphate")) {
+                              if (settingdata.contains("Pyrophosphate") || settingdata.contains("P2O7")) {
                                 print("${data}   ${(datarow[i][7]?.value ?? '')} ");
                                 if (v.isNotEmpty) {
                                   double value =
